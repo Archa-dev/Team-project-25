@@ -3,19 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2023 at 11:26 PM
+-- Generation Time: Nov 15, 2023 at 08:53 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `team project year 2`
@@ -45,6 +39,13 @@ CREATE TABLE `customerdetails` (
   `default_address` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `customerdetails`
+--
+
+INSERT INTO `customerdetails` (`user_id`, `customer_id`, `name`, `default_address`) VALUES
+(2, 1, 'Bob', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +59,14 @@ CREATE TABLE `logindetails` (
   `password` varchar(200) NOT NULL,
   `email` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logindetails`
+--
+
+INSERT INTO `logindetails` (`user_id`, `authorization_level`, `username`, `password`, `email`) VALUES
+(1, 'admin', 'admin1', '123', 'admin1@xyzmail.com'),
+(2, 'customer', 'customer1', 'abc', 'customer1@xyzmail.com');
 
 -- --------------------------------------------------------
 
@@ -97,6 +106,37 @@ CREATE TABLE `productdetails` (
   `stock` int(11) NOT NULL,
   `colour` enum('black','white','yellow','brown','green') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `productdetails`
+--
+
+INSERT INTO `productdetails` (`product_id`, `product_name`, `product_image`, `price`, `stock`, `colour`) VALUES
+(1, 'Black Product 1', NULL, '29.99', 50, 'black'),
+(2, 'Black Product 2', NULL, '39.99', 30, 'black'),
+(3, 'Black Product 3', NULL, '49.99', 20, 'black'),
+(4, 'Black Product 4', NULL, '59.99', 10, 'black'),
+(5, 'Black Product 5', NULL, '69.99', 5, 'black'),
+(6, 'White Product 1', NULL, '29.99', 50, 'white'),
+(7, 'White Product 2', NULL, '39.99', 30, 'white'),
+(8, 'White Product 3', NULL, '49.99', 20, 'white'),
+(9, 'White Product 4', NULL, '59.99', 10, 'white'),
+(10, 'White Product 5', NULL, '69.99', 5, 'white'),
+(11, 'Yellow Product 1', NULL, '29.99', 50, 'yellow'),
+(12, 'Yellow Product 2', NULL, '39.99', 30, 'yellow'),
+(13, 'Yellow Product 3', NULL, '49.99', 20, 'yellow'),
+(14, 'Yellow Product 4', NULL, '59.99', 10, 'yellow'),
+(15, 'Yellow Product 5', NULL, '69.99', 5, 'yellow'),
+(16, 'Brown Product 1', NULL, '29.99', 50, 'brown'),
+(17, 'Brown Product 2', NULL, '39.99', 30, 'brown'),
+(18, 'Brown Product 3', NULL, '49.99', 20, 'brown'),
+(19, 'Brown Product 4', NULL, '59.99', 10, 'brown'),
+(20, 'Brown Product 5', NULL, '69.99', 5, 'brown'),
+(21, 'Green Product 1', NULL, '29.99', 50, 'green'),
+(22, 'Green Product 2', NULL, '39.99', 30, 'green'),
+(23, 'Green Product 3', NULL, '49.99', 20, 'green'),
+(24, 'Green Product 4', NULL, '59.99', 10, 'green'),
+(25, 'Green Product 5', NULL, '69.99', 5, 'green');
 
 -- --------------------------------------------------------
 
@@ -225,7 +265,3 @@ ALTER TABLE `productreviews`
 ALTER TABLE `sitereviews`
   ADD CONSTRAINT `sitereviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `logindetails` (`user_id`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
