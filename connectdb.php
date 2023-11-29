@@ -1,6 +1,6 @@
 <?php
 $db_host='localhost';
-$db_name='team_project_year_2';
+$db_name='team project year 2';
 $username='root';
 $password='';
 
