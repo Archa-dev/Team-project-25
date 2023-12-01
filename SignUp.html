@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+     max-width: 960px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  }
+    </style>
+</head>
+<body>
+    <h2>Sign Up</h2>
+    <div class="container">
+    <form action="/submit" method="post">
+        <label for="title">Title:</label>
+        <select id="title" name="title">
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
+            <option value="Ms">Ms</option>
+           
+        </select>
+
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone">
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" minlength="8" maxlength="16" required>
+        <br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" maxlength="16" required>
+        <br>
+        <input type="checkbox" id="terms" name="terms" required>
+         
+        <label for="terms">I agree to receive commercial communications, including marketing and promotional messages, newsletter, advertising and catalogues.</label>
+        <br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
