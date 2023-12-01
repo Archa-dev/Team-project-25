@@ -8,7 +8,19 @@
   <h1>Login</h1>
 
 </head>
-
+<style>
+  body {
+    font-family: "Century Gothic", sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+</style>
 <body>
     <form method="post" action="login.php">
         <h2>Username:</h2>
