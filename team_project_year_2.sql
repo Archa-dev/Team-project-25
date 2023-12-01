@@ -65,8 +65,8 @@ CREATE TABLE `logindetails` (
 --
 
 INSERT INTO `logindetails` (`user_id`, `authorization_level`, `username`, `password`, `email`) VALUES
-(1, 'admin', 'admin1', '123', 'admin1@xyzmail.com'),
-(2, 'customer', 'customer1', 'abc', 'customer1@xyzmail.com');
+(1, 'admin', 'admin1', '$2y$10$s/CPs4CdgyNM7iw6DaDhVuKbd58UIHCKxxWn21zN8QTk6/qTUg.d2', 'admin1@xyzmail.com'),
+(2, 'customer', 'customer1', '$2y$10$urbv5YWeTcCTWaRufto1vu.YchMD8d22/G7moPiI.qehY.OlUmrHK', 'customer1@xyzmail.com');
 
 -- --------------------------------------------------------
 
