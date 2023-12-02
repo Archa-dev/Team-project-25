@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2023 at 11:14 PM
+-- Generation Time: Dec 02, 2023 at 08:11 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -44,7 +44,8 @@ CREATE TABLE `customerdetails` (
 --
 
 INSERT INTO `customerdetails` (`user_id`, `customer_id`, `name`, `default_address`) VALUES
-(2, 1, 'Bob', NULL);
+(2, 1, 'Bob', NULL),
+(3, 2, 'mfewomf', 'mfewfmw');
 
 -- --------------------------------------------------------
 
@@ -65,8 +66,10 @@ CREATE TABLE `logindetails` (
 --
 
 INSERT INTO `logindetails` (`user_id`, `authorization_level`, `username`, `password`, `email`) VALUES
+(0, 'customer', 'f,moewpfw', '$2y$10$SKWkymVBqqZikO/sEEvxs.qSRFdxugV.fGAp6eH3XgW5U7SjawDBu', 'mijfew'),
 (1, 'admin', 'admin1', '$2y$10$s/CPs4CdgyNM7iw6DaDhVuKbd58UIHCKxxWn21zN8QTk6/qTUg.d2', 'admin1@xyzmail.com'),
-(2, 'customer', 'customer1', '$2y$10$urbv5YWeTcCTWaRufto1vu.YchMD8d22/G7moPiI.qehY.OlUmrHK', 'customer1@xyzmail.com');
+(2, 'customer', 'customer1', '$2y$10$urbv5YWeTcCTWaRufto1vu.YchMD8d22/G7moPiI.qehY.OlUmrHK', 'customer1@xyzmail.com'),
+(3, 'customer', 'mfekwemf', '$2y$10$rxFpHw/.H/Y9R.JnKJe.VOjBKq//4Mk9bxIRE3XdAH2qfgH4lWUye', 'mkleqmf');
 
 -- --------------------------------------------------------
 
@@ -209,7 +212,8 @@ ALTER TABLE `previousorders`
 -- Indexes for table `productdetails`
 --
 ALTER TABLE `productdetails`
-  ADD PRIMARY KEY (`product_id`);
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `productreviews`
@@ -223,6 +227,28 @@ ALTER TABLE `productreviews`
 --
 ALTER TABLE `sitereviews`
   ADD KEY `user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `customerdetails`
+--
+ALTER TABLE `customerdetails`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `logindetails`
+--
+ALTER TABLE `logindetails`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `productdetails`
+--
+ALTER TABLE `productdetails`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables
