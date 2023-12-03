@@ -26,11 +26,15 @@
         <h2>Username:</h2>
         <input type="text" name="username">
         <h2>Password:</h2>
-        <input type="text" name="password"><br>
+        <input type="password" name="password"><br>
         <input type="submit" name="submit">
         <input type="hidden" name="logsub" value="TRUE">
     </form>
-
+  <form>
+</br>
+</br>
+<a href="signup.php">Dont have an account?</a>
+    </form>
     
     <?php
     require_once('connectdb.php');
