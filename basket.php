@@ -3,8 +3,13 @@
     <head>
         <title>Basket</title>
         <link rel="stylesheet" href="" />
+        <?php
+        require_once('connectdb.php');
+        ?>
         <script>
-            if (document.readyState == 'loading') {
+var customerid = "";                                                                // needs to be changed to relevant customer ID
+
+if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
     ready()
@@ -55,15 +60,32 @@ function amountChanged(event) {
     updateBasketTotal()
 }
 
-function addToBasketClicked(event) {
-    var button = event.target
-    var testItem = button.parentElement.parentElement
-    var title = testItem.getElementsByClassName('test-item-title')[0].innerText
-    var price = testItem.getElementsByClassName('test-item-price')[0].innerText
-    var imageSrc = testItem.getElementsByClassName('test-item-image')[0].src
-    addItemToBasket(title, price, imageSrc)
-    updateBasketTotal()
-}
+// function addToBasketClicked(event) {
+//    var button = event.target
+//    var testItem = button.parentElement.parentElement
+//
+//    this is items for test purposes, does not pull from database
+//    var title = testItem.getElementsByClassName('test-item-title')[0].innerText
+//    var price = testItem.getElementsByClassName('test-item-price')[0].innerText
+//    var imageSrc = testItem.getElementsByClassName('test-item-image')[0].src
+//
+//    addItemToBasket(title, price, imageSrc)
+//    updateBasketTotal()
+//}
+
+<?php
+$itemTitle=$db->prepare('SELECT product_name FROM productdetails WHERE product_id = $productid');
+$itemPrice=$db->prepare('SELECT price FROM productdetails WHERE product_id = $productid');
+$itemImage=$db->prepare('SELECT product_image FROM productdetails WHERE product_id = $productid');
+$itemAmount=$db->prepare('SELECT COUNT(*) FROM basket WHERE product_id = $productid');
+
+$itemsCount = $db->prepare('SELECT COUNT(*) FROM basket WHERE customer_id = $customerid');
+?>
+
+
+
+
+
 
 function addItemToBasket(title, price, imageSrc) {
     var BasketRow = document.createElement('div')
@@ -106,6 +128,8 @@ function updateBasketTotal() {
     }
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('basket-total-price')[0].innerText = '£' + total
+
+
 }
         </script>
     </head>
