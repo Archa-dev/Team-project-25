@@ -119,43 +119,6 @@ main {
             line-height: 1.8;
         }
 
-        footer {
-            background-color: rgb(70, 0, 70);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 10px;
-        }
-
-        .social-links img {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-
-        .divider {
-            border-right: 1px solid #fff;
-            height: 40px;
-            margin: 10px;
-        }
-
-        .page-links {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .page-row {
-            display: flex;
-            margin-bottom: 10px;
-        }
-
-        .page-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 10px;
-            font-weight: 300;
-        }
     </style>
 
 </head>
