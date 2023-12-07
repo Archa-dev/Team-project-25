@@ -7,7 +7,7 @@
         
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Century Gothic", sans-serif;
         }
 
         
