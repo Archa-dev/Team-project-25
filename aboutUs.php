@@ -9,7 +9,7 @@
     <!-- CSS styles -->
     <style>
         body {
-            font-family: 'Georgia', 'Times New Roman', Times, serif;
+            font-family: "Century Gothic", sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
