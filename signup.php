@@ -103,5 +103,7 @@ function signupSuccess(){
     }
     }
     ?>
+      </br>
+    <a href="signup.php">Already have an account?</a>
 </body>
 </html>

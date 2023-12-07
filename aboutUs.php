@@ -104,8 +104,17 @@
     <section>
         <div class="about-content">
             <h2>About Us</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac libero nec purus hendrerit ultricies in a justo. Ut consequat bibendum justo, vitae varius turpis auctor nec.</p>
-            <p>Suspendisse potenti. Quisque vestibulum velit et justo volutpat, in finibus orci condimentum. Maecenas quis accumsan justo, et dictum justo. Aliquam erat volutpat. Nullam in tristique lacus.</p>
+            <p>Welcome to Shaded – Where Style Meets UV Protection!
+
+Discover the perfect pair of sunglasses at Shaded, your go-to destination for fashion-forward eyewear. Our curated collection blends style with quality, offering trendy and classic designs with top-notch UV protection.
+
+Why Shaded?
+
+Diverse Selection: From classic aviators to trendy cat-eye frames, find the perfect shades for your style.
+
+Affordable Luxury: Elevate your look without breaking the bank with our stylish and affordable sunglasses.
+
+Customer Satisfaction: Our dedicated support team ensures a seamless shopping experience. Embrace the allure of well-chosen shades – shop at Shaded today!</p>
         </div>
     </section>
 
