@@ -3,11 +3,68 @@
     <head>
         <title>Basket</title>
         <link rel="stylesheet" href="" />
-        <?php
-        require_once('connectdb.php');
-        ?>
-        <script>
-var customerid = "1";                                                                // needs to be changed to relevant customer ID
+<?php
+require_once('connectdb.php');
+
+$itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = ?');
+$itemIDs->bindParam(1, $customerid);
+$itemIDs->execute();
+$itemTitle=$db->prepare('SELECT product_name FROM productdetails WHERE product_id = ?');
+$itemPrice=$db->prepare('SELECT price FROM productdetails WHERE product_id = ?');
+$itemImage=$db->prepare('SELECT product_image FROM productdetails WHERE product_id = ?');
+$itemAmount=$db->prepare('SELECT COUNT(*) FROM basket WHERE product_id = ?');
+
+
+$itemsCount = $db->prepare('SELECT COUNT(*) FROM basket WHERE customer_id = ?');
+$itemsCount->bindParam(1, $customerid);
+$itemsCount->execute();
+$itemsNum = $itemsCount->fetchColumn();
+
+
+for ($i = 0; $i < $itemsNum; $i++) {
+
+    $productid = $itemIDs->fetchColumn();
+    
+    $itemTitle->bindParam(1, $productid);
+    $itemTitle->execute();
+    $itemPrice->bindParam(1, $productid);
+    $itemPrice->execute();
+    $itemImage->bindParam(1, $productid);
+    $itemImage->execute();
+    $itemAmount->bindParam(1, $productid);
+    $itemAmount->execute(); 
+    
+    $title = $itemTitle->fetchColumn();
+    $price = $itemPrice->fetchColumn();
+    $imageSrc = $itemImage->fetchColumn();
+    $amount = $itemAmount->fetchColumn();
+    echo "
+    <script>
+    addItemToBasket('$title', '$price', '$imageSrc', '$amount', '$productid');
+    updateBasketTotal()
+    console.log('test');
+    </script>";
+}
+?>
+
+<body>
+<h2>Basket</h2>
+<div class="basket-row">
+    <span class="basket-item basket-header basket-column">Item</span>
+    <span class="basket-price basket-header basket-column">Price</span>
+    <span class="basket-amount basket-header basket-column">Amount</span>
+</div>
+<div class="basket-items">
+ </div>
+<div class="basket-total">
+<strong class="basket-total-title">Total</strong>
+<span class="basket-total-price">£0</span>
+ </div>
+<button class="button checkout-button" type="button">CHECKOUT</button>
+</body>
+
+<script>
+var $customerid = 1;                                                                // needs to be changed to relevant customer ID
 
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
@@ -50,12 +107,12 @@ function removeBasketItem(event) {
     var buttonClicked = event.target
     var productid = buttonClicked.parentElement.parentElement.getElementsByClassName('basket-item-productid')[0].innerText
     buttonClicked.parentElement.parentElement.remove()
-    <?php
-    $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');
-    $removeItem->bindParam(1, $productid);
-    $removeItem->bindParam(2, $customerid);
-    $removeItem->execute();
-    ?>
+    // <?php
+    // $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');
+    // $removeItem->bindParam(1, $productid);
+    // $removeItem->bindParam(2, $customerid);
+    // $removeItem->execute();
+    // ?>
     updateBasketTotal()
 }
 
@@ -67,34 +124,14 @@ function amountChanged(event) {
     updateBasketTotal()
 }
 
-
-<?php
-$itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = ?');
-$itemIDs->bindParam(1, $customerid);
-$itemIDs->execute();
-$itemTitle=$db->prepare('SELECT product_name FROM productdetails WHERE product_id = ?');
-$itemPrice=$db->prepare('SELECT price FROM productdetails WHERE product_id = ?');
-$itemImage=$db->prepare('SELECT product_image FROM productdetails WHERE product_id = ?');
-$itemAmount=$db->prepare('SELECT COUNT(*) FROM basket WHERE product_id = ?');
-
-
-$itemsCount = $db->prepare('SELECT COUNT(*) FROM basket WHERE customer_id = ?');
-$itemsCount->bindParam(1, $customerid);
-$itemsCount->execute();
-$itemsCount = $itemsCount->fetchColumn();
-?>
-
 function addItemToBasket(title, price, imageSrc, amount, productid) {
     var BasketRow = document.createElement('div')
     BasketRow.classList.add('basket-row')
+
+
     var BasketItems = document.getElementsByClassName('basket-items')[0]
-    var BasketItemNames = BasketItems.getElementsByClassName('basket-item-title')
-    for (var i = 0; i < BasketItemNames.length; i++) {
-        if (BasketItemNames[i].innerText == title) {
-            alert('This item is already added to the basket')
-            return
-        }
-    }
+
+
     var BasketRowContents = `
         <div class="basket-item basket-column">
             <img class="basket-item-image" src="${imageSrc}" width="100" height="100">
@@ -128,41 +165,10 @@ function updateBasketTotal() {
     document.getElementsByClassName('basket-total-price')[0].innerText = '£' + total
 }
 
-for (var i = 0; i < $itemsCount; i++) {
-<?php 
-$productid = $itemIDs->fetchColumn();
 
-$itemTitle->bindParam(1, $productid);
-$itemTitle->execute();
-$itemPrice->bindParam(1, $productid);
-$itemPrice->execute();
-$itemImage->bindParam(1, $productid);
-$itemImage->execute();
-$itemAmount->bindParam(1, $productid);
-$itemAmount->execute(); 
 
-$title = $itemTitle->fetchColumn();
-$price = $itemPrice->fetchColumn();
-$imageSrc = $itemImage->fetchColumn();
-$amount = $itemAmount->fetchColumn();
-?>
-addItemToBasket(title, price, imageSrc, amount, productid);
-updateBasketTotal()
-}
+addItemToBasket("test", 1, "", 1, 1);
+
 
 </script>
 </head>
-<body>
-<h2>Basket</h2>
-<div class="basket-row">
-    <span class="basket-item basket-header basket-column">Item</span>
-    <span class="basket-price basket-header basket-column">Price</span>
-    <span class="basket-amount basket-header basket-column">Amount</span>
-</div>
-<div class="basket-items">
- </div>
-<div class="basket-total">
-<strong class="basket-total-title">Total</strong>
-<span class="basket-total-price">£0</span>
- </div>
-<button class="button checkout-button" type="button">CHECKOUT</button>
