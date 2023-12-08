@@ -1,22 +1,45 @@
 <?php
 require_once('connectdb.php');
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if the integerInput is set
-    if (isset($_POST["integerInput"])) {
-        // Retrieve the value and sanitize as an integer
-        $integerValue = intval($_POST["integerInput"]);
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if the selectedProductId is set
+    if (isset($_POST["selectedProductId"])) {
+        // Retrieve the value and sanitize as an integer
+        $integerValue = intval($_POST["selectedProductId"]);
+
+        // Fetch product details from the database
+        $items = $db->prepare("SELECT * FROM `productdetails` WHERE `product_id` = ?;");
+        $items->bindParam(1, $integerValue);
+        $items->execute();
+        $item = $items->fetch(PDO::FETCH_ASSOC);
+    }
+
+    $user = 1;
+
+    // Check if the addToBasket button is clicked
+    if (isset($_POST["addToBasket"])) {
+        // Check for duplicate entry
+        $checkDuplicate = $db->prepare("SELECT COUNT(*) FROM `basket` WHERE `customer_id` = ? AND `product_id` = ?;");
+        $checkDuplicate->bindParam(1, $user);
+        $checkDuplicate->bindParam(2, $integerValue);
+        $checkDuplicate->execute();
+        $count = $checkDuplicate->fetchColumn();
+
+        // If no duplicate, proceed with insertion
+        if ($count == 0) {
+            $addToBasket = $db->prepare("INSERT INTO `basket` (`customer_id`, `product_id`) VALUES (?, ?);");
+            $addToBasket->bindParam(1, $user);
+            $addToBasket->bindParam(2, $integerValue);
+
+            // Execute the SQL query to insert the product into the basket
+            $addToBasket->execute();
+
+        } else {
+            // Display a message
+            echo "Product is already in the basket.";
+        }
     }
 }
-
-$items=$db->prepare("SELECT * FROM `productdetails` WHERE `product_id` = ?;");
-$items -> bindParam(1,$integerValue);
-$items->execute();
-$item =$items->fetch(PDO::FETCH_ASSOC);
-
-
-
-
 ?>
 
 
@@ -43,7 +66,8 @@ $item =$items->fetch(PDO::FETCH_ASSOC);
 
 <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
     <!-- Add your product ID input or any other necessary fields here -->
-    <input type="hidden" name="productID" value="123">
+    <input type="hidden" name="selectedProductId" value="<?= $integerValue ?>">
+
 
     <!-- Button to trigger the SQL query -->
     <button type="submit" name="addToBasket">Add to Basket</button>
