@@ -129,8 +129,9 @@ function updateBasketTotal() {
 }
 
 for (var i = 0; i < $itemsCount; i++) {
-var productid = <?php echo $itemIDs->fetchColumn();?>
 <?php 
+$productid = $itemIDs->fetchColumn();
+
 $itemTitle->bindParam(1, $productid);
 $itemTitle->execute();
 $itemPrice->bindParam(1, $productid);
@@ -139,12 +140,13 @@ $itemImage->bindParam(1, $productid);
 $itemImage->execute();
 $itemAmount->bindParam(1, $productid);
 $itemAmount->execute(); 
+
+$title = $itemTitle->fetchColumn();
+$price = $itemPrice->fetchColumn();
+$imageSrc = $itemImage->fetchColumn();
+$amount = $itemAmount->fetchColumn();
 ?>
-var title = <?php echo $itemTitle->fetchColumn();?>
-var price = <?php echo $itemPrice->fetchColumn();?>
-var imageSrc = <?php echo $itemImage->fetchColumn();?>
-var amount = <?php echo $itemAmount->fetchColumn();?>
-addItemToBasket(title, price, imageSrc, amount, productid)
+addItemToBasket(title, price, imageSrc, amount, productid);
 updateBasketTotal()
 }
 
