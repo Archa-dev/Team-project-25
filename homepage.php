@@ -20,6 +20,7 @@ html {
         font-family: "Century Gothic", sans-serif;
         background-color: #ffffff;
         margin: 0;
+        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
         padding: 0;
         box-sizing: border-box;
         outline: none; border: none;
@@ -46,7 +47,7 @@ html {
 
             /* Hide the dropdown arrow */
             .navbar-nav .nav-item.dropdown > .nav-link::after {
-                display: none
+                display: none !important
             }
         }
     }
@@ -63,7 +64,83 @@ html {
 }
 
 main {
-    margin-top: 40vh; /* Adjust margin-top to be equal to the height of the header */
+    margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
+}
+
+/* Additional styles for the main content images and text overlay */
+.main-content {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .main-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 30px; /* Adjust the top value to control the distance from the top */
+            left: 30px; /* Adjust the left value to control the distance from the left */
+            text-align: left;
+            color: #fff; /* Text color */
+        }
+
+h2{
+    font-weight: bold;
+}
+
+.bold-link {
+    font-weight: bold;
+}
+
+        /* Style for the custom link text */
+        .custom-link {
+            color: #fff;
+        }
+
+        .no-underline {
+            text-decoration: none !important;
+        }
+
+.sticky-footer-padding {
+    margin-bottom: 8vh;
+    /* Adjust the margin bottom to match the height of the footer */
+}
+
+/* Updated Footer Styles */
+.footer {
+            background-color: #fff;
+            color: grey;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 14px;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+.social-icons a {
+            margin: 0 20px;
+            color: #000;
+            font-size: 14px;
+        }
+
+.terms-links a {
+    margin-left: 5px;
+    color: #6c757d; /* Change the color as needed */
+    text-decoration: none;
+}
+
+.terms-links a:hover {
+    text-decoration: underline; /* Add underlining on hover if desired */
+    color: #000; /* Change the hover color as needed */
 }
 
 </style>
@@ -168,23 +245,30 @@ main {
 
                     <!-- navbar to the right of the search box -->
                     <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-user"></i>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="#">My Orders</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-lock"></i> <!-- Assuming a crown icon for admin -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Log In/ Sign Up</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-heart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Item 1</a></li>
-                                <li><a class="dropdown-item" href="#">Item 2</a></li>
+                                <li><a class="dropdown-item" >Your wish list is empty</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -192,8 +276,7 @@ main {
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Product 1</a></li>
-                                <li><a class="dropdown-item" href="#">Product 2</a></li>
+                                <li><a class="dropdown-item" >Your shopping cart is empty</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -203,11 +286,63 @@ main {
 
     </header>
 
-    <main>
-        
+    <main class="sticky-footer-padding">
+
+    <div class="main-content">
+            <img src="images/5.jpeg" alt="Image 2">
+            <div class="text-overlay">
+                <a href="#" class="custom-link no-underline">
+                    <h2 class="no-underline">Shop the Latest Collection</h2>
+                </a>
+                <a href="#" class="custom-link no-underline">
+                    <p class="no-underline">Discover new arrivals and trends for the season.</p>
+                </a>
+                <a href="#" class="custom-link bold-link">Explore Now</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <img src="images/8.jpeg" alt="Image 2">
+            <div class="text-overlay">
+                <a href="#" class="custom-link no-underline">
+                    <h2 class="no-underline">Special Offers</h2>
+                </a>
+                <a href="#" class="custom-link no-underline">
+                    <p class="no-underline">Enjoy exclusive discounts on your favorite products.</p>
+                </a>
+                <a href="#" class="custom-link bold-link">Shop Deals</a>
+            </div>
+        </div>
+
     </main>
 
-    <footer></footer>
+    <!-- Bootstrap Container for Footer -->
+    <div class="container-fluid">
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-text">
+                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="social-icons">
+                        <!-- Add your social media icons  -->
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <!-- Add more social media icons as needed -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="terms-links">
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Cookies Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 
 </body>
 </html>

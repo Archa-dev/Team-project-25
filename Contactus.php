@@ -226,18 +226,30 @@ main {
 
                     <!-- navbar to the right of the search box -->
                     <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-user"></i>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="#">My Orders</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Log In/ Sign Up</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-heart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Item 1</a></li>
-                                <li><a class="dropdown-item" href="#">Item 2</a></li>
+                                <li><a class="dropdown-item" >Your wish list is empty</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -245,14 +257,14 @@ main {
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Product 1</a></li>
-                                <li><a class="dropdown-item" href="#">Product 2</a></li>
+                                <li><a class="dropdown-item" >Your shopping cart is empty</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        
     </header>
 
     <main class="sticky-footer-padding">
