@@ -289,7 +289,8 @@ main {
       <div class="row justify-content-center">
          <div class="col-md-6">
             <form method="post" action="signup.php" onsubmit="return signupSuccess()" class="signup-form">
-              <h2>Email:</h2>
+              <h1>Sign Up</h1>
+                <h2>Email:</h2>
               <input type="email" name="inputEmail" class="form-control" required>
 
               <h2>Username:</h2>
