@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="" />
 <?php
 require_once('connectdb.php');
+$customerid = 1;                                                                // needs to be changed to relevant customer ID
 
 $itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = ?');
 $itemIDs->bindParam(1, $customerid);
@@ -40,7 +41,6 @@ $itemsNum = $itemsCount->fetchColumn();
 </body>
 
 <script>
-var $customerid = 1;                                                                // needs to be changed to relevant customer ID
 
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
@@ -83,12 +83,12 @@ function removeBasketItem(event) {
     var buttonClicked = event.target
     var productid = buttonClicked.parentElement.parentElement.getElementsByClassName('basket-item-productid')[0].innerText
     buttonClicked.parentElement.parentElement.remove()
-    // <?php
-    // $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');
-    // $removeItem->bindParam(1, $productid);
-    // $removeItem->bindParam(2, $customerid);
-    // $removeItem->execute();
-    // ?>
+    <?php
+    $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');
+    $removeItem->bindParam(1, $productid);
+    $removeItem->bindParam(2, $customerid);
+    $removeItem->execute();
+    ?>
     updateBasketTotal()
 }
 
@@ -101,6 +101,7 @@ function amountChanged(event) {
 }
 
 function addItemToBasket(title, price, imageSrc, amount, productid) {
+    console.log(title, price, imageSrc, amount, productid)
     var BasketRow = document.createElement('div')
     BasketRow.classList.add('basket-row')
 
