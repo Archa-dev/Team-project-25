@@ -64,11 +64,11 @@ html {
 }
 
 main {
-    margin-top: 40vh; /* Adjust margin-top to be equal to the height of the header */
+    margin-top: 15vh; /* Adjust margin-top to be equal to the height of the header */
 }
 
 .sticky-footer-padding {
-    margin-bottom: 60px;
+    margin-bottom: 10vh;
     /* Adjust the margin bottom to match the height of the footer */
 }
 
