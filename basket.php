@@ -13,7 +13,7 @@ $itemIDs->execute();
 $itemTitle=$db->prepare('SELECT product_name FROM productdetails WHERE product_id = ?');
 $itemPrice=$db->prepare('SELECT price FROM productdetails WHERE product_id = ?');
 $itemImage=$db->prepare('SELECT product_image FROM productdetails WHERE product_id = ?');
-$itemAmount=$db->prepare('SELECT COUNT(*) FROM basket WHERE product_id = ?');
+$itemAmount=$db->prepare('SELECT COUNT(*) FROM basket WHERE product_id = ? AND customer_id = ?');
 
 
 $itemsCount = $db->prepare('SELECT COUNT(*) FROM basket WHERE customer_id = ?');
@@ -83,12 +83,12 @@ function removeBasketItem(event) {
     var buttonClicked = event.target
     var productid = buttonClicked.parentElement.parentElement.getElementsByClassName('basket-item-productid')[0].innerText
     buttonClicked.parentElement.parentElement.remove()
-    <?php
-    $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');
-    $removeItem->bindParam(1, $productid);
-    $removeItem->bindParam(2, $customerid);
-    $removeItem->execute();
-    ?>
+    // <?php
+    // $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');          
+    // $removeItem->bindParam(1, $productid);
+    // $removeItem->bindParam(2, $customerid);
+    // $removeItem->execute();
+    // ?>
     updateBasketTotal()
 }
 
@@ -160,6 +160,7 @@ $itemPrice->execute();
 $itemImage->bindParam(1, $productid);
 $itemImage->execute();
 $itemAmount->bindParam(1, $productid);
+$itemAmount->bindParam(2, $customerid);
 $itemAmount->execute(); 
 
 $title = $itemTitle->fetchColumn();
