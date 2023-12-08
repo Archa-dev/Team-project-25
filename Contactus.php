@@ -3,46 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Contact Us-SHADED</title>
    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-   
-
     <!--bootstrap css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
-    <title>Contact Us-SHADED</title>
-</head>
-<body>
 
     <style>
         body {
-    font-family: "Century Gothic", sans-serif;
-    background-color: #fff;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    text-decoration: none;
-    text-transform: capitalize;
-    transition: .2s linear;
+            font-family: "Century Gothic", sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
+        padding: 0;
+        box-sizing: border-box;
+        outline: none; border: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: .2s linear;
 }
 
 header {
-    background: #fff;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between; /* Align logo to the left and nav to the right */
+            align-items: center;
+            top: 0; left: 0; right: 0;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
 }
+
+.navbar a {
+                font-size: 15px;
+                color: #000000;
+                text-decoration: none;
+            }
+
+            /* Hide the dropdown arrow */
+            .navbar-nav .nav-item.dropdown > .nav-link::after {
+                display: none !important
+            }
 
 /* Logo Styles */
 .logo img {
@@ -54,6 +57,15 @@ header {
 /* Icon Styles */
 .fas {
     font-size: 15px;
+}
+
+main {
+    margin-top: 13vh; /* Adjust margin-top to be equal to the height of the header */
+}
+
+.sticky-footer-padding {
+    margin-bottom: 10vh;
+    /* Adjust the margin bottom to match the height of the footer */
 }
 
 /* contact us page Styles */
@@ -79,7 +91,41 @@ header {
  .contact-section .service-hours {
    margin-bottom: 20px;
  }
+
+ /* Updated Footer Styles */
+.footer {
+            background-color: #fff;
+            color: grey;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 14px;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+.social-icons a {
+            margin: 0 20px;
+            color: #000;
+            font-size: 14px;
+        }
+
+.terms-links a {
+    margin-left: 5px;
+    color: #6c757d; /* Change the color as needed */
+    text-decoration: none;
+}
+
+.terms-links a:hover {
+    text-decoration: underline; /* Add underlining on hover if desired */
+    color: #000; /* Change the hover color as needed */
+}
+
     </style>
+    </head>
+<body>
 
      <!--bootstrap js-->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -209,7 +255,7 @@ header {
         </nav>
     </header>
 
-    <main>
+    <main class="sticky-footer-padding">
         
         <div class="container">
             <div class="contact-section">
@@ -244,9 +290,33 @@ header {
 
     </main>
 
-    <footer>
-
-    </footer>
+    <!-- Bootstrap Container for Footer -->
+    <div class="container-fluid">
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-text">
+                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="social-icons">
+                        <!-- Add your social media icons  -->
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <!-- Add more social media icons as needed -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="terms-links">
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Cookies Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 
 </body>
 </html>

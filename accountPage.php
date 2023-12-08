@@ -7,7 +7,7 @@
         
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Century Gothic", sans-serif;
         }
 
         
@@ -108,6 +108,30 @@
             font-weight: 300;
         }
     </style>
+    <?php
+    require_once('connectdb.php');
+    session_start();
+    if($_SESSION['user_id']==null){
+    $_SESSION["username"]="customer1";
+    $_SESSION["user_id"]="2";
+    $uid=$_SESSION["user_id"];
+    }
+    $fet=$db->prepare("SELECT * FROM logindetails WHERE user_id =?");
+    $fet->bindParam(1,$_SESSION['user_id']);
+    $fet->execute();
+    $emaill=$fet->fetch();
+    $email=$emaill['email'];
+
+    $fetc=$db->prepare("SELECT * FROM customerdetails WHERE user_id =?");
+    $fetc->bindParam(1,$_SESSION['user_id']);
+    $fetc->execute();
+    $profile=$fetc->fetch();
+
+    $name=$profile['name'];
+    $address=$profile['default_address'];
+
+
+    ?>
     <title>Your Profile - Shaded</title>
 </head>
 <body>
@@ -124,10 +148,10 @@
             <h2>Your Profile</h2>
 
             <!-- Profile Form -->
-            <form id="profileForm" onsubmit="return accountValidation()">
+            <form method="post" action="accountPage.php" id="profileForm" onsubmit="return accountValidation()">
                 <div class="form-group">
                     <label for="accountName">Your Name:</label>
-                    <input type="text" id="accountName" name="accountName" required>
+                    <input type="text" id="accountName" name="accountName" value="<?php echo($name); ?>" required>
                     <div class="error" id="accountNameError"></div>
                 </div>
 
@@ -138,24 +162,53 @@
 
                 <div class="form-group">
                     <label for="address">Address:</label>
-                    <textarea id="address" name="address" required></textarea>
+                    <textarea id="address" name="address" value="<?php echo($address); ?>"></textarea>
                     <div class="error" id="addressError"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Your Email:</label>
-                    <input type="text" id="email" name="email" required>
+                    <input type="text" id="email" name="email" value="<?php echo($email); ?>" required>
                     <div class="error" id="emailError"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="phoneNumber">Phone Number:</label>
-                    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="123-456-7890" required>
+                    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="123-456-7890">
                     <div class="error" id="phoneError"></div>
                 </div>
 
                 <button type="submit">Save Changes</button>
+                <input type="hidden" name="profsub">
             </form>
+            <?php
+                if(isset($_POST['profsub'])){
+                
+                $name=$_POST['accountName'];
+                $address=$_POST['address'];
+                $email=$_POST['email'];
+
+                $ins=$db->prepare("UPDATE logindetails SET email =? WHERE user_id =?");
+                $ins->bindParam(1,$email);
+                $ins->bindParam(2,$_SESSION['user_id']);
+                $ins->execute();
+
+                $pins=$db->prepare("UPDATE customerdetails SET name =?, default_address=? WHERE user_id =?");
+                $pins->bindParam(1,$name);
+                $pins->bindParam(2,$address);
+                $pins->bindParam(3,$_SESSION['user_id']);
+                $pins->execute();
+
+
+
+
+
+            }
+            
+            
+            
+            
+            ?>
         </div>
     </section>
 
@@ -202,10 +255,10 @@
             }
 
             if (address === "") {
-                document.getElementById("addressError").innerText = "Enter Address";
-                return false;
+             //   document.getElementById("addressError").innerText = "Enter Address";
+               // return false;
             } else {
-                document.getElementById("addressError").innerText = "";
+               document.getElementById("addressError").innerText = "";
             }
 
             if (email === "") {
@@ -216,13 +269,14 @@
             }
 
             if (phoneNumber === "") {
-                document.getElementById("phoneError").innerText = "Enter Phone Number";
-                return false;
+                //document.getElementById("phoneError").innerText = "Enter Phone Number";
+                //return false;
             } else {
                 document.getElementById("phoneError").innerText = "";
             }
 
             alert("Changes saved successfully!");
+            window.location.href = "home/index.php";
             return true;
         }
     </script>
