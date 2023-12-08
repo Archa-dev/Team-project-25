@@ -88,7 +88,7 @@ main {
 
 .social-icons a {
             margin: 0 20px;
-            color: #000;
+            color: grey;
             font-size: 14px;
         }
 
