@@ -84,7 +84,7 @@ function removeBasketItem(event) {
     var productid = buttonClicked.parentElement.parentElement.getElementsByClassName('basket-item-productid')[0].innerText
     buttonClicked.parentElement.parentElement.remove()
     // <?php
-    // $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');          
+    // $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');          needs to use something else, probably AJAX to remove item from basket
     // $removeItem->bindParam(1, $productid);
     // $removeItem->bindParam(2, $customerid);
     // $removeItem->execute();
@@ -144,7 +144,7 @@ function updateBasketTotal() {
 
 
 
-addItemToBasket("test", 1, "", 1, 1);
+addItemToBasket("test", 1, "", 1, 1);  // test item, just in case db is empty
 
 
 </script>
