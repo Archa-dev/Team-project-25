@@ -7,7 +7,7 @@
         require_once('connectdb.php');
         ?>
         <script>
-var customerid = "";                                                                // needs to be changed to relevant customer ID
+var customerid = "1";                                                                // needs to be changed to relevant customer ID
 
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
@@ -51,8 +51,9 @@ function removeBasketItem(event) {
     var productid = buttonClicked.parentElement.parentElement.getElementsByClassName('basket-item-productid')[0].innerText
     buttonClicked.parentElement.parentElement.remove()
     <?php
-    $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = $customerid');
+    $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');
     $removeItem->bindParam(1, $productid);
+    $removeItem->bindParam(2, $customerid);
     $removeItem->execute();
     ?>
     updateBasketTotal()
@@ -68,7 +69,8 @@ function amountChanged(event) {
 
 
 <?php
-$itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = $customerid');
+$itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = ?');
+$itemIDs->bindParam(1, $customerid);
 $itemIDs->execute();
 $itemTitle=$db->prepare('SELECT product_name FROM productdetails WHERE product_id = ?');
 $itemPrice=$db->prepare('SELECT price FROM productdetails WHERE product_id = ?');
@@ -76,15 +78,11 @@ $itemImage=$db->prepare('SELECT product_image FROM productdetails WHERE product_
 $itemAmount=$db->prepare('SELECT COUNT(*) FROM basket WHERE product_id = ?');
 
 
-$itemsCount = $db->prepare('SELECT COUNT(*) FROM basket WHERE customer_id = $customerid');
+$itemsCount = $db->prepare('SELECT COUNT(*) FROM basket WHERE customer_id = ?');
+$itemsCount->bindParam(1, $customerid);
 $itemsCount->execute();
 $itemsCount = $itemsCount->fetchColumn();
 ?>
-
-
-
-
-
 
 function addItemToBasket(title, price, imageSrc, amount, productid) {
     var BasketRow = document.createElement('div')
@@ -149,9 +147,10 @@ var amount = <?php echo $itemAmount->fetchColumn();?>
 addItemToBasket(title, price, imageSrc, amount, productid)
 updateBasketTotal()
 }
-        </script>
-    </head>
-    <body>
+
+</script>
+</head>
+<body>
 <h2>Basket</h2>
 <div class="basket-row">
     <span class="basket-item basket-header basket-column">Item</span>
