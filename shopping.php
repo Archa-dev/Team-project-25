@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+<?php
 require_once('connectdb.php');
 
-?>
+// Check if a color filter is set
+$colorFilter = isset($_POST['colorSelect']) ? $_POST['colorSelect'] : 'all';
 
+// Build the SQL query with the color filter
+$query = "SELECT * FROM productdetails";
+if ($colorFilter !== 'all') {
+    $query .= " WHERE colour = :color";
+}
+
+$stmt = $db->prepare($query);
+
+// Bind the color parameter if it's set
+if ($colorFilter !== 'all') {
+    $stmt->bindParam(':color', $colorFilter, PDO::PARAM_STR);
+}
+
+// Execute the query
+$result = $stmt->execute();
+
+// Check for errors
+if (!$result) {
+    die("Database query failed.");
+}
+
+// Fetch the results as an associative array
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -15,140 +40,69 @@ require_once('connectdb.php');
     <title>SHADED</title>
 </head>
 <body>
-    <header>
-        <a href="#" class="logo">
-            <img src="shaded logo.png" alt="Shaded Logo">
-        </a>
-        <nav class="navbar">
-            <ul>
-                <li>
-                    <a href="#">Men</a>
-                    <ul>
-                        <li><a href="#">Category 1</a></li>
-                        <li><a href="#">Category 2</a></li>
-                        <li><a href="#">Category 3</a></li>
-                        <li><a href="#">Category 4</a></li>
-                        <li><a href="#">Category 5</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Women</a>
-                    <ul>
-                        <!-- Women's category subcategories -->
-                        <li><a href="#">Category 1</a></li>
-                        <li><a href="#">Category 2</a></li>
-                        <li><a href="#">Category 3</a></li>
-                        <li><a href="#">Category 4</a></li>
-                        <li><a href="#">Category 5</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Unisex</a>
-                    <ul>
-                        <!-- Unisex category subcategories -->
-                        <li><a href="#">Category 1</a></li>
-                        <li><a href="#">Category 2</a></li>
-                        <li><a href="#">Category 3</a></li>
-                        <li><a href="#">Category 4</a></li>
-                        <li><a href="#">Category 5</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Prescription</a>
-                    <ul>
-                        <!-- Prescription category subcategories -->
-                        <li><a href="#">Category 1</a></li>
-                        <li><a href="#">Category 2</a></li>
-                        <li><a href="#">Category 3</a></li>
-                        <li><a href="#">Category 4</a></li>
-                        <li><a href="#">Category 5</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Blue Light</a>
-                    <ul>
-                        <!-- Blue Light category subcategories -->
-                        <li><a href="#">Category 1</a></li>
-                        <li><a href="#">Category 2</a></li>
-                        <li><a href="#">Category 3</a></li>
-                        <li><a href="#">Category 4</a></li>
-                        <li><a href="#">Category 5</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
 
-        <div class="icons">
-            <a href="#" class="fas fa-search"></a>
-            <a href="#" class="fas fa-user"></a>
-            <a href="#" class="fas fa-heart"></a>
-            
-        <div class="shopping-bag" onmouseover="showCartDropdown()" onmouseout="hideCartDropdown()">
-            <a href="#" class="fas fa-shopping-cart"></a> 
-            <!-- Shopping bag dropdown content -->
-            <div id="cart-dropdown">
-                <ul>
-                    <li>Product 1</li>
-                    <li>Product 2</li>
-                    <!-- Add more products dynamically based on user's cart -->
-                </ul>
+<!-- Add a form to get the color selection -->
+<form method="post" action="">
+    <label for="colorSelect">Select Color:</label>
+    <select name="colorSelect" id="colorSelect">
+        <option value="all">All Colors</option>
+        <option value="black">Black</option>
+        <option value="white">White</option>
+        <option value="yellow">Yellow</option>
+        <option value="brown">Brown</option>
+        <option value="green">Green</option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<main>
+    <div id="main">
+        <h1>Shaded</h1>
+        <h2><center>Items</center> </h2>
+        <div id="boxes">
+            <div id="row">
+                <!-- Loop through each product and display buttons -->
+                <?php foreach ($products as $product) : ?>
+                    <div id="column">
+                        <h3><?= $product['product_name'] ?></h3>
+                        <img src="sunglasses.avif" width="50%" height="50%">
+                        <p>Price: $<?= $product['price'] ?></p>
+                        <!-- Use a button with data attributes to store the product ID and color -->
+                        <button class="buy-button" data-product-id="<?= $product['product_id'] ?>" data-color="<?= $product['colour'] ?>">Buy</button>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
+</main>
 
-    </header>
+<form method="post" action="Item.php" id="buyForm">
+    <!-- Hidden input fields to store the selected product ID and color -->
+    <input type="hidden" name="selectedProductId" id="selectedProductId" value="">
 
-    <main>
-        
-        <div id="main">
-            <h1>Shaded</h1>
-            <h2><center>Items</center> </h2>
-            <div id="boxes">
-            <div id="row">
-            <div id="column">
-                    <h3>variable1</h3>
-                    <img src="sunglasses.avif" width="50%" height="50%">
-                </div>
-                
-                <div id="column">
-                    <h3>variable 2</h3>
-                    <img src="sunglasses.avif" width="50%" height="50%">
-                </div>
-                
-                <div id="column">
-                    <h3>variable 3</h3>
-                    <img src="sunglasses.avif" width="50%" height="50%">     
-                
-                </div>
-                <div id="column">
-                    <h3>variable</h3>
-                    <img src="sunglasses.avif" width="50%" height="50%">
-                </div>
-    
-    </main>
-
-    <footer>
-
-    </footer>
-
-    <form method="post" action="Item.php">
-    <!-- Integer text box -->
-    <label for="integerInput">Enter an Integer:</label>
-    <input type="text" name="integerInput" id="integerInput" pattern="\d+" title="Please enter a valid integer." required>
-    
     <!-- Submit button -->
-    <button type="submit">Submit</button>
+    <button type="submit">Buy</button>
 </form>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Add a click event listener to all buttons with the class 'buy-button'
+        document.querySelectorAll('.buy-button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Get the product ID
+                var productId = button.getAttribute('data-product-id');
 
-        <script>
-        // JavaScript function to submit the form
-        function submitForm() {
-    
-            // Submit the form
-            document.forms[0].submit();
-        }
-    </script>
+
+                // Set the values of the hidden input fields
+                document.getElementById('selectedProductId').value = productId;
+
+                // Submit the form
+                document.forms['buyForm'].submit();
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
 
