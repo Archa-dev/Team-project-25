@@ -75,12 +75,11 @@ function ready() {
 }
 
 function checkoutClicked() {
-    alert('Thank you for your purchase')
     var BasketItems = document.getElementsByClassName('basket-items')[0]
     while (BasketItems.hasChildNodes()) {
         BasketItems.removeChild(BasketItems.firstChild)
     }
-    updateBasketTotal()
+    window.location.replace("checkout.php");
 }
 
 function removeBasketItem(event) {
