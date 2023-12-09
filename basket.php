@@ -7,14 +7,16 @@
 require_once('connectdb.php');
 
 
-if (session_status() === PHP_SESSION_NONE) {
-}
-else{
-    $custid = $db->prepare('SELECT customer_id FROM customerdetails WHERE user_id = ?');
-    $custid->bindParam(1, $_SESSION['user_id']);
-    $custid->execute();
-    $customerid = $custid->fetchColumn();
-}
+// if (session_status() === PHP_SESSION_NONE) {
+// }
+// else{
+//     $custid = $db->prepare('SELECT customer_id FROM customerdetails WHERE user_id = ?');
+//     $custid->bindParam(1, $_SESSION['user_id']);
+//     $custid->execute();
+//     $customerid = $custid->fetchColumn();
+// }
+$customerid = 1;
+
 
 $itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = ?');
 $itemIDs->bindParam(1, $customerid);
