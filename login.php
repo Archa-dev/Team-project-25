@@ -2,20 +2,15 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8" />
-    <title>Login - SHADED</title>
+    <title>Log In - SHADED</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
-  <title>Login</title>
-  <h1>Login</h1>
 
-</head>
 <style>
-      html {
+   html {
     font-size: 100%;
     scroll-behavior: smooth;
       }
@@ -79,7 +74,7 @@ main {
     /* Adjust the margin bottom to match the height of the footer */
 }
 
-/*Sign Up Styles by Maryam*/
+/*Log In Form Styles by Maryam*/
 .login-form {
             width: 100%;
             max-width: 600px;
@@ -125,7 +120,7 @@ main {
 
 .social-icons a {
             margin: 0 20px;
-            color: #000;
+            color: grey;
             font-size: 14px;
         }
 
@@ -139,10 +134,17 @@ main {
     text-decoration: underline; /* Add underlining on hover if desired */
     color: #000; /* Change the hover color as needed */
 }
-
 </style>
+</head>
 
 <body>
+
+<!--bootstrap js-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+                crossorigin="anonymous">
+        </script>
+
 <header>
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
@@ -275,24 +277,55 @@ main {
         </nav>
 
     </header>
-    <main class = "sticky-footer-padding">
-    <div class="container mt-5">
-      <div class="row justify-content-center">
-         <div class="col-md-6">
-    <form method="post" action="login.php" class="login-form">
-        <h2>Username:</h2>
-        <input type="text" name="username">
-        <h2>Password:</h2>
-        <input type="password" name="password"><br>
-        <input type="submit" name="submit">
-        <input type="hidden" name="logsub" value="TRUE">
-    </form>
-    <a href="signup.php">Dont have an account?</a>
-    </div>
+
+    <main class="sticky-footer-padding">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form method="post" action="login.php" class="login-form">
+                    <h1>Log In</h1>
+                    <h2>Username:</h2>
+              <input type="text" name="Username" class="form-control" required>
+
+                        <h2>Password:</h2>
+                        <input type="password" name="inputPassword" class="form-control" required>
+
+                        <input type="submit" value="Log In" class="btn btn-primary mt-3">
+                        <input type="hidden" name="logsub" value="TRUE">
+                    </form>
+                    <p class="mt-3"><a href="signup.php">Don't have an account?</a></p>
+                </div>
+            </div>
         </div>
-      </div>
-      
-  
+    </main>
+
+<!-- Bootstrap Container for Footer -->
+<div class="container-fluid">
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-text">
+                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="social-icons">
+                        <!-- Add your social media icons  -->
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <!-- Add more social media icons as needed -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="terms-links">
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Cookies Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
     <?php
     require_once('connectdb.php');
     if(isset($_POST['logsub'])){
@@ -340,32 +373,6 @@ main {
 
   }
     ?>
-<div class="container-fluid">
-        <footer class="footer">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footer-text">
-                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="social-icons">
-                        <!-- Add your social media icons  -->
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Add more social media icons as needed -->
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="terms-links">
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Cookies Policy</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
 </body>
 </html>
 
