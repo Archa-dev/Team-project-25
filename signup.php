@@ -365,8 +365,8 @@ main {
         var user = document.getElementsByName("Username")[0].value;
         var name = document.getElementsByName("Name")[0].value;
 
-        if (email.length > 0 && user.length > 0 && name.length > 0 && user.length > 0) {
-            if (password.length > 5) {
+        if (email.length > 0 && user.length > 0 && name.length > 0) {
+            if (password.length >= 6) {
                 savedEmails.push(email);
                 savedPasswords.push(password);
                 return true;
