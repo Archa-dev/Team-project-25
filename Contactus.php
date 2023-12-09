@@ -145,7 +145,7 @@ main {
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a href="#" class="navbar-brand logo">
+                <a href="homepage.php" class="navbar-brand logo">
                     <img src="shaded logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
