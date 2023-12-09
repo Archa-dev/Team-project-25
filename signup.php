@@ -309,7 +309,7 @@ main {
               <input type="submit" value="Sign Up" class="btn btn-primary mt-3">
               <input type="hidden" name="sub"> <!--Added the required attribute to the email and password fields for basic client-side validation. - Maryam--->
             </form>
-    <p class="mt-3"><a href="signup.php">Already have an account?</a></p>
+    <p class="mt-3"><a href="login.php">Already have an account?</a></p>
           </div>
         </div>
       </div>
