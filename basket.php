@@ -5,7 +5,6 @@
         <link rel="stylesheet" href="" />
 <?php
 session_start();
-var_dump($_SESSION);
 require_once('connectdb.php');
 
 
@@ -28,7 +27,7 @@ $itemsNum = $itemsCount->fetchColumn();
 
 ?>
 
-    </head>
+</head>
 <body>
 <h2>Basket</h2>
 <div class="basket-row">
@@ -146,13 +145,8 @@ function updateBasketTotal() {
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('basket-total-price')[0].innerText = '£' + total
 }
-
-
-
-addItemToBasket("test", 1, "", 1, 1);  // test item, just in case db is empty
-
-
 </script>
+
 <?php
 for ($i = 0; $i < $itemsNum; $i++) {
 
@@ -160,10 +154,13 @@ $productid = $itemIDs->fetchColumn();
 
 $itemTitle->bindParam(1, $productid);
 $itemTitle->execute();
+
 $itemPrice->bindParam(1, $productid);
 $itemPrice->execute();
+
 $itemImage->bindParam(1, $productid);
 $itemImage->execute();
+
 $itemAmount->bindParam(1, $productid);
 $itemAmount->bindParam(2, $customerid);
 $itemAmount->execute(); 
@@ -172,6 +169,7 @@ $title = $itemTitle->fetchColumn();
 $price = $itemPrice->fetchColumn();
 $imageSrc = $itemImage->fetchColumn();
 $amount = $itemAmount->fetchColumn();
+
 echo "
 <script>
 addItemToBasket('$title', '$price', '$imageSrc', '$amount', '$productid');
@@ -179,5 +177,6 @@ updateBasketTotal()
 console.log('test');
 </script>";
 }
+
 ?>
 
