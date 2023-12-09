@@ -291,3 +291,6 @@ ALTER TABLE `productreviews`
 ALTER TABLE `sitereviews`
   ADD CONSTRAINT `sitereviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `logindetails` (`user_id`);
 COMMIT;
+
+
+INSERT INTO `basket` (`customer_id`, `product_id`) VALUES (1,1)(1,2)(2,1);
