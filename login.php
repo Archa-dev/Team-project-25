@@ -223,6 +223,9 @@ main {
                                 <li><a class="dropdown-item" href="#">Blue Light Category 5</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="aboutUs.php">About Us</a>
+                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -242,9 +245,9 @@ main {
                                 <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                <li><a class="dropdown-item" href="#">My Orders</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
+                                <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
+                                <li><a class="dropdown-item" href="homepage.php">Logout</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -252,7 +255,8 @@ main {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Log In/ Sign Up</a></li>
+                                <li><a class="dropdown-item" href="login.php">Log In</a></li>
+                                <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -375,4 +379,6 @@ main {
     ?>
 </body>
 </html>
+
+
 
