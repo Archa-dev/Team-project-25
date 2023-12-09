@@ -64,7 +64,7 @@
 }
 
 main {
-    margin-top: 13vh; /* Adjust margin-top to be equal to the height of the header */
+    margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
 }
 
 .sticky-footer-padding {
