@@ -125,7 +125,7 @@ main {
 
 .social-icons a {
             margin: 0 20px;
-            color: #000;
+            color: grey;
             font-size: 14px;
         }
 
@@ -289,7 +289,8 @@ main {
       <div class="row justify-content-center">
          <div class="col-md-6">
             <form method="post" action="signup.php" onsubmit="return signupSuccess()" class="signup-form">
-              <h2>Email:</h2>
+              <h1>Sign Up</h1>
+                <h2>Email:</h2>
               <input type="email" name="inputEmail" class="form-control" required>
 
               <h2>Username:</h2>
@@ -364,8 +365,8 @@ main {
         var user = document.getElementsByName("Username")[0].value;
         var name = document.getElementsByName("Name")[0].value;
 
-        if (email.length > 0 && user.length > 0 && name.length > 0 && user.length > 0) {
-            if (password.length > 5) {
+        if (email.length > 0 && user.length > 0 && name.length > 0) {
+            if (password.length >= 6) {
                 savedEmails.push(email);
                 savedPasswords.push(password);
                 return true;

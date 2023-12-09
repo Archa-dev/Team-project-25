@@ -68,7 +68,7 @@ main {
 }
 
 .sticky-footer-padding {
-    margin-bottom: 8vh;
+    margin-bottom: 11vh;
     /* Adjust the margin bottom to match the height of the footer */
 }
 
@@ -169,7 +169,7 @@ button {
 
 .social-icons a {
             margin: 0 20px;
-            color: #000;
+            color: grey;
             font-size: 14px;
         }
 
