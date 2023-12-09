@@ -28,6 +28,9 @@
     text-decoration: none;
     text-transform: capitalize;
     transition: .2s linear;
+    height: 100vh;
+    display: flex;
+     flex-direction: column;
 }
 
 header {
@@ -58,27 +61,48 @@ header {
 
 /* contact us page Styles */
 .container {
-    max-width: 960px;
+   max-width:fit-content;
    margin: 50px auto;
    padding: 20px;
    background-color: #fff;
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+   
  }
- .contact-section {
-   margin-top: 20px;
+ .contact-section1 {
    padding: 20px;
-   border-top: 1px solid #ccc;
-   border-bottom: 1px solid #ccc;
+   font-size: 15px;
+   margin-left: 150px;
  }
- .contact-section h2 {
-   font-size: 24px;
+ .contact-section2 {
+   padding: 20px;
+   border-top: 1px solid #ccc ;
+   border-bottom: 1px solid #ccc;
+   display: flex;
+   margin-top: auto;
+   margin-bottom: auto;
+ }
+ .contact-section3 {
+   padding: 20px;
+   border-bottom: 1px solid #ccc;
+   display: flex;
+   margin-top: auto;
+   margin-bottom: auto;
+ }
+ .contact-section h3 {
+   flex:1 ;
+   margin-top: 20px;
+   margin-left: 150px;
+   margin-right: 20px;
+   font-size: 22px;
  }
  .contact-section p {
-   font-size: 16px;
+    flex: 1;
+    margin-right: 100px;
+    margin-left: 100px;
+   font-size: 15px;
+   margin-bottom: 10px;
  }
- .contact-section .service-hours {
-   margin-bottom: 20px;
- }
+ 
+ 
 
  /* Updated Footer Styles */
 .footer {
@@ -86,12 +110,14 @@ header {
             color: grey;
             padding: 10px;
             text-align: center;
-            position: fixed;
+            /* position: fixed; */
+            margin-top: auto;
             bottom: 0;
             left: 0;
             width: 100%;
             font-size: 14px;
             box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+            
         }
 
 .social-icons a {
@@ -243,17 +269,18 @@ header {
     <main>
         
         <div class="container">
-            <div class="contact-section">
-              <h2>Contact us</h2>
+            <div class="contact-section1">
+              <h1><b>Contact us</b></h1>
               <p>Use one of the following methods to contact us</p>
             </div>
-          
-            <div class="contact-section">
+           <div class="contact-section">
+            <div class="contact-section2">
               <h3>Call our Client Service</h3>
-              <p class="service-hours">To contact our Client Service you can call 800 800 7732 from Monday to Saturday 9:00 am - 8:00 pm, or Sunday 9:00 am - 6:00 pm.</p>
+              <p class="service-hours">To contact our Client Service you can call 800 800 0000 from Monday to Saturday 9:00 am - 8:00 pm, or Sunday 9:00 am - 6:00 pm.</p>
             </div>
-            <div class = "contact-section">
+            <div class = "contact-section3">
               <h3>Send us a message</h3>
+              <p>
               <form action="/submit-message" method="post">
                   <label for="name">Name:</label>
                   <input type="text" id="name" name="name" required><br><br>
@@ -263,8 +290,10 @@ header {
                   <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
                   <input type="submit" value="Submit">
               </form>
+            </p>
             
             </div>
+        </div>
             
           </div>
            
@@ -304,4 +333,4 @@ header {
 </div>
 
 </body>
-</html>
+</html>  
