@@ -67,8 +67,18 @@ main {
     margin-top: 15vh; /* Adjust margin-top to be equal to the height of the header */
 }
 
+.about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h2 {
+            color: #000;
+        }
+
 .sticky-footer-padding {
-    margin-bottom: 10vh;
+    margin-bottom: 8vh;
     /* Adjust the margin bottom to match the height of the footer */
 }
 
@@ -102,23 +112,6 @@ main {
     text-decoration: underline; /* Add underlining on hover if desired */
     color: #000; /* Change the hover color as needed */
 }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        h2 {
-            color: #000;
-        }
-
-        p {
-            color: #333;
-            font-size: 1.1em;
-            line-height: 1.8;
-        }
-
     </style>
 
 </head>
@@ -206,6 +199,9 @@ main {
                                 <li><a class="dropdown-item" href="#">Blue Light Category 5</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="aboutUs.php">About Us</a>
+                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -225,9 +221,9 @@ main {
                                 <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                <li><a class="dropdown-item" href="#">My Orders</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
+                                <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
+                                <li><a class="dropdown-item" href="homepage.php">Logout</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -235,7 +231,8 @@ main {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Log In/ Sign Up</a></li>
+                                <li><a class="dropdown-item" href="login.php">Log In</a></li>
+                                <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -309,4 +306,5 @@ Customer Satisfaction: Our dedicated support team ensures a seamless shopping ex
     </div>
 </body>
 </html>
+
 
