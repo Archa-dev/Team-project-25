@@ -44,8 +44,7 @@ CREATE TABLE `customerdetails` (
 --
 
 INSERT INTO `customerdetails` (`user_id`, `customer_id`, `name`, `default_address`) VALUES
-(2, 1, 'Bob', NULL),
-(3, 2, 'mfewomf', 'mfewfmw');
+(2, 1, 'Bob', NULL);
 
 -- --------------------------------------------------------
 
@@ -66,10 +65,8 @@ CREATE TABLE `logindetails` (
 --
 
 INSERT INTO `logindetails` (`user_id`, `authorization_level`, `username`, `password`, `email`) VALUES
-(0, 'customer', 'f,moewpfw', '$2y$10$SKWkymVBqqZikO/sEEvxs.qSRFdxugV.fGAp6eH3XgW5U7SjawDBu', 'mijfew'),
 (1, 'admin', 'admin1', '$2y$10$s/CPs4CdgyNM7iw6DaDhVuKbd58UIHCKxxWn21zN8QTk6/qTUg.d2', 'admin1@xyzmail.com'),
-(2, 'customer', 'customer1', '$2y$10$urbv5YWeTcCTWaRufto1vu.YchMD8d22/G7moPiI.qehY.OlUmrHK', 'customer1@xyzmail.com'),
-(3, 'customer', 'mfekwemf', '$2y$10$rxFpHw/.H/Y9R.JnKJe.VOjBKq//4Mk9bxIRE3XdAH2qfgH4lWUye', 'mkleqmf');
+(2, 'customer', 'customer1', '$2y$10$urbv5YWeTcCTWaRufto1vu.YchMD8d22/G7moPiI.qehY.OlUmrHK', 'customer1@xyzmail.com');
 
 -- --------------------------------------------------------
 
