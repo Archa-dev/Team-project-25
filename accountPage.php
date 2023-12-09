@@ -72,6 +72,70 @@ main {
     /* Adjust the margin bottom to match the height of the footer */
 }
 
+/* Welcome Section Styles */
+.welcome-section {
+    padding: 20px;
+    background-color: #f8f9fa; /* Choose a background color for the welcome section */
+}
+
+.welcome-section h2 {
+    font-size: 18px;
+    color: #000;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    padding-top: 110px;
+    background-color: #f8f9fa; /* Choose a background color for the sidebar */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar .nav-link {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px; /* Adjust font size as needed */
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: block;
+}
+
+.sidebar .nav-link:hover {
+    background-color: lightgrey; /* Set a background color for the hover effect */
+    color: #000;
+}
+
+.main-content {
+    margin-left: 350px; /* Adjust this value to match the width of the sidebar */
+}
+
+/* Additional Styling for Active Link */
+.sidebar .nav-link.active {
+    background-color: #f5f5f5; /* Set a background color for the active link */
+    color: #000;
+    position: relative;
+}
+
+.sidebar .nav-link.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px; /* Adjust the width of the vertical line as needed */
+    background-color: #000; /* Set the color of the vertical line */
+}
+
 /* Form Styles */
 .error {
     color: #ff0000;
@@ -90,11 +154,15 @@ section {
     align-items: flex-start;
     padding: 10px;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 50px;
 }
 
 .profile-details {
     max-width: 45%;
+}
+
+.profile-details label {
+    font-weight: bold;
 }
 
 button {
@@ -274,6 +342,9 @@ button {
                                 <li><a class="dropdown-item" href="#">Blue Light Category 5</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="aboutUs.php">About Us</a>
+                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -293,9 +364,9 @@ button {
                                 <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                <li><a class="dropdown-item" href="#">My Orders</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
+                                <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
+                                <li><a class="dropdown-item" href="homepage.php">Logout</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -303,7 +374,8 @@ button {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Log In/ Sign Up</a></li>
+                                <li><a class="dropdown-item" href="login.php">Log In</a></li>
+                                <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -330,11 +402,41 @@ button {
     </header>
 
     <!-- Profile Section -->
-    <main class="sticky-footer-padding">
+    <main class="sticky-footer-padding main-content">
     <div class="container"> <!-- Wrap the profile content in a Bootstrap container -->
+
+    <aside class="sidebar">
+    <div class="welcome-section">
+        <h2>Welcome to your personal area</h2>
+        <!-- You can dynamically replace [Username] with the actual username -->
+    </div>
+    
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="accountPage.php">
+                My Profile
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="order-history.php">
+                My Orders
+            </a>
+            <li class="nav-item">
+            <a class="nav-link" href="Contactus.php">
+                Contact Us
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="homepage.php">
+                Logout
+            </a>
+        </li>
+    </ul>
+</aside>
+
     <div class="profile-container">
     <div class="profile-details">
-            <h2>Personal Details</h2>
+            <h2 class="border-bottom pb-2">Personal Details</h2>
 
 <!-- Display Profile Details -->
             <div class="row">
