@@ -1,4 +1,7 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+  
+  <?php
 require_once('connectdb.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,8 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $item = $items->fetch(PDO::FETCH_ASSOC);
     }
 
-    session_start();
- 	$user=$_SESSION["customer_id"];
+    $user = 1; 
 
     // Check if the addToBasket button is clicked
     if (isset($_POST["addToBasket"])) {
@@ -43,137 +45,393 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <title>Item-SHADED</title>
+    <style>
+  html {
+    font-size: 100%;
+    scroll-behavior: smooth;
 
-<link rel = "stylesheet" type="text/css"  href="Styles.css" />
+    > body {
+        font-family: "Century Gothic", sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
+        padding: 0;
+        box-sizing: border-box;
+        outline: none; border: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: .2s linear;
 
-<div id="main">
-    <h1>Shaded</h1>
-    <h2><center>Items</center> </h2>
-    <div id="boxes">
-    <div id="row">
-    <div id="column">
-        <h3><?= $item ['product_name'] ?></h3>
-        <img src="sunglasses.avif" width="50%" height="50%">
-        <h4><?= $item ['price'] ?></h4>
-    </div>
+        > header {
+            background: #ffffff;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between; /* Align logo to the left and nav to the right */
+            align-items: center;
+            top: 0; left: 0; right: 0;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
 
+            .navbar a {
+                font-size: 15px;
+                color: #000000;
+                text-decoration: none;
+            }
 
-
-
-
-
-
-
-
-<form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-    <!-- Add your product ID input or any other necessary fields here -->
-    <input type="hidden" name="selectedProductId" value="<?= $integerValue ?>">
-
-
-    <!-- Button to trigger the SQL query -->
-    <button type="submit" name="addToBasket">Add to Basket</button>
-</form>
-
-
-
-<style>
-    body {
-      font-family: "Century Gothic", sans-serif;
-      background-color: #ffffff;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      outline: none;
-      border: none;
-      text-decoration: none;
-      text-transform: capitalize;
-      transition: .2s linear;
+            /* Hide the dropdown arrow */
+            .navbar-nav .nav-item.dropdown > .nav-link::after {
+                display: none !important
+            }
+        }
     }
+}
 
-    html {
-      font-size: 100%;
-      scroll-behavior: smooth;
+.logo img {
+    max-width: 100%; /* Ensure the logo scales proportionally */
+    max-height: 50px; /* Set the maximum height as needed */
+    margin-left: auto; /* Center the logo horizontally */
+}
+
+.fas {
+    font-size: 15px;
+}
+
+main {
+    margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
+}
+
+body {
+        font-family: "Century Gothic", sans-serif;
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: .2s linear;
+        display: flex;
+            flex-direction: column;
+            min-height: 100vh;
     }
-
+    
     header {
-      background: #ffffff;
-      padding: 10px;
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      top: 0;
-      left: 0;
-      right: 0;
-      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+        background: #fff;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+    }
+    
+    #main {
+            display: flex;
+            flex-direction: column;
+    align-items: center; 
+    margin-top: 11vh;
     }
 
-    nav {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
+    #boxes {
+    max-width: 800px; /* maximum width for the content */
+    width: 100%;
+    padding: 20px;
+}
 
-    header .navbar a {
-      font-size: 15px;
-      color: #000000;
-      text-decoration: none;
-      padding: 10px;
-    }
+        #column {
+            flex: 0 0 70%; /* Adjust the width of the left column */
+        }
 
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0px;
-      display: flex;
-    }
+        #column img {
+            width: 50%;
+            height: 50%;
+        }
 
-    nav ul li {
-      position: relative;
-    }
+        #product-info {
+            flex: 0 0 45%; /* Adjust the width of the right column */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-    nav ul li:hover > ul {
-      display: flex;
-      flex-direction: column;
-      width: 100vw;
-      position: fixed;
-      top: 70px;
-      left: 0;
-      background-color: #efefef;
-      z-index: 1000;
-    }
+        #product-info h3,
+        #product-info h4 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
 
-    nav ul ul {
-      display: none;
-    }
+        .add-to-basket-button {
+          background-color: lightgray;
+    border: none;
+    color: #fff;
+    padding: 2px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 10px 0;
+    margin-left: 80px;
+    cursor: pointer;
+    border-radius: 5px;
+        }
 
-    .logo img {
-      max-width: 100%;
-      max-height: 50px;
-      margin-left: auto;
-    }
+        .add-to-basket-button:hover {
+    background-color: grey;
+}
 
-    header .icons a {
-      font-size: 15px;
-      color: #000000;
-      margin-left: 50px;
-      margin-right: 50px;
-    }
 
-    .search, .profile, .wishlist, .shopping-bag {
-      background-color: #ffffff;
-      z-index: 2000;
-    }
+   
 
-    #cart-dropdown ul {
-      list-style: none;
-      padding: 10px;
-      margin: 0;
-    }
 
-    #cart-dropdown li {
-      padding: 5px;
-    }
-  </style>
+    .sticky-footer-padding {
+            margin-bottom: 60px; /* Adjust the margin bottom to match the height of the footer */
+        }
+   
+       /* Updated Footer Styles */
+.footer {
+            background-color: #fff;
+            color: grey;
+            padding: 10px;
+            text-align: center;
+            position:fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 14px;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+.social-icons a {
+            margin: 0 20px;
+            color: grey;
+            font-size: 14px;
+        }
+
+.terms-links a {
+    margin-left: 5px;
+    color: #6c757d; /* Change the color as needed */
+    text-decoration: none;
+}
+
+.terms-links a:hover {
+    text-decoration: underline; /* Add underlining on hover if desired */
+    color: #000; /* Change the hover color as needed */
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<!--bootstrap js-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+     crossorigin="anonymous">
+</script>
+
+<header>
+      <!-- added bootstrap navbar utility classes -->
+      <nav class="navbar navbar-expand-sm w-100">
+
+<!-- using container-fluid for responsiveness -->
+<div class="container-fluid">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenuItems" aria-controls="navbarMenuItems" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a href="#" class="navbar-brand logo">
+        <img src="shaded logo.png" alt="Shaded Logo">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarMenuItems">
+
+        <!-- navbar to the left of the search box -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Men
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Men Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Men Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Men Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Men Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Men Category 5</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Women
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Women Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Women Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Women Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Women Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Women Category 5</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Unisex
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Unisex Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Unisex Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Unisex Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Unisex Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Unisex Category 5</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Prescription
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Prescription Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Prescription Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Prescription Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Prescription Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Prescription Category 5</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Blue Light
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Blue Light Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Blue Light Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Blue Light Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Blue Light Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Blue Light Category 5</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- search box -->
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+            <button class="btn btn-outline-bg" type="submit">
+                <a href="#">
+                    <i class="fas fa-search"></i>
+                </a>
+            </button>
+        </form>
+
+        <!-- navbar to the right of the search box -->
+        <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a class="dropdown-item" href="#">My Orders</a></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Log In/ Sign Up</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-heart"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" >Your wish list is empty</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" >Your shopping cart is empty</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+    </header>
+
+
+    <main>
+        <div id="main">
+            <div id="boxes">
+                <div id="row">
+                    <div id="column">
+                        <img src="MK-2161BU-0001_1.jpeg" alt="Product Image">
+                    </div>
+
+                    <div id="product-info">
+                        <h3><?= $item['product_name'] ?></h3>
+                        <h4>£<?= $item['price'] ?></h4>
+                        <!-- Add your product name and price elements here -->
+                        <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+                            <!-- Add your product ID input or any other necessary fields here -->
+                            <input type="hidden" name="selectedProductId" value="<?= $integerValue ?>">
+                            <!-- Button to trigger the SQL query -->
+                            <button type="submit" name="addToBasket" class="add-to-basket-button">Add to Basket</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<div class="container-fluid">
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-text">
+                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="col-md-4">    
+                    <div class="social-icons">
+                        <!-- social media icons -->
+                        <a href="https://en-gb.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <!-- Add more social media icons as needed -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="terms-links">
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Cookies Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+   
+</body>
+
+
+</html>
