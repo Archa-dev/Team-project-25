@@ -9,7 +9,31 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
         
+
+<?php
+session_start();
+require_once('connectdb.php');
+
+
+$customerid = $_SESSION['customer_id'];
+
+
+$itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = ?');
+$itemIDs->bindParam(1, $customerid);
+$itemIDs->execute();
+$itemTitle=$db->prepare('SELECT product_name FROM productdetails WHERE product_id = ?');
+$itemPrice=$db->prepare('SELECT price FROM productdetails WHERE product_id = ?');
+$itemImage=$db->prepare('SELECT product_image FROM productdetails WHERE product_id = ?');
+
+
+$itemsCount = $db->prepare('SELECT COUNT(*) FROM basket WHERE customer_id = ?');
+$itemsCount->bindParam(1, $customerid);
+$itemsCount->execute();
+$itemsNum = $itemsCount->fetchColumn();
+
+?>
 <style>
 
 html {
@@ -384,9 +408,12 @@ main {
                 <div id="order-summary">
                     <h2 class="order-summary-heading">Order Summary</h2>
                     <div class="order-summary-product">
-                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image">
+                        <div class="order-summary-items">
+                        <span class="basket-price" hidden="hidden">0</span>
+                        </div>
                     <hr>
-                    <div class="total-amount">Total: $XX.XX</div>
+                    <span>Total:</span>
+                    <span class="total-price">£0</span>
                     <button onclick="confirmOrder()" class="btn btn-primary mt-3 checkout-button">Checkout</button>
                 </div>
             </div>
@@ -474,7 +501,65 @@ main {
       document.getElementById("confirmation-error").innerText = "Sections are not completed";
     }
   }
-</script>
 
+  function addItemToCheckout(title, price, imageSrc) {
+    var BasketRow = document.createElement('div')
+    BasketRow.classList.add('basket-row')
+
+    var BasketItems = document.getElementsByClassName('order-summary-items')[0]
+
+    var BasketRowContents = `
+        <div class="basket-item basket-column">
+            <img class="basket-item-image" src="${imageSrc}" width="100" height="100">
+            <span class="basket-item-title">${title}</span>
+        </div>
+        <span class="basket-price basket-column">${price}</span>`
+    BasketRow.innerHTML = BasketRowContents
+    BasketItems.append(BasketRow)
+}
+
+</script>
+<?php
+for ($i = 0; $i < $itemsNum; $i++) {
+
+$productid = $itemIDs->fetchColumn();
+
+$itemTitle->bindParam(1, $productid);
+$itemTitle->execute();
+
+$itemPrice->bindParam(1, $productid);
+$itemPrice->execute();
+
+$itemImage->bindParam(1, $productid);
+$itemImage->execute();
+
+$title = $itemTitle->fetchColumn();
+$price = $itemPrice->fetchColumn();
+$imageSrc = $itemImage->fetchColumn();
+
+echo "
+<script>
+addItemToCheckout('$title', '$price', '$imageSrc');
+</script>";
+}
+
+?>
+<script>
+function updateBasketTotal() {
+    var BasketItemContainer = document.getElementsByClassName('order-summary-items')[0]
+    var BasketRows = BasketItemContainer.getElementsByClassName('basket-row')
+    console.log(BasketRows)
+    var total = 0
+    for (var i = 0; i < BasketRows.length; i++) {
+        var BasketRow = BasketRows[i]
+        var priceElement = BasketRow.getElementsByClassName('basket-price')[0]
+        var price = parseFloat(priceElement.innerText.replace('£', ''))
+        total = total + (price)
+    }
+    total = Math.round(total * 100) / 100
+    document.getElementsByClassName('total-price')[0].innerText = '£' + total
+}
+updateBasketTotal()
+</script>
 </body>
 </html>
