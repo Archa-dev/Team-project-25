@@ -179,11 +179,11 @@ input[type="submit"] {
                                 Men
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Men Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Men Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Men Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Men Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Men Category 5</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Green Sunglasses</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -191,11 +191,11 @@ input[type="submit"] {
                                 Women
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Women Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Women Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Women Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Women Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Women Category 5</a></li>
+                            <li><a class="dropdown-item" href="#">Women's Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's Green Sunglasses</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -203,11 +203,11 @@ input[type="submit"] {
                                 Unisex
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Unisex Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Category 5</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Green Sunglasses</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -215,11 +215,11 @@ input[type="submit"] {
                                 Prescription
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Prescription Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Category 5</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Green Sunglasses</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -227,11 +227,11 @@ input[type="submit"] {
                                 Blue Light
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Blue Light Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 5</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Green Sunglasses</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
