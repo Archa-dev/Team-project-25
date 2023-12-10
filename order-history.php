@@ -1,40 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-<?php
-require_once('connectdb.php');
 
-// Check if a color filter is set
-$colorFilter = isset($_POST['colorSelect']) ? $_POST['colorSelect'] : 'all';
-
-// Build the SQL query with the color filter
-$query = "SELECT * FROM productdetails";
-if ($colorFilter !== 'all') {
-    $query .= " WHERE colour = :color";
-}
-
-$stmt = $db->prepare($query);
-
-// Bind the color parameter if it's set
-if ($colorFilter !== 'all') {
-    $stmt->bindParam(':color', $colorFilter, PDO::PARAM_STR);
-}
-
-// Execute the query
-$result = $stmt->execute();
-
-// Check for errors
-if (!$result) {
-    die("Database query failed.");
-}
-
-// Fetch the results as an associative array
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHADED</title>
-
+    
+    <!--bootstrap css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -95,104 +66,116 @@ html {
 main {
     margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
 }
-
-.filter-container {
-            
-            width: 200px; 
-            padding: 15px;
-            position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
+    
+/* Welcome Section Styles */
+.welcome-section {
+    padding: 20px;
+    background-color: #f8f9fa; /* Choose a background color for the welcome section */
 }
 
-select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+.welcome-section h2 {
+    font-size: 18px;
+    color: #000;
 }
 
-/* Style the filter button */
-button[type="submitfilter"] {
-    background-color: lightgrey;
-    color: #fff;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    padding-top: 110px;
+    background-color: #f8f9fa; /* Choose a background color for the sidebar */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-button[type="submitfilter"]:hover {
-    background-color: grey;
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
 }
 
-
-.container-fluid {
-    flex: 1;
-    margin-top: auto;
-}
-
-h3 {
-   font-size: 18px;
-   
-}
-
-h2 {
-   font-size: 20px;
-   margin: 10px 0;
-    margin-left: 14px;
-}
-
-main {
-    margin-top: 11vh;
-    padding-top: 60px; /* Add top padding to create space for the fixed navbar */
-}
-
-
-
-#main {
-    padding: 1rem;
-    margin-left: 220px;
-}
-
-
-.main-container {
-    flex: 1;
-}
-
-
-
-.buy-button {
-    background-color: lightgray;
-    border: none;
-    color: #fff;
-    padding: 2px 8px;
-    text-align: center;
+.sidebar .nav-link {
+    padding: 15px 20px;
     text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 10px 0;
-    margin-left: 100px;
-    cursor: pointer;
-    border-radius: 5px;
-        
+    color: #000;
+    font-size: 14px; /* Adjust font size as needed */
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: block;
 }
 
-
-
-.buy-button:hover {
-    background-color: grey;
+.sidebar .nav-link:hover {
+    background-color: lightgrey; /* Set a background color for the hover effect */
+    color: #000;
 }
 
+.main-content {
+    margin-left: 350px; /* Adjust this value to match the width of the sidebar */
+}
+
+/* Additional Styling for Active Link */
+.sidebar .nav-link.active {
+    background-color: #f5f5f5; /* Set a background color for the active link */
+    color: #000;
+    position: relative;
+}
+
+.sidebar .nav-link.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px; /* Adjust the width of the vertical line as needed */
+    background-color: #000; /* Set the color of the vertical line */
+}
+
+    /* order history page Styles */
+    .order-history {
+        justify-content: space-between;
+    align-items: flex-start;
+        max-width: 87%;
+        padding: 10px;
+        margin: 50px;
+    }
+    
+    .order {
+        border-bottom: 1px solid #ccc;
+        padding: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .order-details {
+        flex-grow: 1;
+    }
+    
+    /* View Details Button Styles */
+    .view-details-btn {
+        background-color: #fff;
+        color: #000;
+        padding: 8px 15px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s, text-decoration 0.3s;
+    }
+    
+    .view-details-btn:hover {
+        text-decoration: underline;
+        background-color: #fff;
+        color: #000;
+    }
+
+
+    .sticky-footer-padding {
+    margin-bottom: 8vh;
+    /* Adjust the margin bottom to match the height of the footer */
+}
+
+/* Updated Footer Styles */
 .footer {
             background-color: #fff;
             color: grey;
@@ -224,14 +207,16 @@ main {
 }
 
 </style>
+
+    <title>Order History-SHADED</title>
 </head>
 <body>
-<!--bootstrap js-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+
+     <!--bootstrap js-->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
      crossorigin="anonymous">
 </script>
-
 
 <header>
         <!-- added bootstrap navbar utility classes -->
@@ -352,7 +337,7 @@ main {
                                 <i class="fas fa-heart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" >View Wishlist</a></li>
+                                <li><a class="dropdown-item" >View Wishlist</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -370,57 +355,65 @@ main {
 
     </header>
 
+    <!-- Profile Section -->
+    <main class="sticky-footer-padding main-content">
+    <div class="container"> <!-- Wrap the profile content in a Bootstrap container -->
 
-    <main>
-    <div id="main">
-        
-    <div class="main-container">
-
-        <div class="filter-container">
-        
-<form method="post" action="">
-    <label for="colorSelect">Select Color:</label>
-    <select name="colorSelect" id="colorSelect">
-        <option value="all">All Colors</option>
-        <option value="black">Black</option>
-        <option value="white">White</option>
-        <option value="yellow">Yellow</option>
-        <option value="brown">Brown</option>
-        <option value="green">Green</option>
-    </select>
-    <button type="submitfilter">Filter</button>
-</form>
-        </div>
-
-        <h2>Shop our Selection</h2>
-    <div class="container">
-    <div class="row">
-        <!-- Loop through each product and display buttons -->
-        <?php foreach ($products as $product) : ?>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                
-                <img src="MK-2161BU-0001_1.jpeg" width="90%" height="60%">
-                <h3><?= $product['product_name'] ?></h3>
-                <p> £<?= $product['price'] ?><span class="buy-button-container"><button class="buy-button" data-product-id="<?= $product['product_id'] ?>" data-color="<?= $product['colour'] ?>">Buy</button></span></p>
-            </div>
-        <?php endforeach; ?>
+    <aside class="sidebar">
+    <div class="welcome-section">
+        <h2>Welcome to your personal area</h2>
+        <!-- You can dynamically replace [Username] with the actual username -->
     </div>
-</div>
-
-    <form method="post" action="Item.php" id="buyForm">
-    <!-- Hidden input fields to store the selected product ID and color -->
-    <input type="hidden" name="selectedProductId" id="selectedProductId" value="">
-
-   
-</form>
-    </div>
-
-</main>
-
-
- <!--Bootstrap Container for Footer -->
     
- <div class="container-fluid">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="accountPage.php">
+                My Profile
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="order-history.php">
+                My Orders
+            </a>
+            <li class="nav-item">
+            <a class="nav-link" href="Contactus.php">Contact Us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="homepage.php">
+                Logout
+            </a>
+        </li>
+    </ul>
+</aside>
+
+        <!-- order history title-->
+        <div class="profile-container">
+        <div class="order-history">
+        <h2 class="border-bottom pb-2">Order History</h2>
+
+                <!-- brief order details-->
+                <div class="order">
+                    <div class="order-details">
+                        <h5>Order</h5>
+                        <p>Date: </p>
+                        <p>Total: £</p>
+                    </div>
+                    <!-- button that redirects to the product details page-->
+                    <button class="view-details-btn" onclick="redirectToProductDetails()">View Details</button>
+                </div>
+           
+
+            <!-- Add more orders-->
+
+           
+            </div>
+        </div>
+    </main>
+
+
+    <!--Bootstrap Container for Footer -->
+    
+    <div class="container-fluid">
         <footer class="footer">
             <div class="row">
                 <div class="col-md-4">
@@ -430,11 +423,11 @@ main {
                 </div>
                 <div class="col-md-4">
                     <div class="social-icons">
-                        <!-- Add your social media icons  -->
+                        <!--social media icons  -->
                         <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Add more social media icons as needed -->
+                    
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -447,28 +440,16 @@ main {
         </footer>
     </div>
 
+    <script> function redirectToProductDetails(productId) {
+        window.location.href = 'product-details.php?id=' + productId;
+            // JavaScript function to submit the form
+  
+    }
+    
+    </script>
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Add a click event listener to all buttons with the class 'buy-button'
-        document.querySelectorAll('.buy-button').forEach(function (button) {
-            button.addEventListener('click', function () {
-                // Get the product ID
-                var productId = button.getAttribute('data-product-id');
-
-
-                // Set the values of the hidden input fields
-                document.getElementById('selectedProductId').value = productId;
-
-                // Submit the form
-                document.forms['buyForm'].submit();
-            });
-        });
-    });
-</script>
 
 
 </body>
 </html>
-
