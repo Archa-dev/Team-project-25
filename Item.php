@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $item = $items->fetch(PDO::FETCH_ASSOC);
     }
 
-    $user = 1; 
+    $user = $_SESSION['customer_id']; 
 
     // Check if the addToBasket button is clicked
     if (isset($_POST["addToBasket"])) {
