@@ -64,18 +64,33 @@ html {
 }
 
 main {
-    margin-top: 15vh; /* Adjust margin-top to be equal to the height of the header */
+         margin-top: 8vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100%;
 }
 
 .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
+    max-width:fit-content;
+   margin: 50px auto;
+   padding: 20px;
+   background-color: #fff; 
         }
 
-        h2 {
+       .about-content h2 {
             color: #000;
+            text-align : center;
+            font-size: 80px;
         }
+       .about-content p{
+            margin-right: 100px;
+           margin-left: 100px;
+           font-size: 20px;
+           margin-bottom: 10px;
+        }
+        
+
 
 .sticky-footer-padding {
     margin-bottom: 8vh;
@@ -88,7 +103,8 @@ main {
             color: grey;
             padding: 10px;
             text-align: center;
-            position: fixed;
+            /* position: fixed; */
+            margin-top: auto;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -261,7 +277,15 @@ main {
     <main class="sticky-footer-padding"></main>
     <!-- Page content. Using placeholder text for now-->
     <section>
-        <div class="about-content">
+
+        <div class="about-content"> 
+            
+        <img src="pic2.jpeg" alt="Girl with shades" class = "image" style = "max-width:fit-content; 
+            margin-left : 100px ;
+            margin-right : 100px;
+            margin-bottom : 50px;">
+        
+
             <h2>About Us</h2>
             <p>Welcome to Shaded – Where Style Meets UV Protection!
 
@@ -274,7 +298,12 @@ Diverse Selection: From classic aviators to trendy cat-eye frames, find the perf
 Affordable Luxury: Elevate your look without breaking the bank with our stylish and affordable sunglasses.
 
 Customer Satisfaction: Our dedicated support team ensures a seamless shopping experience. Embrace the allure of well-chosen shades – shop at Shaded today!</p>
-        </div>
+<img src="pic4.jpeg" alt="boy with shades" class = "image" style = "max-width:fit-content; 
+            margin-left : 100px ;
+            margin-right : 100px;
+            margin-top : 50px;">        
+</div>
+
     </section>
  
     <!-- Bootstrap Container for Footer -->
@@ -306,5 +335,8 @@ Customer Satisfaction: Our dedicated support team ensures a seamless shopping ex
     </div>
 </body>
 </html>
+
+
+
 
 
