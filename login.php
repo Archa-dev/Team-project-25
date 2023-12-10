@@ -104,7 +104,7 @@ main {
             height: 100%; /* Take full height */
         }
 
-input[type="submit"] {
+        input[type="submit"] {
             background-color: darkgrey;
             color: #fff;
             border: #000;
@@ -114,7 +114,7 @@ input[type="submit"] {
         input[type="submit"]:hover {
             background-color: grey;
         }
-    
+        
 /* Updated Footer Styles */
 .footer {
             background-color: #fff;
@@ -179,7 +179,7 @@ input[type="submit"] {
                                 Men
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
+                            <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
@@ -275,7 +275,7 @@ input[type="submit"] {
                                 <i class="fas fa-heart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" >Your wish list is empty</a></li>
+                            <li><a class="dropdown-item" >View Wishlist</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -283,7 +283,7 @@ input[type="submit"] {
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="basket.php">Your shopping cart is empty</a></li>
+                                <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -390,6 +390,4 @@ input[type="submit"] {
     ?>
 </body>
 </html>
-
-
 
