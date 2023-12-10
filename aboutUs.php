@@ -159,7 +159,7 @@ main {
                                 Men
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
+                            <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
@@ -279,7 +279,7 @@ main {
 
         <div class="about-content"> 
             
-        <img src="pic2.jpeg" alt="Girl with shades" class = "image" style = "max-width:fit-content; 
+        <img src="images/2.jpeg" alt="Girl with shades" class = "image" style = "max-width:fit-content; 
             margin-left : 100px ;
             margin-right : 100px;
             margin-bottom : 50px;">
@@ -297,7 +297,7 @@ Diverse Selection: From classic aviators to trendy cat-eye frames, find the perf
 Affordable Luxury: Elevate your look without breaking the bank with our stylish and affordable sunglasses.
 
 Customer Satisfaction: Our dedicated support team ensures a seamless shopping experience. Embrace the allure of well-chosen shades – shop at Shaded today!</p>
-<img src="pic4.jpeg" alt="boy with shades" class = "image" style = "max-width:fit-content; 
+<img src="images/6.jpeg" alt="boy with shades" class = "image" style = "max-width:fit-content; 
             margin-left : 100px ;
             margin-right : 100px;
             margin-top : 50px;">        
@@ -334,8 +334,3 @@ Customer Satisfaction: Our dedicated support team ensures a seamless shopping ex
     </div>
 </body>
 </html>
-
-
-
-
-
