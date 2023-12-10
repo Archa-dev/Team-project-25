@@ -263,7 +263,7 @@ main {
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" >Your shopping cart is empty</a></li>
+                                <li><a class="dropdown-item" href="basket.php">Your shopping cart is empty</a></li>
                             </ul>
                         </li>
                     </ul>
