@@ -214,7 +214,7 @@ main {
                                 Men
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
+                            <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
@@ -310,7 +310,7 @@ main {
                                 <i class="fas fa-heart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" >Your wish list is empty</a></li>
+                            <li><a class="dropdown-item" >View Wishlist</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -318,7 +318,7 @@ main {
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="basket.php">Your shopping cart is empty</a></li>
+                                <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
                             </ul>
                         </li>
                     </ul>
