@@ -19,8 +19,7 @@ session_start();
 require_once('connectdb.php');
 
 
-// $customerid = $_SESSION['customer_id'];
-$customerid = 1;
+$customerid = $_SESSION['customer_id'];
 
 $itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = ?');
 $itemIDs->bindParam(1, $customerid);
