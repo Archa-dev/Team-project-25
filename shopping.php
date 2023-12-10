@@ -37,11 +37,364 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script defer src="script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
     <title>SHADED</title>
+
+    <style>
+      html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+
+    > body {
+        font-family: "Century Gothic", sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
+        padding: 0;
+        box-sizing: border-box;
+        outline: none; border: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: .2s linear;
+
+        > header {
+            background: #ffffff;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            top: 0; left: 0; right: 0;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+
+            .navbar a {
+                font-size: 15px;
+                color: #000000;
+                text-decoration: none;
+            }
+
+            /* Hide the dropdown arrow */
+            .navbar-nav .nav-item.dropdown > .nav-link::after {
+                display: none !important
+            }
+        }
+    }
+}
+
+
+
+.logo img {
+    max-width: 100%; /* Ensure the logo scales proportionally */
+    max-height: 50px; /* Set the maximum height as needed */
+    margin-left: auto; /* Center the logo horizontally */
+}
+
+.fas {
+    font-size: 15px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh
+}
+
+.filter-container {
+            
+            width: 200px; 
+            padding: 15px;
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+/* Style the filter button */
+button[type="submitfilter"] {
+    background-color: lightgrey;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submitfilter"]:hover {
+    background-color: grey;
+}
+
+
+.container-fluid {
+    flex: 1;
+    margin-top: auto;
+}
+
+h3 {
+   font-size: 18px;
+   
+}
+
+h2 {
+   font-size: 20px;
+   margin: 10px 0;
+    margin-left: 14px;
+}
+
+main {
+    margin-top: 11vh;
+    padding-top: 60px; /* Add top padding to create space for the fixed navbar */
+}
+
+
+
+#main {
+    padding: 1rem;
+    margin-left: 220px;
+}
+
+
+.main-container {
+    flex: 1;
+}
+
+
+
+.buy-button {
+    background-color: lightgray;
+    border: none;
+    color: #fff;
+    padding: 2px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 10px 0;
+    margin-left: 100px;
+    cursor: pointer;
+    border-radius: 5px;
+        
+}
+
+
+
+.buy-button:hover {
+    background-color: grey;
+}
+
+
+
+.footer {
+            background-color: #fff;
+            color: grey;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+            bottom: 0;
+            left: 0;
+            height: 40px;
+            width: 100%;
+            font-size: 14px;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+.social-icons a {
+            margin: 0 20px;
+            color: grey;
+            font-size: 14px;
+        }
+
+.terms-links a {
+    margin-left: 5px;
+    color: #6c757d; 
+    text-decoration: none;
+}
+
+.terms-links a:hover {
+    text-decoration: underline; /* Add underlining on hover if desired */
+    color: grey; /* Change the hover color as needed */
+}
+
+
+
+</style>
 </head>
 <body>
+<!--bootstrap js-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+     crossorigin="anonymous">
+</script>
 
-<!-- Add a form to get the color selection -->
+
+<header>
+     <!-- added bootstrap navbar utility classes -->
+     
+     <nav class="navbar navbar-expand-sm w-100">
+
+<!-- using container-fluid for responsiveness -->
+<div class="container-fluid">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenuItems" aria-controls="navbarMenuItems" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a href="#" class="navbar-brand logo">
+        <img src="shaded logo.png" alt="Shaded Logo">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarMenuItems">
+
+        <!-- navbar to the left of the search box -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Men
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Men Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Men Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Men Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Men Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Men Category 5</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Women
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Women Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Women Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Women Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Women Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Women Category 5</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Unisex
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Unisex Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Unisex Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Unisex Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Unisex Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Unisex Category 5</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Prescription
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Prescription Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Prescription Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Prescription Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Prescription Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Prescription Category 5</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Blue Light
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Blue Light Category 1</a></li>
+                    <li><a class="dropdown-item" href="#">Blue Light Category 2</a></li>
+                    <li><a class="dropdown-item" href="#">Blue Light Category 3</a></li>
+                    <li><a class="dropdown-item" href="#">Blue Light Category 4</a></li>
+                    <li><a class="dropdown-item" href="#">Blue Light Category 5</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- search box -->
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+            <button class="btn btn-outline-bg" type="submit">
+                <a href="#">
+                    <i class="fas fa-search"></i>
+                </a>
+            </button>
+        </form>
+
+        <!-- navbar to the right of the search box -->
+        <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a class="dropdown-item" href="#">My Orders</a></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Log In/ Sign Up</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-heart"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" >Your wish list is empty</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" >Your shopping cart is empty</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+
+      
+    </header>
+
+
+    <main>
+    <div id="main">
+        
+    <div class="main-container">
+
+        <div class="filter-container">
+        
 <form method="post" action="">
     <label for="colorSelect">Select Color:</label>
     <select name="colorSelect" id="colorSelect">
@@ -52,37 +405,66 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <option value="brown">Brown</option>
         <option value="green">Green</option>
     </select>
-    <button type="submit">Filter</button>
+    <button type="submitfilter">Filter</button>
 </form>
-
-<main>
-    <div id="main">
-        <h1>Shaded</h1>
-        <h2><center>Items</center> </h2>
-        <div id="boxes">
-            <div id="row">
-                <!-- Loop through each product and display buttons -->
-                <?php foreach ($products as $product) : ?>
-                    <div id="column">
-                        <h3><?= $product['product_name'] ?></h3>
-                        <img src="sunglasses.avif" width="50%" height="50%">
-                        <p>Price: $<?= $product['price'] ?></p>
-                        <!-- Use a button with data attributes to store the product ID and color -->
-                        <button class="buy-button" data-product-id="<?= $product['product_id'] ?>" data-color="<?= $product['colour'] ?>">Buy</button>
-                    </div>
-                <?php endforeach; ?>
-            </div>
         </div>
-    </div>
-</main>
 
-<form method="post" action="Item.php" id="buyForm">
+        <h2>Shop our Selection</h2>
+    <div class="container">
+    <div class="row">
+        <!-- Loop through each product and display buttons -->
+        <?php foreach ($products as $product) : ?>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                
+                <img src="MK-2161BU-0001_1.jpeg" width="90%" height="60%">
+                <h3><?= $product['product_name'] ?></h3>
+                <p> £<?= $product['price'] ?><span class="buy-button-container"><button class="buy-button" data-product-id="<?= $product['product_id'] ?>" data-color="<?= $product['colour'] ?>">Buy</button></span></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+    <form method="post" action="Item.php" id="buyForm">
     <!-- Hidden input fields to store the selected product ID and color -->
     <input type="hidden" name="selectedProductId" id="selectedProductId" value="">
 
-    <!-- Submit button -->
-    <button type="submit">Buy</button>
+   
 </form>
+    </div>
+
+</main>
+
+
+ <!--Bootstrap Container for Footer -->
+    
+ <div class="container-fluid">
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-text">
+                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="col-md-4">    
+                    <div class="social-icons">
+                        <!-- Add your social media icons  -->
+                        <a href="https://en-gb.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/?lang=en-gb" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <!-- Add more social media icons as needed -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="terms-links">
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Cookies Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -103,107 +485,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     });
 </script>
 
+
 </body>
 </html>
 
-<style>
-    body {
-      font-family: "Century Gothic", sans-serif;
-      background-color: #ffffff;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      outline: none;
-      border: none;
-      text-decoration: none;
-      text-transform: capitalize;
-      transition: .2s linear;
-    }
-
-    html {
-      font-size: 100%;
-      scroll-behavior: smooth;
-    }
-
-    header {
-      background: #ffffff;
-      padding: 10px;
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      top: 0;
-      left: 0;
-      right: 0;
-      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-
-    header .navbar a {
-      font-size: 15px;
-      color: #000000;
-      text-decoration: none;
-      padding: 10px;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0px;
-      display: flex;
-    }
-
-    nav ul li {
-      position: relative;
-    }
-
-    nav ul li:hover > ul {
-      display: flex;
-      flex-direction: column;
-      width: 100vw;
-      position: fixed;
-      top: 70px;
-      left: 0;
-      background-color: #efefef;
-      z-index: 1000;
-    }
-
-    nav ul ul {
-      display: none;
-    }
-
-    .logo img {
-      max-width: 100%;
-      max-height: 50px;
-      margin-left: auto;
-    }
-
-    header .icons a {
-      font-size: 15px;
-      color: #000000;
-      margin-left: 50px;
-      margin-right: 50px;
-    }
-
-    .search, .profile, .wishlist, .shopping-bag {
-      background-color: #ffffff;
-      z-index: 2000;
-    }
-
-    #cart-dropdown ul {
-      list-style: none;
-      padding: 10px;
-      margin: 0;
-    }
-
-    #cart-dropdown li {
-      padding: 5px;
-    }
-  </style>
