@@ -103,8 +103,7 @@ main {
             color: grey;
             padding: 10px;
             text-align: center;
-            /* position: fixed; */
-            margin-top: auto;
+            position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
