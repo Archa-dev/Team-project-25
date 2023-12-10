@@ -3,6 +3,7 @@
   
 <?php
 require_once('connectdb.php');
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the selectedProductId is set
