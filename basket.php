@@ -462,7 +462,7 @@ function addItemToBasket(title, price, imageSrc, productid) {
         <div class="basket-item basket-column">
             <img class="basket-item-image" src="${imageSrc}" width="100" height="100">
             <span class="basket-item-title">${title}</span>
-            <span class="basket-item-productid">${productid}</span>
+            <span class="basket-item-productid" hidden="hidden">${productid}</span>
         </div>
         <span class="basket-price basket-column">${price}</span>
         <div class="basket-amount basket-column">
