@@ -384,7 +384,7 @@ main {
                 <div id="order-summary">
                     <h2 class="order-summary-heading">Order Summary</h2>
                     <div class="order-summary-product">
-                    <img src="images/MK-2161BU-0001_1.jpeg.jpg" alt="Product Image">
+                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image">
                     <hr>
                     <div class="total-amount">Total: $XX.XX</div>
                     <button onclick="confirmOrder()" class="btn btn-primary mt-3 checkout-button">Checkout</button>
