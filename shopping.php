@@ -44,12 +44,12 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 html {
     font-size: 100%;
     scroll-behavior: smooth;
-
+/* Navbar Styles */
     > body {
         font-family: "Century Gothic", sans-serif;
         background-color: #ffffff;
         margin: 0;
-        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
+        margin-bottom: 60px; 
         padding: 0;
         box-sizing: border-box;
         outline: none; border: none;
@@ -89,7 +89,7 @@ html {
 }
 
 .fas {
-    font-size: 15px;
+    font-size: 15px; /*icons */
 }
 
 main {
@@ -154,7 +154,7 @@ h2 {
 
 main {
     margin-top: 11vh;
-    padding-top: 60px; /* Add top padding to create space for the fixed navbar */
+    padding-top: 60px; /*  padding to create space for the fixed navbar */
 }
 
 
@@ -193,6 +193,7 @@ main {
     background-color: grey;
 }
 
+        /* footer styles*/
 .footer {
             background-color: #fff;
             color: grey;
@@ -214,13 +215,13 @@ main {
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d; /* Change the color as needed */
+    color: #6c757d; 
     text-decoration: none;
 }
 
 .terms-links a:hover {
-    text-decoration: underline; /* Add underlining on hover if desired */
-    color: #000; /* Change the hover color as needed */
+    text-decoration: underline; /* underlining on hover  */
+    color: #000; /*  hover color */
 }
 
 </style>
@@ -377,7 +378,7 @@ main {
     <div class="main-container">
 
         <div class="filter-container">
-        
+        /* filter for selecting a specific product colour */
 <form method="post" action="">
     <label for="colorSelect">Select Color:</label>
     <select name="colorSelect" id="colorSelect">
@@ -430,15 +431,16 @@ main {
                 </div>
                 <div class="col-md-4">
                     <div class="social-icons">
-                        <!-- Add your social media icons  -->
+                        <!-- social media icons  -->
                         <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Add more social media icons as needed -->
+                       
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="terms-links">
+                        /* Links to Terms of use and cookies policy do not actually lead anywhere */
                         <a href="#">Terms of Use</a>
                         <a href="#">Cookies Policy</a>
                     </div>
