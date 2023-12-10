@@ -186,7 +186,7 @@ body {
     display: inline-block;
     font-size: 20px;
     margin: 10px 0;
-    margin-left: 80px;
+    margin-left: 100px;
     cursor: pointer;
     border-radius: 5px;
         }
