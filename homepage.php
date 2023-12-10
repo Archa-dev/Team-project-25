@@ -64,7 +64,7 @@ html {
 }
 
 main {
-    margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
+    margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
 }
 
 /* Additional styles for the main content images and text overlay */
@@ -73,6 +73,8 @@ main {
             max-width: 100%;
             overflow: hidden;
             padding: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
         }
 
         .main-content img {
@@ -89,6 +91,25 @@ main {
             text-align: left;
             color: #fff; /* Text color */
         }
+
+/* Add specific styles for the first column */
+.col-md-6:nth-child(1) .text-overlay {
+    left: 30px; /* Adjust the left value to control the distance from the left for the first column */
+}
+
+/* Add specific styles for the second column */
+.col-md-6:nth-child(2) .text-overlay {
+    left: 50%; /* Center the text horizontally */
+    transform: translateX(10%);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+    .text-overlay {
+        left: 50%; /* Center the text horizontally on smaller screens */
+        transform: translateX(-50%);
+    }
+}
 
 h2{
     font-weight: bold;
@@ -128,7 +149,7 @@ h2{
 
 .social-icons a {
             margin: 0 20px;
-            color: #000;
+            color: grey;
             font-size: 14px;
         }
 
@@ -176,11 +197,11 @@ h2{
                                 Men
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Men Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Men Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Men Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Men Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Men Category 5</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Green Sunglasses</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -188,11 +209,11 @@ h2{
                                 Women
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Women Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Women Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Women Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Women Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Women Category 5</a></li>
+                            <li><a class="dropdown-item" href="#">Women's Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's Green Sunglasses</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -200,11 +221,11 @@ h2{
                                 Unisex
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Unisex Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Category 5</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Green Sunglasses</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -212,11 +233,11 @@ h2{
                                 Prescription
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Prescription Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Category 5</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Green Sunglasses</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -224,14 +245,14 @@ h2{
                                 Blue Light
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Blue Light Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 5</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Green Sunglasses</a></li>
                             </ul>
                         </li>
-                       <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="aboutUs.php">About Us</a>
                         </li>
                     </ul>
@@ -272,7 +293,7 @@ h2{
                                 <i class="fas fa-heart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" >Your wish list is empty</a></li>
+                                <li><a class="dropdown-item" >View Wishlist</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -280,7 +301,7 @@ h2{
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" >Your shopping cart is empty</a></li>
+                                <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -295,28 +316,53 @@ h2{
     <div class="main-content">
             <img src="images/5.jpeg" alt="Image 2">
             <div class="text-overlay">
-                <a href="#" class="custom-link no-underline">
+                <a href="shopping.php" class="custom-link no-underline">
                     <h2 class="no-underline">Shop the Latest Collection</h2>
                 </a>
-                <a href="#" class="custom-link no-underline">
+                <a href="shopping.php" class="custom-link no-underline">
                     <p class="no-underline">Discover new arrivals and trends for the season.</p>
                 </a>
-                <a href="#" class="custom-link bold-link">Explore Now</a>
+                <a href="shopping.php" class="custom-link bold-link">Explore Now</a>
             </div>
         </div>
 
         <div class="main-content">
             <img src="images/8.jpeg" alt="Image 2">
             <div class="text-overlay">
-                <a href="#" class="custom-link no-underline">
+                <a href="shopping.php" class="custom-link no-underline">
                     <h2 class="no-underline">Special Offers</h2>
                 </a>
-                <a href="#" class="custom-link no-underline">
-                    <p class="no-underline">Enjoy exclusive discounts on your favorite products.</p>
+                <a href="shopping.php" class="custom-link no-underline">
+                    <p class="no-underline">Enjoy exclusive discounts on your favorite sunglasses.</p>
                 </a>
-                <a href="#" class="custom-link bold-link">Shop Deals</a>
+                <a href="shopping.php" class="custom-link bold-link">Shop Deals</a>
             </div>
         </div>
+
+        <div class="main-content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="image-container">
+                <img src="images/4.1.jpeg" alt="Image 3">
+                <div class="text-overlay">
+                    <a href="shopping.php" class="custom-link no-underline">
+                        <h2 class="no-underline">Men's Sunglasses</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="image-container">
+                <img src="images/7.1.jpeg" alt="Image 4">
+                <div class="text-overlay">
+                    <a href="#" class="custom-link no-underline">
+                        <h2 class="no-underline">Women's Sunglasses</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     </main>
 
