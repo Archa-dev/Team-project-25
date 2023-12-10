@@ -10,14 +10,17 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     
         <title>Basket-SHADED</title>
-       
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <?php
 session_start();
 require_once('connectdb.php');
 
 
-$customerid = $_SESSION['customer_id'];
-
+// $customerid = $_SESSION['customer_id'];
+$customerid = 1;
 
 $itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = ?');
 $itemIDs->bindParam(1, $customerid);
@@ -458,12 +461,11 @@ function removeBasketItem(event) {
     var buttonClicked = event.target
     var productid = buttonClicked.parentElement.parentElement.getElementsByClassName('basket-item-productid')[0].innerText
     buttonClicked.parentElement.parentElement.remove()
-    // <?php
-    // $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');          needs to use something else, probably AJAX to remove item from basket
-    // $removeItem->bindParam(1, $productid);
-    // $removeItem->bindParam(2, $customerid);
-    // $removeItem->execute();
-    // ?>
+    $.ajax({
+        url: 'basketRemove.php',
+        type: 'POST',
+        data: { id:productid },
+    });
     updateBasketTotal()
 }
 
@@ -476,7 +478,6 @@ function amountChanged(event) {
 }
 
 function addItemToBasket(title, price, imageSrc, amount, productid) {
-    console.log(title, price, imageSrc, amount, productid)
     var BasketRow = document.createElement('div')
     BasketRow.classList.add('basket-row')
 
@@ -544,8 +545,7 @@ $amount = $itemAmount->fetchColumn();
 echo "
 <script>
 addItemToBasket('$title', '$price', '$imageSrc', '$amount', '$productid');
-updateBasketTotal()
-console.log('test');
+updateBasketTotal();
 </script>";
 }
 
