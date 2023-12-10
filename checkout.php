@@ -378,20 +378,59 @@ main {
         </div>
     </div>
 
-    <div class="col-12 col-md-6">
-        <div class="row">
-            <div class="col-12">
-                <div id="order-summary">
-                    <h2 class="order-summary-heading">Order Summary</h2>
-                    <div class="order-summary-product">
-                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image">
-                    <hr>
-                    <div class="total-amount">Total: $XX.XX</div>
-                    <button onclick="confirmOrder()" class="btn btn-primary mt-3 checkout-button">Checkout</button>
+   <div class="col-12 col-md-6">
+            <div class="row">
+                <div class="col-12">
+                    <div id="order-summary">
+                        <h2 class="order-summary-heading">Order Summary</h2>
+                        <?php
+                        session_start();
+
+                        // Check if customer ID is set in the session
+                        if (isset($_SESSION['customer_id']) && !empty($_SESSION['customer_id'])) {
+                            $customer_id = $_SESSION['customer_id'];
+
+                            // Database connection
+                            require_once('connectdb.php'); // Replace with your actual database connection script
+
+                            // Prepared statement
+                            $stmt = $conn->prepare("SELECT pd.product_id, pd.product_name, pd.price, pd.product_image 
+                                                    FROM basket b 
+                                                    JOIN productdetails pd ON b.product_id = pd.product_id 
+                                                    WHERE b.customer_id = ?");
+                            $stmt->bind_param("i", $customer_id);
+
+                            // Execute the statement
+                            $stmt->execute();
+
+                            // Get the result
+                            $result = $stmt->get_result();
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<div class='order-summary-product'>";
+                                    echo "<img src='tpv2/images/" . $row["product_image"] . "' alt='Product Image'>";
+                                    echo "<p>Product ID: " . $row["product_id"] . " - Name: " . $row["product_name"] . " - Price: $" . $row["price"] . "</p>";
+                                    echo "<hr>";
+                                    echo "</div>";
+                                }
+                            } else {
+                                echo "<p>No products in basket.</p>";
+                            }
+
+                            // Close statement
+                            $stmt->close();
+                        } else {
+                            echo "<p>No customer ID found in session.</p>";
+                        }
+                        ?>
+
+                        <div class="total-amount">Total: $XX.XX</div>
+                        <button onclick="confirmOrder()" class="btn btn-primary mt-3 checkout-button">Checkout</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 </main>
 
