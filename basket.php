@@ -90,14 +90,12 @@ html {
 .fas {
     font-size: 15px;
 }
- /* Main Styles */
 
-body {
-    font-family: 'Century Gothic', sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
+main {
+    margin-top: 15vh; /* Adjust margin-top to be equal to the height of the header */
 }
 
+            /* basket styles */
 .basket-container {
     max-width: 600px;
     margin: 20px auto;
@@ -188,6 +186,7 @@ h2 {
     color: #000; 
 }
 
+            /* Checkout button styling */
 .checkout-button {
     width: 100%;
     padding: 15px;
@@ -229,13 +228,13 @@ h2 {
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d; 
+    color: #6c757d;
     text-decoration: none;
 }
 
 .terms-links a:hover {
-    text-decoration: underline; 
-    color: #000; /* hover color  */ 
+    text-decoration: underline; /* underlining on hover */
+    color: #000; /*  hover color  */
 }
 
 </style>
@@ -550,15 +549,16 @@ updateBasketTotal();
                 </div>
                 <div class="col-md-4">    
                     <div class="social-icons">
-                        <!-- social media icons -->
-                        <a href="https://en-gb.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Add more social media icons as needed -->
+                        <!--  social media icons  -->
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                       
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="terms-links">
+                         <!--  links do not redirect anywhere  -->
                         <a href="#">Terms of Use</a>
                         <a href="#">Cookies Policy</a>
                     </div>
