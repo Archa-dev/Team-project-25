@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once('connectdb.php');
     $customerid = $_SESSION['customer_id'];
     $id = $_REQUEST['id'];
