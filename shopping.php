@@ -123,7 +123,7 @@ select {
 
 /* Style the filter button */
 button[type="submitfilter"] {
-    background-color: lightgrey;
+    background-color: darkgrey;
     color: #fff;
     padding: 8px 12px;
     border: none;
@@ -172,7 +172,7 @@ main {
 
 
 .buy-button {
-    background-color: lightgray;
+    background-color: darkgrey;
     border: none;
     color: #fff;
     padding: 2px 8px;
