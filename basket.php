@@ -426,18 +426,6 @@ function ready() {
         button.addEventListener('click', removeBasketItem)
     }
 
-    var amountInputs = document.getElementsByClassName('basket-amount-input')
-    for (var i = 0; i < amountInputs.length; i++) {
-        var input = amountInputs[i]
-        input.addEventListener('change', amountChanged)
-    }
-
-    var addToBasketButtons = document.getElementsByClassName('test-item-button')
-    for (var i = 0; i < addToBasketButtons.length; i++) {
-        var button = addToBasketButtons[i]
-        button.addEventListener('click', addToBasketClicked)
-    }
-
     document.getElementsByClassName('checkout-button')[0].addEventListener('click', checkoutClicked)
 }
 
@@ -461,15 +449,8 @@ function removeBasketItem(event) {
     updateBasketTotal()
 }
 
-function amountChanged(event) {
-    var input = event.target
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1
-    }
-    updateBasketTotal()
-}
 
-function addItemToBasket(title, price, imageSrc, amount, productid) {
+function addItemToBasket(title, price, imageSrc, productid) {
     var BasketRow = document.createElement('div')
     BasketRow.classList.add('basket-row')
 
@@ -521,18 +502,13 @@ $itemPrice->execute();
 $itemImage->bindParam(1, $productid);
 $itemImage->execute();
 
-$itemAmount->bindParam(1, $productid);
-$itemAmount->bindParam(2, $customerid);
-$itemAmount->execute(); 
-
 $title = $itemTitle->fetchColumn();
 $price = $itemPrice->fetchColumn();
 $imageSrc = $itemImage->fetchColumn();
-$amount = $itemAmount->fetchColumn();
 
 echo "
 <script>
-addItemToBasket('$title', '$price', '$imageSrc', '$amount', '$productid');
+addItemToBasket('$title', '$price', '$imageSrc', '$productid');
 updateBasketTotal();
 </script>";
 }
