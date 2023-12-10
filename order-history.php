@@ -60,7 +60,7 @@ html {
 }
 
 .fas {
-    font-size: 15px;
+    font-size: 15px;/* icon */
 }
 
 main {
@@ -70,7 +70,7 @@ main {
 /* Welcome Section Styles */
 .welcome-section {
     padding: 20px;
-    background-color: #f8f9fa; /* Choose a background color for the welcome section */
+    background-color: #f8f9fa; /*  background color */
 }
 
 .welcome-section h2 {
@@ -86,7 +86,7 @@ main {
     width: 300px;
     height: 100%;
     padding-top: 110px;
-    background-color: #f8f9fa; /* Choose a background color for the sidebar */
+    background-color: #f8f9fa; /* background color  */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -99,14 +99,14 @@ main {
     padding: 15px 20px;
     text-decoration: none;
     color: #000;
-    font-size: 14px; /* Adjust font size as needed */
+    font-size: 14px; /* Adjust font size */
     font-weight: bold;
     transition: background-color 0.3s;
     display: block;
 }
 
 .sidebar .nav-link:hover {
-    background-color: lightgrey; /* Set a background color for the hover effect */
+    background-color: lightgrey; /* background color for the hover effect */
     color: #000;
 }
 
@@ -116,7 +116,7 @@ main {
 
 /* Additional Styling for Active Link */
 .sidebar .nav-link.active {
-    background-color: #f5f5f5; /* Set a background color for the active link */
+    background-color: #f5f5f5; /*  background color for the active link */
     color: #000;
     position: relative;
 }
@@ -127,8 +127,8 @@ main {
     left: 0;
     top: 0;
     height: 100%;
-    width: 5px; /* Adjust the width of the vertical line as needed */
-    background-color: #000; /* Set the color of the vertical line */
+    width: 5px; /* Adjust the width of the vertical line */
+    background-color: #000; /* color of the vertical line */
 }
 
     /* order history page Styles */
@@ -197,13 +197,13 @@ main {
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d; /* Change the color as needed */
+    color: #6c757d; 
     text-decoration: none;
 }
 
 .terms-links a:hover {
-    text-decoration: underline; /* Add underlining on hover if desired */
-    color: #000; /* Change the hover color as needed */
+    text-decoration: underline; /*  underlining on hover */
+    color: #000; /*  hover color */
 }
 
 </style>
@@ -432,6 +432,7 @@ main {
                 </div>
                 <div class="col-md-4">
                     <div class="terms-links">
+                      <!--links do not redirect anywhere-->
                         <a href="#">Terms of Use</a>
                         <a href="#">Cookies Policy</a>
                     </div>
