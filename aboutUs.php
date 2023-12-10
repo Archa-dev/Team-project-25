@@ -255,7 +255,7 @@ main {
                                 <i class="fas fa-heart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" >Your wish list is empty</a></li>
+                            <li><a class="dropdown-item" >View Wishlist</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -263,7 +263,7 @@ main {
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="basket.php">Your shopping cart is empty</a></li>
+                                <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -334,3 +334,8 @@ Customer Satisfaction: Our dedicated support team ensures a seamless shopping ex
     </div>
 </body>
 </html>
+
+
+
+
+
