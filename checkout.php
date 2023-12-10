@@ -409,7 +409,7 @@ main {
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<div class='order-summary-product'>";
-                                    echo "<img src='tpv2/images/" . $row["product_image"] . "' alt='Product Image'>";
+                                    echo "<img src='"images/MK-2161BU-0001_1.jpeg" alt="Product Image"> . $row["product_image"] . "' alt='Product Image'>";
                                     echo "<p>Product ID: " . $row["product_id"] . " - Name: " . $row["product_name"] . " - Price: $" . $row["price"] . "</p>";
                                     echo "<hr>";
                                     echo "</div>";
