@@ -148,7 +148,7 @@ main {
         }
 
         .add-to-basket-button {
-          background-color: lightgray;
+          background-color: darkgrey;
     border: none;
     color: #fff;
     padding: 2px 8px;
