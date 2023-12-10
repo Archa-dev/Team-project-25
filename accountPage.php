@@ -221,6 +221,7 @@ button {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+
 /*Footer Style */
         .footer {
             background-color: #fff;
@@ -287,7 +288,7 @@ button {
                                 Men
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
+                            <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
@@ -383,7 +384,7 @@ button {
                                 <i class="fas fa-heart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" >Your wish list is empty</a></li>
+                            <li><a class="dropdown-item" >View Wishlist</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -391,7 +392,7 @@ button {
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="basket.php">Your shopping cart is empty</a></li>
+                                <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -422,9 +423,7 @@ button {
                 My Orders
             </a>
             <li class="nav-item">
-            <a class="nav-link" href="Contactus.php">
-                Contact Us
-            </a>
+            <a class="nav-link" href="Contactus.php">Contact Us</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="homepage.php">
@@ -637,3 +636,4 @@ if (newPasswordInput !== "" && newPasswordInput === confirmNewPasswordInput) {
 </script>
 </body>
 </html>
+
