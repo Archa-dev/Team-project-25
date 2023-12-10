@@ -269,18 +269,6 @@ main {
                                 <li><a class="dropdown-item" href="#">Blue Light Green Sunglasses</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Blue Light
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Blue Light Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 3</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 4</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Category 5</a></li>
-                            </ul>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="aboutUs.php">About Us</a>
                         </li>
