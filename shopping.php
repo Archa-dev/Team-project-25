@@ -51,7 +51,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         font-family: "Century Gothic", sans-serif;
         background-color: #ffffff;
         margin: 0;
-        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
+        margin-bottom: 60px; /* height of the footer */
         padding: 0;
         box-sizing: border-box;
         outline: none; border: none;
@@ -93,7 +93,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 .fas {
-    font-size: 15px;
+    font-size: 15px; /* icons */
 }
 
 body {
@@ -168,7 +168,7 @@ h2 {
 
 main {
     margin-top: 11vh;
-    padding-top: 60px; /* Add top padding to create space for the fixed navbar */
+    padding-top: 60px; /* Adds top padding to create space for the fixed navbar so it doesnt overlap */
 }
 
 
@@ -236,8 +236,8 @@ main {
 }
 
 .terms-links a:hover {
-    text-decoration: underline; /* Add underlining on hover if desired */
-    color: grey; /* Change the hover color as needed */
+    text-decoration: underline; /* Add underlining on hover  */
+    color: grey; /* hover color */
 }
 
 
@@ -447,11 +447,11 @@ main {
                 </div>
                 <div class="col-md-4">    
                     <div class="social-icons">
-                        <!-- Add your social media icons  -->
+                        <!-- social media icons  -->
                         <a href="https://en-gb.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://twitter.com/?lang=en-gb" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Add more social media icons as needed -->
+                        <!-- Add more social media icons  -->
                     </div>
                 </div>
                 <div class="col-md-4">
