@@ -108,6 +108,17 @@ main {
             margin-bottom: 8vh;
             height: 100%; /* Take full height */
         }
+
+        input[type="submit"] {
+            background-color: darkgrey;
+            color: #fff;
+            border: #000;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: grey;
+        }
         
 /* Updated Footer Styles */
 .footer {
