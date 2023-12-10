@@ -67,7 +67,7 @@ main {
     margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
 }
 
-/* Additional styles for the main content images and text overlay */
+/*  styles for the main content images and text overlay */
 .main-content {
             position: relative;
             max-width: 100%;
@@ -89,7 +89,7 @@ main {
             top: 30px; /* Adjust the top value to control the distance from the top */
             left: 30px; /* Adjust the left value to control the distance from the left */
             text-align: left;
-            color: #fff; /* Text color */
+            color: #fff; 
         }
 
 /* Add specific styles for the first column */
@@ -155,13 +155,13 @@ h2{
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d; /* Change the color as needed */
+    color: #6c757d; 
     text-decoration: none;
 }
 
 .terms-links a:hover {
-    text-decoration: underline; /* Add underlining on hover if desired */
-    color: #000; /* Change the hover color as needed */
+    text-decoration: underline; /* underlining on hover */
+    color: #000; /*  hover color */
 }
 
 </style>
@@ -377,15 +377,16 @@ h2{
                 </div>
                 <div class="col-md-4">
                     <div class="social-icons">
-                        <!-- Add your social media icons  -->
+                        <!-- social media icons  -->
                         <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Add more social media icons as needed -->
+                       
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="terms-links">
+                           <!-- links do not redirect to anything  -->
                         <a href="#">Terms of Use</a>
                         <a href="#">Cookies Policy</a>
                     </div>
