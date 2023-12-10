@@ -403,20 +403,7 @@ h2 {
             <h2>Your Basket</h2>
 
             <div class="basket-items">
-                <!-- Displays items in the basket -->
-                <!-- Example item - remove once sorted with the database -->
                 <div class="basket-row">
-                    <div class="basket-item basket-column">
-                        <img class="basket-item-image" src="images/MK-2161BU-0001_1.jpeg" alt="Sunglasses" width="100" height="100">
-                        <div class="basket-item-details">
-                            <span class="basket-item-title">Product Name</span>
-                            <span class="basket-price">£00.00</span>
-                        </div>
-                    </div>
-                    <div class="basket-amount basket-column">
-                        <input class="basket-amount-input" type="number" value="1" min="1">
-                        <button class="button button-remove" type="button">Remove</button>
-                    </div>
                 </div>
                 
             </div>
