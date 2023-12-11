@@ -90,7 +90,7 @@ html {
 main {
             display: flex;
             justify-content: space-between;
-            margin-top: 13vh;
+            margin-top: 5vh;
             padding: 20px;
             margin-left: 25px;
             margin-right: 25px;
