@@ -453,54 +453,61 @@ main {
 
 <!-- JavaScript Section -->
 <script>
-  function toggleDropdown(dropdownId) {
-    var dropdownContent = document.getElementById(dropdownId).getElementsByClassName("dropdown-content")[0];
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
+function setBorderColor(elementId, isValid) {
+  var color = isValid ? 'green' : 'red';
+  document.getElementById(elementId).style.borderColor = color;
+}
+
+function validateShipping() {
+  var isValid = true;
+  var fields = ['firstName', 'surname', 'addressLine', 'postcode', 'city'];
+
+  fields.forEach(function(field) {
+    var value = document.getElementById(field).value;
+    var fieldIsValid = value !== '';
+    setBorderColor(field, fieldIsValid);
+    isValid = isValid && fieldIsValid;
+  });
+
+  document.getElementById("shipping-error").innerText = isValid ? "" : "Incomplete Shipping Details";
+  return isValid;
+}
+
+function validatePayment() {
+  var cardNumber = document.getElementById("cardNumber").value;
+  var securityNumber = document.getElementById("securityNumber").value;
+  var cardNumberValid = cardNumber.length === 16 && !isNaN(cardNumber);
+  var securityNumberValid = securityNumber.length === 3 && !isNaN(securityNumber);
+
+  setBorderColor("cardNumber", cardNumberValid);
+  setBorderColor("securityNumber", securityNumberValid);
+
+  var isValid = cardNumberValid && securityNumberValid;
+
+  document.getElementById("payment-error").innerText = isValid ? "" : "Invalid Payment Details";
+  return isValid;
+}
+
+
+
+function confirmOrder() {
+  var shippingValid = validateShipping();
+  var paymentValid = validatePayment();
+
+  if (shippingValid && paymentValid) {
+    alert("Thank you for your order! Your payment has been successful.");
+    window.location.href = 'homepage.php';
+  } else {
+    var message = "Please check the following:";
+    if (!shippingValid) {
+      message += "\n - Shipping Information";
     }
-  }
-
-  function validateShipping() {
-    var firstName = document.getElementById("firstName").value;
-    var surname = document.getElementById("surname").value;
-    var addressLine = document.getElementById("addressLine").value;
-    var postcode = document.getElementById("postcode").value;
-    var city = document.getElementById("city").value;
-
-    if (firstName === '' || surname === '' || addressLine === '' || postcode === '' || city === '') {
-      document.getElementById("shipping-error").innerText = "Incomplete Shipping Details";
-    } else {
-      document.getElementById("shipping-error").innerText = "";
+    if (!paymentValid) {
+      message += "\n - Payment Information";
     }
+    alert(message);
   }
-
-  function validatePayment() {
-    var cardNumber = document.getElementById("cardNumber").value;
-    var expiryDate = document.getElementById("expiryDate").value;
-    var securityNumber = document.getElementById("securityNumber").value;
-
-    if (cardNumber.length !== 16 || isNaN(cardNumber)) {
-      document.getElementById("payment-error").innerText = "Invalid Card Number";
-    } else if (securityNumber.length !== 3 || isNaN(securityNumber)) {
-      document.getElementById("payment-error").innerText = "Invalid Security Number";
-    } else {
-      document.getElementById("payment-error").innerText = "";
-    }
-  }
-
-  function confirmOrder() {
-    var shippingError = document.getElementById("shipping-error").innerText;
-    var paymentError = document.getElementById("payment-error").innerText;
-
-    if (shippingError === '' && paymentError === '') {
-      alert("Thank you for your order!");
-      // Redirect to a new page or perform other actions as needed
-    } else {
-      document.getElementById("confirmation-error").innerText = "Sections are not completed";
-    }
-  }
+}
 
   function addItemToCheckout(title, price, imageSrc) {
     var BasketRow = document.createElement('div')
