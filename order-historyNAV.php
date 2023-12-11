@@ -78,6 +78,11 @@ $orders = $items->fetchAll(PDO::FETCH_ASSOC);
 main {
     margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
 }
+
+.sticky-footer-padding {
+    margin-bottom: 11vh;
+    /* Adjust the margin bottom to match the height of the footer */
+}
         
 /* Welcome Section Styles */
 .welcome-section {
