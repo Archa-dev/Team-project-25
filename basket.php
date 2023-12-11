@@ -248,8 +248,6 @@ h2 {
      crossorigin="anonymous">
 </script>
 
-
-
 <header>
       <!-- added bootstrap navbar utility classes -->
       <nav class="navbar navbar-expand-sm w-100">
@@ -273,116 +271,121 @@ h2 {
                     Men
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Men Category 1</a></li>
-                    <li><a class="dropdown-item" href="#">Men Category 2</a></li>
-                    <li><a class="dropdown-item" href="#">Men Category 3</a></li>
-                    <li><a class="dropdown-item" href="#">Men Category 4</a></li>
-                    <li><a class="dropdown-item" href="#">Men Category 5</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Women
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Women Category 1</a></li>
-                    <li><a class="dropdown-item" href="#">Women Category 2</a></li>
-                    <li><a class="dropdown-item" href="#">Women Category 3</a></li>
-                    <li><a class="dropdown-item" href="#">Women Category 4</a></li>
-                    <li><a class="dropdown-item" href="#">Women Category 5</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Unisex
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Unisex Category 1</a></li>
-                    <li><a class="dropdown-item" href="#">Unisex Category 2</a></li>
-                    <li><a class="dropdown-item" href="#">Unisex Category 3</a></li>
-                    <li><a class="dropdown-item" href="#">Unisex Category 4</a></li>
-                    <li><a class="dropdown-item" href="#">Unisex Category 5</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Prescription
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Prescription Category 1</a></li>
-                    <li><a class="dropdown-item" href="#">Prescription Category 2</a></li>
-                    <li><a class="dropdown-item" href="#">Prescription Category 3</a></li>
-                    <li><a class="dropdown-item" href="#">Prescription Category 4</a></li>
-                    <li><a class="dropdown-item" href="#">Prescription Category 5</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Blue Light
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Blue Light Category 1</a></li>
-                    <li><a class="dropdown-item" href="#">Blue Light Category 2</a></li>
-                    <li><a class="dropdown-item" href="#">Blue Light Category 3</a></li>
-                    <li><a class="dropdown-item" href="#">Blue Light Category 4</a></li>
-                    <li><a class="dropdown-item" href="#">Blue Light Category 5</a></li>
-                </ul>
-            </li>
-        </ul>
+                                <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Men's Green Sunglasses</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Women
+                            </a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Women's Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Women's Green Sunglasses</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Unisex
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Unisex Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Unisex Green Sunglasses</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Prescription
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Prescription Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Prescription Green Sunglasses</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Blue Light
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Blue Light Black Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light White Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Yellow Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Brown Sunglasses</a></li>
+                                <li><a class="dropdown-item" href="#">Blue Light Green Sunglasses</a></li>
+                                </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="aboutUs.php">About Us</a>
+                        </li>
+                    </ul>
 
-        <!-- search box -->
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
-            <button class="btn btn-outline-bg" type="submit">
-                <a href="#">
-                    <i class="fas fa-search"></i>
-                </a>
-            </button>
-        </form>
+                            <!-- search box -->
+                            <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+                        <button class="btn btn-outline-bg" type="submit">
+                            <a href="#">
+                                <i class="fas fa-search"></i>
+                            </a>
+                        </button>
+                    </form>
 
-        <!-- navbar to the right of the search box -->
-        <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">My Profile</a></li>
-                    <li><a class="dropdown-item" href="#">My Orders</a></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Log In/ Sign Up</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-heart"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" >Your wish list is empty</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" >Your shopping cart is empty</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
-</nav>
+                    <!-- navbar to the right of the search box -->
+                    <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
+                                <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
+                                <li><a class="dropdown-item" href="homepage.php">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="login.php">Log In</a></li>
+                                <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" >View Wishlist</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
     </header>
 
-    <main>
+    <main class="sticky-footer-padding">
         <section class="basket-container">
             <h2>Your Basket</h2>
 
@@ -396,19 +399,14 @@ h2 {
                     </div>
                 </div>
                 
-            </div>
-
             <div class="basket-total">
                 <strong class="basket-total-title">Total</strong>
                 <span class="basket-total-price">£0</span>
             </div>
 
-            <button class="button checkout-button" type="button">PROCEED TO CHECKOUT</button>
+            <button class="button checkout-button" type="button">Proceed to Checkout</button>
         </section>
     </main>
-
-
-
 </body>
 
 <script>
