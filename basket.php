@@ -158,7 +158,7 @@ h2 {
 .button {
     cursor: pointer;
     padding: 10px;
-    background-color: lightgray;
+    background-color: darkgrey;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -190,7 +190,7 @@ h2 {
 .checkout-button {
     width: 100%;
     padding: 15px;
-    background-color: lightgray;
+    background-color: darkgrey;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -261,7 +261,7 @@ h2 {
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <a href="#" class="navbar-brand logo">
+    <a href="homepage.php" class="navbar-brand logo">
         <img src="shaded logo.png" alt="Shaded Logo">
     </a>
     <div class="collapse navbar-collapse" id="navbarMenuItems">
