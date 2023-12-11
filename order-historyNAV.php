@@ -419,7 +419,8 @@ if(isset($_POST['nav-logout-button'])){
         </li>
         <li class="nav-item">
             <a class="nav-link" href="homepage.php">
-                Logout
+		    <a class="nav-link"  name="nav-logout-button" href="login.php" ></a>
+                <!--Logout-->
             </a>
         </li>
     </ul>
