@@ -143,7 +143,7 @@ body {
                 </div>
                 <div class="col-md-4">
                     <div class="social-icons">
-                        <!-- Add your social media icons  -->
+                        
                         <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
