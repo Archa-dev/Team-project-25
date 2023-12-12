@@ -81,7 +81,7 @@ main {
 
 .sticky-footer-padding {
     margin-bottom: 11vh;
-    /* Adjust the margin bottom to match the height of the footer */
+	margin-top: -20px;
 }
         
 /* Welcome Section Styles */
