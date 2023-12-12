@@ -28,7 +28,7 @@
         font-family: "Century Gothic", sans-serif;
         background-color: #ffffff;
         margin: 0;
-        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
+        margin-bottom: 60px;
         padding: 0;
         box-sizing: border-box;
         outline: none; border: none;
@@ -42,7 +42,7 @@
             width: 100%;
             z-index: 1000;
             display: flex;
-            justify-content: space-between; /* Align logo to the left and nav to the right */
+            justify-content: space-between; 
             align-items: center;
             top: 0; left: 0; right: 0;
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
@@ -53,7 +53,7 @@
                 text-decoration: none;
             }
 
-            /* Hide the dropdown arrow */
+            
             .navbar-nav .nav-item.dropdown > .nav-link::after {
                 display: none !important
             }
@@ -62,9 +62,9 @@
 }
 
 .logo img {
-    max-width: 100%; /* Ensure the logo scales proportionally */
-    max-height: 50px; /* Set the maximum height as needed */
-    margin-left: auto; /* Center the logo horizontally */
+    max-width: 100%; 
+    max-height: 50px; 
+    margin-left: auto; 
 }
 
 .fas {
@@ -72,54 +72,115 @@
 }
 
 main {
-    margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
+    margin-top: 11vh; 
 }
 
 .sticky-footer-padding {
-    margin-bottom: 0vh;
-    /* Adjust the margin bottom to match the height of the footer */
+    margin-bottom: 11vh;
+}
+
+/* Welcome Section Styles */
+.welcome-section {
+    padding: 20px;
+    background-color: #f8f9fa; 
+}
+
+.welcome-section h2 {
+    font-size: 18px;
+    color: #000;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    padding-top: 110px;
+    background-color: #f8f9fa; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar .nav-link {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px; 
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: block;
+}
+
+.sidebar .nav-link:hover {
+    background-color: lightgrey; /
+    color: #000;
+}
+
+.main-content {
+    margin-left: 350px; 
+}
+
+/* Additional Styling for Active Link */
+.sidebar .nav-link.active {
+    background-color: #f5f5f5; 
+    color: #000;
+    position: relative;
+}
+
+.sidebar .nav-link.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px; 
+    background-color: #000; 
 }
 
 /* contact us page Styles */
-.container {
-   max-width:fit-content;
-   margin: 50px auto;
-   padding: 10px;
-   background-color: #fff;
- }
 
  .contact-section1 {
-   padding: 10px;
-   font-size: 14px;
-   margin-left: 150px;
+    justify-content: space-between;
+    align-items: flex-start;
+        padding: 10px;
+        margin-left: 50px;
+        max-width: 450px;
  }
  .contact-section2 {
    padding: 10px;
    border-top: 1px solid #ccc ;
-   border-bottom: 1px solid #ccc;
    display: flex;
+   max-width: 87%;
    margin-top: 10px;
+   margin-left: 50px;
+   justify-content: space-between;
+        align-items: center;
  }
 
  .contact-section3 {
    padding: 10px;
    display: flex;
    margin-top: 10px;
+   margin-left: 50px;
    margin-right: 230px;
    font-size: 14px;
  }
  .contact-section h3 {
    flex:1 ;
    margin-top: 10px;
-   margin-left: 150px;
    margin-right: 20px;
-   font-size: 20px;
+   font-size: 18px;
    font-weight: bold;
  }
  .contact-section p {
     flex: 1;
-    margin-right: 100px;
-    margin-left: 100px;
+    margin-left: -130px;
    font-size: 14px;
    margin-top: 10px;
    margin-bottom: 10px;
@@ -171,13 +232,13 @@ main {
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d; /* Change the color as needed */
+    color: #6c757d; 
     text-decoration: none;
 }
 
 .terms-links a:hover {
-    text-decoration: underline; /* Add underlining on hover if desired */
-    color: #000; /* Change the hover color as needed */
+    text-decoration: underline; 
+    color: #000; 
 }
 
     </style>
@@ -333,12 +394,41 @@ main {
         </nav>
 
     </header>
-    <main class="sticky-footer-padding main-content">
-    <div class="container">
+
+   <main class="sticky-footer-padding main-content">
+    <div class="container"> 
+
+    <aside class="sidebar">
+    <div class="welcome-section">
+        <h2>Welcome to your personal area</h2>
+        
+    </div>
+    
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="accountPage.php">
+                My Profile
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="order-history.php">
+                My Orders
+            </a>
+            <li class="nav-item">
+            <a class="nav-link active" href="Contactus.php">Contact Us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="homepage.php">
+                Logout
+            </a>
+        </li>
+    </ul>
+</aside>
     
     <!-- Main content for the contact page -->
+    <div class="profile-container">
     <div class="contact-section1">
-    <h1>Contact Us</h1>
+    <h2 class="border-bottom pb-2">Contact Us</h2>
               <p>Use one of the following methods to contact us</p>
             </div>
            <div class="contact-section">
@@ -382,11 +472,9 @@ main {
                 </div>
                 <div class="col-md-4">
                     <div class="social-icons">
-                        <!-- Add your social media icons  -->
                         <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Add more social media icons as needed -->
                     </div>
                 </div>
                 <div class="col-md-4">
