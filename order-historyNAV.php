@@ -81,7 +81,6 @@ main {
 
 .sticky-footer-padding {
     margin-bottom: 11vh;
-	margin-top: -20px;
 }
         
 /* Welcome Section Styles */
@@ -129,6 +128,7 @@ main {
 
 .main-content {
     margin-left: 350px; /* Adjust this value to match the width of the sidebar */
+	margin-top: -20px;
 }
 
 /* Additional Styling for Active Link */
