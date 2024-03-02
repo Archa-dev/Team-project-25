@@ -57,12 +57,6 @@ else{
 <head>
   <meta charset="UTF-8" />
   <title>Login - SHADED</title>
-
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
-
   <script src="https://kit.fontawesome.com/58e0ebdcbf.js" crossorigin="anonymous"></script>
   
  <style>
@@ -97,8 +91,6 @@ body{
   top: 50%;
   left: 0;
   transform: translate(20%,-50%);
-  /* background: #fff; */
-  /*to change the color of login box make */
   padding: 4px 2px 6px;
   text-align: center;
   border-radius: 10px;
@@ -221,39 +213,6 @@ input{
         <a href="signup.php">Don't have an account?</a>
        </form>
     </div>
-    <div class="container-fluid">
-        <footer class="footer">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footer-text">
-                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="social-icons">
-                        
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="terms-links">
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Cookies Policy</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div> 
-</form>
-
-    
   </div>
- 
- 
-
-
 </body>
 </html>
