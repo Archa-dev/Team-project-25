@@ -2,153 +2,118 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Sign Up - SHADED</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
-    <style>
-      html {
-    font-size: 100%;
-    scroll-behavior: smooth;
-      }
-
-        body {
-            font-family: "Century Gothic", sans-serif;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-            border: none;
-            text-decoration: none;
-            text-transform: capitalize;
-            transition: .2s linear;
-        }
-
-        header {
-          background: #ffffff;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between; /* Align logo to the left and nav to the right */
-            align-items: center;
-            top: 0; left: 0; right: 0;
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar a {
-                font-size: 15px;
-                color: #000000;
-                text-decoration: none;
-            }
-
-            /* Hide the dropdown arrow */
-            .navbar-nav .nav-item.dropdown > .nav-link::after {
-                display: none !important
-            }
-
-.logo img {
-    max-width: 100%; /* Ensure the logo scales proportionally */
-    max-height: 50px; /* Set the maximum height as needed */
-    margin-left: auto; /* Center the logo horizontally */
+<meta charset="UTF-8" />
+<title>Sign Up - SHADED</title>
+<script src="https://kit.fontawesome.com/58e0ebdcbf.js" crossorigin="anonymous"></script>
+<style>
+html, body {         
+margin: 0;
+padding: 0;
+font-family: "Century Gothic", sans-serif;
+box-sizing: border-box;
+height: 100%
 }
-
-.fas {
-    font-size: 15px;
+body{
+margin: 0;
+padding: 0;
+position: relative;
 }
-
-main {
-            margin-top: 8vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            height: 100%;
-        }
-
-        .sticky-footer-padding {
-    margin-bottom: 10vh;
-    /* Adjust the margin bottom to match the height of the footer */
+.container{
+width : 100%;
+height : 100vh;
+background-image:  url(images/8.jpeg);
+/* linear-gradient(rgba(0, 59, 70, 0.8), rgba(0, 59, 70, 0.8)) */ /* If want to color the background image Green */
+background-position: centre;
+background-size: cover;
+position: relative;
+z-index: 0;
 }
-
-/*Sign Up Styles by Maryam*/
+img{
+width:300px; 
+height:300px;
+transform: translate(48%,-35%);
+}
 .signup-form {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-.signup-form input,
-        .signup-form button {
-            margin-bottom: 5px;
-            font-size: 14px; /* Adjust the font size as needed */
-        }
-
-        .signup-form h2 {
-            font-size: 16px; /* Adjust the font size for all h2 elements */
-        }
-
-        .signup-form p {
-            font-size: 14px; /* Adjust the font size for the password message */
-        }
-
-        .signup-form a {
-            display: block;
-            text-align: center;
-            font-size: 14px; /* Adjust the font size for the "Already have an account?" link */
-        }
-
-        .sticky-footer-padding {
-            margin-bottom: 8vh;
-            height: 100%; /* Take full height */
-        }
-        
-        input[type="submit"] {
-            background-color: darkgrey;
-            color: #fff;
-            border: #000;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: grey;
-        }
-
-/* Updated Footer Styles */
-.footer {
-            background-color: #fff;
-            color: grey;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            font-size: 14px;
-            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-.social-icons a {
-            margin: 0 20px;
-            color: grey;
-            font-size: 14px;
-        }
-
-.terms-links a {
-    margin-left: 5px;
-    color: #6c757d;
-    text-decoration: none;
+width: 85%;
+max-width: 400px;
+position:absolute;
+top: 47%;
+left: 0;
+transform: translate(20%,-40%);
+/* background: #fff; */
+/*to change the color of login box make */
+padding: 2px 2px 6px;
+text-align: center;
+border-radius: 10px;
+box-shadow: 0px 0px 30px 5px ; 
 }
-
-.terms-links a:hover {
-    text-decoration: underline; /*  underlining on hover*/
-    color: #000; /*  hover color  */
+.signup-form h1{
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #003B46;
+  position: relative;
+}
+.signup-form h1::after{
+  content: '';
+  width: 30px;
+  height: 4px;
+  border-radius: 3px;
+  background: #003B46;
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.signup-form a{
+  color: #003B46;
+}
+.signup-form a:hover{
+  color: #07575B;
+}
+.input-group{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input-field{
+  background: #eaeaea ;
+  width: 100%;
+  max-width: 450px;
+  margin: 5px 0;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+input{
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 18px 15px ;
+}
+.input-field i{
+  margin-left: 15px;
+  color: #999;
+}
+.btn-field {
+  width : 100%;
+  display: flex;
+  justify-content:center;
+}
+.btn-field button{
+  flex-basis: 48%;
+  background: #003B46;
+  color: #fff;
+  height: 40px;
+  border-radius: 20px;
+  border : 0 ;
+  outline: 0;
+  cursor: pointer;
+  transition: backgroud 1s;
+  margin-bottom: 20px;
+}
+.btn-field button:hover{
+  background-color: #07575B;
 }
 
 </style>
@@ -161,175 +126,48 @@ main {
                 crossorigin="anonymous">
         </script>
 
-<header>
-        <!-- added bootstrap navbar utility classes -->
-        <nav class="navbar navbar-expand-sm w-100">
 
-            <!-- using container-fluid for responsiveness -->
-            <div class="container-fluid">
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenuItems" aria-controls="navbarMenuItems" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <a href="homepage.php" class="navbar-brand logo">
-                    <img src="shaded logo.png" alt="Shaded Logo">
-                </a>
-                <div class="collapse navbar-collapse" id="navbarMenuItems">
-
-                    <!-- navbar to the left of the search box -->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Men
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Men's Green Sunglasses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Women
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Women's Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Women's White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Women's Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Women's Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Women's Green Sunglasses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Unisex
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Unisex Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Green Sunglasses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Prescription
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Prescription Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Green Sunglasses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Blue Light
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Blue Light Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Green Sunglasses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="aboutUs.php">About Us</a>
-                        </li>
-                    </ul>
-
-                    <!-- search box -->
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
-                        <button class="btn btn-outline-bg" type="submit">
-                            <a href="#">
-                                <i class="fas fa-search"></i>
-                            </a>
-                        </button>
-                    </form>
-
-                    <!-- navbar to the right of the search box -->
-                    <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
-                                <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
-                                <li><a class="dropdown-item" href="homepage.php">Logout</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="login.php">Log In</a></li>
-                                <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-heart"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" >View Wishlist</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-    </header>
 
     <main class="sticky-footer-padding">
 
-    <div class="container mt-5">
-      <div class="row justify-content-center">
-         <div class="col-md-6">
-            <form method="post" action="signup.php" onsubmit="return signupSuccess()" class="signup-form">
-            <h1>Sign Up</h1>
-            <h2>Email:</h2>
-              <input type="email" name="inputEmail" class="form-control" required>
+ <div class="container">
+ <img id = "logo" src="shaded logo.png" alt="logo">
+            <div class = "signup-form">
+              <h1>Sign Up</h1>
+            <form method="post" action="signup.php" onsubmit="return signupSuccess()" >
+              <div class = "input-group">
 
-              <h2>Username:</h2>
-              <input type="text" name="Username" class="form-control" required>
+                <div class = "input-field">
+                  <i class="fa-solid fa-envelope"></i>
+                  <input type="email" name="inputEmail" placeholder="Email" class="form-control" required>
+                </div>
+                <div class = "input-field">
+                  <i class="fa-solid fa-user"></i>
+                  <input type="text" name="Username" placeholder="Username" class="form-control" required>
+                </div>
+                <div class = "input-field">
+                  <i class="fa-solid fa-user"></i>
+                  <input type="text" name="Name" placeholder= "Name" class="form-control" required>
+                </div>
+                <div class = "input-field">
+                <i class="fa-solid fa-house"></i>
+                  <input type="text" name="Address" placeholder= "Address (optional)" class="form-control">
+                </div>
+                <div class = "input-field">
+                   <i class="fa-solid fa-lock"></i>
+                   <input type="password" name="inputPassword" placeholder= "Password (6+ characters)"class="form-control" required>
+                </div>
 
-              <h2>Name:</h2>
-              <input type="text" name="Name" class="form-control" required>
-
-              <h2>Address (optional):</h2>
-              <input type="text" name="Address" class="form-control">
-
-              <h2>Password:</h2>
-              <p>Please make sure the password is 6+ characters</p>
-              <input type="password" name="inputPassword" class="form-control" required>
-
-              <input type="submit" value="Sign Up" class="btn btn-primary mt-3">
-              <input type="hidden" name="sub"> <!--Added the required attribute to the email and password fields for basic client-side validation. - Maryam--->
-            </form>
-    <p class="mt-3"><a href="login.php">Already have an account?</a></p>
-          </div>
-        </div>
-      </div>
+              </div>
+               <div class="btn-field">
+               <button type="submit">Submit</button>
+               <input type="hidden" name="sub" value="Sign Up">
+               </div>
+              <a href="login.php">Already have an account?</a>
+            </form> 
+</div>
       
-    <?php
+ <?php
     if(isset($_POST['sub'])){
     require_once('connectdb.php');
     $email=$_POST['inputEmail'];
@@ -395,34 +233,5 @@ main {
         }
     }
 </script>
-
-<!-- Bootstrap Container for Footer -->
-<div class="container-fluid">
-        <footer class="footer">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footer-text">
-                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="social-icons">
-                        <!--social media icons  -->
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="terms-links">
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Cookies Policy</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-
 </body>
 </html>
