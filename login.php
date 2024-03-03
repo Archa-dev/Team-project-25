@@ -81,8 +81,12 @@ body{
   background-position: centre;
   background-size: cover;
   position: relative;
-  z-index: 0;
-  
+  z-index: 0;  
+}
+img{
+  width:500px; 
+  height : 500px;
+  transform: translate(7.5%,-35%);
 }
 .form-box{
   width: 80%;
@@ -90,7 +94,7 @@ body{
   position:absolute;
   top: 50%;
   left: 0;
-  transform: translate(20%,-50%);
+  transform: translate(20%,-40%);
   padding: 4px 2px 6px;
   text-align: center;
   border-radius: 10px;
@@ -192,6 +196,7 @@ input{
 </head>
 <body>
   <div class = "container">
+    <img id = "logo" src="shaded logo.png" alt="logo">
     <div class = "form-box">
       <h1>Login</h1>
       <form method="post" action="login.php" class="login-form">
