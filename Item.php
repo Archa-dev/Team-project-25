@@ -3,7 +3,6 @@
   
 <?php
 require_once('connectdb.php');
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the selectedProductId is set
@@ -18,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $item = $items->fetch(PDO::FETCH_ASSOC);
     }
 
-    $user = $_SESSION['customer_id']; 
+    $user = 1; 
 
     // Check if the addToBasket button is clicked
     if (isset($_POST["addToBasket"])) {
@@ -46,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,10 +66,10 @@ html {
         font-family: "Century Gothic", sans-serif;
         background-color: #ffffff;
         margin: 0;
-        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
         padding: 0;
         box-sizing: border-box;
-        outline: none; border: none;
+        outline: none;
+         border: none;
         text-decoration: none;
         text-transform: capitalize;
         transition: .2s linear;
@@ -106,8 +106,7 @@ html {
 }
 
 .fas {
-    font-size: 15px; /* icons */
-}
+    font-size: 15px;
 }
 
 main {
@@ -115,8 +114,8 @@ main {
 }
     
     #main {
-            display: flex;
-            flex-direction: column;
+    display: flex;
+    flex-direction: column;
     align-items: center; 
     margin-top: 11vh;
     }
@@ -128,12 +127,21 @@ main {
 }
 
         #column {
-            flex: 0 0 70%; /* Adjust the width of the left column */
+         position: absolute;
+         left: 0;
+    top: 0;
+    width: 40%;
+    float: left;
+           
         }
 
+        
+
         #column img {
-            width: 50%;
-            height: 50%;
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover; 
         }
 
         #product-info {
@@ -141,37 +149,63 @@ main {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            margin-top: 60px;
+            
         }
 
-        #product-info h3,
-        #product-info h4 {
+        #product-info h3{
             margin-bottom: 10px;
-            font-size: 20px;
+            font-size: 40px;
+         padding-left: 30px;
+        
         }
 
-        .add-to-basket-button {
-          background-color: darkgrey;
+        #product-info h4 {
+            margin-bottom: 20px;
+            font-size: 30px;
+         padding-left: 30px;
+        }
+
+        #product-info-container {
+    width: 85%;
+    float: right;
+   
+}
+
+#product-info h5 {
+    margin-bottom: 5px;
+    font-size: 16px; /* Adjust the font size for additional headers */
+    padding-left: 30px;
+}
+
+
+
+
+    .add-to-basket-button {
+    background-color: #003b46;
     border: none;
     color: #fff;
-    padding: 2px 8px;
+    padding: 5px 200px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
-    margin: 10px 0;
-    margin-left: 80px;
+    margin: 80px 0;
+    margin-left: 30px;
     cursor: pointer;
     border-radius: 5px;
+    white-space: nowrap;
         }
 
         .add-to-basket-button:hover {
-    background-color: grey;
+    background-color: #07575b;
 }
 
 .sticky-footer-padding {
     margin-bottom: 8vh;
     /* Adjust the margin bottom to match the height of the footer */
 }
+
 
 /* Updated Footer Styles */
 .footer {
@@ -195,13 +229,13 @@ main {
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d; 
+    color: #6c757d; /* Change the color as needed */
     text-decoration: none;
 }
 
 .terms-links a:hover {
-    text-decoration: underline; /* underlining on hover  */
-    color: #000; /*  hover color */
+    text-decoration: underline; /* Add underlining on hover if desired */
+    color: #000; /* Change the hover color as needed */
 }
 
 </style>
@@ -343,7 +377,7 @@ main {
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
+                                <li><a class="dropdown-item" href="basket.php">View Shopping Basket</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -358,24 +392,33 @@ main {
         <div id="main">
             <div id="boxes">
                 <div id="row">
-                    <div id="column">
-                        <img src="MK-2161BU-0001_1.jpeg" alt="Product Image">
+                    <div id="column" style="display: flex; align-items: center;" >
+                        <img src="MK-2161BU-0001_1.jpeg" alt="Product Image" style="width: 100%; height: auto;">
                     </div>
-
+                    <div id="product-info-container" style="width: 60%; float: right;">
                     <div id="product-info">
-                        <h3><?= $item['product_name'] ?></h3>
-                        <h4>£<?= $item['price'] ?></h4>
+                        <h3 style><?= $item['product_name'] ?></h3>
+                        <h4 >£<?= $item['price'] ?></h4>
+
+                        <!-- placeholder headers -->
+    <h5 style="margin-top: 30px;">Colour: BLACK</h5>
+    <div class="color-icon"> <!-- Container for the black circle icon -->
+        <i class="fas fa-circle" style= "font-size: 32px; margin-left: 30px;"></i> <!-- Black circle icon -->
+    </div>
+    <h5 style="margin-top: 30px;">Size: ONE SIZE</h5>
                         <!-- Add your product name and price elements here -->
                         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
                             <!-- Add your product ID input or any other necessary fields here -->
                             <input type="hidden" name="selectedProductId" value="<?= $integerValue ?>">
                             <!-- Button to trigger the SQL query -->
-                            <button type="submit" name="addToBasket" class="add-to-basket-button">Add to Basket</button>
+                            <button type="submit" name="addToBasket" class="add-to-basket-button">Add to Shopping Basket</button>
                         </form>
-                    </div>
+                </div>
+                </div>
                 </div>
             </div>
         </div>
+   
     </main>
 
     <div class="container-fluid">
@@ -388,16 +431,15 @@ main {
                 </div>
                 <div class="col-md-4">
                     <div class="social-icons">
-                        <!-- social media icons  -->
+                        <!-- Add your social media icons  -->
                         <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                       
+                        <!-- Add more social media icons as needed -->
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="terms-links">
-                       <!--links do not redirect anywhere -->
                         <a href="#">Terms of Use</a>
                         <a href="#">Cookies Policy</a>
                     </div>
