@@ -89,26 +89,38 @@ main {
  }
 
  .contact-section1 {
-   padding: 10px;
-   font-size: 14px;
-   margin-left: 150px;
+   background: #003B46;
+   padding: 50px;
+   text-decoration-color: #fff ;
+   max-width: 100%;
+   color: #fff;
  }
  .contact-section2 {
-   padding: 10px;
-   border-top: 1px solid #ccc ;
-   border-bottom: 1px solid #ccc;
-   display: flex;
-   margin-top: 10px;
+  width: 80%;
+  max-width: 550px;
+  top: 500px;
+  left: 0;
+  position:sticky;
+  transform: translate(-104.3%,3%);
+  padding: 4px 2px 6px;
+  text-align: center;
+  background-color: #ced4da;
  }
-
- .contact-section3 {
-   padding: 10px;
-   display: flex;
-   margin-top: 10px;
-   margin-right: 230px;
-   font-size: 14px;
+ .contact-section{
+    display: flex;
+    flex-direction: row;
  }
- .contact-section h3 {
+ .contact-section img{
+    width:600px;
+    height:400px; 
+    position: sticky; 
+    transform: translate(0%,3%);
+    bottom : 30%; 
+    right:0; 
+    left: 50%; 
+    top : 60%;
+ }
+ .contact-section h1 {
    flex:1 ;
    margin-top: 10px;
    margin-left: 150px;
@@ -117,6 +129,7 @@ main {
    font-weight: bold;
  }
  .contact-section p {
+    color: #fff;
     flex: 1;
     margin-right: 100px;
     margin-left: 100px;
@@ -124,7 +137,6 @@ main {
    margin-top: 10px;
    margin-bottom: 10px;
  }
-
  label {
             display: block;
             margin-bottom: 0.5rem;
@@ -139,14 +151,14 @@ main {
         }
 
         input[type="submit"] {
-            background-color: darkgrey;
+            background-color: #003B46;
             color: #fff;
             border: #000;
             cursor: pointer;
         }
 
         input[type="submit"]:hover {
-            background-color: grey;
+            background-color: #07575b;
         }
 
  /* Updated Footer Styles */
@@ -332,15 +344,13 @@ main {
     
     <!-- Main content for the contact page -->
     <div class="contact-section1">
-    <h1>Contact Us</h1>
-              <p>Use one of the following methods to contact us</p>
-            </div>
-           <div class="contact-section">
-            <div class="contact-section2">
-              <h3>Call our Client Service</h3>
+          <h1>Contact Us</h1>
               <p class="service-hours">To contact our Client Service you can call <strong>800 800 0000</strong> from Monday to Saturday 9:00 am - 8:00 pm, or Sunday 9:00 am - 6:00 pm.</p>
             </div>
-            <div class="contact-section3">
+           <div class="contact-section">
+           <img src="glasses3.jpg" alt="glasses">
+          
+            <div class="contact-section2">
             <h3>Send us a message</h3>
             <form action="/submit-message" method="post" onsubmit="return showMessageConfirmation()">
         <div class="row mb-3">
@@ -361,8 +371,9 @@ main {
     </form>
             
             </div>
+            </div>
         </div>
-          </div>
+        
     </main>
 
     <!-- Bootstrap Container for Footer -->
