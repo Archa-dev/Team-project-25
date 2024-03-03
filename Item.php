@@ -201,10 +201,111 @@ main {
     background-color: #07575b;
 }
 
+#leave-review-btn {
+    margin-left: 500px;
+  margin-top: -80px;
+  color: #003b46;
+  border: none;
+  padding: 5px 30px;
+  background-color: #ffffff;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+  white-space: nowrap;
+}
+
+#leave-review-btn:hover {
+  text-decoration: underline;
+}
+
 .sticky-footer-padding {
     margin-bottom: 8vh;
     /* Adjust the margin bottom to match the height of the footer */
 }
+#review-form-popup {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  z-index: 1000;
+}
+
+#review-form {
+    margin: 0 auto;
+  max-width: 500px;
+}
+
+#review-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#review-form input[type="text"],
+#review-form input[type="number"],
+#review-form textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  margin-bottom: 20px;
+  resize: vertical;
+}
+
+#review-form textarea {
+  height: 150px;
+}
+
+#review-form .form-actions {
+  text-align: right;
+}
+
+#review-form .form-actions button {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: block;
+  font-size: 18px;
+  padding: 10px;
+  width: 100%;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.star-rating {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.star-rating i {
+  color: #cccccc;
+  transition: color 0.2s;
+}
+
+.star-rating i:hover {
+  color: #ffcc00;
+}
+
 
 
 /* Updated Footer Styles */
@@ -413,6 +514,32 @@ main {
                             <!-- Button to trigger the SQL query -->
                             <button type="submit" name="addToBasket" class="add-to-basket-button">Add to Shopping Basket</button>
                         </form>
+
+                        <button id="leave-review-btn" class="review-button">Leave a Review</button>
+
+<div id="review-form-popup" style="display: none;">
+  <form id="review-form">
+  <button type="button" id="close-review-form-btn">CLOSE</button>
+  <div class="form-group">
+    <label for="star-rating">Star Rating:</label>
+    <div class="star-rating">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="review">Review:</label>
+    <textarea id="review" name="review" class="form-control" rows="3" required></textarea>
+    <button type="submit" class="add-to-basket-button">Submit Review</button>
+  </form>
+</div>
                 </div>
                 </div>
                 </div>
@@ -448,7 +575,21 @@ main {
         </footer>
     </div>
    
+
+<script>
+    document.getElementById("leave-review-btn").addEventListener("click", function() {
+  document.getElementById("review-form-popup").style.display = "block";
+});
+
+document.getElementById("review-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  // Handle form submission here
+});
+
+document.getElementById('close-review-form-btn').addEventListener('click', function() {
+  document.getElementById('review-form-popup').style.display = 'none';
+});
+</script>
+
 </body>
-
-
 </html>
