@@ -81,7 +81,7 @@
         }
 
         .about-content h2 {
-            color: #000;
+            color: #003b46;
             text-align: center;
             font-size: 40px;
             margin-bottom: 50px;
@@ -308,7 +308,7 @@
 
     <div class="about-content">
 
-        <h2>About Us</h2>
+        <h2>ABOUT US</h2>
         <p>Welcome to Shaded – Where Style Meets UV Protection!
 
             Discover the perfect pair of sunglasses at Shaded, your go-to destination for fashion-forward eyewear. Our curated collection blends style with quality, offering trendy and classic designs with top-notch UV protection.
