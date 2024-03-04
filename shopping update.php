@@ -114,7 +114,7 @@ main {
 }
 
 .filter-container h3 {
-    margin-bottom: 20px; 
+    margin-bottom: 40px; 
 }
 
 
@@ -146,6 +146,7 @@ select {
 .filter-title {
     font-weight: bold; 
     margin-left: 15px; /* Moves title to the right */
+    padding-top: 40px;
     
 }
 
@@ -163,6 +164,13 @@ select {
     border-radius: 50%; /* Makes the circle shape */
     padding: 2px; /* spacing */
 }
+
+.price-scrollbar {
+padding-top: 10px;
+
+
+}
+
 
 .selection-title {
     display: flex;
@@ -451,6 +459,13 @@ main {
     <span class="color-option" data-color="green" onclick="selectColor('green')"><i class="fas fa-circle" style="color: green;"></i> Green</span>
 </div>
 
+<div class="price-scrollbar">
+<label for="priceRange">Price Range:</label>
+    <input type="range" id="priceRange" name="priceRange" min="0" max="1000" step="10">
+    <output for="priceRange" id="priceOutput"></output>
+
+
+</div>
                 <button class="filter-button"  onclick="applyFilter()">SUBMIT</button>
 
         </div>
