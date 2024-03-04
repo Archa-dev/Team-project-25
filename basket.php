@@ -1,19 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <!--bootstrap css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
-        <title>Basket-SHADED</title>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <?php
 session_start();
 require_once('connectdb.php');
@@ -38,12 +24,25 @@ $itemsNum = $itemsCount->fetchColumn();
 
 ?>
 
-<style>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+        <title>Basket - SHADED</title>
+       
+
+
+        <style>
 
 html {
     font-size: 100%;
     scroll-behavior: smooth;
- /*  navbar Styles */
+
     > body {
         font-family: "Century Gothic", sans-serif;
         background-color: #ffffff;
@@ -95,7 +94,6 @@ main {
     margin-top: 15vh; /* Adjust margin-top to be equal to the height of the header */
 }
 
-            /* basket styles */
 .basket-container {
     max-width: 600px;
     margin: 20px auto;
@@ -158,7 +156,7 @@ h2 {
 .button {
     cursor: pointer;
     padding: 10px;
-    background-color: darkgrey;
+    background-color: #003b46;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -166,7 +164,7 @@ h2 {
 }
 
 .button:hover {
-    background-color: grey;
+    background-color: #1c7a7f;
 }
 
 .basket-total {
@@ -179,6 +177,7 @@ h2 {
 
 .basket-total-title {
     margin-right: 10px;
+    
 }
 
 .basket-total-price {
@@ -186,11 +185,10 @@ h2 {
     color: #000; 
 }
 
-            /* Checkout button styling */
 .checkout-button {
     width: 100%;
     padding: 15px;
-    background-color: darkgrey;
+    background-color: #003b46;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -199,20 +197,20 @@ h2 {
 }
 
 .checkout-button:hover {
-    background-color: grey;
+    background-color: #1c7a7f;
 }
 
 .sticky-footer-padding {
-            margin-bottom: 60px; 
-        }
-   
-       /*  Footer Styles */
+    margin-bottom: 8vh;
+    /* Adjust the margin bottom to match the height of the footer */
+}
+
+/* Updated Footer Styles */
 .footer {
-            background-color: #fff;
-            color: grey;
+            background-color: #003b46;
+            color: #fff;
             padding: 10px;
             text-align: center;
-            position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -222,19 +220,19 @@ h2 {
 
 .social-icons a {
             margin: 0 20px;
-            color: grey;
+            color: #fff;
             font-size: 14px;
         }
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d;
+    color: #fff; /* Change the color as needed */
     text-decoration: none;
 }
 
 .terms-links a:hover {
-    text-decoration: underline; /* underlining on hover */
-    color: #000; /*  hover color  */
+    text-decoration: underline; /* Add underlining on hover if desired */
+    color: grey; /* Change the hover color as needed */
 }
 
 </style>
@@ -248,29 +246,31 @@ h2 {
      crossorigin="anonymous">
 </script>
 
+
+
 <header>
-      <!-- added bootstrap navbar utility classes -->
-      <nav class="navbar navbar-expand-sm w-100">
+        <!-- added bootstrap navbar utility classes -->
+        <nav class="navbar navbar-expand-sm w-100">
 
-<!-- using container-fluid for responsiveness -->
-<div class="container-fluid">
+            <!-- using container-fluid for responsiveness -->
+            <div class="container-fluid">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenuItems" aria-controls="navbarMenuItems" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenuItems" aria-controls="navbarMenuItems" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    <a href="homepage.php" class="navbar-brand logo">
-        <img src="shaded logo.png" alt="Shaded Logo">
-    </a>
-    <div class="collapse navbar-collapse" id="navbarMenuItems">
-
-        <!-- navbar to the left of the search box -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Men
+                <a href="homepage.php" class="navbar-brand logo">
+                    <img src="shaded logo.png" alt="Shaded Logo">
                 </a>
-                <ul class="dropdown-menu">
+                <div class="collapse navbar-collapse" id="navbarMenuItems">
+
+                    <!-- navbar to the left of the search box -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Men
+                            </a>
+                            <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
@@ -324,15 +324,15 @@ h2 {
                                 <li><a class="dropdown-item" href="#">Blue Light Yellow Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Blue Light Brown Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Blue Light Green Sunglasses</a></li>
-                                </ul>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="aboutUs.php">About Us</a>
                         </li>
                     </ul>
 
-                            <!-- search box -->
-                            <form class="d-flex" role="search">
+                    <!-- search box -->
+                    <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
                         <button class="btn btn-outline-bg" type="submit">
                             <a href="#">
@@ -394,11 +394,20 @@ h2 {
                 <!-- Example item - remove once sorted with the database -->
                 <div class="basket-row">
                     <div class="basket-item basket-column">
-                            <span class="basket-price" hidden="hidden">0</span>
+                        <img class="basket-item-image" src="images/MK-2161BU-0001_1.jpeg" alt="Sunglasses" width="100" height="100">
+                        <div class="basket-item-details">
+                            <span class="basket-item-title">Product Name</span>
+                            <span class="basket-price">£00.00</span>
                         </div>
+                    </div>
+                    <div class="basket-amount basket-column">
+                        <input class="basket-amount-input" type="number" value="1" min="1">
+                        <button class="button button-remove" type="button">Remove</button>
                     </div>
                 </div>
                 
+            </div>
+
             <div class="basket-total">
                 <strong class="basket-total-title">Total</strong>
                 <span class="basket-total-price">£0</span>
@@ -407,6 +416,9 @@ h2 {
             <button class="button checkout-button" type="button">Proceed to Checkout</button>
         </section>
     </main>
+
+
+
 </body>
 
 <script>
@@ -424,6 +436,18 @@ function ready() {
         button.addEventListener('click', removeBasketItem)
     }
 
+    var amountInputs = document.getElementsByClassName('basket-amount-input')
+    for (var i = 0; i < amountInputs.length; i++) {
+        var input = amountInputs[i]
+        input.addEventListener('change', amountChanged)
+    }
+
+    var addToBasketButtons = document.getElementsByClassName('test-item-button')
+    for (var i = 0; i < addToBasketButtons.length; i++) {
+        var button = addToBasketButtons[i]
+        button.addEventListener('click', addToBasketClicked)
+    }
+
     document.getElementsByClassName('checkout-button')[0].addEventListener('click', checkoutClicked)
 }
 
@@ -439,16 +463,25 @@ function removeBasketItem(event) {
     var buttonClicked = event.target
     var productid = buttonClicked.parentElement.parentElement.getElementsByClassName('basket-item-productid')[0].innerText
     buttonClicked.parentElement.parentElement.remove()
-    $.ajax({
-        url: 'basketRemove.php',
-        type: 'POST',
-        data: { id:productid },
-    });
+    // <?php
+    // $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');          needs to use something else, probably AJAX to remove item from basket
+    // $removeItem->bindParam(1, $productid);
+    // $removeItem->bindParam(2, $customerid);
+    // $removeItem->execute();
+    // ?>
     updateBasketTotal()
 }
 
+function amountChanged(event) {
+    var input = event.target
+    if (isNaN(input.value) || input.value <= 0) {
+        input.value = 1
+    }
+    updateBasketTotal()
+}
 
-function addItemToBasket(title, price, imageSrc, productid) {
+function addItemToBasket(title, price, imageSrc, amount, productid) {
+    console.log(title, price, imageSrc, amount, productid)
     var BasketRow = document.createElement('div')
     BasketRow.classList.add('basket-row')
 
@@ -460,15 +493,17 @@ function addItemToBasket(title, price, imageSrc, productid) {
         <div class="basket-item basket-column">
             <img class="basket-item-image" src="${imageSrc}" width="100" height="100">
             <span class="basket-item-title">${title}</span>
-            <span class="basket-item-productid" hidden="hidden">${productid}</span>
+            <span class="basket-item-productid">${productid}</span>
         </div>
         <span class="basket-price basket-column">${price}</span>
         <div class="basket-amount basket-column">
+            <input class="basket-amount-input" type="number" value="${amount}">
             <button class="button button-remove" type="button">REMOVE</button>
         </div>`
     BasketRow.innerHTML = BasketRowContents
     BasketItems.append(BasketRow)
     BasketRow.getElementsByClassName('button-remove')[0].addEventListener('click', removeBasketItem)
+    BasketRow.getElementsByClassName('basket-amount-input')[0].addEventListener('change', amountChanged)
 }
 
 function updateBasketTotal() {
@@ -478,8 +513,10 @@ function updateBasketTotal() {
     for (var i = 0; i < BasketRows.length; i++) {
         var BasketRow = BasketRows[i]
         var priceElement = BasketRow.getElementsByClassName('basket-price')[0]
+        var amountElement = BasketRow.getElementsByClassName('basket-amount-input')[0]
         var price = parseFloat(priceElement.innerText.replace('£', ''))
-        total = total + (price)
+        var amount = amountElement.value
+        total = total + (price * amount)
     }
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('basket-total-price')[0].innerText = '£' + total
@@ -500,14 +537,20 @@ $itemPrice->execute();
 $itemImage->bindParam(1, $productid);
 $itemImage->execute();
 
+$itemAmount->bindParam(1, $productid);
+$itemAmount->bindParam(2, $customerid);
+$itemAmount->execute(); 
+
 $title = $itemTitle->fetchColumn();
 $price = $itemPrice->fetchColumn();
 $imageSrc = $itemImage->fetchColumn();
+$amount = $itemAmount->fetchColumn();
 
 echo "
 <script>
-addItemToBasket('$title', '$price', '$imageSrc', '$productid');
-updateBasketTotal();
+addItemToBasket('$title', '$price', '$imageSrc', '$amount', '$productid');
+updateBasketTotal()
+console.log('test');
 </script>";
 }
 
@@ -521,18 +564,17 @@ updateBasketTotal();
                         <p>&copy;Shaded-2023 | All Rights Reserved</p>
                     </div>
                 </div>
-                <div class="col-md-4">    
+                <div class="col-md-4">
                     <div class="social-icons">
-                        <!--  social media icons  -->
+                        <!-- Add your social media icons  -->
                         <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                       
+                        <!-- Add more social media icons as needed -->
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="terms-links">
-                         <!--  links do not redirect anywhere  -->
                         <a href="#">Terms of Use</a>
                         <a href="#">Cookies Policy</a>
                     </div>
