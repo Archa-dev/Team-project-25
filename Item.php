@@ -3,6 +3,8 @@
   
 <?php
 require_once('connectdb.php');
+session_start();
+$user = $_SESSION['customer_id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the selectedProductId is set
@@ -17,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $item = $items->fetch(PDO::FETCH_ASSOC);
     }
 
-    $user = 1; 
 
     // Check if the addToBasket button is clicked
     if (isset($_POST["addToBasket"])) {
@@ -44,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 
 <head>
     <meta charset="UTF-8">
