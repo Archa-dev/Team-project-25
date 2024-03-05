@@ -1,6 +1,6 @@
 <?php
 require_once('connectdb.php');
-//session_start(); 
+session_start(); 
 if(isset($_POST['logsub'])){
   $user=$_POST['username'];
   $pass=$_POST['password'];
