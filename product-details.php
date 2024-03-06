@@ -69,7 +69,8 @@ main {
 .product-details {
     max-width: 100%;
     margin: 80px auto;
-    background-color: #fff;
+    background-color: #003B46;
+    color: #fff;
     padding: 10px;
 }
 
@@ -92,8 +93,8 @@ main {
 
 /* Updated Footer Styles */
 .footer {
-            background-color: #fff;
-            color: grey;
+            background-color: #003B46;
+            color: #fff;
             padding: 10px;
             text-align: center;
             position: fixed;
@@ -106,19 +107,22 @@ main {
 
 .social-icons a {
             margin: 0 20px;
-            color: grey;
+            color: #fff;
             font-size: 14px;
         }
+.social-icons a:hover{
+    color : #07575B;
+}
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d;
+    color: #fff;
     text-decoration: none;
 }
 
 .terms-links a:hover {
     text-decoration: underline; /* underlining on hover  */
-    color: #000; /* hover color */
+    color: #07575B; /* hover color */
 }
 
 </style>
@@ -278,7 +282,7 @@ main {
 
             <div class="product">
                 <div class="product-info">
-                    <img id="Image" src="" alt="Product Image">
+                    <img id="Image" src="glasses3.jpg" alt="Product Image" style="height: 300px; width: 300px">
                     <h5 id="ProductName"></h5>
                     <p id="Price"></p>
                     <p id="Quantity"></p>
