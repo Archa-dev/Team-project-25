@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,7 +20,6 @@ html {
         font-family: "Century Gothic", sans-serif;
         background-color: #ffffff;
         margin: 0;
-        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
         padding: 0;
         box-sizing: border-box;
         outline: none; border: none;
@@ -70,12 +69,12 @@ main {
 /* Welcome Section Styles */
 .welcome-section {
     padding: 20px;
-    background-color: #f8f9fa; /*  background color */
+    background-color: #003B46; /*  background color */
 }
 
 .welcome-section h2 {
     font-size: 18px;
-    color: #000;
+    color: #fff;
 }
 
 /* Sidebar Styles */
@@ -106,7 +105,7 @@ main {
 }
 
 .sidebar .nav-link:hover {
-    background-color: lightgrey; /* background color for the hover effect */
+    background-color: #07575B; /* background color for the hover effect */
     color: #000;
 }
 
@@ -116,8 +115,9 @@ main {
 
 /* Additional Styling for Active Link */
 .sidebar .nav-link.active {
-    background-color: #f5f5f5; /*  background color for the active link */
+    background-color: #07575B ; /*  background color for the active link */
     color: #000;
+    opacity: 0.8;
     position: relative;
 }
 
@@ -134,7 +134,7 @@ main {
     /* order history page Styles */
     .order-history {
         justify-content: space-between;
-    align-items: flex-start;
+        align-items: center;
         max-width: 87%;
         padding: 10px;
         margin: 50px;
@@ -143,6 +143,7 @@ main {
     .order {
         border-bottom: 1px solid #ccc;
         padding: 15px 0;
+        color: #003B46;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -151,11 +152,14 @@ main {
     .order-details {
         flex-grow: 1;
     }
+    h2{
+        color: #003B46;
+    }
     
     /* View Details Button Styles */
     .view-details-btn {
-        background-color: #fff;
-        color: #000;
+        background-color: #003B46;
+        color: #fff;
         padding: 8px 15px;
         border: none;
         text-decoration: none;
@@ -165,8 +169,8 @@ main {
     
     .view-details-btn:hover {
         text-decoration: underline;
-        background-color: #fff;
-        color: #000;
+        background-color: #07575B;
+        color: #fff;
     }
 
 
@@ -177,8 +181,8 @@ main {
 
 /* Updated Footer Styles */
 .footer {
-            background-color: #fff;
-            color: grey;
+            background-color: #003B46;
+            color: #fff;
             padding: 10px;
             text-align: center;
             position: fixed;
@@ -191,19 +195,22 @@ main {
 
 .social-icons a {
             margin: 0 20px;
-            color: grey;
+            color: #fff;
             font-size: 14px;
+        }
+.social-icons a:hover {
+        color : #07575B;
         }
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d; 
+    color: #fff; 
     text-decoration: none;
 }
 
 .terms-links a:hover {
     text-decoration: underline; /*  underlining on hover */
-    color: #000; /*  hover color */
+    color: #07575B; /*  hover color */
 }
 
 </style>
@@ -389,7 +396,7 @@ main {
         <!-- order history title-->
         <div class="profile-container">
         <div class="order-history">
-        <h2 class="border-bottom pb-2">Order History</h2>
+        <h2 class="border-bottom pb-2"><b>MY ORDERS</b></h2>
 
                 <!-- brief order details-->
                 <div class="order">
@@ -454,3 +461,4 @@ main {
 
 </body>
 </html>
+
