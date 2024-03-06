@@ -28,7 +28,7 @@
         font-family: "Century Gothic", sans-serif;
         background-color: #ffffff;
         margin: 0;
-        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
+        margin-bottom: 60px;
         padding: 0;
         box-sizing: border-box;
         outline: none; border: none;
@@ -42,7 +42,7 @@
             width: 100%;
             z-index: 1000;
             display: flex;
-            justify-content: space-between; /* Align logo to the left and nav to the right */
+            justify-content: space-between; 
             align-items: center;
             top: 0; left: 0; right: 0;
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
@@ -53,7 +53,7 @@
                 text-decoration: none;
             }
 
-            /* Hide the dropdown arrow */
+            
             .navbar-nav .nav-item.dropdown > .nav-link::after {
                 display: none !important
             }
@@ -62,81 +62,130 @@
 }
 
 .logo img {
-    max-width: 100%; /* Ensure the logo scales proportionally */
-    max-height: 50px; /* Set the maximum height as needed */
-    margin-left: auto; /* Center the logo horizontally */
+    max-width: 100%; 
+    max-height: 50px; 
+    margin-left: auto; 
 }
 
 .fas {
-    font-size: 15px; /* icons */
+    font-size: 15px;
 }
 
 main {
-    margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
+    margin-top: 11vh; 
 }
 
 .sticky-footer-padding {
-    margin-bottom: 0vh;
-    /* Adjust the margin bottom to match the height of the footer */
+    margin-bottom: 11vh;
+}
+
+/* Welcome Section Styles */
+.welcome-section {
+    padding: 20px;
+    background-color: #f8f9fa; 
+}
+
+.welcome-section h2 {
+    font-size: 18px;
+    color: #000;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    padding-top: 110px;
+    background-color: #f8f9fa; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar .nav-link {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px; 
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: block;
+}
+
+.sidebar .nav-link:hover {
+    background-color: lightgrey; /
+    color: #000;
+}
+
+.main-content {
+    margin-left: 350px; 
+}
+
+/* Additional Styling for Active Link */
+.sidebar .nav-link.active {
+    background-color: #f5f5f5; 
+    color: #000;
+    position: relative;
+}
+
+.sidebar .nav-link.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px; 
+    background-color: #000; 
 }
 
 /* contact us page Styles */
-.container {
-   max-width:fit-content;
-   margin: 50px auto;
-   padding: 10px;
-   background-color: #fff;
- }
 
  .contact-section1 {
-   background: #003B46;
-   padding: 50px;
-   text-decoration-color: #fff ;
-   max-width: 100%;
-   color: #fff;
+    justify-content: space-between;
+    align-items: flex-start;
+        padding: 10px;
+        margin-left: 50px;
+        max-width: 450px;
  }
  .contact-section2 {
-  width: 80%;
-  max-width: 550px;
-  top: 500px;
-  left: 0;
-  position:sticky;
-  transform: translate(-104.3%,3%);
-  padding: 4px 2px 6px;
-  text-align: center;
-  background-color: #ced4da;
+   padding: 10px;
+   border-top: 1px solid #ccc ;
+   display: flex;
+   max-width: 87%;
+   margin-top: 10px;
+   margin-left: 50px;
+   justify-content: space-between;
+        align-items: center;
  }
- .contact-section{
-    display: flex;
-    flex-direction: row;
+
+ .contact-section3 {
+   padding: 10px;
+   display: flex;
+   margin-top: 10px;
+   margin-left: 50px;
+   margin-right: 230px;
+   font-size: 14px;
  }
- .contact-section img{
-    width:600px;
-    height:400px; 
-    position: sticky; 
-    transform: translate(0%,3%);
-    bottom : 30%; 
-    right:0; 
-    left: 50%; 
-    top : 60%;
- }
- .contact-section h1 {
+ .contact-section h3 {
    flex:1 ;
    margin-top: 10px;
-   margin-left: 150px;
    margin-right: 20px;
-   font-size: 20px;
+   font-size: 18px;
    font-weight: bold;
  }
  .contact-section p {
-    color: #fff;
     flex: 1;
-    margin-right: 100px;
-    margin-left: 100px;
+    margin-left: -130px;
    font-size: 14px;
    margin-top: 10px;
    margin-bottom: 10px;
  }
+
  label {
             display: block;
             margin-bottom: 0.5rem;
@@ -151,14 +200,14 @@ main {
         }
 
         input[type="submit"] {
-            background-color: #003B46;
+            background-color: darkgrey;
             color: #fff;
             border: #000;
             cursor: pointer;
         }
 
         input[type="submit"]:hover {
-            background-color: #07575b;
+            background-color: grey;
         }
 
  /* Updated Footer Styles */
@@ -188,8 +237,8 @@ main {
 }
 
 .terms-links a:hover {
-    text-decoration: underline; /*  underlining on hover  */
-    color: #000; /* hover color*/
+    text-decoration: underline; 
+    color: #000; 
 }
 
     </style>
@@ -202,8 +251,8 @@ main {
      crossorigin="anonymous">
 </script>
 
-    <header>
-    
+ <header>
+
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
@@ -221,20 +270,23 @@ main {
 
                     <!-- navbar to the left of the search box -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
+                     <!--   <li class="nav-item dropdown"> 
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Men
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
+                            </a>-->
+            					 <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Products</a>
+                        		</li>
+                        <!--    <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Men's Green Sunglasses</a></li>
-                            </ul>
-                        </li>
+                            </ul> -->
+                        <!--</li>-->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Women
                             </a>
                             <ul class="dropdown-menu">
@@ -244,9 +296,12 @@ main {
                                 <li><a class="dropdown-item" href="#">Women's Brown Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Women's Green Sunglasses</a></li>
                             </ul>
-                        </li>
+                        </li>-->
+            					<li class="nav-item">
+                            <a class="nav-link" href="Contactus.php">Contact Us</a>
+                        		</li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         <!--   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Unisex
                             </a>
                             <ul class="dropdown-menu">
@@ -280,14 +335,14 @@ main {
                                 <li><a class="dropdown-item" href="#">Blue Light Brown Sunglasses</a></li>
                                 <li><a class="dropdown-item" href="#">Blue Light Green Sunglasses</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="aboutUs.php">About Us</a>
                         </li>
                     </ul>
 
                     <!-- search box -->
-                    <form class="d-flex" role="search">
+<!--                    <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
                         <button class="btn btn-outline-bg" type="submit">
                             <a href="#">
@@ -295,7 +350,7 @@ main {
                             </a>
                         </button>
                     </form>
-
+-->
                     <!-- navbar to the right of the search box -->
                     <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
@@ -303,9 +358,9 @@ main {
                                 <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
+                                <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
                                 <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
-                                <li><a class="dropdown-item" href="homepage.php">Logout</a></li>
+                                <li><a class="dropdown-item" name="nav-logout-button" href = "login.php" >Logout</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -313,8 +368,8 @@ main {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="login.php">Log In</a></li>
-                                <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
+                 <!--               <li><a class="dropdown-item" href="login.php">Log In</a></li>
+                                <li><a class="dropdown-item" href="signup.php">Sign Up</a></li> --> <!-- for later implementation -->
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -337,20 +392,51 @@ main {
                 </div>
             </div>
         </nav>
+
     </header>
 
-    <main class="sticky-footer-padding main-content">
-    <div class="container">
+   <main class="sticky-footer-padding main-content">
+    <div class="container"> 
+
+    <aside class="sidebar">
+    <div class="welcome-section">
+        <h2>Welcome to your personal area</h2>
+        
+    </div>
+    
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="accountPage.php">
+                My Profile
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="order-history.php">
+                My Orders
+            </a>
+            <li class="nav-item">
+            <a class="nav-link active" href="Contactus.php">Contact Us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="homepage.php">
+                Logout
+            </a>
+        </li>
+    </ul>
+</aside>
     
     <!-- Main content for the contact page -->
+    <div class="profile-container">
     <div class="contact-section1">
-          <h1>Contact Us</h1>
-              <p class="service-hours">To contact our Client Service you can call <strong>800 800 0000</strong> from Monday to Saturday 9:00 am - 8:00 pm, or Sunday 9:00 am - 6:00 pm.</p>
+    <h2 class="border-bottom pb-2">Contact Us</h2>
+              <p>Use one of the following methods to contact us</p>
             </div>
            <div class="contact-section">
-           <img src="glasses3.jpg" alt="glasses">
-          
             <div class="contact-section2">
+              <h3>Call our Client Service</h3>
+              <p class="service-hours">To contact our Client Service you can call <strong>800 800 0000</strong> from Monday to Saturday 9:00 am - 8:00 pm, or Sunday 9:00 am - 6:00 pm.</p>
+            </div>
+            <div class="contact-section3">
             <h3>Send us a message</h3>
             <form action="/submit-message" method="post" onsubmit="return showMessageConfirmation()">
         <div class="row mb-3">
@@ -371,9 +457,8 @@ main {
     </form>
             
             </div>
-            </div>
         </div>
-        
+          </div>
     </main>
 
     <!-- Bootstrap Container for Footer -->
@@ -387,16 +472,13 @@ main {
                 </div>
                 <div class="col-md-4">
                     <div class="social-icons">
-                        <!-- social media icons  -->
                         <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                      
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="terms-links">
-                          <!-- links do not redirect anywhere-->
                         <a href="#">Terms of Use</a>
                         <a href="#">Cookies Policy</a>
                     </div>
