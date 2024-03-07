@@ -82,12 +82,12 @@ main {
 /* Welcome Section Styles */
 .welcome-section {
     padding: 20px;
-    background-color: #f8f9fa; 
+    background-color: #003B46; 
 }
 
 .welcome-section h2 {
     font-size: 18px;
-    color: #000;
+    color: #fff;
 }
 
 /* Sidebar Styles */
@@ -98,7 +98,7 @@ main {
     width: 300px;
     height: 100%;
     padding-top: 110px;
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa; /* background color  */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -111,25 +111,26 @@ main {
     padding: 15px 20px;
     text-decoration: none;
     color: #000;
-    font-size: 14px; 
+    font-size: 14px; /* Adjust font size */
     font-weight: bold;
     transition: background-color 0.3s;
     display: block;
 }
 
 .sidebar .nav-link:hover {
-    background-color: lightgrey; /
+    background-color: #07575B; /* background color for the hover effect */
     color: #000;
 }
 
 .main-content {
-    margin-left: 350px; 
+    margin-left: 350px; /* Adjust this value to match the width of the sidebar */
 }
 
 /* Additional Styling for Active Link */
 .sidebar .nav-link.active {
-    background-color: #f5f5f5; 
+    background-color: #07575B ; /*  background color for the active link */
     color: #000;
+    opacity: 0.8;
     position: relative;
 }
 
@@ -139,8 +140,8 @@ main {
     left: 0;
     top: 0;
     height: 100%;
-    width: 5px; 
-    background-color: #000; 
+    width: 5px; /* Adjust the width of the vertical line */
+    background-color: #000; /* color of the vertical line */
 }
 
 /* contact us page Styles */
@@ -148,9 +149,10 @@ main {
  .contact-section1 {
     justify-content: space-between;
     align-items: flex-start;
-        padding: 10px;
-        margin-left: 50px;
-        max-width: 450px;
+    padding: 10px;
+    margin-left: 50px;
+    max-width: 450px;
+    color: #003B46;
  }
  .contact-section2 {
    padding: 10px;
@@ -160,7 +162,8 @@ main {
    margin-top: 10px;
    margin-left: 50px;
    justify-content: space-between;
-        align-items: center;
+   align-items: center;
+   color: #003B46;    
  }
 
  .contact-section3 {
@@ -170,6 +173,17 @@ main {
    margin-left: 50px;
    margin-right: 230px;
    font-size: 14px;
+   color: #003B46;
+   font-size: large;
+   /* border-top: 1px solid #ccc ;
+   width: 80%;
+  max-width: 550px;
+  top: 500px;
+  position:sticky;
+  transform: translate(50%,15%);
+  padding: 4px 2px 6px;
+  text-align: center;
+  background-color: #fff; */
  }
  .contact-section h3 {
    flex:1 ;
@@ -177,13 +191,15 @@ main {
    margin-right: 20px;
    font-size: 18px;
    font-weight: bold;
+   color: #003B46;
  }
  .contact-section p {
     flex: 1;
     margin-left: -130px;
-   font-size: 14px;
+   font-size: medium;
    margin-top: 10px;
    margin-bottom: 10px;
+   color: #003B46;
  }
 
  label {
@@ -200,20 +216,20 @@ main {
         }
 
         input[type="submit"] {
-            background-color: darkgrey;
+            background-color: #003B46;
             color: #fff;
             border: #000;
             cursor: pointer;
         }
 
         input[type="submit"]:hover {
-            background-color: grey;
+            background-color: #07575B;
         }
 
- /* Updated Footer Styles */
+/* Updated Footer Styles */
 .footer {
-            background-color: #fff;
-            color: grey;
+            background-color: #003B46;
+            color: #fff;
             padding: 10px;
             text-align: center;
             position: fixed;
@@ -226,19 +242,22 @@ main {
 
 .social-icons a {
             margin: 0 20px;
-            color: grey;
+            color: #fff;
             font-size: 14px;
+        }
+.social-icons a:hover {
+        color : #07575B;
         }
 
 .terms-links a {
     margin-left: 5px;
-    color: #6c757d; 
+    color: #fff; 
     text-decoration: none;
 }
 
 .terms-links a:hover {
-    text-decoration: underline; 
-    color: #000; 
+    text-decoration: underline; /*  underlining on hover */
+    color: #07575B; /*  hover color */
 }
 
     </style>
@@ -428,7 +447,7 @@ main {
     <!-- Main content for the contact page -->
     <div class="profile-container">
     <div class="contact-section1">
-    <h2 class="border-bottom pb-2">Contact Us</h2>
+    <h2 class="border-bottom pb-2"><b>Contact Us</b></h2>
               <p>Use one of the following methods to contact us</p>
             </div>
            <div class="contact-section">
@@ -489,3 +508,4 @@ main {
 
 </body>
 </html>
+
