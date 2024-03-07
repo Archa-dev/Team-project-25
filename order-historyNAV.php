@@ -406,11 +406,7 @@ main {
                     <!-- button that redirects to the product details page-->
                     <button class="view-details-btn" onclick="redirectToProductDetails()">View Details</button>
                 </div>
-           
-
-            <!-- Add more orders-->
-
-           
+            <!--Add more options-->
             </div>
         </div>
     </main>
