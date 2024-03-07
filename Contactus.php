@@ -175,15 +175,6 @@ main {
    font-size: 14px;
    color: #003B46;
    font-size: large;
-   /* border-top: 1px solid #ccc ;
-   width: 80%;
-  max-width: 550px;
-  top: 500px;
-  position:sticky;
-  transform: translate(50%,15%);
-  padding: 4px 2px 6px;
-  text-align: center;
-  background-color: #fff; */
  }
  .contact-section h3 {
    flex:1 ;
