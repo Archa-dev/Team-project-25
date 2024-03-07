@@ -69,7 +69,7 @@ main {
 .product-details {
     max-width: 100%;
     margin: 80px auto;
-    background-color: #003B46;
+    background-color: #003b46 ;
     color: #fff;
     padding: 10px;
 }
@@ -90,7 +90,12 @@ main {
     margin-bottom: 8vh;
     /* Adjust the margin bottom to match the height of the footer */
 }
-
+button{
+            background-color: #07575B;
+            color: #fff;
+            border: #000;
+            cursor: pointer;
+}
 /* Updated Footer Styles */
 .footer {
             background-color: #003B46;
@@ -291,6 +296,7 @@ main {
                     <h5>Order #12346</h5>
                     <p>Date: 13-11-2023</p>
                     <p>Total: £365.00</p>
+                    <button>Return</button>
                     <!-- Additional information, e.g., card details, can be added here -->
                 </div>
             </div>
