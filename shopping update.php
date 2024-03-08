@@ -100,6 +100,7 @@ html {
 
 main {
     margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
+   
 }
 
 /* filter styles */
@@ -109,10 +110,8 @@ main {
         padding: 20px;
         position: fixed;
         left: 20px;
-        top: 200px;
-        background-color: #f8f9fa; /* Light grey background */
+        bottom: calc(11vh + 100px + 50px);
         border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
         z-index: 200;
     }
 
@@ -185,8 +184,8 @@ main {
 
 
 #price-slider {
-    margin-top: 20px; 
-    margin-bottom: 40px; 
+    margin-top: 15px; 
+    margin-bottom:15px; 
     color: #003B46;
 }
 
@@ -245,6 +244,7 @@ h2 {
 main {
     margin-top: 11vh;
     padding-top: 60px; /* creates space for the fixed navbar */
+   
 }
 
 
@@ -302,7 +302,7 @@ main {
     background-color: #003B46;
     color: #fff;
     padding: 50px 0; /* Add padding to the top and bottom */
-    padding-left: 150px;
+    
 }
 
 .container {
@@ -335,7 +335,6 @@ main {
     color: #fff;
     text-decoration: none;
 }
-
 
 .social-links a {
     display: inline-block;
@@ -504,8 +503,15 @@ main {
     <div class="main-container">
 
 
-    <!-- filter colour options and button -->
-        <div class="filter-container">
+   
+
+        <!-- main page title -->
+        <div class="selection-title">
+        <h2>SHOP OUR SELECTION</h2>
+</div>
+
+<!-- filter colour options and button -->
+     <div class="filter-container">
         <h3 class="filter-title">FILTER</h3>
 
     
@@ -547,10 +553,6 @@ main {
     <button class="filter-button" onclick="applyFilter()">SUBMIT</button>
 </div>
 
-        <!-- main page title -->
-        <div class="selection-title">
-        <h2>SHOP OUR SELECTION</h2>
-</div>
 
     <div class="container">
     <div class="row">
@@ -584,6 +586,7 @@ main {
             </form>
     </div>
 
+     
 </main>
 
 
@@ -595,7 +598,6 @@ main {
              <ul>
              <li><a href="#">About Us</a></li>
              <li><a href="#">Contact Us</a></li>
-             <li><a href="#">Terms & Conditions</a></li>
              </ul>
      </div>
      <div class="footer-col">
@@ -619,12 +621,10 @@ main {
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
-        
-        
     </div>
 </div>
 </div>
@@ -679,3 +679,4 @@ priceRange.addEventListener('input', updatePriceRange);
 
 </body>
 </html>
+
