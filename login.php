@@ -254,12 +254,12 @@ input{
         <div class = "input-group">
           <div class = "input-field">
             <i class="fa-solid fa-user"></i>
-            <input type="text" name="username" placeholder="AdminUsername">
+            <input type="text" name="adminusername" placeholder="Username">
           </div>
 
           <div class = "input-field">
             <i class="fa-solid fa-lock"></i>
-            <input type="password" name="password" placeholder="AdminPassword">
+            <input type="password" name="adminpassword" placeholder="AdminPassword">
           </div>
         </div>
         <div class="btn-field">
