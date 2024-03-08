@@ -29,9 +29,9 @@ position: relative;
 z-index: 0;
 }
 img{
-width:300px; 
-height:300px;
-transform: translate(48%,-35%);
+width:500px; 
+height:500px;
+transform: translate(7%,-35%);
 }
 .signup-form {
 width: 85%;
@@ -233,5 +233,7 @@ input{
         }
     }
 </script>
+
+
 </body>
 </html>
