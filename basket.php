@@ -90,7 +90,7 @@ $itemsCount = count($items);
     }
 
     .basket-container {
-        max-width: 600px;
+        max-width: 1000px;
         margin: 20px auto;
         padding: 100px;
         background-color: #fff;
@@ -100,12 +100,14 @@ $itemsCount = count($items);
     }
 
     h2 {
-        text-align: center;
-        color: #000;
-    }
+    font-size: 40px;
+    color: #003b46;
+    text-align:center;
+    font-weight: bold;
+}
 
     .basket-items {
-        margin-bottom: 20px;
+        margin-bottom: 40px;
     }
 
     .basket-row {
@@ -122,20 +124,37 @@ $itemsCount = count($items);
     .basket-item {
         display: flex;
         align-items: center;
+        
     }
 
     .basket-item-image {
-        width: 60px;
-        height: 60px;
+        width: 50%;
+        height: 50%;
         object-fit: cover;
         border-radius: 5px;
         margin-right: 10px;
     }
 
+    .basket-item-title{
+        text-align: right;
+        padding-left: 40px;
+        font-size: 20px;
+        padding-right: 20px;
+        
+    }
+
     .basket-price {
         text-align: right;
         font-weight: bold;
+        padding-left: 40px;
     }
+
+    .basket-item-colour {
+    display: block; /* Display the color information on a new line */
+    color: #555; /* Optionally style the color information */
+    margin-top: 5px; /* Add margin to separate it from the price */
+    padding-left: 40px;
+}
 
     .basket-amount {
         display: flex;
@@ -146,6 +165,7 @@ $itemsCount = count($items);
         width: 40px;
         margin-right: 5px;
         text-align: center;
+        margin-left: auto;
     }
 
     .button {
@@ -159,7 +179,7 @@ $itemsCount = count($items);
     }
 
     .button:hover {
-        background-color: #1c7a7f;
+        background-color: #07575b;
     }
 
     .basket-total {
@@ -167,7 +187,8 @@ $itemsCount = count($items);
         justify-content: flex-end;
         align-items: center;
         padding-top: 10px;
-        font-size: 16px;
+        font-size: 22px;
+        margin-bottom: 10px;
     }
 
     .basket-total-title {
@@ -187,12 +208,12 @@ $itemsCount = count($items);
         color: #fff;
         border: none;
         border-radius: 5px;
-        font-size: 18px;
+        font-size: 22px;
         transition: background-color 0.3s ease;
     }
 
     .checkout-button:hover {
-        background-color: #1c7a7f;
+        background-color: #07575b;
     }
 
     .sticky-footer-padding {
@@ -229,6 +250,8 @@ $itemsCount = count($items);
         text-decoration: underline; /* Add underlining on hover if desired */
         color: grey; /* Change the hover color as needed */
     }
+
+    
 
     </style>
 
@@ -380,9 +403,12 @@ $itemsCount = count($items);
 
         </header>
 
-        <main class="sticky-footer-padding">
+        <main class="main">
+
+        <h2>SHOPPING BAG</h2>
+
         <section class="basket-container">
-            <h2>Your Basket</h2>
+           
 
             <div class="basket-items">
                 <!-- Display basket items -->
@@ -393,13 +419,14 @@ $itemsCount = count($items);
                             <div class="basket-item-details">
                                 <span class="basket-item-title"><?= $item['product_name'] ?></span>
                                 <span class="basket-price">£<?= number_format($item['price'], 2) ?></span>
+                                <span class="basket-item-colour">Colour: BLACK</span>
                             </div>
                         </div>
                         <div class="basket-amount basket-column">
                             <!-- Add hidden input for product_id -->
                             <input type="hidden" class="basket-amount-productid" value="<?= $item['product_id'] ?>">
                             <input class="basket-amount-input" type="number" value="1" min="1">
-                            <button class="button button-remove" type="button">Remove</button>
+                            <button class="button button-remove" type="button">REMOVE</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -407,11 +434,11 @@ $itemsCount = count($items);
             </div>
 
             <div class="basket-total">
-                <strong class="basket-total-title">Total</strong>
-                <span class="basket-total-price">£0.00</span>
+                <strong class="basket-total-title">Total:</strong>
+                <span class="basket-total-price">123.45</span>
             </div>
 
-            <button class="button checkout-button" type="button">Proceed to Checkout</button>
+            <button class="button checkout-button" type="button">PROCEED TO CHECKOUT</button>
         </section>
     </main>
 
@@ -504,21 +531,24 @@ $itemsCount = count($items);
     }
 
     function updateBasketTotal() {
-        var BasketItemContainer = document.getElementsByClassName('basket-items')[0]
-        var BasketRows = BasketItemContainer.getElementsByClassName('basket-row')
-        var total = 0
-        for (var i = 0; i < BasketRows.length; i++) {
-            var BasketRow = BasketRows[i]
-            var priceElement = BasketRow.getElementsByClassName('basket-price')[0]
-            var amountElement = BasketRow.getElementsByClassName('basket-amount-input')[0]
-            var price = parseFloat(priceElement.innerText.replace('£', ''))
-            var amount = amountElement.value
-            total = total + (price * amount)
-        }
-        total = Math.round(total * 100) / 100
-        document.getElementsByClassName('basket-total-price')[0].innerText = '£' + total
+    var BasketItemContainer = document.getElementsByClassName('basket-items')[0]
+    var BasketRows = BasketItemContainer.getElementsByClassName('basket-row')
+    var total = 0
+    for (var i = 0; i < BasketRows.length; i++) {
+        var BasketRow = BasketRows[i]
+        var priceElement = BasketRow.getElementsByClassName('basket-price')[0]
+        var amountElement = BasketRow.getElementsByClassName('basket-amount-input')[0]
+        var price = parseFloat(priceElement.innerText.replace('£', ''))
+        var amount = amountElement.value
+        total = total + (price * amount)
     }
+    total = Math.round(total * 100) / 100
+    // Set the calculated total value to the HTML element with class 'basket-total-price'
+    document.getElementsByClassName('basket-total-price')[0].innerText = '£' + total
+}
     </script>
+
+
 
 
 
