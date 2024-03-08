@@ -86,24 +86,24 @@ body{
 img{
   width:500px; 
   height : 500px;
-  transform: translate(7.5%,-35%);
+  transform: translate(100%,-35%);
 }
 .form-box{
   width: 80%;
   max-width: 400px;
   position:absolute;
-  top: 50%;
+  /* top: 50%; */
   left: 0;
-  transform: translate(20%,-40%);
-  padding: 4px 2px 6px;
+  transform: translate(20%,-130%);
+  padding: 1px 1px 1px;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0px 0px 30px 5px ; 
+  box-shadow: 0px 0px 10px .5px ; 
   
 }
 .form-box h1{
   font-size: 30px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   color: #003B46;
   position: relative;
 }
@@ -123,6 +123,36 @@ img{
 }
 .form-box a:hover{
   color: #07575B;
+}
+.form-box2{
+  width: 80%;
+  max-width: 400px;
+  position:absolute;
+  /* top: 50%; */
+  left: 0;
+  transform: translate(20%,-28%);
+  /* padding: 1px 1px 1px; */
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px .5px ; 
+  
+}
+.form-box2 h1{
+  font-size: 25px;
+  margin-bottom: 3px;
+  color: #003B46;
+  position: relative;
+}
+.form-box2 h1::after{
+  content: '';
+  width: 30px;
+  height: 4px;
+  border-radius: 3px;
+  background: #003B46;
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .input-group{
   height : 150px;
@@ -216,6 +246,26 @@ input{
           <input type="hidden" name="logsub" value="TRUE">
         </div>
         <a href="signup.php">Don't have an account?</a>
+       </form>
+    </div>
+    <div class = "form-box2">
+      <h1>Admin Login</h1>
+      <form method="post" action="login.php" class="adminlogin-form">
+        <div class = "input-group">
+          <div class = "input-field">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" name="username" placeholder="AdminUsername">
+          </div>
+
+          <div class = "input-field">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="password" placeholder="AdminPassword">
+          </div>
+        </div>
+        <div class="btn-field">
+          <button type = "submit"  >Log In</button>
+          <input type="hidden" name="adminlogsub" value="TRUE">
+        </div>
        </form>
     </div>
   </div>
