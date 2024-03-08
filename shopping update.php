@@ -40,7 +40,11 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- icon styles for filter colour options -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+   
+   <style>
 
 html {
     font-size: 100%;
@@ -99,82 +103,115 @@ main {
 }
 
 /* filter styles */
-.filter-container {
-            
-    width: 200px;
-    padding: 50px;
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-top: 20px; 
+   /* Filter styles */
+   .filter-container {
+        width: 200px;
+        padding: 20px;
+        position: fixed;
+        left: 20px;
+        top: 200px;
+        background-color: #f8f9fa; /* Light grey background */
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+        z-index: 200;
+    }
 
-    
-   
-}
+    .filter-title {
+        font-size: 22px;
+        margin-bottom: 30px;
+        padding-left: 35px;
+        color: #003b46; /* Dark blue */
+    }
 
-.filter-container h3 {
-    margin-bottom: 40px; 
-}
-
-
-
-select {
+    .filter-option select {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-}
-
-.filter-button {
-    background-color: #003b46;
-    color: #fff;
-    padding: 8px 15px;
-    border: none;
+    padding: 10px;
+    border: 1px solid #ced4da;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px; 
+    background-color: #f8f9fa;
+    font-size: 16px;
+    appearance: none; 
+    margin-bottom: 20px;
 }
 
-.filter-button:hover {
-    background-color: #07575B;
+.filter-option select:focus {
+    outline: none; /* Remove focus outline */
+    border-color: #003B46; /* blue border color on focus */
 }
+
+.filter-option select option {
+    background-color: #f8f9fa;
+    color: #003B46;
+}
+
+.filter-option select option:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.filter-option label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #003b46;
+}
+
+    .filter-button {
+        background-color: #003b46; /* Dark blue */
+        color: #fff; /* White text */
+        padding: 10px;
+        margin-top: 40px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .filter-button:hover {
+        background-color: #07575B; /* Darker blue on hover */
+    }
 
 .filter-title {
     font-weight: bold; 
-    margin-left: 15px; /* Moves title to the right */
+    font-size: 26px;
+    margin-left: 8px; /* Moves title to the right */
     padding-top: 40px;
     
 }
 
-.color-option {
-    display: flex;
-    margin-bottom: 5px; /* Adds margin between color options */
-    padding: 2px;
+/* Price container styles */
+
+
+#price-slider {
+    margin-top: 20px; 
+    margin-bottom: 40px; 
+    color: #003B46;
 }
 
-.color-option i {
-    display: block;
-    width: 20px; /* Adjust width of icon */
-    height: 20px; /* Adjust height of icon */
-    border: 1px grey; /* Add border to create outline */
-    border-radius: 50%; /* Makes the circle shape */
-    padding: 2px; /* spacing */
+#priceRange {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    color: #003B46;
+    font-weight: bold;
+    border:none;
 }
 
-.price-scrollbar {
-padding-top: 10px;
-
-
+/* Adjust position of the price range label and slider */
+#price-container {
+    position: relative; 
 }
 
+
+
+
+
+/* filter styles end here */
 
 .selection-title {
     display: flex;
-    
     justify-content: center;
     margin-bottom: 50px;
     margin-left: -200px; /* left margin */
@@ -187,8 +224,6 @@ padding-top: 10px;
     font-weight: bold;
     
 }
-
-/* filter styles end here */
 
 
 .container-fluid {
@@ -262,34 +297,56 @@ main {
     }
 
 
-
-
+/* footer styles */
 .footer {
     background-color: #003B46;
-            color: #fff;
-            padding: 10px;
-            height: 60px;
-            text-align: center;
-        
-            margin-top: auto; /* Push footer to the bottom */
+    color: #fff;
+    padding: 50px 0; /* Add padding to the top and bottom */
 }
 
-.social-icons a {
-            margin: 0 20px;
-            color: #fff;
-            font-size: 14px;
-        }
+.container {
+    width: 90%; /* Set the width of the container */
+    margin: auto; /* Center the container */
+}
 
-.terms-links a {
-    margin-left: 5px;
-    color: #fff; 
+.footer-col {
+    width: 25%; /* Set the width of each column */
+    padding: 0 15px; /* Add horizontal padding */
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.footer-col ul li a {
+    color: #fff;
     text-decoration: none;
 }
 
-.terms-links a:hover {
-    text-decoration: underline; 
-    color: grey; 
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #fff;
+    font-size:16px;
 }
+
+.social-links a:hover {
+    color: #ccc;
+}
+
+
 
 </style>
 </head>
@@ -450,25 +507,43 @@ main {
         <h3 class="filter-title">FILTER</h3>
 
     
-        <div class="color-options">
-    <span class="color-option" data-color="all" onclick="selectColor('all')"><i class="fas fa-circle"></i> All colors</span>
-    <span class="color-option" data-color="black" onclick="selectColor('black')"><i class="fas fa-circle" style="color: black;"></i> Black</span>
-    <span class="color-option" data-color="white" onclick="selectColor('white')"><i class="fas fa-circle" style="color: white; border: 1px solid black;"></i> White</span>
-    <span class="color-option" data-color="yellow" onclick="selectColor('yellow')"><i class="fas fa-circle" style="color: yellow;"></i> Yellow</span>
-    <span class="color-option" data-color="brown" onclick="selectColor('brown')"><i class="fas fa-circle" style="color: brown;"></i> Brown</span>
-    <span class="color-option" data-color="green" onclick="selectColor('green')"><i class="fas fa-circle" style="color: green;"></i> Green</span>
+  <!-- Category filter -->
+  <div class="filter-option">
+        <label for="categoryFilter">Category:</label>
+        <select id="categoryFilter">
+            <option value="all">All</option>
+            <option value="mens">Mens</option>
+            <option value="womens">Womens</option>
+            <option value="unisex">Unisex</option>
+            <option value="futuristic">Futuristic</option>
+            <option value="bluelight">Bluelight</option>
+        </select>
+    </div>
+
+    <!-- Colour filter -->
+    <div class="filter-option">
+        <label for="colourFilter">Colour:</label>
+        <select id="colourFilter">
+            <option value="all">All Colours</option>
+            <option value="black">Black</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+            <option value="brown">Brown</option>
+            <option value="green">Green</option>
+        </select>
+    </div>
+
+    <!-- Price filter -->
+    <div class="filter-option">
+    <label for="priceRange">Price Range:</label>
+    <div id="price-slider">
+    <input type="text" id="priceRange" readonly style="color:#003b46; font-weight:bold;">
 </div>
+    </div>
 
-<div class="price-scrollbar">
-<label for="priceRange">Price Range:</label>
-    <input type="range" id="priceRange" name="priceRange" min="0" max="1000" step="10">
-    <output for="priceRange" id="priceOutput"></output>
-
-
+    <!-- Apply filter button -->
+    <button class="filter-button" onclick="applyFilter()">SUBMIT</button>
 </div>
-                <button class="filter-button"  onclick="applyFilter()">SUBMIT</button>
-
-        </div>
 
         <!-- main page title -->
         <div class="selection-title">
@@ -510,35 +585,45 @@ main {
 </main>
 
 
- <!--Bootstrap Container for Footer -->
-
- <div class="container-fluid">
-        <footer class="footer">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footer-text">
-                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="social-icons">
-                        <!-- Add your social media icons  -->
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Add more social media icons as needed -->
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="terms-links">
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Cookies Policy</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+<footer class="footer">
+     <div class="container">
+     <div class="row">
+     <div class="footer-col">
+             <h4>&copyShaded | All Rights Reserved</h4>
+             <ul>
+             <li><a href="#">About Us</a></li>
+             <li><a href="#">Contact Us</a></li>
+             </ul>
+     </div>
+     <div class="footer-col">
+            <h4>Product Links</h4>
+            <ul>
+            <li><a href="#">Sunglasses</a></li>
+            <li><a href="#">Homepage Link 1 </a></li>
+            <li><a href="#">Homepage Link 2</a></li>
+            <li><a href="#">Homepage Link 3</a></li>
+            </ul>
     </div>
-        
+    <div class="footer-col">
+            <h4>Product Links</h4>
+            <ul>
+                <li><a href="#">a</a></li>
+                <li><a href="#">b</a></li>
+                <li><a href="#">c</a></li>
+                <li><a href="#">d</a></li>
+            </ul>
+    </div>
+    <div class="footer-col">
+        <h4>follow us</h4>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</div>
+</div>
+  </footer>
 
 
 
@@ -560,28 +645,21 @@ main {
         });
     });
 
-      // Function to apply the filter
-      function applyFilter() {
-        // Get the selected color
-        var selectedColor = document.querySelector('.color-option.selected').dataset.color;
-        // Set the selected color value in the hidden input field
-        document.getElementById('selectedColor').value = selectedColor;
-        // Submit the form
-        document.forms[0].submit();
-    }
-
-  
- // Function to handle color selection
- document.querySelectorAll('.color-option').forEach(option => {
-        option.addEventListener('click', function() {
-            // Remove 'selected' class from all color options
-            document.querySelectorAll('.color-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            // Add 'selected' class to the clicked color option
-            this.classList.add('selected');
-        });
+    $( function() {
+    $( "#price-slider" ).slider({
+        range: true,
+        min: 20,
+        max: 1000,
+        values: [ 20, 1000 ],
+        slide: function( event, ui ) {
+            $( "#priceRange" ).val( "£" + ui.values[ 0 ] + " - £" + ui.values[ 1 ] );
+        }
     });
+    $( "#priceRange" ).val( "£" + $( "#price-slider" ).slider( "values", 0 ) +
+        " - £" + $( "#price-slider" ).slider( "values", 1 ) );
+} );
+
+priceRange.addEventListener('input', updatePriceRange);
 
     // Function to handle product click
     function buyProduct(productId) {
