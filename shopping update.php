@@ -302,6 +302,7 @@ main {
     background-color: #003B46;
     color: #fff;
     padding: 50px 0; /* Add padding to the top and bottom */
+    padding-left: 150px;
 }
 
 .container {
@@ -334,6 +335,7 @@ main {
     color: #fff;
     text-decoration: none;
 }
+
 
 .social-links a {
     display: inline-block;
@@ -593,6 +595,7 @@ main {
              <ul>
              <li><a href="#">About Us</a></li>
              <li><a href="#">Contact Us</a></li>
+             <li><a href="#">Terms & Conditions</a></li>
              </ul>
      </div>
      <div class="footer-col">
@@ -616,10 +619,12 @@ main {
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
+        
+        
     </div>
 </div>
 </div>
@@ -674,4 +679,3 @@ priceRange.addEventListener('input', updatePriceRange);
 
 </body>
 </html>
-
