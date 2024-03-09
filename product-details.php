@@ -90,7 +90,7 @@ main {
     margin-bottom: 8vh;
     /* Adjust the margin bottom to match the height of the footer */
 }
-button{
+#returnButton{
             background-color: #07575B;
             color: #fff;
             border: #000;
@@ -296,7 +296,7 @@ button{
                     <h5>Order #12346</h5>
                     <p>Date: 13-11-2023</p>
                     <p>Total: £365.00</p>
-                    <button>Return</button>
+                    <button id="returnButton">Return</button>
                     <!-- Additional information, e.g., card details, can be added here -->
                 </div>
             </div>
@@ -331,7 +331,18 @@ button{
             </div>
         </footer>
     </div>
-   
+    <script>
+    // JavaScript code to handle the return button
+    document.getElementById('returnButton').addEventListener('click', function() {
+        // Show a confirmation dialog
+        var confirmation = confirm("Do you want to return this item?");
+        // If user confirms, perform the return action
+        if (confirmation) {
+            // You can add your return logic here
+            alert("Item returned successfully!"); // Example alert, replace with your logic
+        }
+    });
+</script>
 
 </body>
 </html>
