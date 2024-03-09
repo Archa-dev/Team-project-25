@@ -165,7 +165,7 @@ main {
     font-size: 32px;
     color: yellow; /* Initial color of the sun icon */
     text-shadow: 0 0 10px black; /* Add outline */
-    z-index: 1000; /* Ensure it appears above the navbar */
+    z-index: 900; /* Ensure it appears above the navbar */
     transition: top 0.1s ease, color 0.2s linear; /* Transition for smooth movement and color change */
 }
 
