@@ -477,14 +477,14 @@ h2 {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="Logo 2.png" alt="Shaded Logo">
+                    <img src="Logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
                     <!-- navbar to the left of the search box -->
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="homepage.php">Home</a>
                         </li>
                     <li class="nav-item">
                             <a class="nav-link" href="shopping.php">Shop All</a>
