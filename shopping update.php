@@ -473,7 +473,7 @@ h2 {
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a href="#" class="navbar-brand logo">
+                <a href="homepage.php" class="navbar-brand logo">
                     <img src="images/Logo 2.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
