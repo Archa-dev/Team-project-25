@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -330,7 +331,7 @@ main {
     color: #003b46;
     font-weight: bold;
     margin-bottom: 45px;
-    text-align: center;
+    margin-right: 200px;
 }
 
 
@@ -408,11 +409,13 @@ h2 {
     width: 90%; /* Set the width of the container */
     margin: auto; /* Center the container */
     padding: 15px;
+    
 }
 
 .footer-col {
     width: 25%; /* Set the width of each column */
     padding: 0 15px; /* Add horizontal padding */
+    padding-left: 80px;
 }
 
 .footer-col h4 {
@@ -474,7 +477,7 @@ h2 {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="images/Logo 2.png" alt="Shaded Logo">
+                    <img src="Logo 2.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -610,7 +613,7 @@ h2 {
         <?php foreach ($products as $product) : ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
             <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
-                <img src="images/MK-2161BU-0001_1.jpeg" width="100%" height="60%">
+                <img src="MK-2161BU-0001_1.jpeg" width="100%" height="60%">
                 </a>
                 <div class="product-info">
                 <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
@@ -646,34 +649,35 @@ h2 {
      <div class="footer-col">
              <h4>&copyShaded | All Rights Reserved</h4>
              <ul>
-             <li><a href="#">About Us</a></li>
-             <li><a href="#">Contact Us</a></li>
+             <li><a href="#">Terms & Conditions </a></li>
+             <li><a href="#">Privacy Policy</a></li>
+             <li><a href="#">Cookies Policy</a></li>
              </ul>
      </div>
      <div class="footer-col">
             <h4>Product Links</h4>
             <ul>
-            <li><a href="#">Sunglasses</a></li>
+            <li><a href="References For Products.txt"  target="_blank">Sunglasses Products</a></li>
             <li><a href="#">Homepage Link 1 </a></li>
             <li><a href="#">Homepage Link 2</a></li>
             <li><a href="#">Homepage Link 3</a></li>
             </ul>
     </div>
     <div class="footer-col">
-            <h4>Product Links</h4>
+            <h4>Need Help?</h4>
             <ul>
-                <li><a href="#">a</a></li>
-                <li><a href="#">b</a></li>
-                <li><a href="#">c</a></li>
-                <li><a href="#">d</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQs</a></li>
+                
             </ul>
     </div>
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://en-gb.facebook.com/"  target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/?lang=en-gb"  target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" ><i class="fab fa-instagram"></i></a>
         </div>
     </div>
 </div>
