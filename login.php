@@ -1,6 +1,6 @@
 <?php
 require_once('connectdb.php');
-//session_start(); 
+session_start(); 
 if(isset($_POST['logsub'])){
   $user=$_POST['username'];
   $pass=$_POST['password'];
@@ -66,50 +66,44 @@ html, body{
   font-family: "Century Gothic", sans-serif;
   box-sizing: border-box;
   height: 100%;
-  overflow: hidden;
 }
 body{
             margin: 0;
             padding: 0;
             position: relative;
-              background-color: #999;
-
         }
 
 .container{
-  /* width : 100%;
-  height : 100%; */
-  /* background-image:  url(images/8.jpeg); */
+  width : 100%;
+  height : 100vh;
+  background-image:  url(images/8.jpeg);
   /* linear-gradient(rgba(0, 59, 70, 0.8), rgba(0, 59, 70, 0.8)) */ /* If want to color the background image Green */
-  /* background-position: centre;
-  background-size: cover; */
-  /* position: relative;
-  z-index: 0; */
-  display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-    height: 100%;
+  background-position: centre;
+  background-size: cover;
+  position: relative;
+  z-index: 0;  
 }
-/* img #logo{
+img{
   width:500px; 
-  height : 50px;
-  transform: translate(7%,-75%);
-} */
+  height : 500px;
+  transform: translate(100%,-35%);
+}
 .form-box{
-  width: 50%;
+  width: 80%;
   max-width: 400px;
   position:absolute;
-  top: 50%;
-  transform: translate(20%,-40%);
-  padding: 4px 2px 6px;
+  /* top: 50%; */
+  left: 0;
+  transform: translate(20%,-130%);
+  padding: 1px 1px 1px;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0px 0px 30px 5px ; 
+  box-shadow: 0px 0px 10px .5px ; 
   
 }
 .form-box h1{
   font-size: 30px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   color: #003B46;
   position: relative;
 }
@@ -129,6 +123,36 @@ body{
 }
 .form-box a:hover{
   color: #07575B;
+}
+.form-box2{
+  width: 80%;
+  max-width: 400px;
+  position:absolute;
+  /* top: 50%; */
+  left: 0;
+  transform: translate(20%,-28%);
+  /* padding: 1px 1px 1px; */
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px .5px ; 
+  
+}
+.form-box2 h1{
+  font-size: 25px;
+  margin-bottom: 3px;
+  color: #003B46;
+  position: relative;
+}
+.form-box2 h1::after{
+  content: '';
+  width: 30px;
+  height: 4px;
+  border-radius: 3px;
+  background: #003B46;
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .input-group{
   height : 150px;
@@ -172,100 +196,37 @@ input{
   background-color: #07575B;
 }
 
-#slideshow {
-    /* width: 100%;
-    height: 1000px;
-    overflow: hidden;
-    position: relative;
-    margin-top: 10%;
-    right: 0px; */
-    width: 50%;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    right: 0px;
-    /* overflow: hidden;
-    position: relative; */
-    /* margin-top: 50%;
-    margin-bottom: 20%;
-    margin-left: 20% ;
-     */
+.footer {
+  background: rgba(255, 255, 255, 0.6);
+            color: grey;
+            padding: 0px;
+            height: 1cm;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 12px;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+.social-icons a {
+            margin: 0 20px;
+            color: grey;
+            font-size: 12px;
+        }
+
+.terms-links a {
+    margin-left: 5px;
+    color: #6c757d; 
+    text-decoration: none;
 }
 
-.slide {
-    /* width: 100%;
-    height: 100%;
-    position: absolute; */
-    /* animation: slideShow 12s infinite;
-    opacity: 0;
-    width: 500px;
-    height: 500px; */
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    top: 0;
-  left: 0;
-    
-}
-.slide.active {
-    opacity: 1;
-}
-
-@keyframes changeSlide {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-/* .slide:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.slide:nth-child(2) {
-    animation-delay: 4s;
-}
-
-.slide:nth-child(3) {
-    animation-delay: 8s;
-}
-
-@keyframes slideShow {
-    0% {opacity: 0;}
-    8% {opacity: 1;}
-    33% {opacity: 1;}
-    41% {opacity: 0;}
-    100% {opacity: 0;}
-} */
  </style>
 </head>
 <body>
-
   <div class = "container">
-  <!-- <img id = "logo" src="shaded logo.png" alt="logo" style="width:150px; height : 150px; top:0px;"> -->
-
-  <div id="slideshow">
-            <div class="slide">
-                <img src="login1.jpg" alt="Slide 1">
-            </div>
-            <div class="slide">
-                <img src="login2.jpg" alt="Slide 2">
-            </div>
-            <div class="slide">
-                <img src="login3.jpg" alt="Slide 3">
-            </div>
-            <div class="slide">
-                <img src="login4.jpg" alt="Slide 4">
-            </div>
-            <div class="slide">
-                <img src="login5.jpg" alt="Slide 5">
-            </div>
-  </div>
-
+    <img id = "logo" src="shaded logo.png" alt="logo">
     <div class = "form-box">
       <h1>Login</h1>
       <form method="post" action="login.php" class="login-form">
@@ -287,20 +248,26 @@ input{
         <a href="signup.php">Don't have an account?</a>
        </form>
     </div>
-       
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    var slides = document.querySelectorAll(".slide");
-    var currentSlide = 0;
+    <div class = "form-box2">
+      <h1>Admin Login</h1>
+      <form method="post" action="login.php" class="adminlogin-form">
+        <div class = "input-group">
+          <div class = "input-field">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" name="adminusername" placeholder="Username">
+          </div>
 
-    function nextSlide() {
-        slides[currentSlide].classList.remove("active");
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add("active");
-    }
-
-    setInterval(nextSlide, 4000); // Change slide every 4 seconds
-});
-  </script>
+          <div class = "input-field">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="adminpassword" placeholder="Password">
+          </div>
+        </div>
+        <div class="btn-field">
+          <button type = "submit"  >Log In</button>
+          <input type="hidden" name="adminlogsub" value="TRUE">
+        </div>
+       </form>
+    </div>
+  </div>
 </body>
 </html>
