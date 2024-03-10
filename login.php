@@ -263,23 +263,23 @@ input{
 
   <div id="slideshow">
             <div class="slide">
-                <img src="login 1.jpg" alt="Slide 1">
+                <img src="images/login 1.jpg" alt="Slide 1">
             </div>
             <div class="slide">
-                <img src="login 2.jpg" alt="Slide 2">
+                <img src="images/login 2.jpg" alt="Slide 2">
             </div>
             <div class="slide">
-                <img src="login 3.jpg" alt="Slide 3">
+                <img src="images/login 3.jpg" alt="Slide 3">
             </div>
             <div class="slide">
-                <img src="login 4.jpg" alt="Slide 4">
+                <img src="images/login 4.jpg" alt="Slide 4">
             </div>
             <div class="slide">
-                <img src="login 5.jpg" alt="Slide 5">
+                <img src="images/login 5.jpg" alt="Slide 5">
             </div>
   </div>
 
-  <img id="logo" src="logo.png" alt="Logo">
+  <img id="logo" src="images/logo.png" alt="Logo">
 
     <div class = "form-box">
       <h1>LOGIN</h1>
