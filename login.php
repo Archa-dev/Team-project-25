@@ -68,19 +68,17 @@ html, body{
   box-sizing: border-box;
   height: 100%;
   overflow: hidden;
-  
 }
 body{
-  margin: 0;
-  padding: 0;
-  position: relative;
+            margin: 0;
+            padding: 0;
+            position: relative;
               background-color: #fff;
 
         }
 
 .container{
-
-  display: flex;
+display: flex;
     flex-direction: row;
     margin-bottom: 20px;
     height: 100%;
@@ -128,9 +126,10 @@ body{
 }
 .form-box a{
   color: #003B46;
+  font-weight: bold;
 }
 .form-box a:hover{
-  color: #07575B;
+  color: #1c7a7f;
 }
 .input-group{
   height : 150px;
@@ -172,6 +171,7 @@ input{
   cursor: pointer;
   transition: background 1s;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .btn-field button:hover {
@@ -181,9 +181,6 @@ input{
 .btn-field button:not(:last-child) {
   margin-bottom: 10px; /* Add margin between buttons */
 }
-
-
-
 
 #slideshow {
     /* width: 100%;
@@ -279,7 +276,7 @@ input{
             </div>
   </div>
 
-  <img id="logo" src="images/logo.png" alt="Logo">
+  <img id="logo" src="images/logo 1.png" alt="Logo">
 
     <div class = "form-box">
       <h1>LOGIN</h1>
@@ -306,6 +303,7 @@ input{
         <a href="signup.php">Don't have an account?</a>
        </form>
     </div>
+  </div>
        
   <script>
     document.addEventListener("DOMContentLoaded", function() {
