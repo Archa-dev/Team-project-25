@@ -56,6 +56,7 @@ else{
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - SHADED</title>
   <script src="https://kit.fontawesome.com/58e0ebdcbf.js" crossorigin="anonymous"></script>
   
@@ -67,16 +68,18 @@ html, body{
   box-sizing: border-box;
   height: 100%;
   overflow: hidden;
+  
 }
 body{
-            margin: 0;
-            padding: 0;
-            position: relative;
+  margin: 0;
+  padding: 0;
+  position: relative;
               background-color: #fff;
 
         }
 
 .container{
+
   display: flex;
     flex-direction: row;
     margin-bottom: 20px;
@@ -86,9 +89,9 @@ body{
 
 
 #logo {
-  height: 11%;
-    width: 50%; /* Adjust the width as needed */
-    max-width: 420px; /* Set maximum width to match the form box */
+  height: 12%;
+    width: 45%; /* Adjust the width as needed */
+    max-width: 400px; /* Set maximum width to match the form box */
     margin-top: 70px;
     display: block; /* Ensure it behaves as a block element */
     margin-bottom: 20px; /* Add some space between the logo and the form box */
@@ -162,7 +165,7 @@ input{
   background: #003B46;
   color: #fff;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 5px;
   font-size: 15px;
   border: 0;
   outline: 0;
@@ -179,15 +182,37 @@ input{
   margin-bottom: 10px; /* Add margin between buttons */
 }
 
+
+
+
 #slideshow {
+    /* width: 100%;
+    height: 1000px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 10%;
+    right: 0px; */
     width: 50%;
     height: 100vh;
     overflow: hidden;
     position: absolute;
     right: 0px;
+    /* overflow: hidden;
+    position: relative; */
+    /* margin-top: 50%;
+    margin-bottom: 20%;
+    margin-left: 20% ;
+     */
 }
 
 .slide {
+    /* width: 100%;
+    height: 100%;
+    position: absolute; */
+    /* animation: slideShow 12s infinite;
+    opacity: 0;
+    width: 500px;
+    height: 500px; */
     position: absolute;
     width: 100%;
     height: 100%;
@@ -209,30 +234,52 @@ input{
     80% { opacity: 1; }
     100% { opacity: 0; }
 }
+
+/* .slide:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.slide:nth-child(2) {
+    animation-delay: 4s;
+}
+
+.slide:nth-child(3) {
+    animation-delay: 8s;
+}
+
+@keyframes slideShow {
+    0% {opacity: 0;}
+    8% {opacity: 1;}
+    33% {opacity: 1;}
+    41% {opacity: 0;}
+    100% {opacity: 0;}
+} */
  </style>
 </head>
 <body>
 
   <div class = "container">
+  <!-- <img id = "logo" src="shaded logo.png" alt="logo" style="width:150px; height : 150px; top:0px;"> -->
+
   <div id="slideshow">
             <div class="slide">
-                <img src="images/login 1.jpg 1" alt="Slide 1">
+                <img src="login 1.jpg" alt="Slide 1">
             </div>
             <div class="slide">
-                <img src="images/login 2.jpg" alt="Slide 2">
+                <img src="login 2.jpg" alt="Slide 2">
             </div>
             <div class="slide">
-                <img src="images/login 3.jpg" alt="Slide 3">
+                <img src="login 3.jpg" alt="Slide 3">
             </div>
             <div class="slide">
-                <img src="images/login 4.jpg" alt="Slide 4">
+                <img src="login 4.jpg" alt="Slide 4">
             </div>
             <div class="slide">
-                <img src="images/login 5.jpg" alt="Slide 5">
+                <img src="login 5.jpg" alt="Slide 5">
             </div>
   </div>
 
-  <img id="logo" src="images/logo.png" alt="Logo">
+  <img id="logo" src="logo.png" alt="Logo">
 
     <div class = "form-box">
       <h1>LOGIN</h1>
