@@ -1,119 +1,171 @@
-<?php
-require_once('connectdb.php');
-//session_start(); 
-if(isset($_POST['logsub'])){
-  $user=$_POST['username'];
-  $pass=$_POST['password'];
-
-
-if($user==null || $pass==null){
-  echo("enter username and password");
-}
-else{
-  $login=$db->prepare('SELECT password FROM logindetails WHERE username=?');
-  $login->bindParam(1,$user);
-
-  $login->execute();
-  $Apass=$login->fetch();
-
-  if($login->rowCount()>0){
-    if(password_verify($pass,$Apass['password'])){
-      //session_start();          
-      $sessionid=$db->prepare('SELECT * FROM logindetails WHERE username=?');
-      $sessionid->bindParam(1,$user);
-      
-      $sessionid->execute();
-      $Asessionid=$sessionid->fetch();
-
-      $_SESSION["username"]=$user;
-      $_SESSION["user_id"]=$Asessionid['user_id'];
-      $_SESSION["authorization_level"]=$Asessionid['authorization_level'];
-
-      if($_SESSION["authorization_level"]=="admin"){
-        header("Location:admin-homepage.php");
-        exit(); 
-      }
-      else if($_SESSION["authorization_level"]=="customer"){
-        $Csessionid=$db->prepare('SELECT customer_id FROM customerdetails WHERE user_id=?');
-        $Csessionid->bindParam(1,$_SESSION['user_id']);
-        $Csessionid->execute();
-        $cid=$Csessionid->fetchColumn();
-        
-        $_SESSION['customer_id']=$cid;
-        header("Location:homepage.php");
-        exit();
-      }
-    }else{
-      echo('incorrect password');
-    }
-  }else{
-    echo('incorrect user');
-  }
-}
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - SHADED</title>
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="https://kit.fontawesome.com/58e0ebdcbf.js" crossorigin="anonymous"></script>
-  
  <style>
-html, body{
+html {
+  font-size: 80%;
+  scroll-behavior: smooth;
+}
+
+
+
+
+body {
+  font-family: "Century Gothic", sans-serif;
+  background-color: #ffffff;
   margin: 0;
   padding: 0;
-  font-family: "Century Gothic", sans-serif;
   box-sizing: border-box;
-  height: 100%;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: .2s linear;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Switch to column layout for smaller screens */
+    align-items: center; /* Center align items */
+  }
+
+  .left-half {
+    order: 2; /* Move left-half container below the right-half container */
+    width: 100%; /* Full width */
+  }
+
+.logo{
+  text-align: center;
+}
+
+  .logo img {
+    width: 100%; /* Adjust logo width for smaller screens */
+  }
+
+  .form-box {
+    width: 90%; /* Adjust form width for smaller screens */
+    max-width: 300px; /* Set maximum width for form */
+    margin-top: 20px; /* Add margin to separate logo and form */
+    text-align: center;
+  }
+}
+
+  
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.logo {
+  text-align: center;
+  position: absolute;
+  top: 20%;
+  left: 12%;
+  transform: translateY(-50%);
+  margin-bottom: 15px;
+
+}
+
+.logo img {
+  width: 400px; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.left-half,
+.right-half {
+  flex: 1;
+  padding: 0;
+}
+
+/* Style for the right half slideshow of images */
+.right-half {
+  position: relative; /* Ensure the slideshow is positioned relative to the right-half div */
+  display: flex;
+  align-items: right;
+  top: 0;
+  right: 0;
+  justify-content: flex-end;
+  background-color: #003B46;
   overflow: hidden;
 }
-body{
-            margin: 0;
-            padding: 0;
-            position: relative;
-              background-color: #fff;
 
-        }
-
-.container{
-display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-    height: 100%;
-    position: relative;
+.left-half{
+  left: 0;
 }
 
-
-#logo {
-  height: 12%;
-    width: 45%; /* Adjust the width as needed */
-    max-width: 400px; /* Set maximum width to match the form box */
-    margin-top: 70px;
-    display: block; /* Ensure it behaves as a block element */
-    margin-bottom: 20px; /* Add some space between the logo and the form box */
-    padding-left: 170px;
+.right-half{
+  box-shadow: 0 0 20px #003B46;
+  right: 0;
 }
-.form-box{
-  width: 50%;
-  max-width: 400px;
+
+.slideshow {
+  position: absolute; /* Position the slideshow absolutely within the right-half div */
+  top: 0;
+  left: 0;
+  height: auto; /* Fill the entire height of the right-half div */
+  width: 100%; /* Fill the entire width of the right-half div */
+  animation: slide-up 55s linear infinite;
+}
+
+.slideshow image {
   position: absolute;
-  top: 50%;
-  left: 11%; /* Adjusted to position in the middle of the left half */
-  transform: translateY(-40%);
-  padding: 4px 2px 6px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0px 0px 30px 5px #003b46;
+  opacity: 0;
+  width: 100%;
+  height: auto;
+  transition: opacity 0s ease-in-out;
+  top: 0;
+  left: 0;
+  object-fit: contain;
 }
-.form-box h1{
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+  100.1% {
+    transform: translateY(0);
+  }
+}
+
+.slideshow img.active {
+  opacity: 1;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 30px #003B46;
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  left: 12%;
+  transform: translateY(-50%);
+}
+
+
+.login-form h1 {
   font-size: 30px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   color: #003B46;
+  font-weight: bold;
   position: relative;
 }
-.form-box h1::after{
+
+.login-form h1::after{
   content: '';
   width: 30px;
   height: 4px;
@@ -124,23 +176,25 @@ display: flex;
   left: 50%;
   transform: translateX(-50%);
 }
-.form-box a{
+
+.login-form a{
   color: #003B46;
   font-weight: bold;
 }
-.form-box a:hover{
+
+.login-form a:hover{
   color: #1c7a7f;
 }
-.input-group{
-  height : 150px;
-}
-.input-field{
+
+.input-field {
+  width: 100%;
   background: #eaeaea;
-  margin: 15px 0;
+  margin: 5px 0;
   border-radius: 3px;
-  display: flex;
   align-items: center;
+  display: flex;
 }
+
 input{
   width: 100%;
   background: transparent;
@@ -156,7 +210,8 @@ input{
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px; /* Add margin to create space between buttons */
+  margin-top: 20px;
+  margin-bottom: 10px; /* Add margin to create space between buttons */
 }
 
 .btn-field button {
@@ -181,131 +236,57 @@ input{
 .btn-field button:not(:last-child) {
   margin-bottom: 10px; /* Add margin between buttons */
 }
-
-#slideshow {
-    /* width: 100%;
-    height: 1000px;
-    overflow: hidden;
-    position: relative;
-    margin-top: 10%;
-    right: 0px; */
-    width: 50%;
-    height: 100vh;
-    overflow: hidden;
-    position: absolute;
-    right: 0px;
-    /* overflow: hidden;
-    position: relative; */
-    /* margin-top: 50%;
-    margin-bottom: 20%;
-    margin-left: 20% ;
-     */
-}
-
-.slide {
-    /* width: 100%;
-    height: 100%;
-    position: absolute; */
-    /* animation: slideShow 12s infinite;
-    opacity: 0;
-    width: 500px;
-    height: 500px; */
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    top: 0;
-  left: 0;
-  object-fit: contain;
-  
-    
-}
-.slide.active {
-    opacity: 1;
-}
-
-@keyframes changeSlide {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-/* .slide:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.slide:nth-child(2) {
-    animation-delay: 4s;
-}
-
-.slide:nth-child(3) {
-    animation-delay: 8s;
-}
-
-@keyframes slideShow {
-    0% {opacity: 0;}
-    8% {opacity: 1;}
-    33% {opacity: 1;}
-    41% {opacity: 0;}
-    100% {opacity: 0;}
-} */
  </style>
+
 </head>
 <body>
 
-  <div class = "container">
-  <!-- <img id = "logo" src="shaded logo.png" alt="logo" style="width:150px; height : 150px; top:0px;"> -->
+<div class="container">
+  <div class="left-half">
 
-  <div id="slideshow">
-            <div class="slide">
-                <img src="images/login 1.jpg" alt="Slide 1">
-            </div>
-            <div class="slide">
-                <img src="images/login 2.jpg" alt="Slide 2">
-            </div>
-            <div class="slide">
-                <img src="images/login 3.jpg" alt="Slide 3">
-            </div>
-            <div class="slide">
-                <img src="images/login 4.jpg" alt="Slide 4">
-            </div>
-            <div class="slide">
-                <img src="images/login 5.jpg" alt="Slide 5">
-            </div>
+  <div class="logo">
+  <img src="images/Logo 1.png" alt="Logo">
   </div>
 
-  <img id="logo" src="images/logo 1.png" alt="Logo">
-
-    <div class = "form-box">
-      <h1>LOGIN</h1>
-      <form method="post" action="login.php" class="login-form">
-        <div class = "input-group">
-          <div class = "input-field">
-            <i class="fa-solid fa-user"></i>
-            <input type="text" name="username" placeholder="Username">
-          </div>
-
-          <div class = "input-field">
-            <i class="fa-solid fa-lock"></i>
-            <input type="password" name="password" placeholder="Password">
-          </div>
+<div class="form-box">
+    <form method="post" action="login.php" class="login-form">
+        <h1>LOGIN</h1>
+        <div class="input-group">
+            <div class="input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" name="username" placeholder="Username">
+            </div>
         </div>
-        <div class="btn-field">
-          <button type = "submit"  >LOGIN</button>
-          <input type="hidden" name="logsub" value="TRUE">
+
+        <div class="input-group">
+            <div class="input-field">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" name="password" placeholder="Password">
+            </div>
         </div>
 
         <div class="btn-field">
-  <button type="submit">ADMIN LOGIN</button>
-</div>
+            <button type="submit">LOGIN</button>
+            <input type="hidden" name="logsub" value="TRUE">
+        </div>
+
         <a href="signup.php">Don't have an account?</a>
-       </form>
-    </div>
+    </form>
+</div>
   </div>
-       
-  <script>
+
+<div class="right-half">
+<div class="slideshow">
+<img class="active" src="images/login 1.jpg" alt="Image 1">
+        <img src="images/login 2.jpg" alt="Image 2">
+        <img src="images/login 3.jpg" alt="Image 3">
+        <img src="images/login 4.jpg" alt="Image 4">
+        <img src="images/login 5.jpg" alt="Image 5">
+            </div>
+</div>
+</div>
+
+<script>
     document.addEventListener("DOMContentLoaded", function() {
     var slides = document.querySelectorAll(".slide");
     var currentSlide = 0;
@@ -319,5 +300,72 @@ input{
     setInterval(nextSlide, 4000); // Change slide every 4 seconds
 });
   </script>
+
+<?php
+    require_once('connectdb.php');
+    //session_start(); 
+    if(isset($_POST['logsub'])){
+      $user=$_POST['username'];
+      $pass=$_POST['password'];
+
+
+    if($user==null || $pass==null){
+      echo("<script>alert('Please enter username and password');</script>");
+    }
+    else{
+      $login=$db->prepare('SELECT password FROM logindetails WHERE username=?');
+      $login->bindParam(1,$user);
+
+      $login->execute();
+      $Apass=$login->fetch();
+
+      if($login->rowCount()>0){
+        if(password_verify($pass,$Apass['password'])){
+          echo('success');
+          //session_start();          
+          $sessionid=$db->prepare('SELECT * FROM logindetails WHERE username=?');
+          $sessionid->bindParam(1,$user);
+
+          $sessionid->execute();
+          $Asessionid=$sessionid->fetch();
+
+
+          $_SESSION["username"]=$user;
+          $_SESSION["user_id"]=$Asessionid['user_id'];
+          $_SESSION["authorization_level"]=$Asessionid['authorization_level'];
+
+          echo(var_dump($_SESSION));
+
+
+          if(  $_SESSION["authorization_level"]=="admin"){
+            header("Location:admin-homepage.php");
+            exit(); 
+          }
+          else if(  $_SESSION["authorization_level"]=="customer"){
+          $Csessionid=$db->prepare('SELECT customer_id FROM customerdetails WHERE user_id=?');
+          $Csessionid->bindParam(1,$_SESSION['user_id']);
+          $Csessionid->execute();
+          $cid=$Csessionid->fetchColumn();
+
+          $_SESSION['customer_id']=$cid;
+          header("Location:homepage.php");
+          exit();
+
+        }
+        else{
+          echo("<script>alert('Incorrect username or password');</script>");
+        }
+      } else {
+        echo("<script>alert('Incorrect username or password');</script>");
+      }
+
+    }
+  }
+
+
+
+  }
+    ?>
+
 </body>
 </html>
