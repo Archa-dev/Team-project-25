@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -179,7 +180,25 @@ main {
 }
 
 
+.add-to-wishlist-button {
+    position: absolute;
+    top: 20%;
+    right: 60px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border:#000000;
+    cursor: pointer;
+    z-index: 999; /* Ensure the button appears above the image */
+}
 
+.add-to-wishlist-button i {
+    color: #07575b;
+    font-size: 30px;
+}
+
+.add-to-wishlist-button i:hover {
+    color: #003b46; /* Change the heart color on hover */
+}
 
     .add-to-basket-button {
     background-color: #003b46;
@@ -190,6 +209,7 @@ main {
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
+    font-weight: bold;
     margin: 80px 0;
     margin-left: 30px;
     cursor: pointer;
@@ -495,6 +515,9 @@ main {
                 <div id="row">
                     <div id="column" style="display: flex; align-items: center;" >
                         <img src="MK-2161BU-0001_1.jpeg" alt="Product Image" style="width: 100%; height: auto;">
+                        <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
+        <i class="far fa-heart"></i>
+    </button>
                     </div>
                     <div id="product-info-container" style="width: 60%; float: right;">
                     <div id="product-info">
@@ -512,7 +535,7 @@ main {
                             <!-- Add your product ID input or any other necessary fields here -->
                             <input type="hidden" name="selectedProductId" value="<?= $integerValue ?>">
                             <!-- Button to trigger the SQL query -->
-                            <button type="submit" name="addToBasket" class="add-to-basket-button">Add to Shopping Basket</button>
+                            <button type="submit" name="addToBasket" class="add-to-basket-button">ADD TO SHOPPING BAG</button>
                         </form>
 
                         <button id="leave-review-btn" class="review-button">Leave a Review</button>
@@ -589,7 +612,19 @@ document.getElementById("review-form").addEventListener("submit", function(event
 document.getElementById('close-review-form-btn').addEventListener('click', function() {
   document.getElementById('review-form-popup').style.display = 'none';
 });
+
+document.getElementById("add-to-wishlist-btn").addEventListener("click", function() {
+    var heartIcon = this.querySelector("i");
+    heartIcon.classList.toggle("far"); // Toggle regular heart icon class
+    heartIcon.classList.toggle("fas"); // Toggle solid heart icon class
+    
+});
 </script>
 
 </body>
 </html>
+
+
+
+
+
