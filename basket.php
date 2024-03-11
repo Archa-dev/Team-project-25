@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-
 <?php
 session_start();
 require_once('connectdb.php');
 $customerid = $_SESSION['customer_id'];
 
 // Retrieve basket items for the logged-in customer
-$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price 
+$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity 
                         FROM basket b
                         JOIN productdetails p ON b.product_id = p.product_id
                         WHERE b.customer_id = ?');
@@ -16,9 +12,31 @@ $itemIDs->bindParam(1, $customerid);
 $itemIDs->execute();
 $items = $itemIDs->fetchAll(PDO::FETCH_ASSOC);
 
-$itemsCount = count($items);
-?>
 
+$itemsCount = count($items);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'])) {
+    $productid = $_POST['product_id'];
+
+    // Remove the item from the database
+    $removeItem = $db->prepare('DELETE FROM basket WHERE customer_id = ? AND product_id = ?');
+    $removeItem->bindParam(1, $customerid);
+    $removeItem->bindParam(2, $productid);
+
+    if ($removeItem->execute()) {
+        // Send a JSON response indicating success
+        echo json_encode(['success' => true]);
+        exit;
+    } else {
+        // Send a JSON response indicating failure
+        echo json_encode(['success' => false, 'message' => 'Error removing item from the database']);
+        exit;
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+    
         <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -425,7 +443,7 @@ $itemsCount = count($items);
                         <div class="basket-amount basket-column">
                             <!-- Add hidden input for product_id -->
                             <input type="hidden" class="basket-amount-productid" value="<?= $item['product_id'] ?>">
-                            <input class="basket-amount-input" type="number" value="1" min="1">
+                            <input class="basket-amount-input" type="number" value="<?= $item['quantity'] ?>" min="1">
                             <button class="button button-remove" type="button">REMOVE</button>
                         </div>
                     </div>
@@ -435,7 +453,7 @@ $itemsCount = count($items);
 
             <div class="basket-total">
                 <strong class="basket-total-title">Total:</strong>
-                <span class="basket-total-price">123.45</span>
+                <span class="basket-total-price"></span>
             </div>
 
             <button class="button checkout-button" type="button">PROCEED TO CHECKOUT</button>
@@ -484,25 +502,58 @@ $itemsCount = count($items);
     }
 
     function removeBasketItem(event) {
-        var buttonClicked = event.target
-        var productid = buttonClicked.parentElement.parentElement.getElementsByClassName('basket-item-productid')[0].innerText
-        buttonClicked.parentElement.parentElement.remove()
-        // <?php
-        // $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');          needs to use something else, probably AJAX to remove item from basket
-        // $removeItem->bindParam(1, $productid);
-        // $removeItem->bindParam(2, $customerid);
-        // $removeItem->execute();
-        // ?>
-        updateBasketTotal()
-    }
+                var buttonClicked = event.target;
+                var productid = buttonClicked.parentElement.parentElement.querySelector('.basket-amount-productid').value;
+
+                // Use AJAX to send the request to remove the item from the database
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', window.location.href, true); // Use the current URL for simplicity
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            // If the item is successfully removed from the database, also remove it from the HTML
+                            buttonClicked.parentElement.parentElement.remove();
+                            updateBasketTotal();
+                        } else {
+                            // Handle errors
+                            console.error('Error removing item from the database:', response.message);
+                        }
+                    }
+                };
+
+                // Send the product_id to the server for removal
+                xhr.send('remove_item=true&product_id=' + encodeURIComponent(productid));
+            }
+        
 
     function amountChanged(event) {
-        var input = event.target
-        if (isNaN(input.value) || input.value <= 0) {
-            input.value = 1
+    var input = event.target;
+    var productID = input.parentElement.parentElement.querySelector('.basket-amount-productid').value;
+    var newQuantity = input.value;
+    console.log(productID)
+    // Use AJAX to send the update to the server
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'update_basket.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Handle the server response if needed
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                // Update the total on the client side
+                updateBasketTotal();
+            } else {
+                // Handle errors
+                console.error('Error updating basket:', response.message);
+            }
         }
-        updateBasketTotal()
-    }
+    };
+
+    // Send the data to the server
+    xhr.send('product_id=' + encodeURIComponent(productID) + '&quantity=' + encodeURIComponent(newQuantity));
+}
 
     function addItemToBasket(title, price, imageSrc, amount, productid) {
         console.log(title, price, imageSrc, amount, productid)
@@ -546,7 +597,8 @@ $itemsCount = count($items);
     // Set the calculated total value to the HTML element with class 'basket-total-price'
     document.getElementsByClassName('basket-total-price')[0].innerText = '£' + total
 }
-    </script>
+updateBasketTotal();
+</script>
 
 
 
@@ -580,4 +632,4 @@ $itemsCount = count($items);
         </div>
 
     </body>
-    </html>
+</html>
