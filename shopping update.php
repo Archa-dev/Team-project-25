@@ -396,19 +396,18 @@ h2 {
         
     }
 
+    .product-container {
+    width: 90%; /* Set the width of the container */
+    margin: auto; /* Center the container */
+    padding: 15px;
+    
+}
 
 /* footer styles */
 .footer {
     background-color: #003B46;
     color: #fff;
     padding: 20px 0; /* Add padding to the top and bottom */
-    
-}
-
-.product-container {
-    width: 90%; /* Set the width of the container */
-    margin: auto; /* Center the container */
-    padding: 15px;
     
 }
 
@@ -449,9 +448,6 @@ h2 {
 .social-links a:hover {
     color: #ccc;
 }
-
-
-
 </style>
 </head>
 <body>
@@ -477,7 +473,7 @@ h2 {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="Logo.png" alt="Shaded Logo">
+                    <img src="images/Logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -613,7 +609,7 @@ h2 {
         <?php foreach ($products as $product) : ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
             <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
-                <img src="MK-2161BU-0001_1.jpeg" width="100%" height="60%">
+                <img src="images/MK-2161BU-0001_1.jpeg" width="100%" height="60%">
                 </a>
                 <div class="product-info">
                 <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
