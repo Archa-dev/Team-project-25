@@ -1,3 +1,4 @@
+
 <?php
     if(isset($_POST['sub'])){
     require_once('connectdb.php');
@@ -5,7 +6,6 @@
     $user=$_POST['Username'];
     $name=$_POST['Name'];
     $pass=$_POST['inputPassword'];
-    $add=$_POST['Address'];
     $auth="customer";
     $pass=password_hash($pass,PASSWORD_DEFAULT);
     
@@ -28,76 +28,182 @@
       $cdetails->bindParam(2,$name);
       $cdetails->bindParam(3,$add);
       $cdetails->execute();
-      echo("Successful");
+      echo "<script>alert('Signup Successful'); window.location.href = 'login.php';</script>";
     }else{
-      echo ("Unsuccessful");
+        echo ("<script>alert('Signup Unsuccessful');</script>");
     }
     }
     }
     ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - SHADED</title>
+  <title>Signup</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="https://kit.fontawesome.com/58e0ebdcbf.js" crossorigin="anonymous"></script>
-  
  <style>
-html, body{
+html {
+  font-size: 80%;
+  scroll-behavior: smooth;
+}
+
+
+
+
+body {
+  font-family: "Century Gothic", sans-serif;
+  background-color: #ffffff;
   margin: 0;
   padding: 0;
-  font-family: "Century Gothic", sans-serif;
   box-sizing: border-box;
-  height: 100%;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: .2s linear;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Switch to column layout for smaller screens */
+    align-items: center; /* Center align items */
+  }
+
+  .left-half {
+    order: 2; /* Move left-half container below the right-half container */
+    width: 100%; /* Full width */
+  }
+
+.logo{
+  text-align: center;
+}
+
+  .logo img {
+    width: 100%; /* Adjust logo width for smaller screens */
+  }
+
+  .form-box {
+    width: 90%; /* Adjust form width for smaller screens */
+    max-width: 300px; /* Set maximum width for form */
+    margin-top: 20px; /* Add margin to separate logo and form */
+    text-align: center;
+  }
+}
+
+  
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.logo {
+  text-align: center;
+  position: absolute;
+  top: 10%;
+  left: 12%;
+  transform: translateY(-50%);
+  margin-bottom: 15px;
+
+}
+
+.logo img {
+  width: 400px; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.left-half,
+.right-half {
+  flex: 1;
+  padding: 0;
+}
+
+/* Style for the right half slideshow of images */
+.right-half {
+  position: relative; /* Ensure the slideshow is positioned relative to the right-half div */
+  display: flex;
+  align-items: right;
+  top: 0;
+  right: 0;
+  justify-content: flex-end;
+  background-color: #003B46;
   overflow: hidden;
 }
-body{
-            margin: 0;
-            padding: 0;
-            position: relative;
-              background-color: #fff;
 
-        }
-
-.container{
-  display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-    height: 100%;
-    position: relative;
+.left-half{
+  left: 0;
 }
 
-
-#logo {
-   height: 11%;
-    width: 50%; /* Adjust the width as needed */
-    max-width: 420px; /* Set maximum width to match the form box */
-    margin-top: 70px;
-    display: block; /* Ensure it behaves as a block element */
-    margin-bottom: 20px; /* Add some space between the logo and the form box */
-    padding-left: 170px;
+.right-half{
+  box-shadow: 0 0 20px #003B46;
+  right: 0;
 }
-.signup-form{
-  width: 85%;
-  height: 70%;
-  max-width: 400px;
+
+.slideshow {
+  position: absolute; /* Position the slideshow absolutely within the right-half div */
+  top: 0;
+  left: 0;
+  height: auto; /* Fill the entire height of the right-half div */
+  width: 100%; /* Fill the entire width of the right-half div */
+  animation: slide-up 55s linear infinite;
+}
+
+.slideshow image {
   position: absolute;
-  top: 47%;
-  left: 11%; /* Adjusted to position in the middle of the left half */
-  transform: translateY(-30%);
-  padding: 2px 2px 6px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0px 0px 30px 5px #003b46;
+  opacity: 0;
+  width: 100%;
+  height: auto;
+  transition: opacity 0s ease-in-out;
+  top: 0;
+  left: 0;
+  object-fit: contain;
 }
-.signup-form h1{
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+  100.1% {
+    transform: translateY(0);
+  }
+}
+
+.slideshow img.active {
+  opacity: 1;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 30px #003B46;
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  left: 12%;
+  transform: translateY(-50%);
+}
+
+
+.form-box h1 {
   font-size: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #003B46;
+  font-weight: bold;
   position: relative;
 }
-.signup-form h1::after{
+
+.form-box h1::after{
   content: '';
   width: 30px;
   height: 4px;
@@ -108,23 +214,30 @@ body{
   left: 50%;
   transform: translateX(-50%);
 }
-.signup-form a{
+
+.form-box a{
   color: #003B46;
+  font-weight: bold;
 }
-.signup-form a:hover{
-  color: #07575B;
+
+.form-box a:hover{
+  color: #1c7a7f;
 }
-.input-group{
-  height : 350px;
+
+.input-field-group {
+    display: flex;
+    text-align: center;
 }
-.input-field{
+
+.input-field {
+  width: 100%;
   background: #eaeaea;
-    max-width: 450px;
-  margin: 15px 0;
+  margin: 5px 0;
   border-radius: 3px;
-  display: flex;
   align-items: center;
+  display: flex;
 }
+
 input{
   width: 100%;
   background: transparent;
@@ -140,21 +253,23 @@ input{
   width: 100%;
   display: flex;
   justify-content: center;
-  
+  margin-top: 20px;
+  margin-bottom: 10px; /* Add margin to create space between buttons */
 }
 
 .btn-field button {
-  width: 48%;
+  width: 70%;
   background: #003B46;
   color: #fff;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 5px;
   font-size: 15px;
   border: 0;
   outline: 0;
   cursor: pointer;
   transition: background 1s;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .btn-field button:hover {
@@ -164,100 +279,76 @@ input{
 .btn-field button:not(:last-child) {
   margin-bottom: 10px; /* Add margin between buttons */
 }
-
-#slideshow {
-
-    width: 50%;
-    height: 100vh;
-    overflow: hidden;
-    position: absolute;
-    right: 0px;
-}
-
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    top: 0;
-  left: 0;
-  object-fit: contain;
-  
-    
-}
-.slide.active {
-    opacity: 1;
-}
-
-@keyframes changeSlide {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
  </style>
+
 </head>
 <body>
 
-  <div class = "container">
-  <div id="slideshow">
-            <div class="slide">
-                <img src="images/login 1.jpg 1" alt="Slide 1">
-            </div>
-            <div class="slide">
-                <img src="images/login 2.jpg" alt="Slide 2">
-            </div>
-            <div class="slide">
-                <img src="images/login 3.jpg" alt="Slide 3">
-            </div>
-            <div class="slide">
-                <img src="images/login 4.jpg" alt="Slide 4">
-            </div>
-            <div class="slide">
-                <img src="images/login 5.jpg" alt="Slide 5">
-            </div>
+<!--bootstrap js-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+                crossorigin="anonymous">
+        </script>
+
+<div class="container">
+  <div class="left-half">
+
+  <div class="logo">
+  <img src="images/Logo 1.png" alt="Logo">
   </div>
 
-  <img id="logo" src="images/logo.png" alt="Logo">
-
-  <div class = "signup-form">
-              <h1>SIGN UP</h1>
-            <form method="post" action="signup.php" onsubmit="return signupSuccess()" >
-              <div class = "input-group">
+<div class="form-box">
+<form method="post" action="signup.php" onsubmit="return signupSuccess()" >
+        <h1>SIGN UP</h1>
+        <div class = "input-group">
 
                 <div class = "input-field">
                   <i class="fa-solid fa-envelope"></i>
-                  <input type="email" name="inputEmail" placeholder="Email" class="form-control" required>
+                  <input type="email" name="inputEmail" placeholder="Email">
                 </div>
+
+                <div class="input-field-group">
                 <div class = "input-field">
                   <i class="fa-solid fa-user"></i>
-                  <input type="text" name="Username" placeholder="Username" class="form-control" required>
+                  <input type="text" name="Username" placeholder="Username">
                 </div>
-                <div class = "input-field">
+                <div class = "input-field" style="margin-left: 10px;">
                   <i class="fa-solid fa-user"></i>
-                  <input type="text" name="Name" placeholder= "Name" class="form-control" required>
+                  <input type="text" name="Name" placeholder= "Name">
                 </div>
+                </div>
+
                 <div class = "input-field">
                 <i class="fa-solid fa-house"></i>
-                  <input type="text" name="Address" placeholder= "Address (optional)" class="form-control">
+                  <input type="text" name="Address" placeholder= "Address (optional)">
                 </div>
                 <div class = "input-field">
                    <i class="fa-solid fa-lock"></i>
-                   <input type="password" name="inputPassword" placeholder= "Password (6+ characters)"class="form-control" required>
+                   <input type="password" name="inputPassword" placeholder= "Password (6+ characters)">
                 </div>
 
-              </div>
+       </div>
                <div class="btn-field">
                <button type="submit">SUBMIT</button>
                <input type="hidden" name="sub" value="Sign Up">
                </div>
-              <a href="login.php">Already have an account?</a>
-            </form> 
+              <a href="login.php">Already Have An Account?</a>
+    </form>
+</div>
+  </div>
 
-       
-  <script>
+<div class="right-half">
+<div class="slideshow">
+<img class="active" src="images/login 1.jpg" alt="Image 1">
+        <img src="images/login 2.jpg" alt="Image 2">
+        <img src="images/login 3.jpg" alt="Image 3">
+        <img src="images/login 4.jpg" alt="Image 4">
+        <img src="images/login 5.jpg" alt="Image 5">
+            </div>
+</div>
+</div>
+
+<script>
     document.addEventListener("DOMContentLoaded", function() {
     var slides = document.querySelectorAll(".slide");
     var currentSlide = 0;
@@ -270,7 +361,10 @@ input{
 
     setInterval(nextSlide, 4000); // Change slide every 4 seconds
 });
-const savedEmails = [];
+  </script>
+
+<script>
+    const savedEmails = [];
     const savedPasswords = [];
 
     function signupSuccess() {
@@ -293,6 +387,7 @@ const savedEmails = [];
             return false;
         }
     }
-  </script>
+</script>
+
 </body>
 </html>
