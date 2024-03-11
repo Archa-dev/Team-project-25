@@ -1,3 +1,69 @@
+<?php
+    require_once('connectdb.php');
+    session_start(); 
+    if(isset($_POST['logsub'])){
+      $user=$_POST['username'];
+      $pass=$_POST['password'];
+
+
+    if($user==null || $pass==null){
+      echo("<script>alert('Please enter username and password');</script>");
+    }
+    else{
+      $login=$db->prepare('SELECT password FROM logindetails WHERE username=?');
+      $login->bindParam(1,$user);
+
+      $login->execute();
+      $Apass=$login->fetch();
+
+      if($login->rowCount()>0){
+        if(password_verify($pass,$Apass['password'])){
+          echo('success');
+          //session_start();          
+          $sessionid=$db->prepare('SELECT * FROM logindetails WHERE username=?');
+          $sessionid->bindParam(1,$user);
+
+          $sessionid->execute();
+          $Asessionid=$sessionid->fetch();
+
+
+          $_SESSION["username"]=$user;
+          $_SESSION["user_id"]=$Asessionid['user_id'];
+          $_SESSION["authorization_level"]=$Asessionid['authorization_level'];
+
+          echo(var_dump($_SESSION));
+
+
+          if(  $_SESSION["authorization_level"]=="admin"){
+            header("Location:admin-homepage.php");
+            exit(); 
+          }
+          else if(  $_SESSION["authorization_level"]=="customer"){
+          $Csessionid=$db->prepare('SELECT customer_id FROM customerdetails WHERE user_id=?');
+          $Csessionid->bindParam(1,$_SESSION['user_id']);
+          $Csessionid->execute();
+          $cid=$Csessionid->fetchColumn();
+
+          $_SESSION['customer_id']=$cid;
+          header("Location:homepage.php");
+          exit();
+
+        }
+        else{
+          echo("<script>alert('Incorrect username or password');</script>");
+        }
+      } else {
+        echo("<script>alert('Incorrect username or password');</script>");
+      }
+
+    }
+  }
+
+
+
+  }
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -300,72 +366,6 @@ input{
     setInterval(nextSlide, 4000); // Change slide every 4 seconds
 });
   </script>
-
-<?php
-    require_once('connectdb.php');
-    //session_start(); 
-    if(isset($_POST['logsub'])){
-      $user=$_POST['username'];
-      $pass=$_POST['password'];
-
-
-    if($user==null || $pass==null){
-      echo("<script>alert('Please enter username and password');</script>");
-    }
-    else{
-      $login=$db->prepare('SELECT password FROM logindetails WHERE username=?');
-      $login->bindParam(1,$user);
-
-      $login->execute();
-      $Apass=$login->fetch();
-
-      if($login->rowCount()>0){
-        if(password_verify($pass,$Apass['password'])){
-          echo('success');
-          //session_start();          
-          $sessionid=$db->prepare('SELECT * FROM logindetails WHERE username=?');
-          $sessionid->bindParam(1,$user);
-
-          $sessionid->execute();
-          $Asessionid=$sessionid->fetch();
-
-
-          $_SESSION["username"]=$user;
-          $_SESSION["user_id"]=$Asessionid['user_id'];
-          $_SESSION["authorization_level"]=$Asessionid['authorization_level'];
-
-          echo(var_dump($_SESSION));
-
-
-          if(  $_SESSION["authorization_level"]=="admin"){
-            header("Location:admin-homepage.php");
-            exit(); 
-          }
-          else if(  $_SESSION["authorization_level"]=="customer"){
-          $Csessionid=$db->prepare('SELECT customer_id FROM customerdetails WHERE user_id=?');
-          $Csessionid->bindParam(1,$_SESSION['user_id']);
-          $Csessionid->execute();
-          $cid=$Csessionid->fetchColumn();
-
-          $_SESSION['customer_id']=$cid;
-          header("Location:homepage.php");
-          exit();
-
-        }
-        else{
-          echo("<script>alert('Incorrect username or password');</script>");
-        }
-      } else {
-        echo("<script>alert('Incorrect username or password');</script>");
-      }
-
-    }
-  }
-
-
-
-  }
-    ?>
 
 </body>
 </html>
