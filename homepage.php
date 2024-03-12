@@ -213,7 +213,6 @@ html {
 main {
     margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
 }
-
 /* Additional styles for the main content images and text overlay */
 .main-content {
             position: relative;
@@ -361,6 +360,10 @@ h2{
 
 #dark-mode-toggle .fas {
     color: #ffffff;
+}
+
+.dark-mode .shopping-bag-popup{
+    background-color: #000000;
 }
 
 /* Footer Styles */
@@ -558,7 +561,7 @@ h2{
         </a>
     </div>
 
-    <main class="sticky-footer-padding">
+    <main>
 
     <div id="sun-icon">&#9728;</div>
 
