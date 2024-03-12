@@ -33,7 +33,7 @@ html {
             width: 100%;
             z-index: 1000;
             display: flex;
-            justify-content: space-between; /* Align logo to the left and nav to the right */
+            justify-content: space-between; 
             align-items: center;
             top: 0; left: 0; right: 0;
             box-shadow: 0 0 12px #1c7a7f;
@@ -44,24 +44,23 @@ html {
                 font-weight: bold;
             }
 
-            .search-box {
-    border: 3px solid #003b46; /* Set border color */
-}
+            /* Search Box */
+            .search-box { border: 3px solid #003b46; }
 
             .navbar .search-btn {
-    background-color: #003b46; /* Set background color to green */
-    border: none; /* Remove border */
-    transition: background-color 0.3s ease;
-    margin-right: 10px;
-}
+                background-color: #003b46; 
+                border: none; 
+                transition: background-color 0.3s ease;
+                margin-right: 10px;
+            }
 
             .navbar .search-icon {
-                color: #fff; /* Default text color */
-                text-decoration: none; /* Remove default underline */
+                color: #fff; 
+                text-decoration: none; 
             }
 
             .navbar .search-btn:hover {
-                background-color: #1c7a7f; /* Text color on hover */
+                background-color: #1c7a7f; 
             }
 
             /* Hide the dropdown arrow */
@@ -70,18 +69,18 @@ html {
             }
 
             .navbar-nav .nav-item {
-            margin-right: 12px; /* Add margin between navbar items */
+            margin-right: 8px; /* Add margin between navbar items */
         }
 
             .navbar-nav .nav-item .nav-link {
-            color: #003b46; /* Default text color */
-            text-decoration: none; /* Remove default underline */
-            transition: color 0.3s ease, border-bottom-color 0.3s ease; /* Smooth transition for color change */
+            color: #003b46; 
+            text-decoration: none; 
+            transition: color 0.3s ease, border-bottom-color 0.3s ease; 
         }
 
         .navbar-nav .nav-item .nav-link:hover {
-            color: #1c7a7f; /* Text color on hover */
-            border-bottom: 4px solid #1c7a7f; /* Underline on hover */
+            color: #1c7a7f; 
+            border-bottom: 4px solid #1c7a7f; 
         }
         }
     }
@@ -97,6 +96,7 @@ html {
     font-size: 15px;
 }
 
+/* Shopping Bag Popuop*/
 .shopping-bag-popup {
     position: fixed;
     top: 80px;
@@ -195,7 +195,7 @@ html {
     background-color: #07575b;
 }
 
-
+/*Homepage Content*/
 main {
     margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
 }
@@ -293,10 +293,6 @@ h2{
     font-weight: bold;
 }
 
-.bold-link {
-    font-weight: bold;
-}
-
         /* Style for the custom link text */
         .custom-link {
             color: #fff;
@@ -306,6 +302,8 @@ h2{
             text-decoration: none !important;
         }
 
+
+    /*Sun Icon*/
         #sun-icon {
     position: fixed; /* Change position to fixed */
     top: 100px; /* Initial top position */
@@ -430,14 +428,28 @@ h2{
                     <li class="nav-item">
                             <a class="nav-link" href="shopping.php">Shop All</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Men</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Women</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Unisex</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Futuristic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Blue Light</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="aboutUs.php">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reviews.php">Reviews</a>
                         </li>
                     </ul>
 
@@ -676,7 +688,9 @@ window.addEventListener('DOMContentLoaded', function() {
     var navbarHeight = document.querySelector('header').offsetHeight;
     sunIcon.style.top = navbarHeight + 'px';
 });
+</script>
 
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
