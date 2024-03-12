@@ -45,7 +45,9 @@ html {
             }
 
             /* Search Box */
-            .search-box { border: 3px solid #003b46; }
+            .search-box { 
+                border: 3px solid #003b46; 
+            }
 
             .navbar .search-btn {
                 background-color: #003b46; 
@@ -66,6 +68,18 @@ html {
             /* Hide the dropdown arrow */
             .navbar-nav .nav-item.dropdown > .nav-link::after {
                 display: none !important
+            }
+
+            .dropdown-item{
+                color: #003B46;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            .dropdown-item:hover{
+                color: #003B46;
+                background-color: rgba(28, 122, 127, 0.4);;
             }
 
             .navbar-nav .nav-item {
