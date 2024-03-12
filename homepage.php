@@ -75,11 +75,12 @@ html {
                 text-decoration: none;
                 font-size: 15px;
                 font-weight: bold;
+                transition: background-color 0.3s;  
             }
 
             .dropdown-item:hover{
                 color: #003B46;
-                background-color: rgba(28, 122, 127, 0.4);;
+                background-color: rgba(28, 122, 127, 0.4);
             }
 
             .navbar-nav .nav-item {
