@@ -97,6 +97,105 @@ html {
     font-size: 15px;
 }
 
+.shopping-bag-popup {
+    position: fixed;
+    top: 80px;
+    right: -400px; /* Initially hidden */
+    width: 350px;
+    max-height: 100vh; /* Limit the maximum height to 80% of the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    background-color: #fff;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    padding: 20px;
+}
+
+.shopping-bag-popup.show {
+    right: 0; /* Slide in from the right */
+}
+
+.shopping-bag-product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.shopping-bag-product img {
+    max-width: 120px; /* Set the maximum width of the image */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add spacing between the image and product details */
+}
+
+.product-details {
+    flex: 1; /* Allow the product details to take up remaining space */
+    margin-bottom: 50px;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Add spacing between the products and total price */
+}
+
+.total-price .price-left {
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.total-price .price-right {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.shopping-bag-popup h4{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.shopping-bag-popup h5{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.shopping-bag-popup p{
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: lighter;
+}
+
+.remove-link {
+    top: 0;
+    right: 0;
+    color: #003B46;
+    font-size: 12px; /* Adjust font size as desired */
+}
+
+.product-details .remove-link:hover {
+    color: #1c7a7f;
+}
+
+.btn-primary {
+    background-color: #003b46; /* Dark blue */
+        color: #fff; /* White text */
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 15px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #07575b;
+}
+
+
 main {
     margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
 }
@@ -147,7 +246,7 @@ main {
 }
 
 .btn-shop:hover {
-                background-color: #1c7a7f; /* Text color on hover */
+                background-color: #07575b; /* Text color on hover */
             }
 
         .video-container {
@@ -214,25 +313,8 @@ h2{
     font-size: 32px;
     color: yellow; /* Initial color of the sun icon */
     text-shadow: 0 0 10px black; /* Add outline */
-    z-index: 1000; /* Ensure it appears above the navbar */
+    z-index: 900; /* Ensure it appears above the navbar */
     transition: top 0.1s ease, color 0.2s linear; /* Transition for smooth movement and color change */
-}
-
-
-.shopping-bag-popup {
-    position: fixed;
-    top: 80px;
-    right: -400px; /* Initially hidden */
-    width: 400px;
-    height: auto;
-    background-color: #fff;
-    z-index: 999;
-    transition: right 0.3s ease;
-    padding: 20px;
-}
-
-.shopping-bag-popup.show {
-    right: 0; /* Slide in from the right */
 }
 
 /* CSS for dark mode */
@@ -269,34 +351,51 @@ h2{
     color: #ffffff;
 }
 
-/* Updated Footer Styles */
+/* Footer Styles */
 .footer {
-            background-color: #003b46;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            width: 100%;
-            font-size: 14px;
-            box-shadow: 0 0 12px #1c7a7f;
-        }
+    background-color: #003B46;
+    color: #fff;
+    padding: 20px 0; /* Add padding to the top and bottom */
+    
+}
 
-.social-icons a {
-            margin: 0 20px;
-            color: #fff;
-            font-size: 14px;
-        }
+.footer-col {
+    width: 25%; /* Set the width of each column */
+    padding: 0 15px; /* Add horizontal padding */
+    padding-left: 80px;
+}
 
-.terms-links a {
-    margin-left: 5px;
-    color: #fff; /* Change the color as needed */
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.footer-col ul li a {
+    color: #fff;
     text-decoration: none;
 }
 
-.terms-links a:hover {
-    text-decoration: underline; /* Add underlining on hover if desired */
-    color: #000; /* Change the hover color as needed */
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #fff;
+    font-size:16px;
 }
 
+.social-links a:hover {
+    color: #ccc;
+}
 </style>
 
     </head>
@@ -319,7 +418,7 @@ h2{
                 </button>
 
                 <a href="#" class="navbar-brand logo">
-                    <img src="images/Logo 2.png" alt="Shaded Logo">
+                    <img src="images/Logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -372,18 +471,56 @@ h2{
                                 <li><a class="dropdown-item" href="admin.php">Admin</a></li>
                             </ul>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="wishlist.php">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="shopping-bag-icon">
                                 <i class="fas fa-shopping-bag"></i>
                             </a>
                             <div id="shopping-bag-popup" class="shopping-bag-popup">
-                                <!-- Content of the shopping bag popup goes here -->
-                                <div class="shop-buttons">
-                    <a href="shopping.php" class="btn btn-primary btn-shop">EXPLORE NOW</a>
-                </div>
+                            <h4>Your Selection (1)</h4>
+                                    <!-- Product 1 -->
+                                <div class="shopping-bag-product">
+                                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product 1">
+                                    <div class="product-details">
+                                        <h5>Black Product 1</h5>
+                                        <p>Price: £29.99</p>
+                                        <p>Colour: Black</p>
+                                        <p>Quantity: 1</p>
+                                        <div><a href="#" class="remove-link">Remove</a></div>
+                                    </div>
+                                </div>
+
+                                 <!-- Product 2 -->
+                                <div class="shopping-bag-product">
+                                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product 2">
+                                    <div class="product-details">
+                                        <h5>White Product 1</h5>
+                                        <p>Price: £39.99</p>
+                                        <p>Colour: White</p>
+                                        <p>Quantity: 2</p>
+                                    <div><a href="#" class="remove-link">Remove</a></div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- Total Price -->
+                                <div class="total-price">
+                                    <div class="price-left">Total Price:</div>
+                                    <div class="price-right">£69.98</div>
+                                </div>
+
+                                <div class="buttons">
+                                    <a href="basket.php" class="btn btn-primary">VIEW SHOPPING BAG</a>
+                                    <a href="checkout.php" class="btn btn-primary">PROCEED TO CHECKOUT</a>
+                                </div>
+                              <!-- <p>Your shopping bag is empty.</p> -->
                             </div>
                         </li>
-                    </ul>
                 </div>
             </div>
         </nav>
@@ -462,33 +599,46 @@ h2{
 
     </main>
     
-    <!-- Bootstrap Container for Footer -->
-    <div class="container-fluid">
-        <footer class="footer">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footer-text">
-                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="social-icons">
-                        <!-- Add your social media icons  -->
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Add more social media icons as needed -->
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="terms-links">
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Cookies Policy</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    <footer class="footer">
+     <div class="container">
+     <div class="row">
+     <div class="footer-col">
+             <h4>&copyShaded | All Rights Reserved</h4>
+             <ul>
+             <li><a href="#">Terms & Conditions </a></li>
+             <li><a href="#">Privacy Policy</a></li>
+             <li><a href="#">Cookies Policy</a></li>
+             </ul>
+     </div>
+     <div class="footer-col">
+            <h4>Product Links</h4>
+            <ul>
+            <li><a href="References For Products.txt"  target="_blank">Sunglasses Products</a></li>
+            <li><a href="#">Homepage Link 1 </a></li>
+            <li><a href="#">Homepage Link 2</a></li>
+            <li><a href="#">Homepage Link 3</a></li>
+            </ul>
     </div>
+    <div class="footer-col">
+            <h4>Need Help?</h4>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQs</a></li>
+                
+            </ul>
+    </div>
+    <div class="footer-col">
+        <h4>follow us</h4>
+        <div class="social-links">
+            <a href="https://en-gb.facebook.com/"  target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/?lang=en-gb"  target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" ><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</div>
+</div>
+  </footer>
 
 <!-- JavaScript for Scroll Icon -->
 <script>
@@ -538,7 +688,9 @@ document.addEventListener('DOMContentLoaded', function() {
         darkModeToggle.querySelector('i').classList.toggle('fa-moon');
     });
 });
+</script>
 
+<script>
 document.getElementById('shopping-bag-icon').addEventListener('click', function() {
   const popup = document.getElementById('shopping-bag-popup');
   popup.classList.toggle('show');
