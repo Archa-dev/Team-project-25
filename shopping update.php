@@ -240,9 +240,9 @@ main {
     color: #ffffff;
 }
 
-.dark-mode .filter-container{
-    background-color: #ffffff; /* Set the background color to white */
-    color: #000000; /* Set the text color to black */
+.dark-mode .filter-container {
+    background-color: #000;
+    color: #ffffff;
 }
 
 .dark-mode .product-info,
@@ -257,12 +257,12 @@ main {
     padding: 20px;
     position: fixed;
     left: 20px;
-    bottom: 180px;
+    bottom: 190px;
     border-radius: 5px;
     z-index: 200;
     max-height: calc(100vh - 200px); /* Adjust the value as needed */
     transition: top 0.3s ease; /* Add smooth transition */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 12px #1c7a7f;
     }
 
     .filter-title {
@@ -378,6 +378,7 @@ main {
 
 h3 {
    font-size: 18px;
+   font-weight: bold;
    
 }
 
@@ -428,7 +429,6 @@ h2 {
     .price {
         margin-top: 5px; /* Adds margin between the product name and the price */
         text-align: left;
-        font-weight: bold;
         
     }
 
@@ -513,7 +513,7 @@ h2 {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="Logo.png" alt="Shaded Logo">
+                    <img src="images/Logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -651,7 +651,7 @@ h2 {
         <?php foreach ($products as $product) : ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
             <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
-                <img src="MK-2161BU-0001_1.jpeg" width="100%" height="60%">
+                <img src="images/MK-2161BU-0001_1.jpeg" width="100%" height="60%">
                 </a>
                 <div class="product-info">
                 <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
