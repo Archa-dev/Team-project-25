@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2024 at 03:02 AM
+-- Generation Time: Mar 13, 2024 at 03:14 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -59,7 +59,7 @@ CREATE TABLE `customerdetails` (
 
 INSERT INTO `customerdetails` (`user_id`, `customer_id`, `name`, `default_address`) VALUES
 (2, 1, 'Mark', 'ar'),
-(9, 8, 'defw', 'dewf'),
+(9, 8, 'defw', 'dewf');
 
 -- --------------------------------------------------------
 
@@ -95,8 +95,7 @@ INSERT INTO `logindetails` (`user_id`, `authorization_level`, `username`, `passw
 (1, 'admin', 'admin1', '$2y$10$s/CPs4CdgyNM7iw6DaDhVuKbd58UIHCKxxWn21zN8QTk6/qTUg.d2', 'admin1@xyzmail.com'),
 (2, 'customer', 'customer1', '$2y$10$urbv5YWeTcCTWaRufto1vu.YchMD8d22/G7moPiI.qehY.OlUmrHK', 'customer1@xyzmail.com'),
 (9, 'customer', 'dedfe', '$2y$10$nPGr7Ah/nEF3E7z1okoAVOsC1BoEg/j4eW21Dlmk5KkDj9c1Htyuy', 'mkdsa@email.com'),
-(12, 'customer', 'testing', '$2y$10$VacXwIqCYJvKOtEUAtJS0uaQLbxTebiEcmZI0TJMf5AtKd8xRB73K', 'testemail@gmail.com'),
-(13, 'customer', 'terry', '$2y$10$AYlRV82E6mkc1LeSdg25qOZrvrrmaK3cOl4VJxKNxExsYITeZTmYe', 'testing@gmail.com');
+(12, 'customer', 'testing', '$2y$10$VacXwIqCYJvKOtEUAtJS0uaQLbxTebiEcmZI0TJMf5AtKd8xRB73K', 'testemail@gmail.com');
 
 -- --------------------------------------------------------
 
