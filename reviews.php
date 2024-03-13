@@ -33,7 +33,46 @@
         </div>
     </div>
 
+    <style>
+        .container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
 
+.form-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    text-align: left;
+}
+
+textarea {
+    width: 100%;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+        </style>
 
     <script>
         function changeOptions() {
