@@ -69,13 +69,13 @@ main {
 .product-details {
     max-width: 100%;
     margin: 80px auto;
-    background-color: #003b46 ;
-    color: #fff;
+    background-color: #ccc ;
+    color: #000;
     padding: 10px;
 }
 
 .product {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #fff;
     padding: 15px 0;
     display: flex;
     justify-content: space-between;
