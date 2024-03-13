@@ -72,60 +72,184 @@ main {
     /* product-details.html styling */
 
 .product-details {
+  
+    position: relative;
     max-width: 100%;
     margin: 50px auto;
-    background-color: #fff ;
+    background-color: #fff;
     color: #003B46;
     padding: 20px;
     box-shadow: 0 0 10px #003B46;
-    border-radius : 5px;
+    border-radius: 5px;
     display: flex;
-   flex-direction: row;
-   align-items: flex-end;
-
+    flex-direction: row;
+    align-items: flex-end;
+    position: relative;
 
 }
-/* 
-.product {
-    border-bottom: 1px solid #fff;
-    padding: 15px 0;
+.product-information {
+  
+  position: relative;
+  max-width: 100%;
+  margin: 50px auto;
+  color: #003B46;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+ 
+}
+
+.product-price {
+    margin-top: 5px; /* Added margin between product name and price */
+}
+.product-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-} */
+    margin-bottom: 20px;
+}
+
+.product-item .product-details {
+    flex-grow: 1;
+}
+
+.product h5{
+    color: #003B46;
+    font-weight: bold;
+} 
 
 .product-info {
    display: flex;
    flex-direction: column;
+   margin-top: 20px;
    }
+
+   .product-info h5{
+  font-weight: bold;
+   }
+
+
+
+        .product img {
+            width: 200px; /* Adjust the size of the product image */
+            height: auto;
+            margin-right: 20px; /* Add some space between image and text */
+        }
 
 .sticky-footer-padding {
     margin-bottom: 8vh;
     /* Adjust the margin bottom to match the height of the footer */
 }
-#returnButton{
-    width: 20%;
-  background: #003B46;
-  color: #fff;
-  height: 40px;
-  border-radius: 5px;
-  font-size: 15px;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
-  transition: background 1s;
-  margin-bottom: 1px;
-  margin-left: 80%;
 
+.total-return-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
+
+
+#returnButton{
+    width: 250px; /* Adjust button width as needed */
+    margin-top: 10px; /* Add margin between total and button */
+    background: #003B46;
+    color: #fff;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+font-weight: bold;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+}
+
+
 
 #returnButton:hover {
   background-color: #07575B;
-  text-decoration: underline;
         background-color: #07575B;
         color: #fff;
 }
 
+    /* Return Form Styles */
+    #returnForm {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #003B46;
+        z-index: 1000;
+        max-width: 500px; /* Limit form width */
+        width: 90%; /* Adjust width as needed */
+    }
+
+    #returnForm h3 {
+        margin-bottom: 30px;
+        color: #003B46;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #returnForm label {
+        color: #003B46;
+        font-size: 18px; 
+    }
+
+    #returnForm input[type="text"],
+    #returnForm select {
+        width: calc(100% - 20px); /* Adjust width and compensate for padding */
+        padding: 15px; /* Increased padding */
+        margin-bottom: 20px; /* Increased margin */
+        border: 1px solid #ccc;
+        border-radius: 8px; /* Increased border radius */
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    #returnForm button[type="submit"]{
+        width: 100%; /* Make button width 100% */
+        margin-top: 20px; /* Add margin between select and button */
+        background-color: #003B46;
+        color: #fff;
+        padding: 15px; /* Adjust padding as needed */
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #returnForm button[type="submit"]:hover{
+        background-color: #07575B;
+    }
+
+    #closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #003B46;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#closeButton:hover {
+    background-color: #07575B;
+}
 
 /* Updated Footer Styles */
 .footer {
@@ -309,34 +433,72 @@ main {
         </nav>
 
     </header>
-
     <main class="sticky-footer-padding main-content">
     <h2><b>PRODUCT DETAILS</b></h2>
 
     <div class="container">
         <div class="product-details">
-
             <div class="product">
-                <img id="Image" src="glasses3.jpg" alt="Product Image" style="height: 300px; width: 300px">
+                <h5>ORDER #2333</h5>
                 <div class="product-info">
-                    
-                    <h5 id="ProductName"></h5>
-                    <p id="Price"></p>
-                    <p id="Quantity"></p>
-
-                    <!--remove -->
-                    <h5>Order #12346</h5>
-                    <p>Date: 13-11-2023</p>
-                    <p>Total: £365.00</p>
-                    <p><b>Status Of Order : Delivered </b> </p>
-                    
+                    <!-- Product 1 -->
+                    <div class="product-item">
+                        <img src="MK-2161BU-0001_1.jpeg" alt="Product Image 1">
+                        <div class="product-information">
+                            <h5>Product Name 1</h5>
+                            <p>£50.00</p>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="product-item">
+                        <img src="MK-2161BU-0001_1.jpeg" alt="Product Image 2">
+                        <div class="product-information">
+                            <h5>Product Name 2</h5>
+                            <p>£65.00</p>
+                        </div>
+                    </div>
                 </div>
-
+                <!-- Total and status of order -->
+                <div class="product-info total-return-container">
+                  
+                    <div class="return-section">
+                    <p><b>Total: £115.00</b></p>
+                        <p><b>STATUS OF ORDER: PROCESSING</b></p>
+                        <button id="returnButton">RETURN</button>
+                    </div>
+                </div>
             </div>
-            <button id="returnButton">RETURN</button>
-                    <!-- Additional information, e.g., card details, can be added here -->
-      </div>
-    </main>
+        </div>
+    </div>
+
+    <!-- Return Form -->
+<div id="returnForm" style="display: none;">
+    <div>
+    <button id="closeButton" onclick="closeForm()">CLOSE</button>
+        <h3>RETURN ITEMS</h3>
+     
+        <form id="returnItemsForm">
+           
+
+            <label for="products">Select Products to Return:</label><br>
+            <select id="products" name="products">
+                <option value="product1">Product 1</option>
+                <option value="product2">Product 2</option>
+                <!-- Add more options as needed -->
+            </select><br>
+            
+            <label for="reason">Reason for Return:</label><br>
+            <select id="products" name="products">
+            <option value="too_big_or_too_small">Too big or too small</option>
+        <option value="quality_not_as_expected">Quality not as expected</option>
+        <option value="missing_items">Missing items</option>
+        <option value="no_longer_needed">No longer needed</option>
+        <option value="wrong_items_received">Wrong items received</option>
+        </select><br><br>
+            <button type="submit">SUBMIT RETURN</button>
+        </form>
+   
+</main>
 
     <div class="container-fluid">
         <footer class="footer">
@@ -367,15 +529,48 @@ main {
         </footer>
     </div>
     <script>
-    // JavaScript code to handle the return button
-    document.getElementById('returnButton').addEventListener('click', function() {
-        // Show a confirmation dialog
-        var confirmation = confirm("Do you want to return this item?");
-        // If user confirms, perform the return action
-        if (confirmation) {
-            // You can add your return logic here
-            alert("Item returned successfully!"); // Example alert, replace with your logic
+   document.addEventListener("DOMContentLoaded", function() {
+        var statusOfOrder = "DELIVERED"; // Replace this with the actual status of the order
+
+        var returnButton = document.getElementById('returnButton');
+        var returnForm = document.getElementById('returnForm');
+        var closeButton = document.getElementById('closeButton');
+        var returnItemsForm = document.getElementById('returnItemsForm');
+
+        // Set initial button text based on the status of the order
+        if (statusOfOrder === "PROCESSING") {
+            returnButton.innerText = "CANCEL";
+        } else {
+            returnButton.innerText = "RETURN";
         }
+
+        // Add event listener to the return button
+        returnButton.addEventListener('click', function() {
+            if (statusOfOrder === "PROCESSING") {
+                // Perform cancel action
+                alert("Your order has been cancelled!");
+            } else {
+                // Display return form
+                returnForm.style.display = "block";
+            }
+        });
+
+        // Add event listener to close button of the return form
+        closeButton.addEventListener('click', function() {
+            returnForm.style.display = "none";
+        });
+
+        // Add event listener to handle form submission
+        returnItemsForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Display a confirmation message
+            alert("Your return has been submitted. Please check your email for return options.");
+
+
+               // Hide the return form
+               returnForm.style.display = "none";
+        });
     });
 </script>
 
