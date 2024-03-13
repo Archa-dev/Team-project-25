@@ -63,7 +63,8 @@ html {
 }
 
 main {
-    margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
+    margin-top: 11vh;
+margin-bottom: 60px;
 }
     
 /* Welcome Section Styles */
@@ -133,20 +134,29 @@ main {
 
     /* order history page Styles */
     .order-history {
-        justify-content: space-between;
-        align-items: center;
-        max-width: 87%;
-        padding: 10px;
-        margin: 50px;
+        justify-content: center; 
+    align-items: center;
+    max-width: 87%;
+    padding: 10px;
+    margin: 50px auto; 
     }
     
+    .order-history h2 {
+    font-size: 40px; 
+    padding-left: 220px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
     .order {
+        margin-top: 20px;
         border-bottom: 1px solid #ccc;
         padding: 15px 0;
         color: #003B46;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative; 
     }
     
     .order-details {
@@ -154,64 +164,115 @@ main {
     }
     h2{
         color: #003B46;
+       
+    }
+
+    .order-details h4 {
+        font-size: 20px;
+font-weight: bold;
     }
     
     /* View Details Button Styles */
     .view-details-btn {
-        background-color: #003B46;
-        color: #fff;
-        padding: 8px 15px;
-        border: none;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s, text-decoration 0.3s;
+        background-color: #003b46;
+    border: none;
+    color: #fff;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 80px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    white-space: nowrap;
     }
     
     .view-details-btn:hover {
-        text-decoration: underline;
+    
         background-color: #07575B;
         color: #fff;
     }
 
+    .additional-details {
+        display: none;
+    position: absolute; /* Change to relative */
+    bottom: -120%; /* Adjust this value as needed */
+    left: 0;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.additional-details img {
+    width: 100px; /* Set the width of the image */
+    height: 100px; /* Set the height of the image */
+    margin-bottom: 10px; /* Add some space below the image */
+}
+
+.additional-details p {
+    color: #003B46; /* Set text color */
+    font-size: 16px; /* Set font size */
+}
 
     .sticky-footer-padding {
     margin-bottom: 8vh;
     /* Adjust the margin bottom to match the height of the footer */
 }
 
-/* Updated Footer Styles */
+/* footer styles */
 .footer {
-            background-color: #003B46;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            font-size: 14px;
-            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
-        }
+    background-color: #003B46;
+    color: #fff;
+    padding: 20px 0; /* Add padding to the top and bottom */
+    bottom: 0; /* Stick the footer to the bottom */
+    width: 100%;
+  
+    
+}
 
-.social-icons a {
-            margin: 0 20px;
-            color: #fff;
-            font-size: 14px;
-        }
-.social-icons a:hover {
-        color : #07575B;
-        }
 
-.terms-links a {
-    margin-left: 5px;
-    color: #fff; 
+.footer-col {
+    width: 25%; /* Set the width of each column */
+    padding: 0 15px; /* Add horizontal padding */
+    padding-left: 80px;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.footer-col ul li a {
+    color: #fff;
     text-decoration: none;
 }
 
-.terms-links a:hover {
-    text-decoration: underline; /*  underlining on hover */
-    color: #07575B; /*  hover color */
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #fff;
+    font-size:16px;
 }
+
+.social-links a:hover {
+    color: #ccc;
+}
+
 
 </style>
 
@@ -397,20 +458,41 @@ main {
         <div class="profile-container">
         <div class="order-history">
         <h2 class="border-bottom pb-2"><b>MY ORDERS</b></h2>
-
-                <!-- brief order details-->
-                <div class="order">
+ 
+           
+                 <!-- placeholder order details-->
+                 <div class="order">
                     <div class="order-details">
-                        <h5>Order</h5>
+                        <h4>Order 4842</h4>
                         <p>Date: </p>
                         <p>Total: £</p>
                     </div>
                     <!-- button that redirects to the product details page-->
-                    <button class="view-details-btn" onclick="redirectToProductDetails()">View Details</button>
+                    <button class="view-details-btn" onclick="redirectToProductDetails()">VIEW DETAILS</button>
                 </div>
            
-
-            <!-- Add more orders-->
+            <!-- placeholder order details-->
+            <div class="order">
+                    <div class="order-details">
+                        <h4>Order 4842</h4>
+                        <p>Date: </p>
+                        <p>Total: £</p>
+                    </div>
+                    <!-- button that redirects to the product details page-->
+                    <button class="view-details-btn" onclick="redirectToProductDetails()">VIEW DETAILS</button>
+                </div>
+           
+                 <!-- placeholder order details-->
+                 <div class="order">
+                    <div class="order-details">
+                        <h4>Order 4842</h4>
+                        <p>Date: </p>
+                        <p>Total: £</p>
+                    </div>
+                    <!-- button that redirects to the product details page-->
+                    <button class="view-details-btn" onclick="redirectToProductDetails()">VIEW DETAILS</button>
+                </div>
+           
 
            
             </div>
@@ -418,42 +500,54 @@ main {
     </main>
 
 
-    <!--Bootstrap Container for Footer -->
-    
-    <div class="container-fluid">
-        <footer class="footer">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footer-text">
-                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="social-icons">
-                        <!--social media icons  -->
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="terms-links">
-                      <!--links do not redirect anywhere-->
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Cookies Policy</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    <footer class="footer">
+     <div class="container">
+     <div class="row">
+     <div class="footer-col">
+             <h4>&copyShaded | All Rights Reserved</h4>
+             <ul>
+             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
+             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
+             
+             </ul>
+     </div>
+     <div class="footer-col">
+            <h4>References</h4>
+            <ul>
+            <li><a href="References For Products.txt"  target="_blank" >Sunglasses Products</a></li>
+            <li><a href="Home & Login Media References.txt" target="_blank" >Homepage References </a></li>
+            <li><a href="Home & Login Media References.txt"  target="_blank" >Login/Signup References</a></li>
+            
+            </ul>
     </div>
+    <div class="footer-col">
+            <h4>Need Help?</h4>
+            <ul>
+                <li><a href="about.Us.php">About Us</a></li>
+                <li><a href="Contactus.php">Contact Us</a></li>
+                <li><a href="FAQs.html">FAQs</a></li>
+                
+            </ul>
+    </div>
+    <div class="footer-col">
+        <h4>follow us</h4>
+        <div class="social-links">
+            <a href="https://en-gb.facebook.com/"  target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/?lang=en-gb"  target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" ><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</div>
+</div>
+        </footer>
 
-    <script> function redirectToProductDetails(productId) {
+    <script> 
+    function redirectToProductDetails(productId) {
         window.location.href = 'product-details.php?id=' + productId;
             // JavaScript function to submit the form
   
     }
-    
+  
     </script>
 
 
@@ -461,4 +555,3 @@ main {
 
 </body>
 </html>
-
