@@ -1,24 +1,56 @@
-
-<!DOCTYPE html>
-<html lang="en">
 <?php
 require_once('connectdb.php');
 
 // Check if a color filter is set
 $colorFilter = isset($_POST['colorSelect']) ? $_POST['colorSelect'] : 'all';
 
-// Build the SQL query with the color filter
-$query = "SELECT * FROM productdetails";
+// Check if a category filter is set
+$categoryFilter = isset($_POST['categoryFilter']) ? $_POST['categoryFilter'] : 'all';
+
+
+// Check if a price range filter is set
+//$priceRange = isset($_POST['priceRange']) ? array_map('intval', explode('-', $_POST['priceRange'])) : array(20, 1000);
+if(isset($_POST['priceRange']) && is_array($_POST['priceRange']) && isset($_POST['priceRange'][0])) {
+    $splitElements = explode('-', $_POST['priceRange'][0]); 
+    $priceRange[0] = $splitElements[0];
+    $priceRange[1] = $splitElements[1];
+}
+// Extract min and max prices from the price range array
+$minPrice = isset($priceRange[0]) ? $priceRange[0] : 20;
+$maxPrice = isset($priceRange[1]) ? $priceRange[1] : 1000;
+//echo $maxPrice;
+// Build the SQL query with both category, color, and price range filters
+$query = "SELECT * FROM productdetails WHERE 1";
+
+// Build the SQL query with price range filter
+$query .= " AND price BETWEEN :minPrice AND :maxPrice";
+
+
+if ($categoryFilter !== 'all') {
+    $query .= " AND category = :category";
+}
 if ($colorFilter !== 'all') {
-    $query .= " WHERE colour = :color";
+    $query .= " AND colour = :color";
 }
 
+
+// Prepare the SQL statement
 $stmt = $db->prepare($query);
+
+// Bind the category parameter if it's set
+if ($categoryFilter !== 'all') {
+    $stmt->bindParam(':category', $categoryFilter, PDO::PARAM_STR);
+}
 
 // Bind the color parameter if it's set
 if ($colorFilter !== 'all') {
     $stmt->bindParam(':color', $colorFilter, PDO::PARAM_STR);
 }
+
+// Bind the price range parameters if it's set
+$stmt->bindParam(':minPrice', $minPrice, PDO::PARAM_INT);
+$stmt->bindParam(':maxPrice', $maxPrice, PDO::PARAM_INT);
+
 
 // Execute the query
 $result = $stmt->execute();
@@ -31,6 +63,10 @@ if (!$result) {
 // Fetch the results as an associative array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -396,18 +432,19 @@ h2 {
         
     }
 
-    .product-container {
-    width: 90%; /* Set the width of the container */
-    margin: auto; /* Center the container */
-    padding: 15px;
-    
-}
 
 /* footer styles */
 .footer {
     background-color: #003B46;
     color: #fff;
     padding: 20px 0; /* Add padding to the top and bottom */
+    
+}
+
+.product-container {
+    width: 90%; /* Set the width of the container */
+    margin: auto; /* Center the container */
+    padding: 15px;
     
 }
 
@@ -448,6 +485,9 @@ h2 {
 .social-links a:hover {
     color: #ccc;
 }
+
+
+
 </style>
 </head>
 <body>
@@ -473,7 +513,7 @@ h2 {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="images/Logo.png" alt="Shaded Logo">
+                    <img src="Logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -559,47 +599,49 @@ h2 {
         <h2>SHOP OUR SELECTION</h2>
 </div>
 
-<!-- filter colour options and button -->
-     <div class="filter-container">
-        <h3 class="filter-title">FILTER</h3>
+<div class="filter-container">
+    <h3 class="filter-title">FILTER</h3>
 
-    
-  <!-- Category filter -->
-  <div class="filter-option">
-        <label for="categoryFilter">Category:</label>
-        <select id="categoryFilter">
-            <option value="all">All</option>
-            <option value="mens">Mens</option>
-            <option value="womens">Womens</option>
-            <option value="unisex">Unisex</option>
-            <option value="futuristic">Futuristic</option>
-            <option value="bluelight">Bluelight</option>
-        </select>
-    </div>
+    <!-- Category filter -->
+    <form method="post" class="filter-option" action="" id="filterForm">
+    <label for="categoryFilter">Category:</label>
+    <select name="categoryFilter" id="categoryFilter">
+        <option value="all">All</option>
+        <option value="male">Mens</option>
+        <option value="female">Womens</option>
+        <option value="unisex">Unisex</option>
+        <option value="futuristic">Futuristic</option>
+        <option value="bluelight">Bluelight</option>
+    </select>
 
     <!-- Colour filter -->
-    <div class="filter-option">
-        <label for="colourFilter">Colour:</label>
-        <select id="colourFilter">
-            <option value="all">All Colours</option>
-            <option value="black">Black</option>
-            <option value="white">White</option>
-            <option value="yellow">Yellow</option>
-            <option value="brown">Brown</option>
-            <option value="green">Green</option>
-        </select>
-    </div>
+    <label for="colorSelect">Colour:</label>
+    <select name="colorSelect" id="colorSelect">
+        <option value="all">All Colours</option>
+        <option value="black">Black</option>
+        <option value="white">White</option>
+        <option value="yellow">Yellow</option>
+        <option value="brown">Brown</option>
+        <option value="green">Green</option>
+    </select>
 
     <!-- Price filter -->
     <div class="filter-option">
-    <label for="priceRange">Price Range:</label>
-    <div id="price-slider">
-    <input type="text" id="priceRange" readonly style="color:#003b46; font-weight:bold;">
-</div>
+        <label for="priceRange">Price Range:</label>
+        <div id="price-slider">
+            <input type="text" id="priceRange" readonly style="color:#003b46; font-weight:bold;">
+            <!-- Change the name attribute to "priceRange[]" to submit as an array -->
+            <input type="hidden" id="priceRangeHidden" name="priceRange[]" value="20-1000">
+        </div>
     </div>
 
     <!-- Apply filter button -->
-    <button class="filter-button" onclick="applyFilter()">SUBMIT</button>
+    <button class="filter-button" type="submit">SUBMIT</button>
+</form>
+</div>
+
+
+
 </div>
 
 
@@ -609,7 +651,7 @@ h2 {
         <?php foreach ($products as $product) : ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
             <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
-                <img src="images/MK-2161BU-0001_1.jpeg" width="100%" height="60%">
+                <img src="MK-2161BU-0001_1.jpeg" width="100%" height="60%">
                 </a>
                 <div class="product-info">
                 <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
@@ -683,6 +725,33 @@ h2 {
 
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+        // Add a click event listener to all buttons with the class 'buy-button'
+        document.querySelectorAll('.buy-button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Get the product ID
+                var productId = button.getAttribute('data-product-id');
+
+
+                // Set the values of the hidden input fields
+                document.getElementById('selectedProductId').value = productId;
+
+                // Submit the form
+                document.forms['buyForm'].submit();
+            });
+        });
+
+
+
+
+    // Function to handle product click
+    function buyProduct(productId) {
+    document.getElementById('selectedProductId').value = productId;
+    document.forms[0].submit(); // Change the form index accordingly
+}
+
+});
+
 window.addEventListener('scroll', function() {
     var sunIcon = document.getElementById('sun-icon');
     var navbarHeight = document.querySelector('header').offsetHeight;
@@ -749,26 +818,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    $( function() {
-    $( "#price-slider" ).slider({
-        range: true,
-        min: 20,
-        max: 1000,
-        values: [ 20, 1000 ],
-        slide: function( event, ui ) {
-            $( "#priceRange" ).val( "£" + ui.values[ 0 ] + " - £" + ui.values[ 1 ] );
-        }
-    });
-    $( "#priceRange" ).val( "£" + $( "#price-slider" ).slider( "values", 0 ) +
-        " - £" + $( "#price-slider" ).slider( "values", 1 ) );
-} );
+    $(function() {
+        // Initialize price range slider
+        $("#price-slider").slider({
+            range: true,
+            min: 20,
+            max: 1000,
+            values: [20, 1000],
+            slide: function(event, ui) {
+                $("#priceRange").val(ui.values[0] + "-" + ui.values[1]); // Update the value of priceRange input
+                $("#priceRangeHidden").val(ui.values[0] + "-" + ui.values[1]); // Update the hidden input
+            }
+        });
 
-priceRange.addEventListener('input', updatePriceRange);
+        // Initialize priceRange input value
+        var sliderValues = $("#price-slider").slider("values");
+        $("#priceRange").val(sliderValues[0] + "-" + sliderValues[1]);
+
+        // Update JavaScript variable when the input field is changed directly
+        $("#priceRange").change(function() {
+            var range = $(this).val().split("-");
+            $("#price-slider").slider("values", [parseInt(range[0]), parseInt(range[1])]);
+            $("#priceRangeHidden").val($(this).val()); // Update the hidden input
+        });
+    });
+
+
+
 
     // Function to handle product click
     function buyProduct(productId) {
         document.getElementById('selectedProductId').value = productId;
-        document.forms[1].submit();
+        document.getElementById('buyForm').submit();
     }
 </script>
 </body>
