@@ -51,7 +51,11 @@ html {
         }
     }
 }
-
+h2{
+    font-size: 40px;
+    text-align: center;
+    color: #003B46;
+}
 .logo img {
     max-width: 100%; /* Ensure the logo scales proportionally */
     max-height: 50px; /* Set the maximum height as needed */
@@ -66,26 +70,34 @@ main {
     margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
 }
     /* product-details.html styling */
+
 .product-details {
     max-width: 100%;
-    margin: 80px auto;
+    margin: 50px auto;
     background-color: #fff ;
     color: #003B46;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 0 10px #003B46;
-}
+    border-radius : 5px;
+    display: flex;
+   flex-direction: row;
+   align-items: flex-end;
 
+
+}
+/* 
 .product {
     border-bottom: 1px solid #fff;
     padding: 15px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 .product-info {
-    flex-grow: 1;
-}
+   display: flex;
+   flex-direction: column;
+   }
 
 .sticky-footer-padding {
     margin-bottom: 8vh;
@@ -102,12 +114,16 @@ main {
   outline: 0;
   cursor: pointer;
   transition: background 1s;
-  margin-bottom: 10px;
-  font-weight: bold;
+  margin-bottom: 1px;
+  margin-left: 80%;
+
 }
 
-#returnButton button:hover {
+#returnButton:hover {
   background-color: #07575B;
+  text-decoration: underline;
+        background-color: #07575B;
+        color: #fff;
 }
 
 
@@ -295,14 +311,15 @@ main {
     </header>
 
     <main class="sticky-footer-padding main-content">
+    <h2><b>PRODUCT DETAILS</b></h2>
+
     <div class="container">
         <div class="product-details">
-        <h2 class="border-bottom pb-2">Product Details</h2>
-
 
             <div class="product">
+                <img id="Image" src="glasses3.jpg" alt="Product Image" style="height: 300px; width: 300px">
                 <div class="product-info">
-                    <img id="Image" src="glasses3.jpg" alt="Product Image" style="height: 300px; width: 300px">
+                    
                     <h5 id="ProductName"></h5>
                     <p id="Price"></p>
                     <p id="Quantity"></p>
@@ -311,11 +328,14 @@ main {
                     <h5>Order #12346</h5>
                     <p>Date: 13-11-2023</p>
                     <p>Total: £365.00</p>
-                    <button id="returnButton">RETURN</button>
-                    <!-- Additional information, e.g., card details, can be added here -->
+                    <p><b>Status Of Order : Delivered </b> </p>
+                    
                 </div>
+
             </div>
-</div>
+            <button id="returnButton">RETURN</button>
+                    <!-- Additional information, e.g., card details, can be added here -->
+      </div>
     </main>
 
     <div class="container-fluid">
