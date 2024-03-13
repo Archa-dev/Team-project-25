@@ -3,13 +3,19 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2024 at 03:23 PM
+-- Generation Time: Mar 13, 2024 at 03:02 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `team project year 2`
@@ -23,16 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `basket` (
   `customer_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `basket`
 --
 
-INSERT INTO `basket` (`customer_id`, `product_id`) VALUES
-(1, 1),
-(1, 2);
+INSERT INTO `basket` (`customer_id`, `product_id`, `quantity`) VALUES
+(12, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -53,7 +59,7 @@ CREATE TABLE `customerdetails` (
 
 INSERT INTO `customerdetails` (`user_id`, `customer_id`, `name`, `default_address`) VALUES
 (2, 1, 'Mark', 'ar'),
-(9, 8, 'defw', 'dewf');
+(9, 8, 'defw', 'dewf'),
 
 -- --------------------------------------------------------
 
@@ -63,14 +69,9 @@ INSERT INTO `customerdetails` (`user_id`, `customer_id`, `name`, `default_addres
 
 CREATE TABLE `images` (
   `image_id` int(11) NOT NULL,
-  `filepath` varchar(255) DEFAULT NULL,
-  `file_name` varchar(255) DEFAULT NULL
+  `filepath` varchar(255) NOT NULL,
+  `file_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `images`
---
-
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,9 @@ CREATE TABLE `logindetails` (
 INSERT INTO `logindetails` (`user_id`, `authorization_level`, `username`, `password`, `email`) VALUES
 (1, 'admin', 'admin1', '$2y$10$s/CPs4CdgyNM7iw6DaDhVuKbd58UIHCKxxWn21zN8QTk6/qTUg.d2', 'admin1@xyzmail.com'),
 (2, 'customer', 'customer1', '$2y$10$urbv5YWeTcCTWaRufto1vu.YchMD8d22/G7moPiI.qehY.OlUmrHK', 'customer1@xyzmail.com'),
-(9, 'customer', 'dedfe', '$2y$10$nPGr7Ah/nEF3E7z1okoAVOsC1BoEg/j4eW21Dlmk5KkDj9c1Htyuy', 'mkdsa@email.com');
+(9, 'customer', 'dedfe', '$2y$10$nPGr7Ah/nEF3E7z1okoAVOsC1BoEg/j4eW21Dlmk5KkDj9c1Htyuy', 'mkdsa@email.com'),
+(12, 'customer', 'testing', '$2y$10$VacXwIqCYJvKOtEUAtJS0uaQLbxTebiEcmZI0TJMf5AtKd8xRB73K', 'testemail@gmail.com'),
+(13, 'customer', 'terry', '$2y$10$AYlRV82E6mkc1LeSdg25qOZrvrrmaK3cOl4VJxKNxExsYITeZTmYe', 'testing@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -131,9 +134,7 @@ CREATE TABLE `productdetails` (
   `price` decimal(6,2) NOT NULL,
   `stock` int(11) NOT NULL,
   `colour` enum('black','white','yellow','brown','green') NOT NULL,
-  `gender` enum('male','female','unisex') DEFAULT NULL,
-  `prescription` tinyint(1) DEFAULT NULL,
-  `blue_light` tinyint(1) DEFAULT NULL,
+  `category` enum('male','female','unisex','futuristic','blue_light') DEFAULT NULL,
   `image_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -141,32 +142,32 @@ CREATE TABLE `productdetails` (
 -- Dumping data for table `productdetails`
 --
 
-INSERT INTO `productdetails` (`product_id`, `product_name`, `price`, `stock`, `colour`, `gender`, `prescription`, `blue_light`, `image_id`) VALUES
-(1, 'Black Product 1', '29.99', 50, 'black', 'male', 1, 1, NULL),
-(2, 'Black Product 2', '39.99', 30, 'black', 'male', 0, 1, NULL),
-(3, 'Black Product 3', '49.99', 20, 'black', 'female', 1, 0, NULL),
-(4, 'Black Product 4', '59.99', 10, 'black', 'female', 0, 0, NULL),
-(5, 'Black Product 5', '69.99', 5, 'black', 'unisex', 1, 1, NULL),
-(6, 'White Product 1', '29.99', 50, 'white', 'male', 0, 1, NULL),
-(7, 'White Product 2', '39.99', 30, 'white', 'male', 1, 0, NULL),
-(8, 'White Product 3', '49.99', 20, 'white', 'female', 0, 0, NULL),
-(9, 'White Product 4', '59.99', 10, 'white', 'female', 1, 1, NULL),
-(10, 'White Product 5', '69.99', 5, 'white', 'unisex', 0, 1, NULL),
-(11, 'Yellow Product 1', '29.99', 50, 'yellow', 'male', 1, 0, NULL),
-(12, 'Yellow Product 2', '39.99', 30, 'yellow', 'male', 0, 0, NULL),
-(13, 'Yellow Product 3', '49.99', 20, 'yellow', 'female', 1, 1, NULL),
-(14, 'Yellow Product 4', '59.99', 10, 'yellow', 'female', 0, 1, NULL),
-(15, 'Yellow Product 5', '69.99', 5, 'yellow', 'unisex', 1, 0, NULL),
-(16, 'Brown Product 1', '29.99', 50, 'brown', 'male', 0, 0, NULL),
-(17, 'Brown Product 2', '39.99', 30, 'brown', 'male', 1, 1, NULL),
-(18, 'Brown Product 3', '49.99', 20, 'brown', 'female', 0, 1, NULL),
-(19, 'Brown Product 4', '59.99', 10, 'brown', 'female', 1, 0, NULL),
-(20, 'Brown Product 5', '69.99', 5, 'brown', 'unisex', 0, 0, NULL),
-(21, 'Green Product 1', '29.99', 50, 'green', 'male', 1, 1, NULL),
-(22, 'Green Product 2', '39.99', 30, 'green', 'male', 0, 1, NULL),
-(23, 'Green Product 3', '49.99', 20, 'green', 'female', 1, 0, NULL),
-(24, 'Green Product 4', '59.99', 10, 'green', 'female', 0, 0, NULL),
-(25, 'Green Product 5', '69.99', 5, 'green', 'unisex', 1, 1, NULL);
+INSERT INTO `productdetails` (`product_id`, `product_name`, `price`, `stock`, `colour`, `category`, `image_id`) VALUES
+(1, 'Black Product 1', '29.99', 50, 'black', 'male', NULL),
+(2, 'Black Product 2', '39.99', 30, 'black', 'male', NULL),
+(3, 'Black Product 3', '49.99', 20, 'black', 'female', NULL),
+(4, 'Black Product 4', '59.99', 10, 'black', 'female', NULL),
+(5, 'Black Product 5', '69.99', 5, 'black', 'unisex', NULL),
+(6, 'White Product 1', '29.99', 50, 'white', 'male', NULL),
+(7, 'White Product 2', '39.99', 30, 'white', 'male', NULL),
+(8, 'White Product 3', '49.99', 20, 'white', 'female', NULL),
+(9, 'White Product 4', '59.99', 10, 'white', 'female', NULL),
+(10, 'White Product 5', '69.99', 5, 'white', 'unisex', NULL),
+(11, 'Yellow Product 1', '29.99', 50, 'yellow', 'male', NULL),
+(12, 'Yellow Product 2', '39.99', 30, 'yellow', 'male', NULL),
+(13, 'Yellow Product 3', '49.99', 20, 'yellow', 'female', NULL),
+(14, 'Yellow Product 4', '59.99', 10, 'yellow', 'female', NULL),
+(15, 'Yellow Product 5', '69.99', 5, 'yellow', 'unisex', NULL),
+(16, 'Brown Product 1', '29.99', 50, 'brown', 'male', NULL),
+(17, 'Brown Product 2', '39.99', 30, 'brown', 'male', NULL),
+(18, 'Brown Product 3', '49.99', 20, 'brown', 'female', NULL),
+(19, 'Brown Product 4', '59.99', 10, 'brown', 'female', NULL),
+(20, 'Brown Product 5', '69.99', 5, 'brown', 'unisex', NULL),
+(21, 'Green Product 1', '29.99', 50, 'green', 'male', NULL),
+(22, 'Green Product 2', '39.99', 30, 'green', 'male', NULL),
+(23, 'Green Product 3', '49.99', 20, 'green', 'female', NULL),
+(24, 'Green Product 4', '59.99', 10, 'green', 'female', NULL),
+(25, 'Green Product 5', '69.99', 5, 'green', 'unisex', NULL);
 
 -- --------------------------------------------------------
 
@@ -267,7 +268,7 @@ ALTER TABLE `sitereviews`
 -- AUTO_INCREMENT for table `customerdetails`
 --
 ALTER TABLE `customerdetails`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `images`
@@ -279,7 +280,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `logindetails`
 --
 ALTER TABLE `logindetails`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `productdetails`
@@ -337,3 +338,7 @@ ALTER TABLE `productreviews`
 ALTER TABLE `sitereviews`
   ADD CONSTRAINT `sitereviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `logindetails` (`user_id`);
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
