@@ -69,9 +69,10 @@ main {
 .product-details {
     max-width: 100%;
     margin: 80px auto;
-    background-color: #ccc ;
-    color: #000;
+    background-color: #fff ;
+    color: #003B46;
     padding: 10px;
+    box-shadow: 0 0 10px #003B46;
 }
 
 .product {
@@ -91,11 +92,25 @@ main {
     /* Adjust the margin bottom to match the height of the footer */
 }
 #returnButton{
-            background-color: #07575B;
-            color: #fff;
-            border: #000;
-            cursor: pointer;
+    width: 20%;
+  background: #003B46;
+  color: #fff;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 15px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: background 1s;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
+
+#returnButton button:hover {
+  background-color: #07575B;
+}
+
+
 /* Updated Footer Styles */
 .footer {
             background-color: #003B46;
