@@ -311,7 +311,7 @@ main {
                     <h5>Order #12346</h5>
                     <p>Date: 13-11-2023</p>
                     <p>Total: £365.00</p>
-                    <button id="returnButton">Return</button>
+                    <button id="returnButton">RETURN</button>
                     <!-- Additional information, e.g., card details, can be added here -->
                 </div>
             </div>
