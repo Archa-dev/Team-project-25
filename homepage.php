@@ -363,8 +363,13 @@ h2{
     color: #ffffff;
 }
 
-.dark-mode .shopping-bag-popup{
+.dark-mode .shopping-bag-popup,
+.dark-mode .dropdown-menu{
     background-color: #000000;
+}
+
+.dark-mode .sidebar .nav-link:hover {
+    background-color: rgba(28, 122, 127, 0.7);
 }
 
 /* Footer Styles */
