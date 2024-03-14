@@ -23,12 +23,17 @@
     <label for="product">Select Product:</label>
     <br>
     <?php
+    $fromProduct = $_GET['fromProduct'];
     $selectOptionsDB = $db->prepare('SELECT product_name,product_id FROM productdetails');                            // select box containing every product as an option
     $selectOptionsDB->execute();
     $selectOptions = $selectOptionsDB->fetchAll(PDO::FETCH_ASSOC);
     echo "<select name='productSelected'>";
     foreach($selectOptions as $option){
-        echo "<option value='".$option['product_id']."'>".$option['product_name']."</option>";
+        if ($option['product_name'] == $fromProduct){
+            echo "<option value='".$option['product_id']."' selected>".$option['product_name']."</option>";
+        }
+        else{
+        echo "<option value='".$option['product_id']."'>".$option['product_name']."</option>";}
     }
     echo "</select>";
     ?>

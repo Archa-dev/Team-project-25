@@ -852,7 +852,9 @@ main {
 
 <script>
     document.getElementById("leave-review-btn").addEventListener("click", function() {
-  document.getElementById("review-form-popup").style.display = "block";
+//  document.getElementById("review-form-popup").style.display = "block";
+    var currentProduct = "<?= $item['product_name'] ?>";
+    window.location.href = "reviewPage.php?fromProduct=" + currentProduct;
 });
 
 document.getElementById("review-form").addEventListener("submit", function(event) {
