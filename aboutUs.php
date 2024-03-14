@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+         <!-- favicon -->
+         <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
     <style>
 
 html {
@@ -111,7 +112,7 @@ html {
             }
 
             .navbar-nav .nav-item {
-            margin-right: 8px; /* Add margin between navbar items */
+            margin-right: 8px; /* margin between navbar items */
         }
 
             .navbar-nav .nav-item .nav-link {
@@ -130,12 +131,12 @@ html {
 
 .logo img {
     max-width: 100%; /* Ensure the logo scales proportionally */
-    max-height: 50px; /* Set the maximum height as needed */
-    margin-left: auto; /* Center the logo horizontally */
+    max-height: 50px; 
+    margin-left: auto; /* Centers the logo horizontally */
 }
 
 .fas {
-    font-size: 15px;
+     font-size: 15px;/* icons */
 }
 
 /* Shopping Bag Popuop*/
@@ -164,13 +165,13 @@ html {
 }
 
 .shopping-bag-product img {
-    max-width: 120px; /* Set the maximum width of the image */
+    max-width: 120px; 
     height: auto; /* Maintain aspect ratio */
-    margin-right: 20px; /* Add spacing between the image and product details */
+    margin-right: 20px; /* Adds spacing between the image and product details */
 }
 
 .product-details {
-    flex: 1; /* Allow the product details to take up remaining space */
+    flex: 1; /* Allows the product details to take up remaining space */
     margin-bottom: 50px;
 }
 
@@ -178,7 +179,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px; /* Add spacing between the products and total price */
+    margin-top: 20px; /* Adds spacing between the products and total price */
 }
 
 .total-price .price-left {
@@ -228,7 +229,7 @@ html {
 
 /*Sun Icon*/
 #sun-icon {
-    position: fixed; /* Change position to fixed */
+    position: fixed;
     top: 100px; /* Initial top position */
     right: 10px;
     font-size: 32px;
@@ -240,8 +241,8 @@ html {
 
 /* CSS for dark mode */
 .dark-mode {
-    background-color: #000000; /* Change background color to black */
-    color: #ffffff; /* Change text color to white */
+    background-color: #000000; /* black */
+    color: #ffffff; /* text color white */
 }
 
 #dark-mode-toggle:hover{
@@ -249,12 +250,12 @@ html {
             }
 
 .dark-mode header {
-    background-color: #000000; /* Change navbar background color to black */
+    background-color: #000000; /*  navbar background color  black */
 }
 
 /* Update sun/moon icon styles */
 .dark-mode #dark-mode-toggle .fas {
-    color: #ffffff; /* Change color of moon icon to white */
+    color: #ffffff; /* Changes color of moon icon to white */
 }
 
 #dark-mode-toggle {
@@ -302,7 +303,7 @@ html {
 
         .main-content video {
         width: 100%; /* Set video width to fill the container */
-        height: auto; /* Automatically adjust height to maintain aspect ratio */
+        height: auto; /* Automatically adjusts height to maintain aspect ratio */
     }
 
         .text-overlay {
@@ -310,16 +311,59 @@ html {
             top: 30px; /* Adjust the top value to control the distance from the top */
             left: 30px; /* Adjust the left value to control the distance from the left */
             text-align: left;
-            color: #fff; /* Text color */
+            color: #fff; 
             font-size: 18px;
         }
 
         .about{
             padding: 30px;
-            margin-left: 30px;
-            margin-right: 30px;
-            max-width: 60%;
+    margin-left: 30px;
+    margin-right: 30px;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
         }
+
+        .about-content h5 {
+    margin-bottom: 20px;
+    max-width: 90%;
+}
+
+.about h5 {
+    margin-bottom: 20px;
+}
+
+.follow-journey {
+   margin-right:100px;
+   margin-top: 60px;
+   align-items: center;
+}
+
+.follow-journey h4 {
+    font-size: 36px; 
+    font-weight: bold;
+    margin-right: 20px;
+    color: #003B46; 
+    white-space: nowrap;
+}
+
+.social-lnks {
+    margin-top: 10px; /* separates the social links */
+    display: flex; 
+    align-items: center;
+}
+
+.social-lnks a {
+    margin-right: 10px;
+    color: #003B46;
+    font-size: 32px;
+    text-decoration: none;
+}
+
+.social-links a:last-child {
+    margin-right: 0;
+}
 
 /* Media query for smaller screens */
 @media (max-width: 767px) {
@@ -333,17 +377,17 @@ html {
 .footer {
     background-color: #003B46;
     color: #fff;
-    padding: 20px 0; /* Add padding to the top and bottom */
-    bottom: 0; /* Stick the footer to the bottom */
+    padding: 20px 0; /* Adds padding to the top and bottom */
+    bottom: 0; /* Sticks the footer to the bottom */
     width: 100%;
-    position: relative;
+    position: relative;  /* IMPORTANT*/
 }
 
 
 .footer-col {
-    width: 25%; /* Set the width of each column */
-    padding: 0 15px; /* Add horizontal padding */
-    padding-left: 80px;
+    width: 25%; /* Sets the width of each column */
+    padding: 0 15px; /* horizontal padding */
+    padding-left: 80px;/* left padding */
 }
 
 .footer-col h4 {
@@ -435,7 +479,7 @@ html {
                     <form class="d-flex" role="search">
                         <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
                         <button class="btn btn-outline-bg search-btn" type="submit">
-                            <a href="#" class="search-icon"">
+                            <a href="#" class="search-icon">
                                 <i class="fas fa-search"></i>
                             </a>
                         </button>
@@ -515,6 +559,7 @@ html {
         </nav>
     </header>
 
+    <!-- Lightmode/darkmode -->
     <div id="dark-mode-toggle">
         <a class="nav-link" href="#">
             <i class="fas fa-lightbulb"></i>
@@ -526,30 +571,45 @@ html {
     <div id="sun-icon">&#9728;</div>
 
     <div class="main-content">
+        <!-- top video -->
             <video src="videos/4.mp4" autoplay muted loop></video>
             <div class="text-overlay">
                     <h2 class="no-underline">About Shaded</h2>
                     <p class="no-underline">Welcome to Shaded – Where Style Meets UV Protection!</p>
             </div>
     </div>
-
+<!-- about paragraph and main content -->
         <div class="about">
-            <h5>Discover the perfect pair of sunglasses at Shaded, your go-to destination for fashion-forward eyewear. Our curated collection blends style with quality, offering trendy and classic designs with top-notch UV protection.
+        <div class="about-content">
+            <h5>At Shaded, our vision transcends the provision of sunglasses; it is a commitment to a lifestyle of elevation and unparalleled style whilst providing UV protection with uncompromising quality.
+                We strive to redefine the longstanding perception of sunglasses and have curated a selection that seamlessly blends the
+                world of fashion and vision protecton into one. We are dedicated in providing luxurious products that evry individual can feel
+                their most comfortable as well as complimenting their aesthetic.  Shaded embodies a philosophy of customer satisfaction, promising a seamless shopping experience 
+                 with dedicated support. Embrace the allure of well-designed shades and join us on our journey to redefine elegance and protection in eyewear.
+                  – shop at Shaded today!</h5>
 
-            Why Shaded?
+                  </div>
 
-            Diverse Selection: From classic aviators to trendy cat-eye frames, find the perfect shades for your style.
-            Affordable Luxury: Elevate your look without breaking the bank with our stylish and affordable sunglasses.
-            Customer Satisfaction: Our dedicated support team ensures a seamless shopping experience. Embrace the allure of well-chosen shades – shop at Shaded today!</h5>
+                  <div class="follow-journey">
+    <h4>Follow Our Journey:</h4>
+    <div class="social-lnks">
+    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        
+    </div>
+                  </div>
         </div>
-
+        
         
             <div class="main-content">
+                <!-- bottom video -->
             <video src="videos/5.mp4" autoplay muted loop></video>
             
     </div>
     </main>
 
+    <!-- All footer content -->
     <footer class="footer">
      <div class="container">
      <div class="row">
