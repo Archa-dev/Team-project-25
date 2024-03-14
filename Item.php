@@ -791,7 +791,7 @@ main {
 <div id="review-display">
     <h2>Reviews</h2>
 <?php
-// Fetch reviews from the database
+// displays reviews from the database
 $reviews = $db->prepare("SELECT * FROM `productreviews` WHERE `product_id` = ?;");
 $reviews->bindParam(1, $integerValue);
 $reviews->execute();
@@ -801,7 +801,7 @@ foreach ($reviews as $review) {
     $customerName->bindParam(1, $review['user_id']);
     $customerName->execute();
     $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
-    echo "<h3> Review by: " . $customerName['name'] . "</h4>";
+    echo "<h3> Review by: " . $customerName['name'] . "</h4>";            // this is how individual reviews are displayed, this is what needs to be changed for the formatting, although it may be easier to encapsulate this area in a div and use css only
     echo "<h3> Rating:  ". $review['star_rating'] . "</h4>";
     echo "<p>" . $review['review_text'] . "</p>";
 }
