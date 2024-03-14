@@ -11,140 +11,356 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <style>
-        html {
-            font-size: 100%;
-            scroll-behavior: smooth;
-        }
 
-        body {
-            font-family: "Century Gothic", sans-serif;
-            background-color: #ffffff;
-            margin: 0;
-            margin-bottom: 60px; /* Adjust this value to match the height of the footer */
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-            border: none;
-            text-decoration: none;
-            text-transform: capitalize;
-            transition: .2s linear;
-        }
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
 
-        header {
+    > body {
+        font-family: "Century Gothic", sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none; border: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: .2s linear;
+
+        > header {
             background: #ffffff;
             position: fixed;
             width: 100%;
             z-index: 1000;
             display: flex;
-            justify-content: space-between; /* Align logo to the left and nav to the right */
+            justify-content: space-between; 
             align-items: center;
-            top: 0;
-            left: 0;
-            right: 0;
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+            top: 0; left: 0; right: 0;
+            box-shadow: 0 0 12px #1c7a7f;
+
+            .navbar-nav {
+                font-size: 15px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            /* Search Box */
+            .search-box { 
+                border: 3px solid #003b46; 
+            }
+
+            .navbar .search-btn {
+                background-color: #003b46; 
+                border: none; 
+                transition: background-color 0.3s ease;
+                margin-right: 5px;
+            }
+
+            .navbar .search-icon {
+                color: #fff; 
+                text-decoration: none; 
+            }
+
+            .navbar .search-btn:hover {
+                background-color: #1c7a7f; 
+            }
+
+            /* Hide the dropdown arrow */
+            .navbar-nav .nav-item.dropdown > .nav-link::after {
+                display: none !important
+            }
+
+            .dropdown-item{
+                color: #003B46;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: bold;
+                transition: background-color 0.3s;  
+            }
+
+            .dropdown-item:hover{
+                color: #003B46;
+                background-color: rgba(28, 122, 127, 0.4);
+            }
+
+            .navbar-nav .nav-item {
+            margin-right: 8px; /* Add margin between navbar items */
         }
 
-        .navbar a {
-            font-size: 15px;
-            color: #000000;
-            text-decoration: none;
+            .navbar-nav .nav-item .nav-link {
+            color: #003b46; 
+            text-decoration: none; 
+            transition: color 0.3s ease, border-bottom-color 0.3s ease; 
         }
 
-        /* Hide the dropdown arrow */
-        .navbar-nav .nav-item.dropdown > .nav-link::after {
-            display: none !important
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #1c7a7f; 
+            border-bottom: 4px solid #1c7a7f; 
         }
-
-        .logo img {
-            max-width: 100%; /* Ensure the logo scales proportionally */
-            max-height: 50px; /* Set the maximum height as needed */
-            margin-left: auto; /* Center the logo horizontally */
         }
-
-        .fas {
-            font-size: 15px;/* icon */
-        }
-
-        main {
-            margin-top: 8vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            height: 100%;
-        }
-
-        .about-content {
-            max-width: fit-content;
-            margin: 50px auto;
-            padding: 20px;
-            
-        }
-
-        .about-content h2 {
-            color: #003b46;
-            text-align: center;
-            font-size: 40px;
-            margin-bottom: 50px;
-        }
-
-        .about-content p {
-            padding: 20px;
-            margin-right: 100px;
-            margin-left: 100px;
-            font-size: 20px;
-            margin-bottom: 10px;
-            background-color: #dedede; 
-            border-radius: 10px; 
-        }
-
-        .about-us-model {
-            padding: 20px;
-            margin-right: 200px;
-            margin-left: 200px;
-            font-size: 20px;
-            margin-bottom: 100px;
-            background-color: #dedede; 
-            border-radius: 10px;
-            height: 250px;
-        }
-
-
-
-        .sticky-footer-padding {
-            margin-bottom: 8vh;
-            /* Adjust the margin bottom to match the height of the footer */
-        }
-
-        /* Updated Footer Styles */
-        .footer {
-         background-color: #003b46; /* Changed background color */
-            color: rgb(255, 255, 255);
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            font-size: 14px;
-            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    }
 }
 
-        .social-icons a {
-            margin: 0 20px;
-            color: rgb(255, 255, 255);
-            font-size: 14px;
+.logo img {
+    max-width: 100%; /* Ensure the logo scales proportionally */
+    max-height: 50px; /* Set the maximum height as needed */
+    margin-left: auto; /* Center the logo horizontally */
+}
+
+.fas {
+    font-size: 15px;
+}
+
+/* Shopping Bag Popuop*/
+.shopping-bag-popup {
+    position: fixed;
+    top: 80px;
+    right: -400px; /* Initially hidden */
+    width: 350px;
+    max-height: 100vh; /* Limit the maximum height to 80% of the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    background-color: #fff;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    padding: 20px;
+}
+
+.shopping-bag-popup.show {
+    right: 0; /* Slide in from the right */
+}
+
+.shopping-bag-product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.shopping-bag-product img {
+    max-width: 120px; /* Set the maximum width of the image */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add spacing between the image and product details */
+}
+
+.product-details {
+    flex: 1; /* Allow the product details to take up remaining space */
+    margin-bottom: 50px;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Add spacing between the products and total price */
+}
+
+.total-price .price-left {
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.total-price .price-right {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.shopping-bag-popup h4{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.shopping-bag-popup h5{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.shopping-bag-popup p{
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: lighter;
+}
+
+.remove-link {
+    top: 0;
+    right: 0;
+    color: #003B46;
+    font-size: 12px; /* Adjust font size as desired */
+}
+
+.product-details .remove-link:hover {
+    color: #1c7a7f;
+}
+
+.btn-primary {
+    background-color: #003b46; /* Dark blue */
+        color: #fff; /* White text */
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 15px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #07575b;
+}
+
+/*Sun Icon*/
+#sun-icon {
+    position: fixed; /* Change position to fixed */
+    top: 100px; /* Initial top position */
+    right: 10px;
+    font-size: 32px;
+    color: yellow; /* Initial color of the sun icon */
+    text-shadow: 0 0 10px black; /* Add outline */
+    z-index: 900; /* Ensure it appears above the navbar */
+    transition: top 0.1s ease, color 0.2s linear; /* Transition for smooth movement and color change */
+}
+
+/* CSS for dark mode */
+.dark-mode {
+    background-color: #000000; /* Change background color to black */
+    color: #ffffff; /* Change text color to white */
+}
+
+#dark-mode-toggle:hover{
+    background-color: #1c7a7f; /* Text color on hover */
+            }
+
+.dark-mode header {
+    background-color: #000000; /* Change navbar background color to black */
+}
+
+/* Update sun/moon icon styles */
+.dark-mode #dark-mode-toggle .fas {
+    color: #ffffff; /* Change color of moon icon to white */
+}
+
+#dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #003b46;
+    border: 3px solid #003b46;
+    border-radius: 40%; /* Make it circular */
+    padding: 12px;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+#dark-mode-toggle .fas {
+    color: #ffffff;
+}
+
+.dark-mode .shopping-bag-popup,
+.dark-mode .dropdown-menu{
+    background-color: #000000;
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: rgba(28, 122, 127, 0.7);
+}
+
+        main {
+            margin-top: 90px;
         }
 
-        .terms-links a {
-            margin-left: 5px;
-            color: #ffffff;
-            text-decoration: none;
+        .main-content {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            padding: 10px;
+            margin-left: 30px;
+            margin-right: 30px;
         }
 
-        .terms-links a:hover {
-            text-decoration: underline; /* underlining on hover */
-            color: #a3a3a3; /*  hover color */
+        .main-content h2 {
+            font-size: 50px;
+            font-weight: bold;
+            margin-top: 20%;
         }
+
+        .main-content video {
+        width: 100%; /* Set video width to fill the container */
+        height: auto; /* Automatically adjust height to maintain aspect ratio */
+    }
+
+        .text-overlay {
+            position: absolute;
+            top: 30px; /* Adjust the top value to control the distance from the top */
+            left: 30px; /* Adjust the left value to control the distance from the left */
+            text-align: left;
+            color: #fff; /* Text color */
+            font-size: 18px;
+        }
+
+        .about{
+            padding: 30px;
+            margin-left: 30px;
+            margin-right: 30px;
+            max-width: 60%;
+        }
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+    .text-overlay {
+        left: 50%; /* Center the text horizontally on smaller screens */
+        transform: translateX(-50%);
+    }
+}
+
+       /* footer styles */
+.footer {
+    background-color: #003B46;
+    color: #fff;
+    padding: 20px 0; /* Add padding to the top and bottom */
+    bottom: 0; /* Stick the footer to the bottom */
+    width: 100%;
+    
+}
+
+
+.footer-col {
+    width: 25%; /* Set the width of each column */
+    padding: 0 15px; /* Add horizontal padding */
+    padding-left: 80px;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.footer-col ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #fff;
+    font-size:16px;
+}
+
+.social-links a:hover {
+    color: #ccc;
+}
     </style>
 
 </head>
@@ -161,203 +377,273 @@
         <!-- using container-fluid for responsiveness -->
         <div class="container-fluid">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenuItems"
-                    aria-controls="navbarMenuItems" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenuItems" aria-controls="navbarMenuItems" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
             <a href="homepage.php" class="navbar-brand logo">
-                <img src="shaded logo.png" alt="Shaded Logo">
+                <img src="images/logo.png" alt="Shaded Logo">
             </a>
             <div class="collapse navbar-collapse" id="navbarMenuItems">
 
                 <!-- navbar to the left of the search box -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Men
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Men's Green Sunglasses</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Women
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Women's Black Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Women's White Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Women's Yellow Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Women's Brown Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Women's Green Sunglasses</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Unisex
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Unisex Black Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Unisex White Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Unisex Yellow Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Unisex Brown Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Unisex Green Sunglasses</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Prescription
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Prescription Black Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Prescription White Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Prescription Yellow Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Prescription Brown Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Prescription Green Sunglasses</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Blue Light
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Blue Light Black Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Blue Light White Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Blue Light Yellow Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Blue Light Brown Sunglasses</a></li>
-                            <li><a class="dropdown-item" href="#">Blue Light Green Sunglasses</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="aboutUs.php">About Us</a>
-                    </li>
-                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Men</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Women</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Unisex</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Futuristic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Blue Light</a>
+                        </li>
 
-                <!-- search box -->
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                           id="mySearchInput">
-                    <button class="btn btn-outline-bg" type="submit">
-                        <a href="#">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </button>
-                </form>
+                        <li class="nav-item">
+                            <a class="nav-link" href="aboutUs.php">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contactus.php">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reviews.php">Reviews</a>
+                        </li>
+                    </ul>
 
-                <!-- navbar to the right of the search box -->
-                <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
-                            <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
-                            <li><a class="dropdown-item" href="homepage.php">Logout</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="login.php">Log In</a></li>
-                            <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            <i class="fas fa-heart"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item">View Wishlist</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                    <!-- search box -->
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+                        <button class="btn btn-outline-bg search-btn" type="submit">
+                            <a href="#" class="search-icon"">
+                                <i class="fas fa-search"></i>
+                            </a>
+                        </button>
+                    </form>
+
+                    <!-- navbar to the right of the search box -->
+                    <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> <!-- Assuming a user icon for admin/user -->
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
+                                <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
+                                <li><a class="dropdown-item" href="login.php">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="wishlist.php">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="shopping-bag-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </a>
+                            <div id="shopping-bag-popup" class="shopping-bag-popup">
+                            <h4>Your Selection (1)</h4>
+                                    <!-- Product 1 -->
+                                <div class="shopping-bag-product">
+                                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product 1">
+                                    <div class="product-details">
+                                        <h5>Black Product 1</h5>
+                                        <p>Price: £29.99</p>
+                                        <p>Colour: Black</p>
+                                        <p>Quantity: 1</p>
+                                        <div><a href="#" class="remove-link">Remove</a></div>
+                                    </div>
+                                </div>
+
+                                 <!-- Product 2 -->
+                                <div class="shopping-bag-product">
+                                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product 2">
+                                    <div class="product-details">
+                                        <h5>White Product 1</h5>
+                                        <p>Price: £39.99</p>
+                                        <p>Colour: White</p>
+                                        <p>Quantity: 2</p>
+                                    <div><a href="#" class="remove-link">Remove</a></div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- Total Price -->
+                                <div class="total-price">
+                                    <div class="price-left">Total Price:</div>
+                                    <div class="price-right">£69.98</div>
+                                </div>
+
+                                <div class="buttons">
+                                    <a href="basket.php" class="btn btn-primary">VIEW SHOPPING BAG</a>
+                                    <a href="checkout.php" class="btn btn-primary">PROCEED TO CHECKOUT</a>
+                                </div>
+                              <!-- <p>Your shopping bag is empty.</p> -->
+                            </div>
+                        </li>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-</header>
+    <div id="dark-mode-toggle">
+        <a class="nav-link" href="#">
+            <i class="fas fa-lightbulb"></i>
+        </a>
+    </div>
 
-<main class="sticky-footer-padding"></main>
-<!-- Page content. Using placeholder text for now-->
-<section>
+    <main>
 
-    <div class="about-content">
+    <div id="sun-icon">&#9728;</div>
 
-        <h2>ABOUT US</h2>
-        <p>Welcome to Shaded – Where Style Meets UV Protection!
+    <div class="main-content">
+            <video src="videos/4.mp4" autoplay muted loop></video>
+            <div class="text-overlay">
+                    <h2 class="no-underline">About Shaded</h2>
+                    <p class="no-underline">Welcome to Shaded – Where Style Meets UV Protection!</p>
+            </div>
+    </div>
 
-            Discover the perfect pair of sunglasses at Shaded, your go-to destination for fashion-forward eyewear. Our curated collection blends style with quality, offering trendy and classic designs with top-notch UV protection.
+        <div class="about">
+            <h5>Discover the perfect pair of sunglasses at Shaded, your go-to destination for fashion-forward eyewear. Our curated collection blends style with quality, offering trendy and classic designs with top-notch UV protection.
 
             Why Shaded?
 
             Diverse Selection: From classic aviators to trendy cat-eye frames, find the perfect shades for your style.
-
             Affordable Luxury: Elevate your look without breaking the bank with our stylish and affordable sunglasses.
-
-            Customer Satisfaction: Our dedicated support team ensures a seamless shopping experience. Embrace the allure of well-chosen shades – shop at Shaded today!</p>
-        
-    </div>
-
-<!-- Box for 3D model section -->
-<div class="about-us-model">
-    <!-- 3D MODEL TO BE ADDED -->
-</div>
-</section>
-
-</section>
-
-<!-- Bootstrap Container for Footer -->
-<div class="container-fluid">
-    <footer class="footer">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="footer-text">
-                    <p>&copy;Shaded-2023 | All Rights Reserved</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="social-icons">
-                    <!-- social media icons  -->
-                    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="terms-links">
-                    <!-- links do not redirect anywhere -->
-                    <a href="#">Terms of Use</a>
-                    <a href="#">Cookies Policy</a>
-                </div>
-            </div>
+            Customer Satisfaction: Our dedicated support team ensures a seamless shopping experience. Embrace the allure of well-chosen shades – shop at Shaded today!</h5>
         </div>
-    </footer>
+
+        
+            <div class="main-content">
+            <video src="videos/5.mp4" autoplay muted loop></video>
+            
+    </div>
+    </main>
+
+    <footer class="footer">
+     <div class="container">
+     <div class="row">
+     <div class="footer-col">
+             <h4>&copyShaded | All Rights Reserved</h4>
+             <ul>
+             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
+             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
+             
+             </ul>
+     </div>
+     <div class="footer-col">
+            <h4>References</h4>
+            <ul>
+            <li><a href="References For Products.txt"  target="_blank" >Sunglasses Products</a></li>
+            <li><a href="Home & Login Media References.txt" target="_blank" >Homepage References </a></li>
+            <li><a href="Home & Login Media References.txt"  target="_blank" >Login/Signup References</a></li>
+            
+            </ul>
+    </div>
+    <div class="footer-col">
+            <h4>Need Help?</h4>
+            <ul>
+                <li><a href="aboutUs.php">About Us</a></li>
+                <li><a href="Contactus.php">Contact Us</a></li>
+                <li><a href="FAQs.html">FAQs</a></li>
+                
+            </ul>
+    </div>
+    <div class="footer-col">
+        <h4>follow us</h4>
+        <div class="social-links">
+            <a href="https://en-gb.facebook.com/"  target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/?lang=en-gb"  target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" ><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
 </div>
+</div>
+        </footer>
+
+<!-- JavaScript for Scroll Icon -->
+<script>
+      window.addEventListener('scroll', function() {
+    var sunIcon = document.getElementById('sun-icon');
+    var navbarHeight = document.querySelector('header').offsetHeight;
+    var footerHeight = document.querySelector('footer').offsetHeight;
+    var scrollPosition = window.scrollY;
+    var windowHeight = window.innerHeight;
+    var bodyHeight = document.body.clientHeight;
+
+    // Calculate the position of the sun icon based on scroll position
+    var maxScroll = bodyHeight - windowHeight;
+    var visibleHeight = windowHeight - navbarHeight - footerHeight;
+    var newPosition = Math.min(Math.max((scrollPosition - navbarHeight) / (maxScroll - navbarHeight - visibleHeight), 0), 1) * (visibleHeight - 40) + navbarHeight;
+
+    // Adjust the sun icon's top position
+    sunIcon.style.top = newPosition + 'px';
+
+    // Calculate the ratio of scroll position to the total scroll height
+    var scrollRatio = (scrollPosition - navbarHeight) / (maxScroll - navbarHeight - visibleHeight);
+
+    // Calculate color gradient between yellow (#FFFF00) and black (#000000)
+    var red = 255 - (255 * scrollRatio);
+    var green = 255 - (255 * scrollRatio);
+    var blue = 0;
+
+    // Set the color of the sun icon
+    sunIcon.style.color = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+});
+
+// Set initial position of the sun icon below the navbar
+window.addEventListener('DOMContentLoaded', function() {
+    var sunIcon = document.getElementById('sun-icon');
+    var navbarHeight = document.querySelector('header').offsetHeight;
+    sunIcon.style.top = navbarHeight + 'px';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    darkModeToggle.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+        // Toggle icon between light bulb and moon
+        darkModeToggle.querySelector('i').classList.toggle('fa-lightbulb');
+        darkModeToggle.querySelector('i').classList.toggle('fa-moon');
+    });
+});
+</script>
+
+<script>
+document.getElementById('shopping-bag-icon').addEventListener('click', function() {
+  const popup = document.getElementById('shopping-bag-popup');
+  popup.classList.toggle('show');
+});
+
+    document.addEventListener('click', function(event) {
+        const popup = document.getElementById('shopping-bag-popup');
+        const shoppingBagIcon = document.getElementById('shopping-bag-icon');
+        const isClickInsidePopup = popup.contains(event.target);
+        const isClickOnIcon = shoppingBagIcon.contains(event.target);
+
+        if (!isClickInsidePopup && !isClickOnIcon) {
+            popup.classList.remove('show');
+        }
+    });
+    </script>
 </body>
 </html>
