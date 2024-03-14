@@ -480,7 +480,6 @@ section {
     padding: 20px 40px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -718,7 +717,7 @@ section {
 
     <div class="profile-container">
     <div class="profile-details">
-            <h2>My Profile</h2>
+            <h2>MY PROFILE</h2>
 
 <!-- Display Profile Details -->
             <div class="row">
@@ -776,7 +775,7 @@ section {
 <!-- Edit Profile Modal -->
 <div id="editProfileModal" class="edit-modal">
     <span class="modal-close" onclick="closeEditProfileModal()">&times;</span>
-    <h2>Edit Profile</h2>
+    <h2>EDIT PROFILE</h2>
     <form id="editProfileForm" onsubmit="return saveChanges()">
     <div class="row">
             <div class="col-md-6 mb-3">
