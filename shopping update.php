@@ -103,9 +103,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- icon styles for filter colour options -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
    
@@ -183,7 +184,7 @@ html {
             }
 
             .navbar-nav .nav-item {
-            margin-right: 8px; /* Add margin between navbar items */
+            margin-right: 8px; /* Adds margin between navbar items */
         }
 
             .navbar-nav .nav-item .nav-link {
@@ -201,23 +202,23 @@ html {
 }
 
 .logo img {
-    max-width: 100%; /* Ensure the logo scales proportionally */
-    max-height: 50px; /* Set the maximum height as needed */
-    margin-left: auto; /* Center the logo horizontally */
+    max-width: 100%; 
+    max-height: 50px; 
+    margin-left: auto; 
 }
 
 .fas {
     font-size: 15px;
 }
 
-/* Shopping Bag Popuop*/
+/* Shopping Bag Popup*/
 .shopping-bag-popup {
     position: fixed;
     top: 80px;
     right: -400px; /* Initially hidden */
     width: 350px;
-    max-height: 85vh; /* Limit the maximum height to 80% of the viewport height */
-    overflow-y: auto; /* Enable vertical scrolling if needed */
+    max-height: 85vh; 
+    overflow-y: auto; /* Enables vertical scrolling if needed */
     background-color: #fff;
     z-index: 1000;
     transition: right 0.3s ease;
@@ -225,7 +226,7 @@ html {
 }
 
 .shopping-bag-popup.show {
-    right: 0; /* Slide in from the right */
+    right: 0; /* Slides in from the right */
 }
 
 .shopping-bag-product {
@@ -236,13 +237,13 @@ html {
 }
 
 .shopping-bag-product img {
-    max-width: 120px; /* Set the maximum width of the image */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 20px; /* Add spacing between the image and product details */
+    max-width: 120px; 
+    height: auto; /* Maintains aspect ratio */
+    margin-right: 20px; /* Adds spacing between the image and product details */
 }
 
 .product-details {
-    flex: 1; /* Allow the product details to take up remaining space */
+    flex: 1; /* Allows the product details to take up remaining space */
     margin-bottom: 50px;
 }
 
@@ -250,7 +251,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px; /* Add spacing between the products and total price */
+    margin-top: 20px; /* Adds spacing between the products and total price */
 }
 
 .total-price .price-left {
@@ -300,20 +301,20 @@ html {
 
 /*Sun Icon*/
 #sun-icon {
-    position: fixed; /* Change position to fixed */
+    position: fixed; 
     top: 100px; /* Initial top position */
     right: 10px;
     font-size: 32px;
-    color: yellow; /* Initial color of the sun icon */
-    text-shadow: 0 0 10px black; /* Add outline */
-    z-index: 900; /* Ensure it appears above the navbar */
+    color: yellow; 
+    text-shadow: 0 0 10px black; 
+    z-index: 900; /* Ensures it appears above the navbar */
     transition: top 0.1s ease, color 0.2s linear; /* Transition for smooth movement and color change */
 }
 
 /* CSS for dark mode */
 .dark-mode {
-    background-color: #000000; /* Change background color to black */
-    color: #ffffff; /* Change text color to white */
+    background-color: #000000; /*background color black */
+    color: #ffffff; /*text color white */
 }
 
 #dark-mode-toggle:hover{
@@ -321,12 +322,12 @@ html {
             }
 
 .dark-mode header {
-    background-color: #000000; /* Change navbar background color to black */
+    background-color: #000000; /*  navbar background color black */
 }
 
 /* Update sun/moon icon styles */
 .dark-mode #dark-mode-toggle .fas {
-    color: #ffffff; /* Change color of moon icon to white */
+    color: #ffffff; /* Changes color of moon icon to white */
 }
 
 #dark-mode-toggle {
@@ -335,9 +336,9 @@ html {
     right: 20px;
     background-color: #003b46;
     border: 3px solid #003b46;
-    border-radius: 40%; /* Make it circular */
+    border-radius: 40%; /* Makes it circular */
     padding: 12px;
-    z-index: 1000; /* Ensure it appears above other content */
+    z-index: 1000; /* Ensures it appears above other content */
 }
 
 #dark-mode-toggle .fas {
@@ -364,23 +365,23 @@ html {
 }
 
 main {
-    margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
+    margin-top: 90px; 
     margin-bottom: 300px;
 }
 
 .return-link {
     position: absolute;
-    top: 90px; /* Adjust this value based on your navbar height */
+    top: 90px; 
     left: 20px;
     font-size: 14px;
     font-weight: bold;
-    color: #003b46; /* Adjust the color as needed */
+    color: #003b46; 
     text-decoration: none;
-    z-index: 1000; /* Ensure it appears above other content */
+    z-index: 1000; /* Ensures it appears above other content */
 }
 
 .return-link i {
-    margin-right: 5px; /* Adjust the spacing between the icon and the text */
+    margin-right: 5px; /* spacing between the icon and the text */
 }
 
 .return-link:hover {
@@ -398,8 +399,8 @@ main {
     bottom: 190px;
     border-radius: 5px;
     z-index: 200;
-    max-height: calc(100vh - 200px); /* Adjust the value as needed */
-    transition: top 0.3s ease; /* Add smooth transition */
+    max-height: calc(100vh - 200px); 
+    transition: top 0.3s ease; /* Adds smooth transition */
     box-shadow: 0 0 12px #1c7a7f;
     }
 
@@ -422,7 +423,7 @@ main {
 }
 
 .filter-option select:focus {
-    outline: none; /* Remove focus outline */
+    outline: none; /* Removes focus outline */
     border-color: #003B46; /* blue border color on focus */
 }
 
@@ -487,7 +488,7 @@ main {
     border:none;
 }
 
-/* Adjust position of the price range label and slider */
+/* position of the price range label and slider */
 #price-container {
     position: relative; 
 }
@@ -566,14 +567,14 @@ h2 {
 }
 
     .price {
-        margin-top: 5px; /* Adds margin between the product name and the price */
+        margin-top: 5px; /* margin between the product name and the price */
         text-align: left;
         
     }
 
     .product-container {
-    width: 90%; /* Set the width of the container */
-    margin: auto; /* Center the container */
+    width: 90%; 
+    margin: auto; /* Centers the container */
     padding: 15px;
     
 }
@@ -582,17 +583,17 @@ h2 {
 .footer {
     background-color: #003B46;
     color: #fff;
-    padding: 20px 0; /* Add padding to the top and bottom */
-    bottom: 0; /* Stick the footer to the bottom */
+    padding: 20px 0; /* Adds padding to the top and bottom */
+    bottom: 0; /* Sticks the footer to the bottom */
     width: 100%;
     position: relative;
 }
 
 
 .footer-col {
-    width: 25%; /* Set the width of each column */
-    padding: 0 15px; /* Add horizontal padding */
-    padding-left: 80px;
+    width: 25%; /*width of each column */
+    padding: 0 15px; /*horizontal padding */
+    padding-left: 80px;/*left padding */
 }
 
 .footer-col h4 {
@@ -658,7 +659,7 @@ h2 {
 
                    <!-- navbar to the left of the search box -->
                    <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                        <!-- Modify your category links in the HTML to include onclick event handlers -->
+                        
                         <li class="nav-item">
                             <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
@@ -690,7 +691,7 @@ h2 {
                     <form class="d-flex" role="search">
                         <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
                         <button class="btn btn-outline-bg search-btn" type="submit">
-                            <a href="#" class="search-icon"">
+                            <a href="#" class="search-icon">
                                 <i class="fas fa-search"></i>
                             </a>
                         </button>
@@ -968,7 +969,7 @@ window.addEventListener('scroll', function() {
     var green = 255 - (255 * scrollRatio);
     var blue = 0;
 
-    // Set the color of the sun icon
+    // color of the sun icon
     sunIcon.style.color = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
 });
 
@@ -1046,7 +1047,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create a form element dynamically
         var form = document.createElement('form');
         form.method = 'post';
-        form.action = 'shopping.php'; // Shopping.php is the target page
+        form.action = 'shopping.php'; 
         
         // Create an input element to hold the category filter value
         var input = document.createElement('input');
@@ -1054,7 +1055,7 @@ document.addEventListener('DOMContentLoaded', function() {
         input.name = 'categoryFilter';
         input.value = category;
         
-        // Append the input element to the form
+        // Append the input element to the forms
         form.appendChild(input);
         
         // Append the form to the document body and submit it
