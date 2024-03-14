@@ -604,7 +604,7 @@ h2{
     <div class="row">
         <div class="col-md-6">
             <div class="video-container">
-            <video src="videos/2.mp4" autoplay muted loop></video>
+            <video src="videos2/2.mp4" autoplay muted loop></video>
                 <div class="text-overlay">
                     <a href="shopping.php" class="custom-link no-underline">
                         <h2 class="no-underline">Men's Sunglasses</h2>
@@ -617,7 +617,7 @@ h2{
         </div>
         <div class="col-md-6">
             <div class="video-container">
-            <video src="videos/3.mp4" autoplay muted loop></video>
+            <video src="videos2/3.mp4" autoplay muted loop></video>
                 <div class="text-overlay">
                     <a href="#" class="custom-link no-underline">
                         <h2 class="no-underline">Women's Sunglasses</h2>
