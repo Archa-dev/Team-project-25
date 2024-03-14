@@ -248,7 +248,6 @@ html {
 /*Homepage Content*/
 main {
     margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
-    margin-bottom: 300px;
 }
 /* Additional styles for the main content images and text overlay */
 .main-content {
