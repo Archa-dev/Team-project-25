@@ -53,7 +53,7 @@ html {
                 background-color: #003b46; 
                 border: none; 
                 transition: background-color 0.3s ease;
-                margin-right: 10px;
+                margin-right: 5px;
             }
 
             .navbar .search-icon {
@@ -368,17 +368,20 @@ h2{
     background-color: #000000;
 }
 
-.dark-mode .sidebar .nav-link:hover {
+.dark-mode .dropdown-item:hover {
     background-color: rgba(28, 122, 127, 0.7);
 }
 
-/* Footer Styles */
+/* footer styles */
 .footer {
     background-color: #003B46;
     color: #fff;
     padding: 20px 0; /* Add padding to the top and bottom */
+    bottom: 0; /* Stick the footer to the bottom */
+    width: 100%;
     
 }
+
 
 .footer-col {
     width: 25%; /* Set the width of each column */
@@ -446,13 +449,6 @@ h2{
                     <!-- navbar to the left of the search box -->
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="shopping.php">Shop All</a>
-                        </li>
-
-                        <li class="nav-item">
                             <a class="nav-link" href="shopping.php">Men</a>
                         </li>
                         <li class="nav-item">
@@ -473,6 +469,9 @@ h2{
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reviews.php">Reviews</a>
                         </li>
                     </ul>
 
@@ -640,26 +639,26 @@ h2{
      <div class="footer-col">
              <h4>&copyShaded | All Rights Reserved</h4>
              <ul>
-             <li><a href="#">Terms & Conditions </a></li>
-             <li><a href="#">Privacy Policy</a></li>
-             <li><a href="#">Cookies Policy</a></li>
+             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
+             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
+             
              </ul>
      </div>
      <div class="footer-col">
-            <h4>Product Links</h4>
+            <h4>References</h4>
             <ul>
-            <li><a href="References For Products.txt"  target="_blank">Sunglasses Products</a></li>
-            <li><a href="#">Homepage Link 1 </a></li>
-            <li><a href="#">Homepage Link 2</a></li>
-            <li><a href="#">Homepage Link 3</a></li>
+            <li><a href="References For Products.txt"  target="_blank" >Sunglasses Products</a></li>
+            <li><a href="Home & Login Media References.txt" target="_blank" >Homepage References </a></li>
+            <li><a href="Home & Login Media References.txt"  target="_blank" >Login/Signup References</a></li>
+            
             </ul>
     </div>
     <div class="footer-col">
             <h4>Need Help?</h4>
             <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">FAQs</a></li>
+                <li><a href="aboutUs.php">About Us</a></li>
+                <li><a href="Contactus.php">Contact Us</a></li>
+                <li><a href="FAQs.html">FAQs</a></li>
                 
             </ul>
     </div>
@@ -673,7 +672,7 @@ h2{
     </div>
 </div>
 </div>
-  </footer>
+        </footer>
 
 <!-- JavaScript for Scroll Icon -->
 <script>
