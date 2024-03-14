@@ -77,6 +77,7 @@
                 xhr.send('productSelected='+productSelected+'&rating='+rating.value+'&review='+review);
             }
         });
+
     </script>
     
 </body>

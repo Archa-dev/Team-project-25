@@ -779,6 +779,38 @@ main {
                         </form>
 
                         <button id="leave-review-btn" class="review-button">Leave a Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+<br>
+<br>
+<div id="review-display">
+    <h2>Reviews</h2>
+<?php
+// Fetch reviews from the database
+$reviews = $db->prepare("SELECT * FROM `productreviews` WHERE `product_id` = ?;");
+$reviews->bindParam(1, $integerValue);
+$reviews->execute();
+$reviews = $reviews->fetchAll(PDO::FETCH_ASSOC);
+foreach ($reviews as $review) {
+    $customerName = $db->prepare("SELECT `name` FROM `customerdetails` WHERE `customer_id` = ?;");
+    $customerName->bindParam(1, $review['user_id']);
+    $customerName->execute();
+    $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
+    echo "<h3> Review by: " . $customerName['name'] . "</h4>";
+    echo "<h3> Rating:  ". $review['star_rating'] . "</h4>";
+    echo "<p>" . $review['review_text'] . "</p>";
+}
+?>
+</div>
+
+
+
+
 
 <div id="review-form-popup" style="display: none;">
   <span id="close-review-form-btn" onclick="review-form-popup()">&times;</span>
