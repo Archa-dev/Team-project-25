@@ -72,10 +72,11 @@
                 xhr.onreadystatechange = function(){
                     if(xhr.readyState == 4 && xhr.status == 200){
                         alert('Review Submitted');
+                        window.location.href = 'shopping.php';
                     }
                 }
                 xhr.send('productSelected='+productSelected+'&rating='+rating.value+'&review='+review);
-                window.location.href = 'shopping.php';
+                
             }
         });
 
