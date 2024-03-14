@@ -1,3 +1,30 @@
+<?php
+session_start();
+require_once('connectdb.php');
+$customerid = $_SESSION['customer_id'];
+
+//$customerid = 13;   
+// Retrieve basket items for the logged-in customer
+$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour
+                        FROM basket b
+                        JOIN productdetails p ON b.product_id = p.product_id
+                        WHERE b.customer_id = ?');
+$itemIDs->bindParam(1, $customerid);
+$itemIDs->execute();
+$items = $itemIDs->fetchAll(PDO::FETCH_ASSOC);
+
+$itemsCount = count($items);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+    // Destroy the session
+    session_destroy();
+
+    // Redirect to the login page or any other desired page
+    header('Location: login.php');
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +46,6 @@ html {
         font-family: "Century Gothic", sans-serif;
         background-color: #ffffff;
         margin: 0;
-        margin-bottom: 60px; /* Adjust this value to match the height of the footer */
         padding: 0;
         box-sizing: border-box;
         outline: none; border: none;
@@ -33,29 +59,74 @@ html {
             width: 100%;
             z-index: 1000;
             display: flex;
-            justify-content: space-between; /* Align logo to the left and nav to the right */
+            justify-content: space-between; 
             align-items: center;
             top: 0; left: 0; right: 0;
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 12px #1c7a7f;
 
-            .navbar a {
+            .navbar-nav {
                 font-size: 15px;
-                color: #000000;
                 text-decoration: none;
+                font-weight: bold;
+            }
+
+            /* Search Box */
+            .search-box { 
+                border: 3px solid #003b46; 
+            }
+
+            .navbar .search-btn {
+                background-color: #003b46; 
+                border: none; 
+                transition: background-color 0.3s ease;
+                margin-right: 5px;
+            }
+
+            .navbar .search-icon {
+                color: #fff; 
+                text-decoration: none; 
+            }
+
+            .navbar .search-btn:hover {
+                background-color: #1c7a7f; 
             }
 
             /* Hide the dropdown arrow */
             .navbar-nav .nav-item.dropdown > .nav-link::after {
                 display: none !important
             }
+
+            .dropdown-item{
+                color: #003B46;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: bold;
+                transition: background-color 0.3s;  
+            }
+
+            .dropdown-item:hover{
+                color: #003B46;
+                background-color: rgba(28, 122, 127, 0.4);
+            }
+
+            .navbar-nav .nav-item {
+            margin-right: 8px; /* Add margin between navbar items */
+        }
+
+            .navbar-nav .nav-item .nav-link {
+            color: #003b46; 
+            text-decoration: none; 
+            transition: color 0.3s ease, border-bottom-color 0.3s ease; 
+        }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #1c7a7f; 
+            border-bottom: 4px solid #1c7a7f; 
+        }
         }
     }
 }
-h2{
-    font-size: 40px;
-    text-align: center;
-    color: #003B46;
-}
+
 .logo img {
     max-width: 100%; /* Ensure the logo scales proportionally */
     max-height: 50px; /* Set the maximum height as needed */
@@ -63,13 +134,176 @@ h2{
 }
 
 .fas {
-    font-size: 15px;/* icon */
+    font-size: 15px;
 }
 
+/* Shopping Bag Popuop*/
+.shopping-bag-popup {
+    position: fixed;
+    top: 80px;
+    right: -400px; /* Initially hidden */
+    width: 350px;
+    max-height: 85vh; /* Limit the maximum height to 80% of the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    background-color: #fff;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    padding: 20px;
+}
+
+.shopping-bag-popup.show {
+    right: 0; /* Slide in from the right */
+}
+
+.shopping-bag-product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.shopping-bag-product img {
+    max-width: 120px; /* Set the maximum width of the image */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add spacing between the image and product details */
+}
+
+.product-details {
+    flex: 1; /* Allow the product details to take up remaining space */
+    margin-bottom: 50px;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Add spacing between the products and total price */
+}
+
+.total-price .price-left {
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.total-price .price-right {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.shopping-bag-popup h4{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.shopping-bag-popup h5{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.shopping-bag-popup p{
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: lighter;
+}
+
+.btn-primary {
+    background-color: #003b46; /* Dark blue */
+        color: #fff; /* White text */
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 15px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #07575b;
+}
+
+/*Sun Icon*/
+#sun-icon {
+    position: fixed; /* Change position to fixed */
+    top: 100px; /* Initial top position */
+    right: 10px;
+    font-size: 32px;
+    color: yellow; /* Initial color of the sun icon */
+    text-shadow: 0 0 10px black; /* Add outline */
+    z-index: 900; /* Ensure it appears above the navbar */
+    transition: top 0.1s ease, color 0.2s linear; /* Transition for smooth movement and color change */
+}
+
+/* CSS for dark mode */
+.dark-mode {
+    background-color: #000000; /* Change background color to black */
+    color: #ffffff; /* Change text color to white */
+}
+
+#dark-mode-toggle:hover{
+    background-color: #1c7a7f; /* Text color on hover */
+            }
+
+.dark-mode header {
+    background-color: #000000; /* Change navbar background color to black */
+}
+
+/* Update sun/moon icon styles */
+.dark-mode #dark-mode-toggle .fas {
+    color: #ffffff; /* Change color of moon icon to white */
+}
+
+#dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #003b46;
+    border: 3px solid #003b46;
+    border-radius: 40%; /* Make it circular */
+    padding: 12px;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+#dark-mode-toggle .fas {
+    color: #ffffff;
+}
+
+.dark-mode .shopping-bag-popup,
+.dark-mode .dropdown-menu{
+    background-color: #000000;
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: rgba(28, 122, 127, 0.7);
+}
+
+.dark-mode .product-details,
+.dark-mode #returnForm{
+    box-shadow: 0 0 12px #1c7a7f;
+    background-color: #000000;
+}
+
+.dark-mode .product-information h5, 
+.dark-mode .product-information p,
+.dark-mode .return-section b{
+  color: #fff;
+   }
+
+/*Homepage Content*/
 main {
-    margin-top: 11vh; /* Adjust margin-top to be equal to the height of the header */
+    margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
 }
     /* product-details.html styling */
+
+.main-content h2{
+    color: #003B46;
+    font-weight: bold;
+    text-align: center;
+    font-size: 40px;
+}
 
 .product-details {
   
@@ -79,7 +313,7 @@ main {
     background-color: #fff;
     color: #003B46;
     padding: 20px;
-    box-shadow: 0 0 10px #003B46;
+    box-shadow: 0 0 12px #1c7a7f;
     border-radius: 5px;
     display: flex;
     flex-direction: row;
@@ -119,17 +353,20 @@ main {
     font-weight: bold;
 } 
 
-.product-info {
+.product-information {
    display: flex;
    flex-direction: column;
    margin-top: 20px;
    }
 
-   .product-info h5{
+   .product-information h5{
   font-weight: bold;
    }
 
-
+   .product-information h5, .product-information p{
+  font-weight: bold;
+  color: #000000;
+   }
 
         .product img {
             width: 200px; /* Adjust the size of the product image */
@@ -137,10 +374,6 @@ main {
             margin-right: 20px; /* Add some space between image and text */
         }
 
-.sticky-footer-padding {
-    margin-bottom: 8vh;
-    /* Adjust the margin bottom to match the height of the footer */
-}
 
 .total-return-container {
     position: absolute;
@@ -151,6 +384,10 @@ main {
     align-items: flex-end;
 }
 
+.return-section b{
+font-weight: bold;
+color: #000000;
+}
 
 #returnButton{
     width: 250px; /* Adjust button width as needed */
@@ -185,7 +422,7 @@ font-weight: bold;
         background-color: #fff;
         padding: 20px;
         border-radius: 5px;
-        box-shadow: 0 0 10px #003B46;
+        box-shadow: 0 0 12px #1c7a7f;
         z-index: 1000;
         max-width: 500px; /* Limit form width */
         width: 90%; /* Adjust width as needed */
@@ -201,6 +438,7 @@ font-weight: bold;
     #returnForm label {
         color: #003B46;
         font-size: 18px; 
+        font-weight: bold;
     }
 
     #returnForm input[type="text"],
@@ -251,40 +489,54 @@ font-weight: bold;
     background-color: #07575B;
 }
 
-/* Updated Footer Styles */
+/* footer styles */
 .footer {
-            background-color: #003B46;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            font-size: 14px;
-            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-.social-icons a {
-            margin: 0 20px;
-            color: #fff;
-            font-size: 14px;
-        }
-.social-icons a:hover{
-    color : #07575B;
+    background-color: #003B46;
+    color: #fff;
+    padding: 20px 0; /* Add padding to the top and bottom */
+    bottom: 0; /* Stick the footer to the bottom */
+    width: 100%;
+    position: relative;
 }
 
-.terms-links a {
-    margin-left: 5px;
+
+.footer-col {
+    width: 25%; /* Set the width of each column */
+    padding: 0 15px; /* Add horizontal padding */
+    padding-left: 80px;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.footer-col ul li a {
     color: #fff;
     text-decoration: none;
 }
 
-.terms-links a:hover {
-    text-decoration: underline; /* underlining on hover  */
-    color: #07575B; /* hover color */
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #fff;
+    font-size:16px;
 }
 
+.social-links a:hover {
+    color: #ccc;
+}
 </style>
 
     <title>Product Details -SHADED</title>
@@ -309,82 +561,45 @@ font-weight: bold;
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="shaded logo.png" alt="Shaded Logo">
+                    <img src="images/Logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
-                    <!-- navbar to the left of the search box -->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Men
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Men's Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Men's White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Men's Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Men's Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Men's Green Sunglasses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Women
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Women's Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Women's White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Women's Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Women's Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Women's Green Sunglasses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Unisex
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Unisex Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Unisex Green Sunglasses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Prescription
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Prescription Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Prescription Green Sunglasses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Blue Light
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Blue Light Black Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light White Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Yellow Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Brown Sunglasses</a></li>
-                                <li><a class="dropdown-item" href="#">Blue Light Green Sunglasses</a></li>
-                            </ul>
+                     <!-- navbar to the left of the search box -->
+                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                        <!-- Modify your category links in the HTML to include onclick event handlers -->
+                        <li class="nav-item">
+                            <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link"  onclick="filterCategory('female')">Women</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  onclick="filterCategory('unisex')">Unisex</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  onclick="filterCategory('futuristic')">Futuristic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  onclick="filterCategory('blue_light')">Blue Light</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="aboutUs.php">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contactus.php">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reviews.php">Reviews</a>
                         </li>
                     </ul>
 
                     <!-- search box -->
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
-                        <button class="btn btn-outline-bg" type="submit">
-                            <a href="#">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+                        <button class="btn btn-outline-bg search-btn" type="submit">
+                            <a href="#" class="search-icon"">
                                 <i class="fas fa-search"></i>
                             </a>
                         </button>
@@ -399,7 +614,10 @@ font-weight: bold;
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
                                 <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
-                                <li><a class="dropdown-item" href="homepage.php">Logout</a></li>
+                                <form method="post" action="">
+    <button type="submit" name="logout" class="dropdown-item">Logout</button>
+</form>
+
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -407,33 +625,73 @@ font-weight: bold;
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="login.php">Log In</a></li>
-                                <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
+                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="wishlist.php">
                                 <i class="fas fa-heart"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" >View Wishlist</a></li>
-                            </ul>
                         </li>
+
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="basket.php">View Shopping Cart</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+    <a class="nav-link dropdown-toggle" href="#" id="shopping-bag-icon">
+        <i class="fas fa-shopping-bag"> <?= $itemsCount ?></i>
+    </a>
+    <div id="shopping-bag-popup" class="shopping-bag-popup">
+        <h4>Your Selection (<?= $itemsCount ?>)</h4>
+
+        <?php foreach ($items as $item) : ?>
+            <div class="shopping-bag-product">
+                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+                <div class="product-details">
+                    <h5><?= $item['product_name'] ?></h5>
+                    <p>Price: £<?= number_format($item['price'], 2) ?></p>
+                    <p>Colour: <?= $item['colour'] ?></p>
+                    <p>Quantity: <?= $item['quantity'] ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <hr>
+        <!-- Total Price -->
+        <?php
+        // Calculate total price
+        $totalPrice = 0;
+        foreach ($items as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+        }
+        ?>
+        <div class="total-price">
+            <div class="price-left">Total Price:</div>
+            <div class="price-right">£<?= number_format($totalPrice, 2) ?></div>
+        </div>
+
+        <div class="buttons">
+            <a href="basket.php" class="btn btn-primary">VIEW SHOPPING BAG</a>
+            <a href="checkout.php" class="btn btn-primary">PROCEED TO CHECKOUT</a>
+        </div>
+        <!-- <p>Your shopping bag is empty.</p> -->
+    </div>
+</li>
+
                 </div>
             </div>
         </nav>
-
     </header>
-    <main class="sticky-footer-padding main-content">
+
+    <div id="dark-mode-toggle">
+        <a class="nav-link" href="#">
+            <i class="fas fa-lightbulb"></i>
+        </a>
+    </div>
+
+    <main>
+
+    <div id="sun-icon">&#9728;</div>
+
+    <div class="main-content">
     <h2><b>PRODUCT DETAILS</b></h2>
 
     <div class="container">
@@ -443,7 +701,7 @@ font-weight: bold;
                 <div class="product-info">
                     <!-- Product 1 -->
                     <div class="product-item">
-                        <img src="MK-2161BU-0001_1.jpeg" alt="Product Image 1">
+                        <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image 1">
                         <div class="product-information">
                             <h5>Product Name 1</h5>
                             <p>£50.00</p>
@@ -451,7 +709,7 @@ font-weight: bold;
                     </div>
                     <!-- Product 2 -->
                     <div class="product-item">
-                        <img src="MK-2161BU-0001_1.jpeg" alt="Product Image 2">
+                        <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image 2">
                         <div class="product-information">
                             <h5>Product Name 2</h5>
                             <p>£65.00</p>
@@ -497,37 +755,52 @@ font-weight: bold;
         </select><br><br>
             <button type="submit">SUBMIT RETURN</button>
         </form>
-   
+    </div>
+</div>
+    </div>
 </main>
 
-    <div class="container-fluid">
-        <footer class="footer">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footer-text">
-                        <p>&copy;Shaded-2023 | All Rights Reserved</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="social-icons">
-                        <!-- social media icons  -->
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                       
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="terms-links">
-                      
-                        <!-- links do not redirect anywhere  -->
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Cookies Policy</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+<footer class="footer">
+     <div class="container">
+     <div class="row">
+     <div class="footer-col">
+             <h4>&copyShaded | All Rights Reserved</h4>
+             <ul>
+             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
+             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
+             
+             </ul>
+     </div>
+     <div class="footer-col">
+            <h4>References</h4>
+            <ul>
+            <li><a href="References For Products.txt"  target="_blank" >Sunglasses Products</a></li>
+            <li><a href="Home & Login Media References.txt" target="_blank" >Homepage References </a></li>
+            <li><a href="Home & Login Media References.txt"  target="_blank" >Login/Signup References</a></li>
+            
+            </ul>
     </div>
+    <div class="footer-col">
+            <h4>Need Help?</h4>
+            <ul>
+                <li><a href="aboutUs.php">About Us</a></li>
+                <li><a href="Contactus.php">Contact Us</a></li>
+                <li><a href="FAQs.html">FAQs</a></li>
+                
+            </ul>
+    </div>
+    <div class="footer-col">
+        <h4>follow us</h4>
+        <div class="social-links">
+            <a href="https://en-gb.facebook.com/"  target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/?lang=en-gb"  target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" ><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</div>
+</div>
+        </footer>
+
     <script>
    document.addEventListener("DOMContentLoaded", function() {
         var statusOfOrder = "DELIVERED"; // Replace this with the actual status of the order
@@ -573,6 +846,101 @@ font-weight: bold;
         });
     });
 </script>
+
+
+<!-- JavaScript for Scroll Icon -->
+<script>
+      window.addEventListener('scroll', function() {
+    var sunIcon = document.getElementById('sun-icon');
+    var navbarHeight = document.querySelector('header').offsetHeight;
+    var footerHeight = document.querySelector('footer').offsetHeight;
+    var scrollPosition = window.scrollY;
+    var windowHeight = window.innerHeight;
+    var bodyHeight = document.body.clientHeight;
+
+    // Calculate the position of the sun icon based on scroll position
+    var maxScroll = bodyHeight - windowHeight;
+    var visibleHeight = windowHeight - navbarHeight - footerHeight;
+    var newPosition = Math.min(Math.max((scrollPosition - navbarHeight) / (maxScroll - navbarHeight - visibleHeight), 0), 1) * (visibleHeight - 40) + navbarHeight;
+
+    // Adjust the sun icon's top position
+    sunIcon.style.top = newPosition + 'px';
+
+    // Calculate the ratio of scroll position to the total scroll height
+    var scrollRatio = (scrollPosition - navbarHeight) / (maxScroll - navbarHeight - visibleHeight);
+
+    // Calculate color gradient between yellow (#FFFF00) and black (#000000)
+    var red = 255 - (255 * scrollRatio);
+    var green = 255 - (255 * scrollRatio);
+    var blue = 0;
+
+    // Set the color of the sun icon
+    sunIcon.style.color = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+});
+
+// Set initial position of the sun icon below the navbar
+window.addEventListener('DOMContentLoaded', function() {
+    var sunIcon = document.getElementById('sun-icon');
+    var navbarHeight = document.querySelector('header').offsetHeight;
+    sunIcon.style.top = navbarHeight + 'px';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    darkModeToggle.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+        // Toggle icon between light bulb and moon
+        darkModeToggle.querySelector('i').classList.toggle('fa-lightbulb');
+        darkModeToggle.querySelector('i').classList.toggle('fa-moon');
+    });
+});
+</script>
+
+<script>
+document.getElementById('shopping-bag-icon').addEventListener('click', function() {
+  const popup = document.getElementById('shopping-bag-popup');
+  popup.classList.toggle('show');
+});
+
+    document.addEventListener('click', function(event) {
+        const popup = document.getElementById('shopping-bag-popup');
+        const shoppingBagIcon = document.getElementById('shopping-bag-icon');
+        const isClickInsidePopup = popup.contains(event.target);
+        const isClickOnIcon = shoppingBagIcon.contains(event.target);
+
+        if (!isClickInsidePopup && !isClickOnIcon) {
+            popup.classList.remove('show');
+        }
+    });
+
+
+    function filterCategory(category) {
+        // Create a form element dynamically
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = 'shopping.php'; // Shopping.php is the target page
+        
+        // Create an input element to hold the category filter value
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'categoryFilter';
+        input.value = category;
+        
+        // Append the input element to the form
+        form.appendChild(input);
+        
+        // Append the form to the document body and submit it
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+
+    
+    </script>
 
 </body>
 </html>
