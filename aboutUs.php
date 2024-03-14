@@ -621,6 +621,7 @@ html {
              
              </ul>
      </div>
+      <!-- first column -->
      <div class="footer-col">
             <h4>References</h4>
             <ul>
@@ -630,6 +631,7 @@ html {
             
             </ul>
     </div>
+     <!-- second column -->
     <div class="footer-col">
             <h4>Need Help?</h4>
             <ul>
@@ -639,6 +641,7 @@ html {
                 
             </ul>
     </div>
+     <!-- third column -->
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
@@ -661,7 +664,7 @@ html {
     var windowHeight = window.innerHeight;
     var bodyHeight = document.body.clientHeight;
 
-    // Calculate the position of the sun icon based on scroll position
+    // Calculate the position of the sun icon based on the scroll position
     var maxScroll = bodyHeight - windowHeight;
     var visibleHeight = windowHeight - navbarHeight - footerHeight;
     var newPosition = Math.min(Math.max((scrollPosition - navbarHeight) / (maxScroll - navbarHeight - visibleHeight), 0), 1) * (visibleHeight - 40) + navbarHeight;
@@ -677,7 +680,7 @@ html {
     var green = 255 - (255 * scrollRatio);
     var blue = 0;
 
-    // Set the color of the sun icon
+    // color of the sun icon
     sunIcon.style.color = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
 });
 
@@ -724,7 +727,7 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
         // Create a form element dynamically
         var form = document.createElement('form');
         form.method = 'post';
-        form.action = 'shopping.php'; // Shopping.php is the target page
+        form.action = 'shopping.php'; 
         
         // Create an input element to hold the category filter value
         var input = document.createElement('input');
