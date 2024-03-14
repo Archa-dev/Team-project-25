@@ -1,3 +1,30 @@
+<?php
+session_start();
+require_once('connectdb.php');
+$customerid = $_SESSION['customer_id'];
+
+//$customerid = 13;   
+// Retrieve basket items for the logged-in customer
+$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour
+                        FROM basket b
+                        JOIN productdetails p ON b.product_id = p.product_id
+                        WHERE b.customer_id = ?');
+$itemIDs->bindParam(1, $customerid);
+$itemIDs->execute();
+$items = $itemIDs->fetchAll(PDO::FETCH_ASSOC);
+
+$itemsCount = count($items);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+    // Destroy the session
+    session_destroy();
+
+    // Redirect to the login page or any other desired page
+    header('Location: login.php');
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,7 +144,7 @@ html {
     top: 80px;
     right: -400px; /* Initially hidden */
     width: 350px;
-    max-height: 100vh; /* Limit the maximum height to 80% of the viewport height */
+    max-height: 85vh; /* Limit the maximum height to 80% of the viewport height */
     overflow-y: auto; /* Enable vertical scrolling if needed */
     background-color: #fff;
     z-index: 1000;
@@ -179,17 +206,6 @@ html {
     font-size: 13px;
     margin-bottom: 4px;
     font-weight: lighter;
-}
-
-.remove-link {
-    top: 0;
-    right: 0;
-    color: #003B46;
-    font-size: 12px; /* Adjust font size as desired */
-}
-
-.product-details .remove-link:hover {
-    color: #1c7a7f;
 }
 
 .btn-primary {
@@ -320,7 +336,7 @@ html {
     padding: 20px 0; /* Add padding to the top and bottom */
     bottom: 0; /* Stick the footer to the bottom */
     width: 100%;
-    
+    position: relative;
 }
 
 
@@ -389,19 +405,19 @@ html {
                 <!-- navbar to the left of the search box -->
                 <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="shopping.php">Men</a>
+                        <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shopping.php">Women</a>
+                            <a class="nav-link"  onclick="filterCategory('female')">Women</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shopping.php">Unisex</a>
+                            <a class="nav-link"  onclick="filterCategory('unisex')">Unisex</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shopping.php">Futuristic</a>
+                            <a class="nav-link"  onclick="filterCategory('futuristic')">Futuristic</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shopping.php">Blue Light</a>
+                            <a class="nav-link"  onclick="filterCategory('blue_light')">Blue Light</a>
                         </li>
 
                         <li class="nav-item">
@@ -434,7 +450,9 @@ html {
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
                                 <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
-                                <li><a class="dropdown-item" href="login.php">Logout</a></li>
+                                <form method="post" action="">
+                                    <button type="submit" name="logout" class="dropdown-item">Logout</button>
+                                </form>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -453,48 +471,45 @@ html {
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="shopping-bag-icon">
-                                <i class="fas fa-shopping-bag"></i>
-                            </a>
-                            <div id="shopping-bag-popup" class="shopping-bag-popup">
-                            <h4>Your Selection (1)</h4>
-                                    <!-- Product 1 -->
-                                <div class="shopping-bag-product">
-                                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product 1">
-                                    <div class="product-details">
-                                        <h5>Black Product 1</h5>
-                                        <p>Price: £29.99</p>
-                                        <p>Colour: Black</p>
-                                        <p>Quantity: 1</p>
-                                        <div><a href="#" class="remove-link">Remove</a></div>
-                                    </div>
-                                </div>
+    <a class="nav-link dropdown-toggle" href="#" id="shopping-bag-icon">
+        <i class="fas fa-shopping-bag"> <?= $itemsCount ?></i>
+    </a>
+    <div id="shopping-bag-popup" class="shopping-bag-popup">
+        <h4>Your Selection (<?= $itemsCount ?>)</h4>
 
-                                 <!-- Product 2 -->
-                                <div class="shopping-bag-product">
-                                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product 2">
-                                    <div class="product-details">
-                                        <h5>White Product 1</h5>
-                                        <p>Price: £39.99</p>
-                                        <p>Colour: White</p>
-                                        <p>Quantity: 2</p>
-                                    <div><a href="#" class="remove-link">Remove</a></div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <!-- Total Price -->
-                                <div class="total-price">
-                                    <div class="price-left">Total Price:</div>
-                                    <div class="price-right">£69.98</div>
-                                </div>
+        <?php foreach ($items as $item) : ?>
+            <div class="shopping-bag-product">
+                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+                <div class="product-details">
+                    <h5><?= $item['product_name'] ?></h5>
+                    <p>Price: £<?= number_format($item['price'], 2) ?></p>
+                    <p>Colour: <?= $item['colour'] ?></p>
+                    <p>Quantity: <?= $item['quantity'] ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
 
-                                <div class="buttons">
-                                    <a href="basket.php" class="btn btn-primary">VIEW SHOPPING BAG</a>
-                                    <a href="checkout.php" class="btn btn-primary">PROCEED TO CHECKOUT</a>
-                                </div>
-                              <!-- <p>Your shopping bag is empty.</p> -->
-                            </div>
-                        </li>
+        <hr>
+        <!-- Total Price -->
+        <?php
+        // Calculate total price
+        $totalPrice = 0;
+        foreach ($items as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+        }
+        ?>
+        <div class="total-price">
+            <div class="price-left">Total Price:</div>
+            <div class="price-right">£<?= number_format($totalPrice, 2) ?></div>
+        </div>
+
+        <div class="buttons">
+            <a href="basket.php" class="btn btn-primary">VIEW SHOPPING BAG</a>
+            <a href="checkout.php" class="btn btn-primary">PROCEED TO CHECKOUT</a>
+        </div>
+        <!-- <p>Your shopping bag is empty.</p> -->
+    </div>
+</li>
                 </div>
             </div>
         </nav>
@@ -644,6 +659,26 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
             popup.classList.remove('show');
         }
     });
+
+    function filterCategory(category) {
+        // Create a form element dynamically
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = 'shopping.php'; // Shopping.php is the target page
+        
+        // Create an input element to hold the category filter value
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'categoryFilter';
+        input.value = category;
+        
+        // Append the input element to the form
+        form.appendChild(input);
+        
+        // Append the form to the document body and submit it
+        document.body.appendChild(form);
+        form.submit();
+    }
     </script>
 </body>
 </html>
