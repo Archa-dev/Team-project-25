@@ -194,6 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'])) {
         border: none;
         border-radius: 5px;
         transition: background-color 0.3s ease;
+        font-weight: bold;
     }
 
     .button:hover {
