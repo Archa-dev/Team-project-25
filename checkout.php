@@ -37,6 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         
+        <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+
+
         <?php
 session_start();
 require_once('connectdb.php');
@@ -131,7 +134,7 @@ html {
             }
 
             .navbar-nav .nav-item {
-            margin-right: 8px; /* Add margin between navbar items */
+            margin-right: 8px; /* margin between navbar items */
         }
 
             .navbar-nav .nav-item .nav-link {
@@ -149,23 +152,23 @@ html {
 }
 
 .logo img {
-    max-width: 100%; /* Ensure the logo scales proportionally */
-    max-height: 50px; /* Set the maximum height as needed */
-    margin-left: auto; /* Center the logo horizontally */
+    max-width: 100%; 
+    max-height: 50px; 
+    margin-left: auto; 
 }
 
 .fas {
     font-size: 15px;
 }
 
-/* Shopping Bag Popuop*/
+/* Shopping Bag Popup*/
 .shopping-bag-popup {
     position: fixed;
     top: 80px;
     right: -400px; /* Initially hidden */
     width: 350px;
-    max-height: 85vh; /* Limit the maximum height to 80% of the viewport height */
-    overflow-y: auto; /* Enable vertical scrolling if needed */
+    max-height: 85vh; 
+    overflow-y: auto; /* Enables vertical scrolling if needed */
     background-color: #fff;
     z-index: 1000;
     transition: right 0.3s ease;
@@ -173,7 +176,7 @@ html {
 }
 
 .shopping-bag-popup.show {
-    right: 0; /* Slide in from the right */
+    right: 0; /* Slides in from the right */
 }
 
 .shopping-bag-product {
@@ -184,13 +187,13 @@ html {
 }
 
 .shopping-bag-product img {
-    max-width: 120px; /* Set the maximum width of the image */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 20px; /* Add spacing between the image and product details */
+    max-width: 120px; 
+    height: auto; /* Maintains aspect ratio */
+    margin-right: 20px; /* Adds spacing between the image and product details */
 }
 
 .product-details {
-    flex: 1; /* Allow the product details to take up remaining space */
+    flex: 1; /* Allows the product details to take up remaining space */
     margin-bottom: 50px;
 }
 
@@ -198,7 +201,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px; /* Add spacing between the products and total price */
+    margin-top: 20px; /* Adds spacing between the products and total price */
 }
 
 .total-price .price-left {
@@ -248,20 +251,20 @@ html {
 
 /*Sun Icon*/
 #sun-icon {
-    position: fixed; /* Change position to fixed */
+    position: fixed; 
     top: 100px; /* Initial top position */
     right: 10px;
     font-size: 32px;
-    color: yellow; /* Initial color of the sun icon */
-    text-shadow: 0 0 10px black; /* Add outline */
-    z-index: 900; /* Ensure it appears above the navbar */
+    color: yellow; 
+    text-shadow: 0 0 10px black; 
+    z-index: 900; /* Ensures it appears above the navbar */
     transition: top 0.1s ease, color 0.2s linear; /* Transition for smooth movement and color change */
 }
 
 /* CSS for dark mode */
 .dark-mode {
-    background-color: #000000; /* Change background color to black */
-    color: #ffffff; /* Change text color to white */
+    background-color: #000000; /* background color black */
+    color: #ffffff; /* text color white */
 }
 
 #dark-mode-toggle:hover{
@@ -269,12 +272,12 @@ html {
             }
 
 .dark-mode header {
-    background-color: #000000; /* Change navbar background color to black */
+    background-color: #000000; /* navbar background color black */
 }
 
 /* Update sun/moon icon styles */
 .dark-mode #dark-mode-toggle .fas {
-    color: #ffffff; /* Change color of moon icon to white */
+    color: #ffffff; /* Changes color of moon icon to white */
 }
 
 #dark-mode-toggle {
@@ -283,9 +286,9 @@ html {
     right: 20px;
     background-color: #003b46;
     border: 3px solid #003b46;
-    border-radius: 40%; /* Make it circular */
+    border-radius: 40%; /* Makes it circular */
     padding: 12px;
-    z-index: 1000; /* Ensure it appears above other content */
+    z-index: 1000; /* Ensures it appears above other content */
 }
 
 #dark-mode-toggle .fas {
@@ -315,17 +318,17 @@ html {
 
 .return-link {
     position: absolute;
-    top: 90px; /* Adjust this value based on your navbar height */
+    top: 90px; 
     left: 20px;
     font-size: 14px;
     font-weight: bold;
-    color: #003b46; /* Adjust the color as needed */
+    color: #003b46; 
     text-decoration: none;
-    z-index: 1000; /* Ensure it appears above other content */
+    z-index: 1000; /* Ensures it appears above other content */
 }
 
 .return-link i {
-    margin-right: 5px; /* Adjust the spacing between the icon and the text */
+    margin-right: 5px; 
 }
 
 .return-link:hover {
@@ -389,13 +392,13 @@ input[type="password"] {
 input[type="text"]::placeholder,
 input[type="date"]::placeholder,
 input[type="password"]::placeholder {
-  color: #999; /* Placeholder text color */
+  color: #999;
 }
 
 input[type="text"]:focus,
 input[type="date"]:focus,
 input[type="password"]:focus {
-  border: 2px solid #000; /* Border color on focus */
+  border: 2px solid #000; 
 }
 
 .confirm{
@@ -450,7 +453,7 @@ input[type="password"]:focus {
 }
 
 .order-summary-product img {
-    max-width: 120px; /* Ensure the image doesn't exceed its container's width */
+    max-width: 120px; /* Ensures the image doesn't exceed its container's width */
     max-height: 150px; 
     margin-right: 20px;
 }
@@ -497,7 +500,7 @@ input[type="password"]:focus {
 
         .btn-primary {
     Background-color: #003b46;
-    border: none; /* Remove border */
+    border: none; 
     transition: background-color 0.3s ease;
     font-weight: bold;
 }
@@ -514,17 +517,17 @@ input[type="password"]:focus {
 .footer {
     background-color: #003B46;
     color: #fff;
-    padding: 20px 0; /* Add padding to the top and bottom */
-    bottom: 0; /* Stick the footer to the bottom */
+    padding: 20px 0; /* Adds padding to the top and bottom */
+    bottom: 0; /* Sticks the footer to the bottom */
     width: 100%;
     position: relative;
 }
 
 
 .footer-col {
-    width: 25%; /* Set the width of each column */
-    padding: 0 15px; /* Add horizontal padding */
-    padding-left: 80px;
+    width: 25%; /* width of each column */
+    padding: 0 15px; /* horizontal padding */
+    padding-left: 80px;/* left padding */
 }
 
 .footer-col h4 {
@@ -588,7 +591,7 @@ input[type="password"]:focus {
 
                    <!-- navbar to the left of the search box -->
                    <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                        <!-- Modify your category links in the HTML to include onclick event handlers -->
+                        
                         <li class="nav-item">
                             <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
@@ -620,7 +623,7 @@ input[type="password"]:focus {
                     <form class="d-flex" role="search">
                         <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
                         <button class="btn btn-outline-bg search-btn" type="submit">
-                            <a href="#" class="search-icon"">
+                            <a href="#" class="search-icon">
                                 <i class="fas fa-search"></i>
                             </a>
                         </button>
@@ -670,6 +673,7 @@ input[type="password"]:focus {
 
     </header>
 
+    <!-- light/dark mode -->
     <div id="dark-mode-toggle">
         <a class="nav-link" href="#">
             <i class="fas fa-lightbulb"></i>
@@ -990,7 +994,7 @@ function filterCategory(category) {
         // Create a form element dynamically
         var form = document.createElement('form');
         form.method = 'post';
-        form.action = 'shopping.php'; // Shopping.php is the target page
+        form.action = 'shopping.php';
         
         // Create an input element to hold the category filter value
         var input = document.createElement('input');
