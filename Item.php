@@ -780,7 +780,7 @@ main {
 
 <div id="review-form-popup" style="display: none;">
   <span id="close-review-form-btn" onclick="review-form-popup()">&times;</span>
- <h2>Review</h2>
+ <h2>REVIEW</h2>
  <form id="review-form">
   <div class="form-group">
     <label for="star-rating">Star Rating:</label>
