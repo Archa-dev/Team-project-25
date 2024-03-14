@@ -13,11 +13,7 @@ $itemIDs->bindParam(1, $customerid);
 $itemIDs->execute();
 $items = $itemIDs->fetchAll(PDO::FETCH_ASSOC);
 
-
-
 $itemsCount = count($items);
-
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     // Destroy the session
@@ -29,10 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
 }
 
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -152,7 +144,7 @@ html {
     top: 80px;
     right: -400px; /* Initially hidden */
     width: 350px;
-    max-height: 100vh; /* Limit the maximum height to 80% of the viewport height */
+    max-height: 85vh; /* Limit the maximum height to 80% of the viewport height */
     overflow-y: auto; /* Enable vertical scrolling if needed */
     background-color: #fff;
     z-index: 1000;
@@ -216,17 +208,6 @@ html {
     font-weight: lighter;
 }
 
-.remove-link {
-    top: 0;
-    right: 0;
-    color: #003B46;
-    font-size: 12px; /* Adjust font size as desired */
-}
-
-.product-details .remove-link:hover {
-    color: #1c7a7f;
-}
-
 .btn-primary {
     background-color: #003b46; /* Dark blue */
         color: #fff; /* White text */
@@ -243,6 +224,61 @@ html {
 
 .btn-primary:hover {
     background-color: #07575b;
+}
+
+/*Sun Icon*/
+#sun-icon {
+    position: fixed; /* Change position to fixed */
+    top: 100px; /* Initial top position */
+    right: 10px;
+    font-size: 32px;
+    color: yellow; /* Initial color of the sun icon */
+    text-shadow: 0 0 10px black; /* Add outline */
+    z-index: 900; /* Ensure it appears above the navbar */
+    transition: top 0.1s ease, color 0.2s linear; /* Transition for smooth movement and color change */
+}
+
+/* CSS for dark mode */
+.dark-mode {
+    background-color: #000000; /* Change background color to black */
+    color: #ffffff; /* Change text color to white */
+}
+
+#dark-mode-toggle:hover{
+    background-color: #1c7a7f; /* Text color on hover */
+            }
+
+.dark-mode header {
+    background-color: #000000; /* Change navbar background color to black */
+}
+
+/* Update sun/moon icon styles */
+.dark-mode #dark-mode-toggle .fas {
+    color: #ffffff; /* Change color of moon icon to white */
+}
+
+#dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #003b46;
+    border: 3px solid #003b46;
+    border-radius: 40%; /* Make it circular */
+    padding: 12px;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+#dark-mode-toggle .fas {
+    color: #ffffff;
+}
+
+.dark-mode .shopping-bag-popup,
+.dark-mode .dropdown-menu{
+    background-color: #000000;
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: rgba(28, 122, 127, 0.7);
 }
 
 /*Homepage Content*/
@@ -351,62 +387,6 @@ h2{
             text-decoration: none !important;
         }
 
-
-    /*Sun Icon*/
-        #sun-icon {
-    position: fixed; /* Change position to fixed */
-    top: 100px; /* Initial top position */
-    right: 10px;
-    font-size: 32px;
-    color: yellow; /* Initial color of the sun icon */
-    text-shadow: 0 0 10px black; /* Add outline */
-    z-index: 900; /* Ensure it appears above the navbar */
-    transition: top 0.1s ease, color 0.2s linear; /* Transition for smooth movement and color change */
-}
-
-/* CSS for dark mode */
-.dark-mode {
-    background-color: #000000; /* Change background color to black */
-    color: #ffffff; /* Change text color to white */
-}
-
-#dark-mode-toggle:hover{
-    background-color: #1c7a7f; /* Text color on hover */
-            }
-
-.dark-mode header {
-    background-color: #000000; /* Change navbar background color to black */
-}
-
-/* Update sun/moon icon styles */
-.dark-mode #dark-mode-toggle .fas {
-    color: #ffffff; /* Change color of moon icon to white */
-}
-
-#dark-mode-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #003b46;
-    border: 3px solid #003b46;
-    border-radius: 40%; /* Make it circular */
-    padding: 12px;
-    z-index: 1000; /* Ensure it appears above other content */
-}
-
-#dark-mode-toggle .fas {
-    color: #ffffff;
-}
-
-.dark-mode .shopping-bag-popup,
-.dark-mode .dropdown-menu{
-    background-color: #000000;
-}
-
-.dark-mode .dropdown-item:hover {
-    background-color: rgba(28, 122, 127, 0.7);
-}
-
 /* footer styles */
 .footer {
     background-color: #003B46;
@@ -414,7 +394,7 @@ h2{
     padding: 20px 0; /* Add padding to the top and bottom */
     bottom: 0; /* Stick the footer to the bottom */
     width: 100%;
-    
+    position: relative;
 }
 
 
@@ -500,8 +480,6 @@ h2{
                             <a class="nav-link"  onclick="filterCategory('blue_light')">Blue Light</a>
                         </li>
 
-
-
                         <li class="nav-item">
                             <a class="nav-link" href="aboutUs.php">About Us</a>
                         </li>
@@ -555,14 +533,14 @@ h2{
 
                         <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="shopping-bag-icon">
-        <i class="fas fa-shopping-bag"></i>
+        <i class="fas fa-shopping-bag"> <?= $itemsCount ?></i>
     </a>
     <div id="shopping-bag-popup" class="shopping-bag-popup">
         <h4>Your Selection (<?= $itemsCount ?>)</h4>
 
         <?php foreach ($items as $item) : ?>
             <div class="shopping-bag-product">
-                <img src="MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
                 <div class="product-details">
                     <h5><?= $item['product_name'] ?></h5>
                     <p>Price: £<?= number_format($item['price'], 2) ?></p>
