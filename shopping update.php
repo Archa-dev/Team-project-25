@@ -65,6 +65,34 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
+<?php
+session_start();
+require_once('connectdb.php');
+$customerid = $_SESSION['customer_id'];
+
+//$customerid = 13;   
+// Retrieve basket items for the logged-in customer
+$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour
+                        FROM basket b
+                        JOIN productdetails p ON b.product_id = p.product_id
+                        WHERE b.customer_id = ?');
+$itemIDs->bindParam(1, $customerid);
+$itemIDs->execute();
+$items = $itemIDs->fetchAll(PDO::FETCH_ASSOC);
+
+$itemsCount = count($items);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+    // Destroy the session
+    session_destroy();
+
+    // Redirect to the login page or any other desired page
+    header('Location: login.php');
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,7 +132,7 @@ html {
             width: 100%;
             z-index: 1000;
             display: flex;
-            justify-content: space-between; /* Align logo to the left and nav to the right */
+            justify-content: space-between; 
             align-items: center;
             top: 0; left: 0; right: 0;
             box-shadow: 0 0 12px #1c7a7f;
@@ -115,24 +143,25 @@ html {
                 font-weight: bold;
             }
 
-            .search-box {
-    border: 3px solid #003b46; /* Set border color */
-}
+            /* Search Box */
+            .search-box { 
+                border: 3px solid #003b46; 
+            }
 
             .navbar .search-btn {
-    background-color: #003b46; /* Set background color to green */
-    border: none; /* Remove border */
-    transition: background-color 0.3s ease;
-    margin-right: 10px;
-}
+                background-color: #003b46; 
+                border: none; 
+                transition: background-color 0.3s ease;
+                margin-right: 5px;
+            }
 
             .navbar .search-icon {
-                color: #fff; /* Default text color */
-                text-decoration: none; /* Remove default underline */
+                color: #fff; 
+                text-decoration: none; 
             }
 
             .navbar .search-btn:hover {
-                background-color: #1c7a7f; /* Text color on hover */
+                background-color: #1c7a7f; 
             }
 
             /* Hide the dropdown arrow */
@@ -140,61 +169,136 @@ html {
                 display: none !important
             }
 
+            .dropdown-item{
+                color: #003B46;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: bold;
+                transition: background-color 0.3s;  
+            }
+
+            .dropdown-item:hover{
+                color: #003B46;
+                background-color: rgba(28, 122, 127, 0.4);
+            }
+
             .navbar-nav .nav-item {
-            margin-right: 12px; /* Add margin between navbar items */
+            margin-right: 8px; /* Add margin between navbar items */
         }
 
             .navbar-nav .nav-item .nav-link {
-            color: #003b46; /* Default text color */
-            text-decoration: none; /* Remove default underline */
-            transition: color 0.3s ease, border-bottom-color 0.3s ease; /* Smooth transition for color change */
+            color: #003b46; 
+            text-decoration: none; 
+            transition: color 0.3s ease, border-bottom-color 0.3s ease; 
         }
 
         .navbar-nav .nav-item .nav-link:hover {
-            color: #1c7a7f; /* Text color on hover */
-            border-bottom: 4px solid #1c7a7f; /* Underline on hover */
+            color: #1c7a7f; 
+            border-bottom: 4px solid #1c7a7f; 
         }
         }
     }
 }
 
-
-/* shaded logo */
 .logo img {
     max-width: 100%; /* Ensure the logo scales proportionally */
     max-height: 50px; /* Set the maximum height as needed */
     margin-left: auto; /* Center the logo horizontally */
 }
 
-/* icons */
 .fas {
     font-size: 15px;
 }
 
-main {
-    margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
+/* Shopping Bag Popuop*/
+.shopping-bag-popup {
+    position: fixed;
+    top: 80px;
+    right: -400px; /* Initially hidden */
+    width: 350px;
+    max-height: 85vh; /* Limit the maximum height to 80% of the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    background-color: #fff;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    padding: 20px;
 }
 
-.return-link {
-    position: absolute;
-    top: 90px; /* Adjust this value based on your navbar height */
-    left: 20px;
+.shopping-bag-popup.show {
+    right: 0; /* Slide in from the right */
+}
+
+.shopping-bag-product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.shopping-bag-product img {
+    max-width: 120px; /* Set the maximum width of the image */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add spacing between the image and product details */
+}
+
+.product-details {
+    flex: 1; /* Allow the product details to take up remaining space */
+    margin-bottom: 50px;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Add spacing between the products and total price */
+}
+
+.total-price .price-left {
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.total-price .price-right {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.shopping-bag-popup h4{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.shopping-bag-popup h5{
     font-size: 14px;
     font-weight: bold;
-    color: #003b46; /* Adjust the color as needed */
-    text-decoration: none;
-    z-index: 1000; /* Ensure it appears above other content */
 }
 
-.return-link i {
-    margin-right: 5px; /* Adjust the spacing between the icon and the text */
+.shopping-bag-popup p{
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: lighter;
 }
 
-.return-link:hover {
-    text-decoration: none;
-    color: #1c7a7f;
+.btn-primary {
+    background-color: #003b46; /* Dark blue */
+        color: #fff; /* White text */
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 15px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
 }
 
+.btn-primary:hover {
+    background-color: #07575b;
+}
+
+/*Sun Icon*/
 #sun-icon {
     position: fixed; /* Change position to fixed */
     top: 100px; /* Initial top position */
@@ -240,6 +344,15 @@ main {
     color: #ffffff;
 }
 
+.dark-mode .shopping-bag-popup,
+.dark-mode .dropdown-menu{
+    background-color: #000000;
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: rgba(28, 122, 127, 0.7);
+}
+
 .dark-mode .filter-container {
     background-color: #000;
     color: #ffffff;
@@ -248,6 +361,31 @@ main {
 .dark-mode .product-info,
 .dark-mode .product-info h3{
     color: white !important;
+}
+
+main {
+    margin-top: 90px; /* Adjust margin-top to be equal to the height of the header */
+    margin-bottom: 300px;
+}
+
+.return-link {
+    position: absolute;
+    top: 90px; /* Adjust this value based on your navbar height */
+    left: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #003b46; /* Adjust the color as needed */
+    text-decoration: none;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.return-link i {
+    margin-right: 5px; /* Adjust the spacing between the icon and the text */
+}
+
+.return-link:hover {
+    text-decoration: none;
+    color: #1c7a7f;
 }
 
 /* filter styles */
@@ -303,6 +441,7 @@ main {
     margin-bottom: 0px;
     font-size: 14px;
     color: #003b46;
+    font-weight: bold;
 }
 
     .filter-button {
@@ -432,21 +571,23 @@ h2 {
         
     }
 
-
-/* footer styles */
-.footer {
-    background-color: #003B46;
-    color: #fff;
-    padding: 20px 0; /* Add padding to the top and bottom */
-    
-}
-
-.product-container {
+    .product-container {
     width: 90%; /* Set the width of the container */
     margin: auto; /* Center the container */
     padding: 15px;
     
 }
+    
+/* footer styles */
+.footer {
+    background-color: #003B46;
+    color: #fff;
+    padding: 20px 0; /* Add padding to the top and bottom */
+    bottom: 0; /* Stick the footer to the bottom */
+    width: 100%;
+    position: relative;
+}
+
 
 .footer-col {
     width: 25%; /* Set the width of each column */
@@ -485,10 +626,8 @@ h2 {
 .social-links a:hover {
     color: #ccc;
 }
-
-
-
 </style>
+
 </head>
 <body>
 <!--bootstrap js-->
@@ -517,14 +656,25 @@ h2 {
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
-                    <!-- navbar to the left of the search box -->
-                    <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                   <!-- navbar to the left of the search box -->
+                   <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                        <!-- Modify your category links in the HTML to include onclick event handlers -->
                         <li class="nav-item">
-                            <a class="nav-link" href="homepage.php">Home</a>
+                            <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="shopping.php">Shop All</a>
+                        <li class="nav-item">
+                            <a class="nav-link"  onclick="filterCategory('female')">Women</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  onclick="filterCategory('unisex')">Unisex</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  onclick="filterCategory('futuristic')">Futuristic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  onclick="filterCategory('blue_light')">Blue Light</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="aboutUs.php">About Us</a>
                         </li>
@@ -555,7 +705,10 @@ h2 {
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="accountPage.php">My Profile</a></li>
                                 <li><a class="dropdown-item" href="order-history.php">My Orders</a></li>
-                                <li><a class="dropdown-item" href="login.php">Logout</a></li>
+                                <form method="post" action="">
+    <button type="submit" name="logout" class="dropdown-item">Logout</button>
+</form>
+
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -566,15 +719,54 @@ h2 {
                                 <li><a class="dropdown-item" href="admin.php">Admin</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-shopping-bag"></i>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="wishlist.php">
+                                <i class="fas fa-heart"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="basket.php">View Shopping Basket</a></li>
-                            </ul>
                         </li>
-                    </ul>
+
+                        <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="shopping-bag-icon">
+        <i class="fas fa-shopping-bag"> <?= $itemsCount ?></i>
+    </a>
+    <div id="shopping-bag-popup" class="shopping-bag-popup">
+        <h4>Your Selection (<?= $itemsCount ?>)</h4>
+
+        <?php foreach ($items as $item) : ?>
+            <div class="shopping-bag-product">
+                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+                <div class="product-details">
+                    <h5><?= $item['product_name'] ?></h5>
+                    <p>Price: £<?= number_format($item['price'], 2) ?></p>
+                    <p>Colour: <?= $item['colour'] ?></p>
+                    <p>Quantity: <?= $item['quantity'] ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <hr>
+        <!-- Total Price -->
+        <?php
+        // Calculate total price
+        $totalPrice = 0;
+        foreach ($items as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+        }
+        ?>
+        <div class="total-price">
+            <div class="price-left">Total Price:</div>
+            <div class="price-right">£<?= number_format($totalPrice, 2) ?></div>
+        </div>
+
+        <div class="buttons">
+            <a href="basket.php" class="btn btn-primary">VIEW SHOPPING BAG</a>
+            <a href="checkout.php" class="btn btn-primary">PROCEED TO CHECKOUT</a>
+        </div>
+        <!-- <p>Your shopping bag is empty.</p> -->
+    </div>
+</li>
+
                 </div>
             </div>
         </nav>
@@ -687,26 +879,26 @@ h2 {
      <div class="footer-col">
              <h4>&copyShaded | All Rights Reserved</h4>
              <ul>
-             <li><a href="#">Terms & Conditions </a></li>
-             <li><a href="#">Privacy Policy</a></li>
-             <li><a href="#">Cookies Policy</a></li>
+             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
+             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
+             
              </ul>
      </div>
      <div class="footer-col">
-            <h4>Product Links</h4>
+            <h4>References</h4>
             <ul>
-            <li><a href="References For Products.txt"  target="_blank">Sunglasses Products</a></li>
-            <li><a href="#">Homepage Link 1 </a></li>
-            <li><a href="#">Homepage Link 2</a></li>
-            <li><a href="#">Homepage Link 3</a></li>
+            <li><a href="References For Products.txt"  target="_blank" >Sunglasses Products</a></li>
+            <li><a href="Home & Login Media References.txt" target="_blank" >Homepage References </a></li>
+            <li><a href="Home & Login Media References.txt"  target="_blank" >Login/Signup References</a></li>
+            
             </ul>
     </div>
     <div class="footer-col">
             <h4>Need Help?</h4>
             <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">FAQs</a></li>
+                <li><a href="aboutUs.php">About Us</a></li>
+                <li><a href="Contactus.php">Contact Us</a></li>
+                <li><a href="FAQs.html">FAQs</a></li>
                 
             </ul>
     </div>
@@ -720,7 +912,7 @@ h2 {
     </div>
 </div>
 </div>
-  </footer>
+        </footer>
 
 
 
@@ -843,13 +1035,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
-
-
     // Function to handle product click
     function buyProduct(productId) {
         document.getElementById('selectedProductId').value = productId;
         document.getElementById('buyForm').submit();
+    }
+
+
+    function filterCategory(category) {
+        // Create a form element dynamically
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = 'shopping.php'; // Shopping.php is the target page
+        
+        // Create an input element to hold the category filter value
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'categoryFilter';
+        input.value = category;
+        
+        // Append the input element to the form
+        form.appendChild(input);
+        
+        // Append the form to the document body and submit it
+        document.body.appendChild(form);
+        form.submit();
     }
 </script>
 </body>
