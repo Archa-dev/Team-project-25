@@ -27,7 +27,9 @@ $itemsCount = count($items);
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        
+        <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+
+
             <title>Wishlist - SHADED</title>
         
 
@@ -42,7 +44,7 @@ $itemsCount = count($items);
             font-family: "Century Gothic", sans-serif;
             background-color: #ffffff;
             margin: 0;
-            margin-bottom: 60px; /* Adjust this value to match the height of the footer */
+            margin-bottom: 60px; 
             padding: 0;
             box-sizing: border-box;
             outline: none; border: none;
@@ -56,7 +58,7 @@ $itemsCount = count($items);
                 width: 100%;
                 z-index: 1000;
                 display: flex;
-                justify-content: space-between; /* Align logo to the left and nav to the right */
+                justify-content: space-between; 
                 align-items: center;
                 top: 0; left: 0; right: 0;
                 box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
@@ -76,9 +78,9 @@ $itemsCount = count($items);
     }
 
     .logo img {
-        max-width: 100%; /* Ensure the logo scales proportionally */
-        max-height: 50px; /* Set the maximum height as needed */
-        margin-left: auto; /* Center the logo horizontally */
+        max-width: 100%; 
+        max-height: 50px; 
+        margin-left: auto; 
     }
 
     .fas {
@@ -86,7 +88,7 @@ $itemsCount = count($items);
     }
 
     main {
-        margin-top: 15vh; /* Adjust margin-top to be equal to the height of the header */
+        margin-top: 15vh; 
     }
 
     .wishlist-container {
@@ -152,9 +154,9 @@ $itemsCount = count($items);
     }
 
     .wishlist-item-colour {
-    display: block; /* Display the color information on a new line */
-    color: #555; /* Optionally style the color information */
-    margin-top: 5px; /* Add margin to separate it from the price */
+    display: block; 
+    color: #555; 
+    margin-top: 5px; /* margin to separate it from the price */
     margin-right: 60px;
 }
 .wishlist-amount {
@@ -206,7 +208,7 @@ $itemsCount = count($items);
 
     .sticky-footer-padding {
         margin-bottom: 8vh;
-        /* Adjust the margin bottom to match the height of the footer */
+       
     }
 
     /* Updated Footer Styles */
@@ -230,13 +232,13 @@ $itemsCount = count($items);
 
     .terms-links a {
         margin-left: 5px;
-        color: #fff; /* Change the color as needed */
+        color: #fff; 
         text-decoration: none;
     }
 
     .terms-links a:hover {
-        text-decoration: underline; /* Add underlining on hover if desired */
-        color: grey; /* Change the hover color as needed */
+        text-decoration: underline; 
+        color: grey; 
     }
 
     
@@ -552,11 +554,10 @@ $itemsCount = count($items);
                     </div>
                     <div class="col-md-4">
                         <div class="social-icons">
-                            <!-- Add your social media icons  -->
                             <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                             <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                             <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <!-- Add more social media icons as needed -->
+                            
                         </div>
                     </div>
                     <div class="col-md-4">
