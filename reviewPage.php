@@ -75,6 +75,7 @@
                     }
                 }
                 xhr.send('productSelected='+productSelected+'&rating='+rating.value+'&review='+review);
+                window.location.href = 'shopping.php';
             }
         });
 
