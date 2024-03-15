@@ -366,7 +366,7 @@ html {
 
 main {
     margin-top: 90px; 
-    margin-bottom: 300px;
+    margin-bottom: 350px;
 }
 
 .return-link {
@@ -499,7 +499,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 13px;
 }
 
 .selection-title h2 {
@@ -529,7 +528,6 @@ h2 {
 }
 
 #main {
-    padding: 1rem;
     margin-left: 220px;
 }
 
