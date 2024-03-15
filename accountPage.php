@@ -409,12 +409,11 @@ section {
     color: #003b46;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 90px;
-    margin-right: 220px;
+    margin-bottom: 70px;
 }
 
 .profile-details h3{
-    font-size: 25px;
+    font-size: 22px;
     color: #003b46;
     font-weight: bold;
     text-align: left;
@@ -1026,4 +1025,3 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
 
 </body>
 </html>
-
