@@ -572,7 +572,7 @@ html {
 
     <div class="main-content">
         <!-- top video -->
-            <video src="videos/4.mp4" autoplay muted loop></video>
+            <video src="videos3/4.mp4" autoplay muted loop></video>
             <div class="text-overlay">
                     <h2 class="no-underline">About Shaded</h2>
                     <p class="no-underline">Welcome to Shaded – Where Style Meets UV Protection!</p>
@@ -604,7 +604,7 @@ html {
         
             <div class="main-content">
                 <!-- bottom video -->
-            <video src="videos/5.mp4" autoplay muted loop></video>
+            <video src="videos3/5.mp4" autoplay muted loop></video>
             
     </div>
     </main>
