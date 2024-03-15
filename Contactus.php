@@ -422,7 +422,7 @@ margin-left: 70px;
  }
 
  .contact-section h3 {
-    font-size: 20px;
+    font-size: 22px;
     color: #003b46;
     font-weight: bold;
     text-align: left;
