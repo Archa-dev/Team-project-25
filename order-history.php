@@ -417,7 +417,7 @@ main{
     }
 
     .order-details h4 {
-        font-size: 25px;
+        font-size: 22px;
     color: #003b46;
     font-weight: bold;
     text-align: left;
