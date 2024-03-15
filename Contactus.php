@@ -397,8 +397,7 @@ main{
     color: #003b46;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 90px;
-    margin-right: 220px; /* keeps the title in the centre */
+    margin-bottom: 70px;
 }
 
  .contact-section1 {
@@ -423,7 +422,7 @@ margin-left: 70px;
  }
 
  .contact-section h3 {
-    font-size: 18px;
+    font-size: 20px;
     color: #003b46;
     font-weight: bold;
     text-align: left;
