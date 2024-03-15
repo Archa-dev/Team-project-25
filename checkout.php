@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -38,27 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         
         <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
-
-
-        <?php
-session_start();
-require_once('connectdb.php');
-$customerid = $_SESSION['customer_id'];
-
-$itemIDs=$db->prepare('SELECT product_id FROM basket WHERE customer_id = ?');
-$itemIDs->bindParam(1, $customerid);
-$itemIDs->execute();
-$itemTitle=$db->prepare('SELECT product_name FROM productdetails WHERE product_id = ?');
-$itemPrice=$db->prepare('SELECT price FROM productdetails WHERE product_id = ?');
-$itemImage=$db->prepare('SELECT product_image FROM productdetails WHERE product_id = ?');
-
-
-$itemsCount = $db->prepare('SELECT COUNT(*) FROM basket WHERE customer_id = ?');
-$itemsCount->bindParam(1, $customerid);
-$itemsCount->execute();
-$itemsNum = $itemsCount->fetchColumn();
-
-?>
 
 <style>
 
@@ -312,6 +292,7 @@ html {
         }
 
 .dark-mode #order-summary span,
+.dark-mode .checkout-price,
 .dark-mode .total-price{
     color: #fff;
 }
@@ -342,6 +323,7 @@ html {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    padding: 10px;
 }
 
 .checkout-heading {
@@ -356,7 +338,6 @@ main {
             display: flex;
             justify-content: space-between;
             margin-top: 90px;
-            padding: 20px;
             margin-left: 25px;
             margin-right: 25px;
         }
@@ -429,7 +410,6 @@ input[type="password"]:focus {
             color: #fff;
             border: none;
             cursor: pointer;
-            height: 10%;
             font-size: 20px;
             padding: 10px;
         }
@@ -480,7 +460,7 @@ input[type="password"]:focus {
     font-weight: lighter;
 }
 
-        .total-price {
+        .checkout-price {
             text-align: right;
             font-size: 18px;
             font-weight: bold;
@@ -659,18 +639,49 @@ input[type="password"]:focus {
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-shopping-bag"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="basket.php">View Shopping Basket</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+    <a class="nav-link dropdown-toggle" href="#" id="shopping-bag-icon">
+        <i class="fas fa-shopping-bag"> <?= $itemsCount ?></i>
+    </a>
+    <div id="shopping-bag-popup" class="shopping-bag-popup">
+        <h4>Your Selection (<?= $itemsCount ?>)</h4>
+
+        <?php foreach ($items as $item) : ?>
+            <div class="shopping-bag-product">
+                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+                <div class="product-details">
+                    <h5><?= $item['product_name'] ?></h5>
+                    <p>Price: £<?= number_format($item['price'], 2) ?></p>
+                    <p>Colour: <?= $item['colour'] ?></p>
+                    <p>Quantity: <?= $item['quantity'] ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <hr>
+        <!-- Total Price -->
+        <?php
+        // Calculate total price
+        $totalPrice = 0;
+        foreach ($items as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+        }
+        ?>
+        <div class="total-price">
+            <div class="price-left">Total Price:</div>
+            <div class="price-right">£<?= number_format($totalPrice, 2) ?></div>
+        </div>
+
+        <div class="buttons">
+            <a href="basket.php" class="btn btn-primary">VIEW SHOPPING BAG</a>
+            <a href="checkout.php" class="btn btn-primary">PROCEED TO CHECKOUT</a>
+        </div>
+        <!-- <p>Your shopping bag is empty.</p> -->
+    </div>
+</li>
+
                 </div>
             </div>
         </nav>
-
     </header>
 
     <!-- light/dark mode -->
@@ -740,26 +751,34 @@ input[type="password"]:focus {
         <div class="row">
             <div class="col-12">
                 <div id="order-summary">
-                    <h2 class="order-summary-heading">Order Summary</h2>
-                    <div class="order-summary-product">
-                    <div class="order-summary-items">
-                    </div>
-                    </div>
-
-                    <hr>
-                    
-                    <span>Total:</span>
-                    <div class="total-price">
-                                    <h3>£</h3>
-                                </div>
-                    <button onclick="confirmOrder()" class="btn btn-primary mt-3 checkout-button">CHECKOUT</button>
+                <h2 class="order-summary-heading">Order Summary</h2>
+                <div class="order-summary-items">
+                    <!-- Display basket items dynamically -->
+                    <?php foreach ($items as $item): ?>
+                        <div class="order-summary-product">
+                            <img class="basket-item-image" src="<?php echo $item['product_image']; ?>">
+                            <div class="order-summary-item-details">
+                                <h5 class="basket-item-title"><?php echo $item['product_name']; ?></h5>
+                                <p class="basket-price">£<?php echo $item['price']; ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
+                <hr>
+                <!-- Total price and checkout button -->
+               
+                    <span>Total:</span>
+                    <div class="checkout-price">
+                    <h3>£<?php /* Calculate total price here */ ?></h3>
+                </div>
+                <button onclick="confirmOrder()" class="btn btn-primary mt-3 checkout-button">CHECKOUT</button>
             </div>
         </div>
+        </div>
     </div>
-</div>
     </div>
-</main>
+    </div>
+    </main>
 
 <footer class="footer">
      <div class="container">
@@ -985,16 +1004,34 @@ function updateBasketTotal() {
         total = total + (price)
     }
     total = Math.round(total * 100) / 100
-    document.getElementsByClassName('total-price')[0].innerText = '£' + total
+    document.getElementsByClassName('checkout-price')[0].innerText = '£' + total
 }
-updateBasketTotal()
+
+</script>
+
+<script>
+document.getElementById('shopping-bag-icon').addEventListener('click', function() {
+  const popup = document.getElementById('shopping-bag-popup');
+  popup.classList.toggle('show');
+});
+
+    document.addEventListener('click', function(event) {
+        const popup = document.getElementById('shopping-bag-popup');
+        const shoppingBagIcon = document.getElementById('shopping-bag-icon');
+        const isClickInsidePopup = popup.contains(event.target);
+        const isClickOnIcon = shoppingBagIcon.contains(event.target);
+
+        if (!isClickInsidePopup && !isClickOnIcon) {
+            popup.classList.remove('show');
+        }
+    });
 
 
-function filterCategory(category) {
+    function filterCategory(category) {
         // Create a form element dynamically
         var form = document.createElement('form');
         form.method = 'post';
-        form.action = 'shopping.php';
+        form.action = 'shopping.php'; 
         
         // Create an input element to hold the category filter value
         var input = document.createElement('input');
