@@ -300,18 +300,27 @@ main {
 }
     /* product-details.html styling */
 
+    .main-content {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            padding: 10px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
 .main-content h2{
     color: #003B46;
     font-weight: bold;
     text-align: center;
     font-size: 40px;
+    margin-bottom: 40px;
 }
 
 .product-details {
   
     position: relative;
     max-width: 100%;
-    margin: 50px auto;
     background-color: #fff;
     color: #003B46;
     padding: 20px;
@@ -694,7 +703,7 @@ font-weight: bold;
     <div id="sun-icon">&#9728;</div>
 
     <div class="main-content">
-    <h2><b>PRODUCT DETAILS</b></h2>
+    <h2>PRODUCT DETAILS</h2>
 
     <div class="container">
         <div class="product-details">
