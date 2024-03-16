@@ -4,9 +4,11 @@ require_once('connectdb.php');
 // Check if a color filter is set
 $colorFilter = isset($_POST['colorSelect']) ? $_POST['colorSelect'] : 'all';
 
+// Check if the search filter is set
+$searchFilter = isset($_POST['searchFilter']) ? $_POST['searchFilter'] : 'all';
+
 // Check if a category filter is set
 $categoryFilter = isset($_POST['categoryFilter']) ? $_POST['categoryFilter'] : 'all';
-
 
 // Check if a price range filter is set
 //$priceRange = isset($_POST['priceRange']) ? array_map('intval', explode('-', $_POST['priceRange'])) : array(20, 1000);
@@ -32,6 +34,9 @@ if ($categoryFilter !== 'all') {
 if ($colorFilter !== 'all') {
     $query .= " AND colour = :color";
 }
+if ($searchFilter !== 'all') {
+    $query .= " AND (product_name LIKE :searchFilter OR category = :searchFilter OR colour = :searchFilter)";
+}
 
 
 // Prepare the SQL statement
@@ -46,6 +51,12 @@ if ($categoryFilter !== 'all') {
 if ($colorFilter !== 'all') {
     $stmt->bindParam(':color', $colorFilter, PDO::PARAM_STR);
 }
+// Bind the parameter if it's set
+if ($searchFilter !== 'all') {
+    $searchFilter = '%' . $searchFilter . '%';
+    $stmt->bindParam(':searchFilter', $searchFilter, PDO::PARAM_STR);
+}
+
 
 // Bind the price range parameters if it's set
 $stmt->bindParam(':minPrice', $minPrice, PDO::PARAM_INT);
@@ -62,13 +73,10 @@ if (!$result) {
 
 // Fetch the results as an associative array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
 
+if(isset($_SESSION['customer_id'])) {
+    $customerid = $_SESSION['customer_id'];}
 
-<?php
-session_start();
-require_once('connectdb.php');
-$customerid = $_SESSION['customer_id'];
 
 //$customerid = 13;   
 // Retrieve basket items for the logged-in customer
@@ -686,15 +694,14 @@ h2 {
                     </ul>
 
                     <!-- search box -->
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+                    <form class="d-flex" role="search" method="POST" action="shopping.php">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput" name="searchFilter">
                         <button class="btn btn-outline-bg search-btn" type="submit">
-                            <a href="#" class="search-icon">
-                                <i class="fas fa-search"></i>
-                            </a>
+                            <i class="fas fa-search search-icon"></i>
                         </button>
                     </form>
 
+                    
                     <!-- navbar to the right of the search box -->
                     <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
@@ -1040,7 +1047,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('buyForm').submit();
     }
 
-
+    
     function filterCategory(category) {
         // Create a form element dynamically
         var form = document.createElement('form');
@@ -1060,6 +1067,22 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(form);
         form.submit();
     }
+
+    document.getElementById('shopping-bag-icon').addEventListener('click', function() {
+  const popup = document.getElementById('shopping-bag-popup');
+  popup.classList.toggle('show');
+});
+
+    document.addEventListener('click', function(event) {
+        const popup = document.getElementById('shopping-bag-popup');
+        const shoppingBagIcon = document.getElementById('shopping-bag-icon');
+        const isClickInsidePopup = popup.contains(event.target);
+        const isClickOnIcon = shoppingBagIcon.contains(event.target);
+
+        if (!isClickInsidePopup && !isClickOnIcon) {
+            popup.classList.remove('show');
+        }
+    });
 </script>
 </body>
 </html>
