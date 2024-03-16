@@ -1006,7 +1006,7 @@ function updateBasketTotal() {
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('checkout-price')[0].innerText = '£' + total
 }
-
+updateBasketTotal()
 </script>
 
 <script>
