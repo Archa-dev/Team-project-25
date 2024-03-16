@@ -98,6 +98,18 @@ INSERT INTO `logindetails` (`user_id`, `authorization_level`, `username`, `passw
 (12, 'customer', 'testing', '$2y$10$VacXwIqCYJvKOtEUAtJS0uaQLbxTebiEcmZI0TJMf5AtKd8xRB73K', 'testemail@gmail.com');
 
 -- --------------------------------------------------------
+--
+-- Table structure for table `pending_admin_accounts`
+--
+
+CREATE TABLE `pending_admin_accounts` (
+  `pending_user_id` int(11) NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `pendingorders`
@@ -280,6 +292,12 @@ ALTER TABLE `images`
 --
 ALTER TABLE `logindetails`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `pending_admin_accounts`
+--
+ALTER TABLE `pending_admin_accounts`
+  MODIFY `pending_user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `productdetails`
