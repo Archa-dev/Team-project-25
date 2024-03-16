@@ -24,6 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     exit;
 }
 
+
+// retrieve customer details
+$customerDetails = $db->prepare('SELECT * FROM customerdetails WHERE customer_id = ?');
+$customerDetails->bindParam(1, $customerid);
+$customerDetails->execute();
+$customer = $customerDetails->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -724,14 +731,35 @@ section {
             <div class="row">
             <div class="col-md-6">
             <h3>MY INFORMATION</h3>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="firstName">First Name:</label>
                 <div id="firstNameDisplay">John</div>
             </div>
             <div class="mb-3">
                 <label for="surname">Surname:</label>
                 <div id="surnameDisplay">Doe</div>
-            </div>
+            </div> -->
+            <?php
+            if ($customer['name'] == null) {
+                echo '<div class="mb-3">
+                    <label for="firstName">First Name:</label>
+                    <div id="firstNameDisplay">No name saved</div>
+                </div>';
+                echo '<div class="mb-3">
+                    <label for="surname">Surname:</label>
+                    <div id="surnameDisplay">No surname saved</div>
+                </div>';
+            } else {
+                echo '<div class="mb-3">
+                    <label for="firstName">First Name:</label>
+                    <div id="firstNameDisplay">' . explode("@",$customer['name'],1)[1] . '</div>
+                </div>';
+                echo '<div class="mb-3">
+                    <label for="surname">Surname:</label>
+                    <div id="firstNameDisplay">' . explode("@",$customer['name'],1)[2] . '</div>
+                </div>';
+            }
+            ?>
             <div class="mb-3">
                 <label for="email">Your Email:</label>
                 <div id="emailDisplay">john.doe@example.com</div>
@@ -748,14 +776,35 @@ section {
 
         <div class="col-md-6">
             <h3>MY ADDRESS</h3>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="shippingAddress">Shipping Address:</label>
                 <div id="shippingAddressDisplay">123 Shipping St, Cityville, State, 12345</div>
             </div>
             <div class="mb-3">
                 <label for="billingAddress">Billing Address:</label>
                 <div id="billingAddressDisplay">456 Billing St, Cityville, State, 67890</div>
-            </div>
+            </div> -->
+        <?php
+        if ($customer['default_address'] == null) {
+            echo '<div class="mb-3">
+                <label for="shippingAddress">Shipping Address:</label>
+                <div id="shippingAddressDisplay">No address saved</div>
+            </div>';
+            echo '<div class="mb-3">
+                <label for="billingAddress">Billing Address:</label>
+                <div id="billingAddressDisplay">No address saved</div>
+            </div>';
+        } else {
+            echo '<div class="mb-3">
+                <label for="shippingAddress">Shipping Address:</label>
+                <div id="shippingAddressDisplay">' . $customer['default_address'] . '</div>
+            </div>';
+            echo '<div class="mb-3">
+                <label for="billingAddress">Billing Address:</label>
+                <div id="billingAddressDisplay">' . $customer['default_address'] . '</div>
+            </div>';
+        }
+        ?>
             
             <!-- Payment Method -->
             <h3>PAYMENT METHOD</h3>
@@ -904,7 +953,7 @@ section {
         var billingAddressInput = document.getElementById("editBillingAddress").value;
         var paymentMethodInput = document.getElementById("editPaymentMethod").value;
 
-        let fullName = firstNameInput + " " + surnameInput;
+        let fullName = firstNameInput + "@" + surnameInput;
         let address = shippingAddressInput;
         let xhr = new XMLHttpRequest();
         xhr.open('POST', 'saveAccountDetails.php', true);
