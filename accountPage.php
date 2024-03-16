@@ -904,6 +904,18 @@ section {
         var billingAddressInput = document.getElementById("editBillingAddress").value;
         var paymentMethodInput = document.getElementById("editPaymentMethod").value;
 
+        let fullName = firstNameInput + " " + surnameInput;
+        let address = shippingAddressInput;
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'saveAccountDetails.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+        }
+        }
+        xhr.send('accountName='+fullName+'&address='+address);
+
+
  // Update the displayed details with the edited values
     document.getElementById("firstNameDisplay").innerText = firstNameInput;
     document.getElementById("surnameDisplay").innerText = surnameInput;
