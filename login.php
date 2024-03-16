@@ -168,7 +168,7 @@ body {
 }
 
 .right-half{
-  box-shadow: 0 0 20px #003B46;
+  box-shadow: 0 0 12px #1c7a7f;
   right: 0;
 }
 
@@ -214,7 +214,7 @@ body {
   padding: 20px;
   margin: auto;
   border-radius: 10px;
-  box-shadow: 0 0 30px #003B46;
+  box-shadow: 0 0 12px #1c7a7f;
   text-align: center;
   position: absolute;
   top: 60%;
