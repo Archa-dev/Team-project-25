@@ -35,7 +35,7 @@ if ($colorFilter !== 'all') {
     $query .= " AND colour = :color";
 }
 if ($searchFilter !== 'all') {
-    $query .= " AND (product_name LIKE :searchFilter OR category = :searchFilter OR colour = :searchFilter)";
+    $query .= " AND (product_name LIKE :searchFilter OR category LIKE :searchFilter OR colour LIKE :searchFilter)";
 }
 
 
