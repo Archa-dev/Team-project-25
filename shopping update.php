@@ -34,8 +34,16 @@ if ($categoryFilter !== 'all') {
 if ($colorFilter !== 'all') {
     $query .= " AND colour = :color";
 }
+if (strpos($searchFilter, 'women') !== false || strpos($searchFilter, 'woman') !== false || strpos($searchFilter, 'lad') !== false || strpos($searchFilter, 'female') !== false) {
+    $searchFilter = 'female';
+}
+elseif (strpos($searchFilter, 'men') !== false || strpos($searchFilter, 'man') !== false || strpos($searchFilter, 'male') !== false){
+    $searchFilter = 'male';
+}
+
+
 if ($searchFilter !== 'all') {
-    $query .= " AND (product_name LIKE :searchFilter OR category LIKE :searchFilter OR colour LIKE :searchFilter)";
+    $query .= " AND (product_name LIKE :searchFilter OR category = :catSearchFilter OR colour LIKE :searchFilter)";
 }
 
 
@@ -53,8 +61,10 @@ if ($colorFilter !== 'all') {
 }
 // Bind the parameter if it's set
 if ($searchFilter !== 'all') {
+    $catSearchFilter = $searchFilter;
     $searchFilter = '%' . $searchFilter . '%';
     $stmt->bindParam(':searchFilter', $searchFilter, PDO::PARAM_STR);
+    $stmt->bindParam(':catSearchFilter', $catSearchFilter, PDO::PARAM_STR);
 }
 
 
