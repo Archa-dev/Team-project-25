@@ -1,9 +1,11 @@
 <?php
-session_start();
 require_once('connectdb.php');
-$customerid = $_SESSION['customer_id'];
+session_start();
 
-//$customerid = 13;   
+if (isset($_SESSION['customer_id'])) {
+    $customerid = $_SESSION['customer_id'];
+}
+
 // Retrieve basket items for the logged-in customer
 $itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour
                         FROM basket b
@@ -11,28 +13,19 @@ $itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantit
                         WHERE b.customer_id = ?');
 $itemIDs->bindParam(1, $customerid);
 $itemIDs->execute();
-$items = $itemIDs->fetchAll(PDO::FETCH_ASSOC);
+$bitems = $itemIDs->fetchAll(PDO::FETCH_ASSOC);
+    
+    $itemsCount = count($bitems);
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+        // Destroy the session
+        session_destroy();
+    
+        // Redirect to the login page or any other desired page
+        header('Location: login.php');
+        exit;
+    }
 
-$itemsCount = count($items);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
-    // Destroy the session
-    session_destroy();
-
-    // Redirect to the login page or any other desired page
-    header('Location: login.php');
-    exit;
-}
-
-?>
-<
-!DOCTYPE html>
-<html lang="en">
-  
-<?php
-require_once('connectdb.php');
-session_start();
-$user = $_SESSION['customer_id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the selectedProductId is set
@@ -47,34 +40,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $item = $items->fetch(PDO::FETCH_ASSOC);
     }
 
-
     // Check if the addToBasket button is clicked
     if (isset($_POST["addToBasket"])) {
-        // Check for duplicate entry
-        $checkDuplicate = $db->prepare("SELECT COUNT(*) FROM `basket` WHERE `customer_id` = ? AND `product_id` = ?;");
-        $checkDuplicate->bindParam(1, $user);
-        $checkDuplicate->bindParam(2, $integerValue);
-        $checkDuplicate->execute();
-        $count = $checkDuplicate->fetchColumn();
+        if ($customerid !== null) {
+            // Check for duplicate entry
+            $checkDuplicate = $db->prepare("SELECT COUNT(*) FROM `basket` WHERE `customer_id` = ? AND `product_id` = ?;");
+            $checkDuplicate->bindParam(1, $customerid);
+            $checkDuplicate->bindParam(2, $integerValue);
+            $checkDuplicate->execute();
+            $count = $checkDuplicate->fetchColumn();
 
-        // If no duplicate, proceed with insertion
-        if ($count == 0) {
-            $addToBasket = $db->prepare("INSERT INTO `basket` (`customer_id`, `product_id`) VALUES (?, ?);");
-            $addToBasket->bindParam(1, $user);
-            $addToBasket->bindParam(2, $integerValue);
+            // If no duplicate, proceed with insertion
+            if ($count == 0) {
+                $addToBasket = $db->prepare("INSERT INTO `basket` (`customer_id`, `product_id`,`quantity`) VALUES (?, ?,1);");
+                $addToBasket->bindParam(1, $customerid);
+                $addToBasket->bindParam(2, $integerValue);
 
-            // Execute the SQL query to insert the product into the basket
-            $addToBasket->execute();
-
+                // Execute the SQL query to insert the product into the basket
+                $addToBasket->execute();
+            } else {
+                $updateQuantity = $db->prepare("UPDATE `basket` SET `quantity` = `quantity` + 1 WHERE `customer_id` = ? AND `product_id` = ?");
+                $updateQuantity->bindParam(1, $customerid);
+                $updateQuantity->bindParam(2, $integerValue);
+                $updateQuantity->execute();
+            }
         } else {
-            // Display a message
-            echo "Product is already in the basket.";
+            header("Location: login.php");
+            exit();
         }
     }
 }
+else {
+    header("Location: shopping.php");
+    exit();
+}
 ?>
 
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -697,12 +700,12 @@ main {
     <a class="nav-link dropdown-toggle" href="#" id="shopping-bag-icon">
         <i class="fas fa-shopping-bag"> <?= $itemsCount ?></i>
     </a>
-    <div id="shopping-bag-popup" class="shopping-bag-popup">
+        <div id="shopping-bag-popup" class="shopping-bag-popup">
         <h4>Your Selection (<?= $itemsCount ?>)</h4>
 
-        <?php foreach ($items as $item) : ?>
+        <?php foreach ($bitems as $item) : ?>
             <div class="shopping-bag-product">
-                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+                <img src="MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
                 <div class="product-details">
                     <h5><?= $item['product_name'] ?></h5>
                     <p>Price: £<?= number_format($item['price'], 2) ?></p>
@@ -943,9 +946,7 @@ window.addEventListener('DOMContentLoaded', function() {
     var navbarHeight = document.querySelector('header').offsetHeight;
     sunIcon.style.top = navbarHeight + 'px';
 });
-</script>
 
-<script>
 document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
@@ -1003,6 +1004,3 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
 
 </body>
 </html>
-
-
-
