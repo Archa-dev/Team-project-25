@@ -1,7 +1,8 @@
 <?php
-session_start();
 require_once('connectdb.php');
-$customerid = $_SESSION['customer_id'];
+session_start();
+if(isset($_SESSION['customer_id'])) {
+$customerid = $_SESSION['customer_id'];}
 
 //$customerid = 13;   
 // Retrieve basket items for the logged-in customer
@@ -493,12 +494,10 @@ h2{
                     </ul>
 
                     <!-- search box -->
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+                    <form class="d-flex" role="search" method="POST" action="shopping.php">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput" name="searchFilter">
                         <button class="btn btn-outline-bg search-btn" type="submit">
-                            <a href="#" class="search-icon">
-                                <i class="fas fa-search"></i>
-                            </a>
+                            <i class="fas fa-search search-icon"></i>
                         </button>
                     </form>
 
