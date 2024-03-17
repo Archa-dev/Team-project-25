@@ -1,4 +1,6 @@
 <?php
+session_start();
+require_once('connectdb.php');
 $adminUsername = $_POST['adminName'];
 $newPassword = $_POST['newPassword'];
 $getAdminID = $db->prepare('SELECT user_id FROM logindetails WHERE username = ?');
