@@ -348,8 +348,8 @@ html {
 
 .return-link {
     position: absolute;
-    top: 90px; 
-    left: 20px;
+margin-bottom: 280px;
+margin-left: 10px;
     font-size: 14px;
     font-weight: bold;
     color: #003b46; 
@@ -445,39 +445,34 @@ main {
     font-weight: bold;
 }
 
-@media (min-width: 768px) {
-  #main {
-    flex-wrap: nowrap;
-  }
+
 
   #column,
   #product-info-container {
     flex: 1 0 45%;
   }
+
+ 
+/* Media screen styles for smaller screens */
+@media screen and (max-width: 768px) {
+    header h1 {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    footer {
+        padding: 10px;
+    }
 }
-
-@media (min-width: 992px) {
-  #main {
-    flex-wrap: nowrap;
-  }
-
-  #column,
-  #product-info-container {
-    flex: 1 0 45%;
-  }
-}
-
-@media (min-width: 1200px) {
-  #main {
-    flex-wrap: nowrap;
-  }
-
-  #column,
-  #product-info-container {
-    flex: 1 0 45%;
-  }
-}
-
 
 .add-to-wishlist-button {
     position: absolute;
@@ -703,7 +698,9 @@ main {
 
 <header>
 
-<a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
+
+
+
 
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
@@ -716,7 +713,7 @@ main {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="images/logo.png" alt="Shaded Logo">
+                    <img src="logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -856,7 +853,7 @@ main {
             <div id="boxes">
                 <div id="row">
                     <div id="column" style="display: flex; align-items: center;" >
-                    
+                    <a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
                         <img src="Images for products\Mens Black1.1.avif" alt="Product Image" style="width: 100%; height: auto;">
                         <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
         <i class="far fa-heart"></i>
