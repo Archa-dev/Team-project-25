@@ -465,7 +465,12 @@ h2{
 
                     <!-- navbar to the left of the search box -->
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                        <!-- Modify your category links in the HTML to include onclick event handlers -->
+                    <li class="nav-item">
+                            <a class="nav-link" href="homepage.php">Home</a>
+                        </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Shop All</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
@@ -657,8 +662,8 @@ h2{
      <div class="footer-col">
              <h4>&copyShaded | All Rights Reserved</h4>
              <ul>
-             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
-             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
+             <li><a href="TermsandConditions.php">Terms & Conditions </a></li>
+             <li><a href="Policy.php">Privacy and Cookies Policy</a></li>
              
              </ul>
      </div>
@@ -678,7 +683,7 @@ h2{
             <ul>
                 <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="Contactus.php">Contact Us</a></li>
-                <li><a href="FAQs.html">FAQs</a></li>
+                <li><a href="FAQs.php">FAQs</a></li>
                 
             </ul>
     </div>
