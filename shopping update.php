@@ -586,6 +586,7 @@ h2 {
     .price {
         margin-top: 5px; /* margin between the product name and the price */
         text-align: left;
+        margin-bottom: 60px;
         
     }
 
@@ -865,7 +866,7 @@ h2 {
         <?php foreach ($products as $product) : ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
             <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
-                <img src="images/MK-2161BU-0001_1.jpeg" width="100%" height="60%">
+                <img src="Images for products\Mens Black1.1.avif" width="100%" height="60%">
                 </a>
                 <div class="product-info">
                 <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
