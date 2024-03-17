@@ -1,7 +1,8 @@
 <?php
-session_start();
 require_once('connectdb.php');
-$customerid = $_SESSION['customer_id'];
+session_start();
+if(isset($_SESSION['customer_id'])) {
+$customerid = $_SESSION['customer_id'];}
 
 //$customerid = 13;   
 // Retrieve basket items for the logged-in customer
@@ -549,7 +550,12 @@ main{
 
                     <!-- navbar to the left of the search box -->
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                       
+                    <li class="nav-item">
+                            <a class="nav-link" href="homepage.php">Home</a>
+                        </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Shop All</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
@@ -578,12 +584,10 @@ main{
                     </ul>
 
                     <!-- search box -->
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+                    <form class="d-flex" role="search" method="POST" action="shopping.php">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput" name="searchFilter">
                         <button class="btn btn-outline-bg search-btn" type="submit">
-                            <a href="#" class="search-icon">
-                                <i class="fas fa-search"></i>
-                            </a>
+                            <i class="fas fa-search search-icon"></i>
                         </button>
                     </form>
 
@@ -757,11 +761,12 @@ main{
      <div class="footer-col">
              <h4>&copyShaded | All Rights Reserved</h4>
              <ul>
-             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
-             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
+             <li><a href="TermsandConditions.php">Terms & Conditions </a></li>
+             <li><a href="Policy.php">Privacy and Cookies Policy</a></li>
              
              </ul>
      </div>
+     <!-- first column -->
      <div class="footer-col">
             <h4>References</h4>
             <ul>
@@ -771,15 +776,17 @@ main{
             
             </ul>
     </div>
+     <!-- second column -->
     <div class="footer-col">
             <h4>Need Help?</h4>
             <ul>
                 <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="Contactus.php">Contact Us</a></li>
-                <li><a href="FAQs.html">FAQs</a></li>
+                <li><a href="FAQs.php">FAQs</a></li>
                 
             </ul>
     </div>
+    <!-- third column -->
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
