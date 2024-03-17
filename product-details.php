@@ -295,7 +295,26 @@ html {
   color: #fff;
    }
 
-/*Homepage Content*/
+.return-link {
+    position: absolute;
+    top: 90px; 
+    left: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #003b46; 
+    text-decoration: none;
+    z-index: 1000; /* Ensures it appears above other content */
+}
+
+.return-link i {
+    margin-right: 5px; 
+}
+
+.return-link:hover {
+    text-decoration: none;
+    color: #1c7a7f;
+}
+      
 main {
     margin-top: 90px; 
 }
@@ -562,6 +581,9 @@ font-weight: bold;
 </script>
 
 <header>
+
+  <a href="order-history.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to My Orders</a>
+  
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
