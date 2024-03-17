@@ -1,5 +1,8 @@
 <?php
 require_once('connectdb.php');
+session_start();
+if(isset($_SESSION['customer_id'])) {
+$customerid = $_SESSION['customer_id'];}
 
 // Check if a color filter is set
 $colorFilter = isset($_POST['colorSelect']) ? $_POST['colorSelect'] : 'all';
@@ -84,8 +87,6 @@ if (!$result) {
 // Fetch the results as an associative array
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if(isset($_SESSION['customer_id'])) {
-    $customerid = $_SESSION['customer_id'];}
 
 
 //$customerid = 13;   
@@ -116,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHADED</title>
+    <title>Shop - SHADED</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -675,7 +676,12 @@ h2 {
 
                    <!-- navbar to the left of the search box -->
                    <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                        
+                   <li class="nav-item">
+                            <a class="nav-link" href="homepage.php">Home</a>
+                        </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Shop All</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
@@ -895,11 +901,12 @@ h2 {
      <div class="footer-col">
              <h4>&copyShaded | All Rights Reserved</h4>
              <ul>
-             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
-             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
+             <li><a href="TermsandConditions.php">Terms & Conditions </a></li>
+             <li><a href="Policy.php">Privacy and Cookies Policy</a></li>
              
              </ul>
      </div>
+     <!-- first column -->
      <div class="footer-col">
             <h4>References</h4>
             <ul>
@@ -909,15 +916,17 @@ h2 {
             
             </ul>
     </div>
+     <!-- second column -->
     <div class="footer-col">
             <h4>Need Help?</h4>
             <ul>
                 <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="Contactus.php">Contact Us</a></li>
-                <li><a href="FAQs.html">FAQs</a></li>
+                <li><a href="FAQs.php">FAQs</a></li>
                 
             </ul>
     </div>
+    <!-- third column -->
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
