@@ -896,8 +896,8 @@ foreach ($reviews as $review) {
     $customerName->bindParam(1, $review['user_id']);
     $customerName->execute();
     $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
-    $firstName = explode('@',$customer['name'])[0];
-    $lastName = explode('@',$customer['name'])[1];
+    $firstName = explode('@',$customerName['name'])[0];
+    $lastName = explode('@',$customerName['name'])[1];
     $fullName = $firstName . " " . $lastName;
     $starNumber = $review['star_rating'];
     echo "<h3> REVIEW BY:" . $fullName . "</h4>";            // this is how individual reviews are displayed, this is what needs to be changed for the formatting, although it may be easier to encapsulate this area in a div and use css only
