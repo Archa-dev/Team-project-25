@@ -346,7 +346,8 @@ html {
     color: #fff;
 }
 
-        .return-link {
+
+.return-link {
     position: absolute;
     top: 90px; 
     left: 41%;
@@ -365,7 +366,8 @@ html {
     text-decoration: none;
     color: #1c7a7f;
 }
-        
+
+
 main {
     margin-top: 90px; 
     margin-bottom: 150px;
@@ -633,8 +635,7 @@ main {
 
 <header>
 
-    <a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
-    
+<a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
@@ -652,6 +653,7 @@ main {
 
                     <!-- navbar to the left of the search box -->
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                    
                     <li class="nav-item">
                             <a class="nav-link" href="homepage.php">Home</a>
                         </li>
@@ -732,14 +734,14 @@ main {
         <div id="shopping-bag-popup" class="shopping-bag-popup">
         <h4>Your Selection (<?= $itemsCount ?>)</h4>
 
-        <?php foreach ($bitems as $item) : ?>
+        <?php foreach ($bitems as $bitem) : ?>
             <div class="shopping-bag-product">
-                <img src="MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+                <img src="MK-2161BU-0001_1.jpeg" alt="<?= $bitem['product_name'] ?>">
                 <div class="product-details">
-                    <h5><?= $item['product_name'] ?></h5>
-                    <p>Price: £<?= number_format($item['price'], 2) ?></p>
-                    <p>Colour: <?= $item['colour'] ?></p>
-                    <p>Quantity: <?= $item['quantity'] ?></p>
+                    <h5><?= $bitem['product_name'] ?></h5>
+                    <p>Price: £<?= number_format($bitem['price'], 2) ?></p>
+                    <p>Colour: <?= $bitem['colour'] ?></p>
+                    <p>Quantity: <?= $bitem['quantity'] ?></p>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -749,8 +751,8 @@ main {
         <?php
         // Calculate total price
         $totalPrice = 0;
-        foreach ($items as $item) {
-            $totalPrice += $item['price'] * $item['quantity'];
+        foreach ($bitems as $bitem) {
+            $totalPrice += $bitem['price'] * $bitem['quantity'];
         }
         ?>
         <div class="total-price">
@@ -884,7 +886,7 @@ foreach ($reviews as $review) {
              
              </ul>
      </div>
-     <!-- first column -->
+          <!-- first column -->
      <div class="footer-col">
             <h4>References</h4>
             <ul>
@@ -894,7 +896,7 @@ foreach ($reviews as $review) {
             
             </ul>
     </div>
-     <!-- second column -->
+    <!-- second column -->
     <div class="footer-col">
             <h4>Need Help?</h4>
             <ul>
@@ -904,7 +906,7 @@ foreach ($reviews as $review) {
                 
             </ul>
     </div>
-    <!-- third column -->
+        <!-- third column -->
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
