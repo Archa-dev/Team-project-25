@@ -30,6 +30,11 @@ $customerDetails = $db->prepare('SELECT * FROM customerdetails WHERE customer_id
 $customerDetails->bindParam(1, $customerid);
 $customerDetails->execute();
 $customer = $customerDetails->fetch(PDO::FETCH_ASSOC);
+$customerLoginDetails = $db->prepare('SELECT * FROM logindetails WHERE user_id = ?');
+$customerLoginDetails->bindParam(1, $customer['user_id']);
+$customerLoginDetails->execute();
+$customerLogin = $customerLoginDetails->fetch(PDO::FETCH_ASSOC);
+
 
 ?>
 <!DOCTYPE html>
@@ -731,14 +736,6 @@ section {
             <div class="row">
             <div class="col-md-6">
             <h3>MY INFORMATION</h3>
-            <!-- <div class="mb-3">
-                <label for="firstName">First Name:</label>
-                <div id="firstNameDisplay">John</div>
-            </div>
-            <div class="mb-3">
-                <label for="surname">Surname:</label>
-                <div id="surnameDisplay">Doe</div>
-            </div> -->
             <?php
             if ($customer['name'] == null) {
                 echo '<div class="mb-3">
@@ -752,26 +749,25 @@ section {
             } else {
                 echo '<div class="mb-3">
                     <label for="firstName">First Name:</label>
-                    <div id="firstNameDisplay">' . explode("@",$customer['name'],1)[1] . '</div>
+                    <div id="firstNameDisplay">' . explode('@',$customer['name'])[0] . '</div>
                 </div>';
                 echo '<div class="mb-3">
                     <label for="surname">Surname:</label>
-                    <div id="firstNameDisplay">' . explode("@",$customer['name'],1)[2] . '</div>
+                    <div id="firstNameDisplay">' . explode('@',$customer['name'])[1] . '</div>
+                </div>';
+            }
+            if ($customerLogin['email'] == null) {
+                echo '<div class="mb-3">
+                    <label for="email">Your Email:</label>
+                    <div id="emailDisplay">No email saved</div>
+                </div>';
+            } else {
+                echo '<div class="mb-3">
+                    <label for="email">Your Email:</label>
+                    <div id="emailDisplay">' . $customerLogin['email'] . '</div>
                 </div>';
             }
             ?>
-            <div class="mb-3">
-                <label for="email">Your Email:</label>
-                <div id="emailDisplay">john.doe@example.com</div>
-            </div>
-            <div class="mb-3">
-                <label for="Password">Current Password:</label>
-                <div id="currentPasswordDisplay">********</div>
-            </div>
-            <div class="mb-3">
-                <label for="phoneNumber">Phone Number:</label>
-                <div id="phoneDisplay">123-456-7890</div>
-            </div>
         </div>
 
         <div class="col-md-6">
