@@ -7,7 +7,7 @@ if (isset($_SESSION['customer_id'])) {
 }
 
 // Retrieve basket items for the logged-in customer
-$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour, i.filepath, i.file_name
+$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour
                         FROM basket b
                         JOIN productdetails p ON b.product_id = p.product_id
                         WHERE b.customer_id = ?');
