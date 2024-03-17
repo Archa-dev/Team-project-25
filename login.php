@@ -35,7 +35,7 @@
 
 
           if(  $_SESSION["authorization_level"]=="admin"){
-            header("Location:admin-homepage.php");
+            header("Location:admin.php");
             exit(); 
           }
           else if(  $_SESSION["authorization_level"]=="customer"){
