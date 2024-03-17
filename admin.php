@@ -571,7 +571,7 @@ main {
                 <div class="box-label">Inventory</div>
                 <div class="box-number">25</div> <!-- Placeholder number -->
             </a>
-            <a href="customerAccounts.php" class="admin-box">
+            <a href="Admin-account-management.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-users"></i></div>
                 <div class="box-label">Customer Accounts</div>
                 <div class="box-number">7</div> <!-- Placeholder number -->
