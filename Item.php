@@ -80,7 +80,7 @@ else {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
    
     <!--bootstrap css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -348,8 +348,8 @@ html {
 
 .return-link {
     position: absolute;
-    top: 90px; 
-    left: 41%;
+margin-bottom: 280px;
+margin-left: 10px;
     font-size: 14px;
     font-weight: bold;
     color: #003b46; 
@@ -376,6 +376,7 @@ main {
     flex-direction: column;
     align-items: center; 
     margin-top: 11vh;
+    flex-wrap: wrap;
     }
 
     #boxes {
@@ -388,8 +389,9 @@ main {
          position: absolute;
          left: 0;
     top: 0;
-    width: 40%;
+    width: 45%;
     float: left;
+    flex: 1 0 100%;
            
         }
 
@@ -397,10 +399,12 @@ main {
 
         #column img {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
             object-fit: cover; 
-            box-shadow: 0 0 12px #1c7a7f;
+            margin-top: 180px;
+            margin-left: 20px;
+           
         }
 
         #product-info {
@@ -414,35 +418,71 @@ main {
 
         #product-info h3{
             margin-bottom: 10px;
-            font-size: 40px;
-         padding-left: 30px;
+            font-size: 32px;
+         padding-left: 60px;
          font-weight: bold;
         
         }
 
         #product-info h4 {
             margin-bottom: 20px;
-            font-size: 30px;
-         padding-left: 30px;
+            font-size: 28px;
+         padding-left: 60px;
         }
 
         #product-info-container {
-    width: 85%;
+    width: 50%;
     float: right;
+    margin-top: 20px;
+    flex: 1 0 100%;
    
 }
 
 #product-info h5 {
     margin-bottom: 5px;
     font-size: 16px; 
-    padding-left: 30px;
+    padding-left: 60px;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  #main {
+    flex-wrap: nowrap;
+  }
+
+  #column,
+  #product-info-container {
+    flex: 1 0 45%;
+  }
+}
+
+@media (min-width: 992px) {
+  #main {
+    flex-wrap: nowrap;
+  }
+
+  #column,
+  #product-info-container {
+    flex: 1 0 45%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #main {
+    flex-wrap: nowrap;
+  }
+
+  #column,
+  #product-info-container {
+    flex: 1 0 45%;
+  }
 }
 
 
 .add-to-wishlist-button {
     position: absolute;
-    top: 20%;
-    right: 60px;
+    top: 40%;
+    right: 1px;
     transform: translateY(-50%);
     background-color: transparent;
     border:#000000;
@@ -470,7 +510,7 @@ main {
     font-size: 20px;
     font-weight: bold;
     margin: 80px 0;
-    margin-left: 30px;
+    margin-left: 55px;
     cursor: pointer;
     border-radius: 5px;
     white-space: nowrap;
@@ -481,7 +521,7 @@ main {
 }
 
 #leave-review-btn {
-    margin-left: 500px;
+    margin-left: 550px;
   margin-top: -80px;
   color: #003b46;
   border: none;
@@ -570,6 +610,36 @@ main {
 }
 
 
+.review-container {
+  margin-top: 30px;
+  text-align: left;
+  margin-left: 20px;
+  max-width: 100%;
+}
+
+.review-container h2 {
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #003B46;
+  font-size: 24px;
+}
+
+.review-container h3 {
+ 
+  font-weight: bold;
+  color: #003B46;
+  font-size: 18px;
+}
+
+.review-container p{
+  margin-bottom: 10px;
+  color: #000000;
+  font-size: 16px;
+}
+
+.checked {
+  color: gold;
+}
 
 /* footer styles */
 .footer {
@@ -633,7 +703,7 @@ main {
 
 <header>
 
-<a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
+
 
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
@@ -646,7 +716,7 @@ main {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="images/logo.png" alt="Shaded Logo">
+                    <img src="logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -786,7 +856,8 @@ main {
             <div id="boxes">
                 <div id="row">
                     <div id="column" style="display: flex; align-items: center;" >
-                        <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image" style="width: 100%; height: auto;">
+                    <a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
+                        <img src="Images for products\Mens Black1.1.avif" alt="Product Image" style="width: 100%; height: auto;">
                         <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
         <i class="far fa-heart"></i>
     </button>
@@ -798,10 +869,7 @@ main {
 
                         <!-- placeholder headers -->
     <h5 style="margin-top: 30px;">Colour: BLACK</h5>
-    <div class="color-icon"> <!-- Container for the black circle icon -->
-        <i class="fas fa-circle" style= "font-size: 32px; margin-left: 30px;"></i> <!-- Black circle icon -->
-    </div>
-    <h5 style="margin-top: 30px;">Size: ONE SIZE</h5>
+    <h5 style="margin-top: 10px;">Size: ONE SIZE</h5>
                         <!-- Add your product name and price elements here -->
                         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
                             <!-- Add your product ID input or any other necessary fields here -->
@@ -815,14 +883,14 @@ main {
                 </div>
             </div>
         </div>
+        </div>
 
 
 
-<br>
-<br>
-<div id="review-display">
-    <h2>Reviews</h2>
-<?php
+ 
+<div id="review-display" class="review-container">
+    <h2>REVIEWS FOR THIS PRODUCT</h2>
+ <?php
 // displays reviews from the database
 $reviews = $db->prepare("SELECT * FROM `productreviews` WHERE `product_id` = ?;");
 $reviews->bindParam(1, $integerValue);
@@ -834,12 +902,14 @@ foreach ($reviews as $review) {
     $customerName->execute();
     $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
     $starNumber = $review['star_rating'];
-    echo "<h3> Review by: " . $customerName['name'] . "</h4>";            // this is how individual reviews are displayed, this is what needs to be changed for the formatting, although it may be easier to encapsulate this area in a div and use css only
-    echo "<h3> Rating:  ". str_repeat('<span class="fa fa-star checked"></span>',$starNumber) . "</h4>";
+    echo "<h3> REVIEW BY:" . $customerName['name'] . "</h4>";            // this is how individual reviews are displayed, this is what needs to be changed for the formatting, although it may be easier to encapsulate this area in a div and use css only
+    echo "<h3> RATING:  ". str_repeat('<span class="fa fa-star checked"></span>',$starNumber) . "</h4>";
     echo "<p>" . $review['review_text'] . "</p>";
 }
-?>
+?> 
 </div>
+        
+        
 
 
 
@@ -999,17 +1069,16 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
   popup.classList.toggle('show');
 });
 
-    document.addEventListener('click', function(event) {
-        const popup = document.getElementById('shopping-bag-popup');
-        const shoppingBagIcon = document.getElementById('shopping-bag-icon');
-        const isClickInsidePopup = popup.contains(event.target);
-        const isClickOnIcon = shoppingBagIcon.contains(event.target);
+document.addEventListener('click', function(event) {
+    const popup = document.getElementById('shopping-bag-popup');
+    const shoppingBagIcon = document.getElementById('shopping-bag-icon');
+    const isClickInsidePopup = popup.contains(event.target);
+    const isClickOnIcon = shoppingBagIcon.contains(event.target);
 
-        if (!isClickInsidePopup && !isClickOnIcon) {
-            popup.classList.remove('show');
-        }
-    });
-
+    if (!isClickInsidePopup && !isClickOnIcon) {
+        popup.classList.remove('show');
+    }
+});
 
     function filterCategory(category) {
         // Create a form element dynamically
