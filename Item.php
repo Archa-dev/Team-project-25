@@ -7,7 +7,7 @@ if (isset($_SESSION['customer_id'])) {
 }
 
 // Retrieve basket items for the logged-in customer
-$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour
+$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour, i.filepath, i.file_name
                         FROM basket b
                         JOIN productdetails p ON b.product_id = p.product_id
                         WHERE b.customer_id = ?');
@@ -346,7 +346,6 @@ html {
     color: #fff;
 }
 
-
 .return-link {
     position: absolute;
     top: 90px; 
@@ -366,7 +365,6 @@ html {
     text-decoration: none;
     color: #1c7a7f;
 }
-
 
 main {
     margin-top: 90px; 
@@ -636,6 +634,7 @@ main {
 <header>
 
 <a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
+
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
@@ -653,7 +652,6 @@ main {
 
                     <!-- navbar to the left of the search box -->
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                    
                     <li class="nav-item">
                             <a class="nav-link" href="homepage.php">Home</a>
                         </li>
@@ -736,7 +734,7 @@ main {
 
         <?php foreach ($bitems as $bitem) : ?>
             <div class="shopping-bag-product">
-                <img src="MK-2161BU-0001_1.jpeg" alt="<?= $bitem['product_name'] ?>">
+                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $bitem['product_name'] ?>">
                 <div class="product-details">
                     <h5><?= $bitem['product_name'] ?></h5>
                     <p>Price: £<?= number_format($bitem['price'], 2) ?></p>
@@ -886,7 +884,7 @@ foreach ($reviews as $review) {
              
              </ul>
      </div>
-          <!-- first column -->
+     <!-- first column -->
      <div class="footer-col">
             <h4>References</h4>
             <ul>
@@ -896,7 +894,7 @@ foreach ($reviews as $review) {
             
             </ul>
     </div>
-    <!-- second column -->
+     <!-- second column -->
     <div class="footer-col">
             <h4>Need Help?</h4>
             <ul>
@@ -906,7 +904,7 @@ foreach ($reviews as $review) {
                 
             </ul>
     </div>
-        <!-- third column -->
+    <!-- third column -->
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
