@@ -314,7 +314,7 @@ input{
                 </div>
                 <div class = "input-field" style="margin-left: 10px;">
                   <i class="fa-solid fa-user"></i>
-                  <input type="text" name="Name" placeholder= "Name">
+                  <input type="text" name="Name" placeholder= "Full Name">
                 </div>
                 </div>
 
