@@ -1,8 +1,7 @@
 <?php
-require_once('connectdb.php');
 session_start();
-if(isset($_SESSION['customer_id'])) {
-$customerid = $_SESSION['customer_id'];}
+require_once('connectdb.php');
+$customerid = $_SESSION['customer_id'];
 
 //$customerid = 13;   
 // Retrieve basket items for the logged-in customer
@@ -450,12 +449,6 @@ html {
                 <!-- navbar to the left of the search box -->
                 <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                         <li class="nav-item">
-                        <li class="nav-item">
-                            <a class="nav-link" href="homepage.php">Home</a>
-                        </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="shopping.php">Shop All</a>
-                        </li>
                         <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
                         <li class="nav-item">
@@ -483,10 +476,12 @@ html {
                     </ul>
 
                     <!-- search box -->
-                    <form class="d-flex" role="search" method="POST" action="shopping.php">
-                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput" name="searchFilter">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
                         <button class="btn btn-outline-bg search-btn" type="submit">
-                            <i class="fas fa-search search-icon"></i>
+                            <a href="#" class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </a>
                         </button>
                     </form>
 
@@ -577,7 +572,7 @@ html {
 
     <div class="main-content">
         <!-- top video -->
-            <video src="videos3/4.mp4" autoplay muted loop></video>
+            <video src="videos/4.mp4" autoplay muted loop></video>
             <div class="text-overlay">
                     <h2 class="no-underline">About Shaded</h2>
                     <p class="no-underline">Welcome to Shaded – Where Style Meets UV Protection!</p>
@@ -586,12 +581,12 @@ html {
 <!-- about paragraph and main content -->
         <div class="about">
         <div class="about-content">
-            <h5>At Shaded, our vision transcends the provision of sunglasses; it is a commitment to a lifestyle of elevation and unparalleled style whilst providing UV protection with uncompromising quality.
+            <h5>At Shaded, our vision transcends the provision of sunglasses; it is a commitment to a lifestyle of elevation and unparalleled style whilst providing UV protection with uncompromising quality.<br><br>
                 We strive to redefine the longstanding perception of sunglasses and have curated a selection that seamlessly blends the
-                world of fashion and vision protecton into one. We are dedicated in providing luxurious products that evry individual can feel
+                world of fashion and vision protecton into one.<br> <br> We are dedicated in providing luxurious products that evry individual can feel
                 their most comfortable as well as complimenting their aesthetic.  Shaded embodies a philosophy of customer satisfaction, promising a seamless shopping experience 
-                 with dedicated support. Embrace the allure of well-designed shades and join us on our journey to redefine elegance and protection in eyewear.
-                  – shop at Shaded today!</h5>
+                 with dedicated support. <br><br> Embrace the allure of well-designed shades and join us on our journey to redefine elegance and protection in eyewear.
+                </h5>
 
                   </div>
 
@@ -609,7 +604,7 @@ html {
         
             <div class="main-content">
                 <!-- bottom video -->
-            <video src="videos3/5.mp4" autoplay muted loop></video>
+            <video src="videos/5.mp4" autoplay muted loop></video>
             
     </div>
     </main>
@@ -621,12 +616,12 @@ html {
      <div class="footer-col">
              <h4>&copyShaded | All Rights Reserved</h4>
              <ul>
-             <li><a href="TermsandConditions.php">Terms & Conditions </a></li>
-             <li><a href="Policy.php">Privacy and Cookies Policy</a></li>
+             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
+             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
              
              </ul>
      </div>
-     <!-- first column -->
+      <!-- first column -->
      <div class="footer-col">
             <h4>References</h4>
             <ul>
@@ -642,11 +637,11 @@ html {
             <ul>
                 <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="Contactus.php">Contact Us</a></li>
-                <li><a href="FAQs.php">FAQs</a></li>
+                <li><a href="FAQs.html">FAQs</a></li>
                 
             </ul>
     </div>
-    <!-- third column -->
+     <!-- third column -->
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
