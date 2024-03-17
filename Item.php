@@ -348,8 +348,8 @@ html {
 
 .return-link {
     position: absolute;
-margin-bottom: 280px;
-margin-left: 10px;
+    top: 90px; 
+    left: 20px;
     font-size: 14px;
     font-weight: bold;
     color: #003b46; 
@@ -703,7 +703,7 @@ main {
 
 <header>
 
-
+<a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
 
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
@@ -716,7 +716,7 @@ main {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="logo.png" alt="Shaded Logo">
+                    <img src="images/logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -856,7 +856,7 @@ main {
             <div id="boxes">
                 <div id="row">
                     <div id="column" style="display: flex; align-items: center;" >
-                    <a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
+                    
                         <img src="Images for products\Mens Black1.1.avif" alt="Product Image" style="width: 100%; height: auto;">
                         <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
         <i class="far fa-heart"></i>
