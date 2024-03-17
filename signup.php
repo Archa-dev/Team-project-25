@@ -371,7 +371,7 @@ input{
         var email = document.getElementsByName("inputEmail")[0].value;
         var password = document.getElementsByName("inputPassword")[0].value;
         var user = document.getElementsByName("Username")[0].value;
-        var name = document.getElementsByName("Name")[0].value;
+        var name = document.getElementsByName("Name")[0].value + "@ ";
 
         if (email.length > 0 && user.length > 0 && name.length > 0) {
             if (password.length >= 6) {
