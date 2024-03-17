@@ -874,9 +874,17 @@ document.getElementById('password-form').addEventListener('submit', (event) => {
 
     // Check if passwords match
     if (newPassword === confirmPassword) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'changeAdminPasswordScript.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            alert('Password changed successfully');
+        }
+        }
+        xhr.send('adminName='+adminName+'&newPassword='+ newPassword);
         // Passwords match, perform password change logic here
         // You can display a confirmation message using alert
-        alert('Password changed successfully');
         // Hide password change popup
         passwordPopup.style.display = 'none';
         // Reset password input fields
