@@ -1,7 +1,8 @@
 <?php
-session_start();
 require_once('connectdb.php');
-$customerid = $_SESSION['customer_id'];
+session_start();
+if(isset($_SESSION['customer_id'])) {
+$customerid = $_SESSION['customer_id'];}
 
 //$customerid = 13;   
 // Retrieve basket items for the logged-in customer
@@ -292,6 +293,7 @@ html {
         margin-top: 90px;
     }
 
+    
     .wishlist-container {
         max-width: 1000px;
         margin: 20px auto;
@@ -300,6 +302,7 @@ html {
         border: none;
         border-radius: 5px;
         box-shadow: 0 0 12px #1c7a7f;
+        margin-bottom: 300px;
     }
 
     h2 {
@@ -491,7 +494,12 @@ html {
 
                        <!-- navbar to the left of the search box -->
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                        <!-- Modify your category links in the HTML to include onclick event handlers -->
+                    <li class="nav-item">
+                            <a class="nav-link" href="homepage.php">Home</a>
+                        </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="shopping.php">Shop All</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
@@ -520,12 +528,10 @@ html {
                     </ul>
 
                     <!-- search box -->
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+                    <form class="d-flex" role="search" method="POST" action="shopping.php">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput" name="searchFilter">
                         <button class="btn btn-outline-bg search-btn" type="submit">
-                            <a href="#" class="search-icon">
-                                <i class="fas fa-search"></i>
-                            </a>
+                            <i class="fas fa-search search-icon"></i>
                         </button>
                     </form>
 
@@ -617,6 +623,7 @@ html {
 
         <h2>WISHLIST</h2>
 
+        <div class="main-content">
         <section class="wishlist-container">
            
 
@@ -652,6 +659,7 @@ html {
 
             
         </section>
+        </div>
     </main>
 
 <!-- footer content -->
@@ -661,8 +669,8 @@ html {
      <div class="footer-col">
              <h4>&copyShaded | All Rights Reserved</h4>
              <ul>
-             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
-             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
+             <li><a href="TermsandConditions.php">Terms & Conditions </a></li>
+             <li><a href="Policy.php">Privacy and Cookies Policy</a></li>
              
              </ul>
      </div>
@@ -682,7 +690,7 @@ html {
             <ul>
                 <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="Contactus.php">Contact Us</a></li>
-                <li><a href="FAQs.html">FAQs</a></li>
+                <li><a href="FAQs.php">FAQs</a></li>
                 
             </ul>
     </div>
