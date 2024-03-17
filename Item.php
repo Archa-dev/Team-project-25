@@ -345,6 +345,27 @@ html {
 .dark-mode #review-form-popup label{
     color: #fff;
 }
+
+        .return-link {
+    position: absolute;
+    top: 90px; 
+    left: 41%;
+    font-size: 14px;
+    font-weight: bold;
+    color: #003b46; 
+    text-decoration: none;
+    z-index: 1000; /* Ensures it appears above other content */
+}
+
+.return-link i {
+    margin-right: 5px; 
+}
+
+.return-link:hover {
+    text-decoration: none;
+    color: #1c7a7f;
+}
+        
 main {
     margin-top: 90px; 
     margin-bottom: 150px;
@@ -611,6 +632,9 @@ main {
 </script>
 
 <header>
+
+    <a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
+    
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
