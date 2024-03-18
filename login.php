@@ -337,6 +337,7 @@ input{
         </div>
 
         <a href="signup.php">Don't have an account?</a>
+        <br>
         <a href="Admin-signup.php">Want to create an admin account?</a>
     </form>
 </div>
