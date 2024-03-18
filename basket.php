@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
             <title>Basket - SHADED</title>
         
 <!-- favicon -->
-<link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+<link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
 <style>
 
 html {
@@ -558,9 +558,6 @@ html {
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reviews.php">Reviews</a>
-                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -591,7 +588,12 @@ html {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
+                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
+                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
+                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
+                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
 
@@ -667,7 +669,7 @@ html {
                 <?php foreach ($items as $item) : ?>
                     <div class="basket-row">
                         <div class="basket-item basket-column">
-                            <img class="basket-item-image" src="sunglasses.avif" alt="Sunglasses" width="100" height="100"><!-- db image to replace sunglasses image<?= $item['product_image'] ?>-->
+                            <img class="basket-item-image" src="images/MK-2161BU-0001_1.jpeg" alt="Sunglasses" width="100" height="100"><!-- db image to replace sunglasses image<?= $item['product_image'] ?>-->
                             <div class="basket-item-details">
                                 <span class="basket-item-title"><?= $item['product_name'] ?></span>
                                 <span class="basket-price">£<?= number_format($item['price'], 2) ?></span>
