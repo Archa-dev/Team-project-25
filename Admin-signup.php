@@ -40,6 +40,7 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
   <script src="https://kit.fontawesome.com/58e0ebdcbf.js" crossorigin="anonymous"></script>
  
   <style>
