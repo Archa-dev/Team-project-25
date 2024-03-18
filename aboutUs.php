@@ -365,6 +365,20 @@ html {
     margin-right: 0;
 }
 
+.review-container {
+  margin-top: 30px;
+  text-align: left;
+  margin-left: 60px;
+  max-width: 100%;
+}
+
+.review-container h2 {
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #003B46;
+  font-size: 24px;
+}
+
 /* Media query for smaller screens */
 @media (max-width: 767px) {
     .text-overlay {
@@ -600,6 +614,17 @@ html {
     </div>
                   </div>
         </div>
+
+        <div id="review-display" class="review-container">
+    <h2>WEBSITE REVIEWS</h2>
+
+    <h3> REVIEW BY:</h4>          
+    <h3> RATING:</h4>
+    <p> This website is easy to navigate and has an amazing range of products!</p>
+
+
+
+    </div>
         
         
             <div class="main-content">
@@ -607,6 +632,9 @@ html {
             <video src="videos/5.mp4" autoplay muted loop></video>
             
     </div>
+
+
+   
     </main>
 
     <!-- All footer content -->
