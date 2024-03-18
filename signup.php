@@ -47,14 +47,12 @@
       crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="https://kit.fontawesome.com/58e0ebdcbf.js" crossorigin="anonymous"></script>
- <style>
+
+<style>
 html {
   font-size: 80%;
   scroll-behavior: smooth;
 }
-
-
-
 
 body {
   font-family: "Century Gothic", sans-serif;
@@ -80,13 +78,6 @@ body {
     width: 100%; /* Full width */
   }
 
-.logo{
-  text-align: center;
-}
-
-  .logo img {
-    width: 100%; /* Adjust logo width for smaller screens */
-  }
 
   .form-box {
     width: 90%; /* Adjust form width for smaller screens */
@@ -326,8 +317,8 @@ input{
                    <i class="fa-solid fa-lock"></i>
                    <input type="password" name="inputPassword" placeholder= "Password (6+ characters)">
                 </div>
-
        </div>
+       
                <div class="btn-field">
                <button type="submit">SUBMIT</button>
                <input type="hidden" name="sub" value="Sign Up">
