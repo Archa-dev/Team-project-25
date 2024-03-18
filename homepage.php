@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
          <!-- favicon -->
-         <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+         <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
 <style>
 
 html {
@@ -493,9 +493,6 @@ h2{
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reviews.php">Reviews</a>
-                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -526,7 +523,12 @@ h2{
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                                <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
+                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
+                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
+                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
+                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
 
@@ -593,66 +595,34 @@ h2{
     <div id="sun-icon">&#9728;</div>
 
     <div class="main-content">
-            <video src="videos/1.mp4" autoplay muted loop></video>
+            <video src="videos/1.mp4" alt="Video of couple aiming guns and wearing sunglasses" autoplay muted loop></video>
             <div class="text-overlay">
-                <a href="shopping.php" class="custom-link no-underline">
-                    <h2 class="no-underline">Shop the Latest Collection</h2>
-                </a>
-                <a href="shopping.php" class="custom-link no-underline">
-                    <p class="no-underline">Discover new arrivals and trends for the season.</p>
-                </a>
-            </div>
-                <div class="shop-buttons">
-                    <a href="shopping.php" class="btn btn-primary btn-shop">EXPLORE NOW</a>
-                </div>
-    </div>
-
-        <div class="main-content">
-            <img src="images/BW 2,1.jpg" alt="Image 1">
+                <a href="shopping.php" class="custom-link no-underline"> <h2 class="no-underline">Shop the Latest Collection</h2> </a>
+                <a href="shopping.php" class="custom-link no-underline"> <p class="no-underline">Discover new arrivals and trends for the season.</p> </a> </div>
+                <div class="shop-buttons"> <a href="shopping.php" class="btn btn-primary btn-shop">EXPLORE NOW</a> </div></div>
+       
+                <div class="main-content">
+            <img src="images/BW 2,1.jpg" alt="Black and white image of a woman wearing sunglasses">
             <div class="text-overlay">
-                <a href="shopping.php" class="custom-link no-underline">
-                    <h2 class="no-underline">Special Offers</h2>
-                </a>
-                <a href="shopping.php" class="custom-link no-underline">
-                    <p class="no-underline">Enjoy exclusive discounts on your favorite sunglasses.</p>
-                </a>
-            </div>
-            <div class="shop-buttons">
-                <a href="shopping.php" class="btn btn-primary btn-shop">SHOP DEALS</a>
-        </div>
-        </div>
-
-        <div class="main-content">
+                <a href="shopping.php" class="custom-link no-underline"> <h2 class="no-underline">Special Offers</h2> </a>
+                <a href="shopping.php" class="custom-link no-underline"> <p class="no-underline">Enjoy exclusive discounts on your favorite sunglasses.</p> </a> </div>
+            <div class="shop-buttons"> <a href="shopping.php" class="btn btn-primary btn-shop">SHOP DEALS</a> </div></div>
+       
+            <div class="main-content">
     <div class="row">
-        <div class="col-md-6">
-            <div class="video-container">
-            <video src="videos2/2.mp4" autoplay muted loop></video>
+        <div class="col-md-6"> <div class="video-container">
+            <video src="videos2/2.mp4" alt="Video of a man showing off his sunglasses" autoplay muted loop></video>
                 <div class="text-overlay">
-                    <a href="shopping.php" class="custom-link no-underline">
-                        <h2 class="no-underline">Men's Sunglasses</h2>
-                    </a>
-                </div>
-                <div class="shop-buttons">
-                <a onclick="filterCategory('male')" class="btn btn-primary btn-shop">SHOP</a>
-        </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="video-container">
-            <video src="videos2/3.mp4" autoplay muted loop></video>
+                    <a href="shopping.php" class="custom-link no-underline"> <h2 class="no-underline">Men's Sunglasses</h2> </a> </div>
+                <div class="shop-buttons"> <a onclick="filterCategory('male')" class="btn btn-primary btn-shop">SHOP</a></div></div></div>
+
+        <div class="col-md-6"> <div class="video-container">
+            <video src="videos2/3.mp4" alt="Video of a woman showing off her sunglasses" autoplay muted loop></video>
                 <div class="text-overlay">
-                    <a href="#" class="custom-link no-underline">
-                        <h2 class="no-underline">Women's Sunglasses</h2>
-                    </a>
-                </div>
-                <div class="shop-buttons">
-                <a onclick="filterCategory('female')" class="btn btn-primary btn-shop">SHOP</a>
-        </div>
-            </div>
-        </div>
+                    <a href="#" class="custom-link no-underline"> <h2 class="no-underline">Women's Sunglasses</h2> </a> </div>
+                <div class="shop-buttons"> <a onclick="filterCategory('female')" class="btn btn-primary btn-shop">SHOP</a> </div></div></div>
     </div>
 </div>
-
     </main>
     
     <!-- footer content -->
