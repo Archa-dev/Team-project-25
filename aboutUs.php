@@ -591,13 +591,9 @@ html {
 
     <div id="sun-icon">&#9728;</div>
 
-    <div class="main-content">
-        <!-- top video -->
-            <video src="videos3/4.mp4" autoplay muted loop></video>
-            <div class="text-overlay">
-                    <h2 class="no-underline">About Shaded</h2>
-                    <p class="no-underline">Welcome to Shaded – Where Style Meets UV Protection!</p>
-            </div>
+    <div class="main-content"> <!-- top video -->
+            <video src="videos3/4.mp4" alt="Video of a man walking and wearing sunglasses" autoplay muted loop></video>
+            <div class="text-overlay"> <h2 class="no-underline">About Shaded</h2> <p class="no-underline">Welcome to Shaded – Where Style Meets UV Protection!</p> </div>
     </div>
 <!-- about paragraph and main content -->
         <div class="about">
@@ -607,37 +603,23 @@ html {
                 world of fashion and vision protecton into one.<br> <br> We are dedicated in providing luxurious products that evry individual can feel
                 their most comfortable as well as complimenting their aesthetic.  Shaded embodies a philosophy of customer satisfaction, promising a seamless shopping experience 
                  with dedicated support. <br><br> Embrace the allure of well-designed shades and join us on our journey to redefine elegance and protection in eyewear.
-                </h5>
-
-                  </div>
-
+                </h5></div>
                   <div class="follow-journey">
     <h4>Follow Our Journey:</h4>
     <div class="social-lnks">
     <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-        
-    </div>
-                  </div>
-        </div>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a> </div></div></div>
 
         <div id="review-display" class="review-container">
     <h2>WEBSITE REVIEWS</h2>
-
     <h3> REVIEW BY:</h4>          
     <h3> RATING:</h4>
     <p> This website is easy to navigate and has an amazing range of products!</p>
 
-
-
     </div>
-        
-        
-            <div class="main-content">
-                <!-- bottom video -->
-            <video src="videos3/5.mp4" autoplay muted loop></video>
-            
+            <div class="main-content"> <!-- bottom video -->
+            <video src="videos3/5.mp4" alt="Video of a woman standing and wearing sunglasses while the camera zooms out" autoplay muted loop></video>
     </div>
 
 
