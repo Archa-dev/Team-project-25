@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+    <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
 
 
     <style>
@@ -295,7 +295,7 @@ html {
   color: #fff;
    }
 
-.return-link {
+   .return-link {
     position: absolute;
     top: 90px; 
     left: 20px;
@@ -314,7 +314,7 @@ html {
     text-decoration: none;
     color: #1c7a7f;
 }
-      
+
 main {
     margin-top: 90px; 
 }
@@ -582,8 +582,7 @@ font-weight: bold;
 
 <header>
 
-  <a href="order-history.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to My Orders</a>
-  
+<a href="order-history.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to My Orders</a>
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
@@ -629,9 +628,6 @@ font-weight: bold;
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reviews.php">Reviews</a>
-                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -662,7 +658,12 @@ font-weight: bold;
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
+                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
+                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
+                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
+                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
 
