@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+    <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
    
@@ -586,7 +586,6 @@ h2 {
     .price {
         margin-top: 5px; /* margin between the product name and the price */
         text-align: left;
-        margin-bottom: 60px;
         
     }
 
@@ -705,9 +704,6 @@ h2 {
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reviews.php">Reviews</a>
-                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -739,7 +735,12 @@ h2 {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
+                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
+                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
+                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
+                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
 
@@ -866,7 +867,7 @@ h2 {
         <?php foreach ($products as $product) : ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
             <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
-                <img src="Images for products\Mens Black1.1.avif" width="100%" height="60%">
+                <img src="Images for products/Mens Black1.1.avif" width="100%" height="60%">
                 </a>
                 <div class="product-info">
                 <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
