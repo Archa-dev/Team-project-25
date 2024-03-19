@@ -497,7 +497,6 @@ main {
                                 <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
                                 <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
                                 <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
-                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
                                 <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
@@ -582,11 +581,6 @@ main {
                 <div class="box-icon"><i class="fas fa-user-shield"></i></div>
                 <div class="box-label">Admin Accounts</div>
                 <div class="box-number">8</div> <!-- Placeholder number -->
-            </a>
-            <a href="messages.php" class="admin-box">
-                <div class="box-icon"><i class="fas fa-envelope"></i></div>
-                <div class="box-label">Contact Messages</div>
-                <div class="box-number">2</div> <!-- Placeholder number -->
             </a>
             <a href="orders.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-shopping-cart"></i></div>
