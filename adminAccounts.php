@@ -476,7 +476,7 @@ main {
                 crossorigin="anonymous">
         </script>
 
-    <header>
+<header>
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
@@ -557,6 +557,8 @@ main {
                                 <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
                                 <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
                                 <li><a class="dropdown-item" href="orders.php">Orders</a></li>
+                            </ul>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="wishlist.php">
