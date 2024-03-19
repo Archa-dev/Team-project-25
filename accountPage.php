@@ -822,7 +822,7 @@ section {
 <div id="editProfileModal" class="edit-modal">
     <span class="modal-close" onclick="closeEditProfileModal()">&times;</span>
     <h2>EDIT PROFILE</h2>
-    <form id="editProfileForm" onsubmit="return saveChanges()">
+    <form id="editProfileForm" onsubmit="saveChanges()">
     <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="editFirstName">First Name:</label>
@@ -938,20 +938,21 @@ section {
     }
 
     function saveChanges() {
-        var firstNameInput = document.getElementById("editFirstName").value;
-        var surnameInput = document.getElementById("editSurname").value;
-        var emailInput = document.getElementById("editEmail").value;
-        var currentPasswordInput = document.getElementById("currentPasswordDisplay").innerText;
-        var newPasswordInput = document.getElementById("newPassword").value;
-        var confirmNewPasswordInput = document.getElementById("confirmNewPassword").value;
-        var phoneInput = document.getElementById("editPhoneNumber").value;
-        var shippingAddressInput = document.getElementById("editShippingAddress").value;
-        var billingAddressInput = document.getElementById("editBillingAddress").value;
-        var paymentMethodInput = document.getElementById("editPaymentMethod").value;
-
+        let firstNameInput = document.getElementById("editFirstName").value;
+        let surnameInput = document.getElementById("editSurname").value;
+        let emailInput = document.getElementById("editEmail").value;
+        let currentPasswordInput = document.getElementById("currentPasswordDisplay").innerText;
+        let newPasswordInput = document.getElementById("newPassword").value;
+        let confirmNewPasswordInput = document.getElementById("confirmNewPassword").value;
+        let phoneInput = document.getElementById("editPhoneNumber").value;
+        let shippingAddressInput = document.getElementById("editShippingAddress").value;
+        let billingAddressInput = document.getElementById("editBillingAddress").value;
+        let paymentMethodInput = document.getElementById("editPaymentMethod").value;
+        
         let fullName = firstNameInput + "@" + surnameInput;
         let address = shippingAddressInput;
         let xhr = new XMLHttpRequest();
+        console.log(fullName, address);
         xhr.open('POST', 'saveAccountDetails.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function(){
@@ -962,14 +963,14 @@ section {
 
 
  // Update the displayed details with the edited values
-    document.getElementById("firstNameDisplay").innerText = firstNameInput;
-    document.getElementById("surnameDisplay").innerText = surnameInput;
-    document.getElementById("emailDisplay").innerText = emailInput;
-    document.getElementById("currentPasswordDisplay").innerText = newPasswordInput !== "" ? "*".repeat(newPasswordInput.length) : currentPasswordInput;
-    document.getElementById("phoneDisplay").innerText = phoneInput;
-    document.getElementById("shippingAddressDisplay").innerText = shippingAddressInput;
-    document.getElementById("billingAddressDisplay").innerText = billingAddressInput;
-    document.getElementById("paymentMethodDisplay").innerText = paymentMethodInput;
+    // document.getElementById("firstNameDisplay").innerText = firstNameInput;
+    // document.getElementById("surnameDisplay").innerText = surnameInput;
+    // document.getElementById("emailDisplay").innerText = emailInput;
+    // document.getElementById("currentPasswordDisplay").innerText = newPasswordInput !== "" ? "*".repeat(newPasswordInput.length) : currentPasswordInput;
+    // document.getElementById("phoneDisplay").innerText = phoneInput;
+    // document.getElementById("shippingAddressDisplay").innerText = shippingAddressInput;
+    // document.getElementById("billingAddressDisplay").innerText = billingAddressInput;
+    // document.getElementById("paymentMethodDisplay").innerText = paymentMethodInput;
 
         var changesMessage = "Changes saved successfully!\n\nNew Details:\nFirst Name: " + firstNameInput + "\nSurname: " + surnameInput +
         "\nEmail: " + emailInput + "\nPhone Number: " + phoneInput + "\nShipping Address: " + shippingAddressInput +
@@ -984,9 +985,6 @@ if (newPasswordInput !== "" && newPasswordInput === confirmNewPasswordInput) {
 
         // Close the modal after saving changes
         closeEditProfileModal();
-
-        // Prevent the form from submitting (to avoid page reload)
-        return false;
     }
 </script>
 
