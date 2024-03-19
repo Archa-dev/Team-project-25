@@ -556,7 +556,6 @@ main {
                                 <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
                                 <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
                                 <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
-                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
                                 <li><a class="dropdown-item" href="orders.php">Orders</a></li>
 
                         <li class="nav-item">
