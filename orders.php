@@ -302,8 +302,75 @@ main {
     font-weight: bold;
     text-align: center;
     font-size: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
+
+.admin-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.admin-box {
+    width: 300px;
+    height: 360px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 12px #1c7a7f;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    justify-content: top;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.box-label {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #003B46;
+}
+
+.box-label p{
+    color: #1c7a7f;
+}
+
+.status-1 .dropdown-toggle{
+    background-color: #003b46;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    width: 250px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.status-1 .dropdown-toggle:hover {
+    background-color: #07575b;
+}
+
+.status-1 .dropdown-item{
+                color: #003B46;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: bold;
+                transition: background-color 0.3s;  
+            }
+
+            .status-1 .dropdown-item:hover{
+                color: #003B46;
+                background-color: rgba(28, 122, 127, 0.4);
+            }
 
 /* footer styles */
 .footer {
@@ -314,7 +381,6 @@ main {
     width: 100%;
     position: relative;
 }
-
 
 .footer-col {
     width: 25%; /*width of each column */
@@ -443,7 +509,6 @@ main {
                                 <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
                                 <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
                                 <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
-                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
                                 <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
@@ -512,6 +577,70 @@ main {
 
     <div class="main-content">
             <h2>CUSTOMER ORDERS</h2>
+
+            <div class="admin-boxes">
+
+            <div class="admin-box">
+                <div class="box-label">Name: <p>A</p> </div>
+                <div class="box-label">Phone Number: <p>123-456-7890</p> </div>
+                <div class="box-label">Address: <p></p> </div>
+                <div class="box-label">Order No: <p>4842</p> </div>
+                 <!-- Initial status: Pending -->
+    <div class="status">
+        <span class="badge bg-warning text-dark">Pending</span>
+    </div>
+    <!-- Dropdown for changing status -->
+    <div class="status-1">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="orderStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            CHANGE STATUS
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="orderStatusDropdown">
+            <li><a class="dropdown-item" href="#">Completed</a></li>
+        </ul>
+    </div>
+            </div>
+
+           <div class="admin-box">
+           <div class="box-label">Name: <p>B</p></div>
+                <div class="box-label">Phone Number: <p>123-456-7890</p></div>
+                <div class="box-label">Address: 123 Aston Road, Aston, Birmingham, BX XXX<p></p></div>
+                <div class="box-label">Order No: <p>4843</p></div>
+            <!-- Initial status: Pending -->
+    <div class="status">
+        <span class="badge bg-warning text-dark">Pending</span>
+    </div>
+    <!-- Dropdown for changing status -->
+    <div class="status-1">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="orderStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        CHANGE STATUS
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="orderStatusDropdown">
+            <li><a class="dropdown-item" href="#">Completed</a></li>
+        </ul>
+    </div>
+            </div>
+
+            <div class="admin-box">
+            <div class="box-label">Name: <p>C</p></div>
+                <div class="box-label">Phone Number: <p>123-456-7890</p></div>
+                <div class="box-label">Address: <p></p></div>
+                <div class="box-label">Order No: <p>4844</p></div>
+            <!-- Initial status: Pending -->
+    <div class="status">
+        <span class="badge bg-warning text-dark">Pending</span>
+    </div>
+    <!-- Dropdown for changing status -->
+    <div class="status-1">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="orderStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        CHANGE STATUS
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="orderStatusDropdown">
+            <li><a class="dropdown-item" href="#">Completed</a></li>
+        </ul>
+    </div>
+            </div>
+
+    </div>
     </div>
     </main>
 
