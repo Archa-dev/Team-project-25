@@ -1,8 +1,7 @@
 <?php
-require_once('connectdb.php');
 session_start();
-if(isset($_SESSION['customer_id'])) {
-$customerid = $_SESSION['customer_id'];}
+require_once('connectdb.php');
+$customerid = $_SESSION['customer_id'];
 
 //$customerid = 13;   
 // Retrieve basket items for the logged-in customer
@@ -38,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
          <!-- favicon -->
-         <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
+         <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
     <style>
 
 html {
@@ -366,6 +365,25 @@ html {
     margin-right: 0;
 }
 
+#leave-review-btn {
+    margin-left: 0px;
+  margin-top: -50px;
+  color: #fff;
+  border: none;
+  padding: 5px 30px;
+  background-color: #003B46;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+  white-space: nowrap;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+#leave-review-btn:hover {
+  text-decoration: underline;
+  color: #1c7a7f;
+}
+
 .review-container {
   margin-top: 30px;
   text-align: left;
@@ -463,12 +481,6 @@ html {
 
                 <!-- navbar to the left of the search box -->
                 <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                <li class="nav-item">
-                            <a class="nav-link" href="homepage.php">Home</a>
-                        </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="shopping.php">Shop All</a>
-                        </li>
                         <li class="nav-item">
                         <a class="nav-link"  onclick="filterCategory('male')">Men</a>
                         </li>
@@ -491,13 +503,18 @@ html {
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reviews.php">Reviews</a>
+                        </li>
                     </ul>
 
                     <!-- search box -->
-                    <form class="d-flex" role="search" method="POST" action="shopping.php">
-                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput" name="searchFilter">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
                         <button class="btn btn-outline-bg search-btn" type="submit">
-                            <i class="fas fa-search search-icon"></i>
+                            <a href="#" class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </a>
                         </button>
                     </form>
 
@@ -520,12 +537,7 @@ html {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
-                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
-                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
-                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
-                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
-                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
+                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
                             </ul>
                         </li>
 
@@ -591,9 +603,13 @@ html {
 
     <div id="sun-icon">&#9728;</div>
 
-    <div class="main-content"> <!-- top video -->
-            <video src="videos3/4.mp4" alt="Video of a man walking and wearing sunglasses" autoplay muted loop></video>
-            <div class="text-overlay"> <h2 class="no-underline">About Shaded</h2> <p class="no-underline">Welcome to Shaded – Where Style Meets UV Protection!</p> </div>
+    <div class="main-content">
+        <!-- top video -->
+            <video src="videos/4.mp4" autoplay muted loop></video>
+            <div class="text-overlay">
+                    <h2 class="no-underline">About Shaded</h2>
+                    <p class="no-underline">Welcome to Shaded – Where Style Meets UV Protection!</p>
+            </div>
     </div>
 <!-- about paragraph and main content -->
         <div class="about">
@@ -603,23 +619,43 @@ html {
                 world of fashion and vision protecton into one.<br> <br> We are dedicated in providing luxurious products that evry individual can feel
                 their most comfortable as well as complimenting their aesthetic.  Shaded embodies a philosophy of customer satisfaction, promising a seamless shopping experience 
                  with dedicated support. <br><br> Embrace the allure of well-designed shades and join us on our journey to redefine elegance and protection in eyewear.
-                </h5></div>
+                </h5>
+
+                  </div>
+
                   <div class="follow-journey">
     <h4>Follow Our Journey:</h4>
     <div class="social-lnks">
     <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a> </div></div></div>
-
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        
+    </div>
+                  </div>
+        </div>
+       
         <div id="review-display" class="review-container">
+      
     <h2>WEBSITE REVIEWS</h2>
+    
+    
+
     <h3> REVIEW BY:</h4>          
     <h3> RATING:</h4>
     <p> This website is easy to navigate and has an amazing range of products!</p>
+<br>
+<br>
+<button id="leave-review-btn" class="review-button">Leave a Review</button>
+
+
 
     </div>
-            <div class="main-content"> <!-- bottom video -->
-            <video src="videos3/5.mp4" alt="Video of a woman standing and wearing sunglasses while the camera zooms out" autoplay muted loop></video>
+        
+        
+            <div class="main-content">
+                <!-- bottom video -->
+            <video src="videos/5.mp4" autoplay muted loop></video>
+            
     </div>
 
 
@@ -633,8 +669,8 @@ html {
      <div class="footer-col">
              <h4>&copyShaded | All Rights Reserved</h4>
              <ul>
-             <li><a href="TermsandConditions.php">Terms & Conditions </a></li>
-             <li><a href="Policy.php">Privacy and Cookies Policy</a></li>
+             <li><a href="TermsandConditions.html">Terms & Conditions </a></li>
+             <li><a href="Policy.html">Privacy and Cookies Policy</a></li>
              
              </ul>
      </div>
@@ -654,7 +690,7 @@ html {
             <ul>
                 <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="Contactus.php">Contact Us</a></li>
-                <li><a href="FAQs.php">FAQs</a></li>
+                <li><a href="FAQs.html">FAQs</a></li>
                 
             </ul>
     </div>
