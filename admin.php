@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
          <!-- favicon -->
-         <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+         <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
 <style>
 
 html {
@@ -463,9 +463,6 @@ main {
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reviews.php">Reviews</a>
-                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -496,7 +493,11 @@ main {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
+                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
+                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
+                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
 
@@ -571,20 +572,15 @@ main {
                 <div class="box-label">Inventory</div>
                 <div class="box-number">25</div> <!-- Placeholder number -->
             </a>
-            <a href="Admin-account-management.php" class="admin-box">
+            <a href="customerAccounts.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-users"></i></div>
                 <div class="box-label">Customer Accounts</div>
-                <div class="box-number">7</div> <!-- Placeholder number -->
+                <div class="box-number">3</div> <!-- Placeholder number -->
             </a>
             <a href="adminAccounts.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-user-shield"></i></div>
                 <div class="box-label">Admin Accounts</div>
                 <div class="box-number">8</div> <!-- Placeholder number -->
-            </a>
-            <a href="messages.php" class="admin-box">
-                <div class="box-icon"><i class="fas fa-envelope"></i></div>
-                <div class="box-label">Contact Messages</div>
-                <div class="box-number">2</div> <!-- Placeholder number -->
             </a>
             <a href="orders.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-shopping-cart"></i></div>

@@ -1,36 +1,30 @@
-
 <?php
     if(isset($_POST['sub'])){
     require_once('connectdb.php');
     $email=$_POST['inputEmail'];
     $user=$_POST['Username'];
-    $name=$_POST['Name'];
     $pass=$_POST['inputPassword'];
-    $auth="customer";
     $pass=password_hash($pass,PASSWORD_DEFAULT);
     
     $check=$db->prepare("SELECT * FROM logindetails WHERE username=?");
     $check->bindParam(1,$user);
     $check->execute();
 
-    if($check->rowCount()>0){
+    $check2=$db->prepare("SELECT * FROM pending_admin_accounts WHERE username=?");
+    $check2->bindParam(1,$user);
+    $check2->execute();
+
+    if($check->rowCount()>0 && $check2->rowCount()>0){
       echo ("Username already exists");
     }else{
-    $rej=$db->prepare("INSERT INTO logindetails (username,password,email,authorization_level)value(?,?,?,?)");
+    $rej=$db->prepare("INSERT INTO pending_admin_accounts (username,password,email)value(?,?,?)");
     $rej->bindParam(1,$user);
     $rej->bindParam(2,$pass);
     $rej->bindParam(3,$email);
-    $rej->bindParam(4,$auth);
     if($rej->execute()){
-      $id=$db->lastInsertId();
-      $cdetails=$db->prepare("INSERT INTO customerdetails(user_id,name,default_address) value (?,?,?)");
-      $cdetails->bindParam(1,$id);
-      $cdetails->bindParam(2,$name);
-      $cdetails->bindParam(3,$add);
-      $cdetails->execute();
-      echo "<script>alert('Signup Successful'); window.location.href = 'login.php';</script>";
+      echo("Successful");
     }else{
-        echo ("<script>alert('Signup Unsuccessful');</script>");
+      echo ("Unsuccessful");
     }
     }
     }
@@ -41,15 +35,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signup</title>
+  <title>Admin Signup</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
   <script src="https://kit.fontawesome.com/58e0ebdcbf.js" crossorigin="anonymous"></script>
-
-<style>
+ 
+  <style>
 html {
   font-size: 80%;
   scroll-behavior: smooth;
@@ -79,7 +73,6 @@ body {
     width: 100%; /* Full width */
   }
 
-
   .form-box {
     width: 90%; /* Adjust form width for smaller screens */
     max-width: 300px; /* Set maximum width for form */
@@ -97,7 +90,7 @@ body {
 .logo {
   text-align: center;
   position: absolute;
-  top: 10%;
+  top: 16%;
   left: 12%;
   transform: translateY(-50%);
   margin-bottom: 15px;
@@ -289,47 +282,37 @@ input{
   <img src="images/Logo 1.png" alt="Logo">
   </div>
 
-<div class="form-box">
-<form method="post" action="signup.php" onsubmit="return signupSuccess()" >
-        <h1>SIGN UP</h1>
-        <div class = "input-group">
+            <div class = "form-box">
+            <form method="post" action="Admin-signup.php" onsubmit="return signupSuccess()" >
+              <h1>ADMIN SIGN UP</h1>
+              <div class = "input-group">
 
                 <div class = "input-field">
                   <i class="fa-solid fa-envelope"></i>
                   <input type="email" name="inputEmail" placeholder="Email">
                 </div>
 
-                <div class="input-field-group">
                 <div class = "input-field">
                   <i class="fa-solid fa-user"></i>
                   <input type="text" name="Username" placeholder="Username">
                 </div>
-                <div class = "input-field" style="margin-left: 10px;">
-                  <i class="fa-solid fa-user"></i>
-                  <input type="text" name="Name" placeholder= "Full Name">
-                </div>
-                </div>
 
-                <div class = "input-field">
-                <i class="fa-solid fa-house"></i>
-                  <input type="text" name="Address" placeholder= "Address (optional)">
-                </div>
                 <div class = "input-field">
                    <i class="fa-solid fa-lock"></i>
                    <input type="password" name="inputPassword" placeholder= "Password (6+ characters)">
                 </div>
-       </div>
-       
+              </div>
+
                <div class="btn-field">
-               <button type="submit">SUBMIT</button>
+               <button type="submit">Submit</button>
                <input type="hidden" name="sub" value="Sign Up">
                </div>
-              <a href="login.php">Already Have An Account?</a>
-    </form>
+              <a href="login.php">Already have an account?</a>
+            </form> 
 </div>
   </div>
-
-<div class="right-half">
+      
+  <div class="right-half">
 <div class="slideshow">
 <img class="active" src="images/login 1.jpg" alt="Image 1">
         <img src="images/login 2.jpg" alt="Image 2">
@@ -339,7 +322,7 @@ input{
             </div>
 </div>
 </div>
-
+      
 <script>
     document.addEventListener("DOMContentLoaded", function() {
     var slides = document.querySelectorAll(".slide");
@@ -355,7 +338,7 @@ input{
 });
   </script>
 
-<script>
+    <script>
     const savedEmails = [];
     const savedPasswords = [];
 
@@ -363,9 +346,8 @@ input{
         var email = document.getElementsByName("inputEmail")[0].value;
         var password = document.getElementsByName("inputPassword")[0].value;
         var user = document.getElementsByName("Username")[0].value;
-        var name = document.getElementsByName("Name")[0].value + "@ ";
 
-        if (email.length > 0 && user.length > 0 && name.length > 0) {
+        if (email.length > 0 && user.length > 0) {
             if (password.length >= 6) {
                 savedEmails.push(email);
                 savedPasswords.push(password);
@@ -375,11 +357,10 @@ input{
                 return false;
             }
         } else {
-            alert("Invalid email/username/name");
+            alert("Invalid email/username");
             return false;
         }
     }
 </script>
-
 </body>
 </html>

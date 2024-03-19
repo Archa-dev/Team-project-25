@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
          <!-- favicon -->
-         <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+         <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
 <style>
 
 html {
@@ -316,7 +316,7 @@ main {
 
 .admin-box {
     width: 300px;
-    height: 200px;
+    height: 250px;
     background-color: #f0f0f0;
     border: none;
     border-radius: 5px;
@@ -476,7 +476,7 @@ main {
                 crossorigin="anonymous">
         </script>
 
-    <header>
+<header>
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
@@ -522,9 +522,6 @@ main {
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reviews.php">Reviews</a>
-                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -555,7 +552,11 @@ main {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
+                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
+                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
+                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
 
@@ -629,48 +630,56 @@ main {
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin1</p></div>
                 <div class="box-label">Admin Name: <p>Samee</p></div>
+                <div class="box-label">Email: <p></p></div>
                 <button class="edit-button onclick="openPasswordPopup('Samee')">EDIT</button>
             </div>
 
            <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin2</p></div>
                 <div class="box-label">Admin Name: <p>Tharek</p></div>
+                <div class="box-label">Email: <p></p></div>
                 <button class="edit-button onclick="openPasswordPopup('Tharek')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin3</p></div>
                 <div class="box-label">Admin Name: <p>Archie</p></div>
+                <div class="box-label">Email: <p></p></div>
                 <button class="edit-button onclick="openPasswordPopup('Archie')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin4</p></div>
                 <div class="box-label">Admin Name: <p>Ethan<p></div>
+                <div class="box-label">Email: <p></p></div>
                 <button class="edit-button onclick="openPasswordPopup('Ethan')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin5</p></div>
                 <div class="box-label">Admin Name: <p>Maryam</p></div>
+                <div class="box-label">Email: <p></p></div>
                 <button class="edit-button onclick="openPasswordPopup('Maryam')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin6</p></div>
                 <div class="box-label">Admin Name: <p>Tara</p></div>
+                <div class="box-label">Email: <p></p></div>
                 <button class="edit-button onclick="openPasswordPopup('Tara')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin7</p></div>
                 <div class="box-label">Admin Name: <p>Noor</p></div>
+                <div class="box-label">Email: <p></p></div>
                 <button class="edit-button onclick="openPasswordPopup('Noor')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin8</p></div>
                 <div class="box-label">Admin Name: <p>Ibrahim<p></div>
+                <div class="box-label">Email: <p></p></div>
                 <button class="edit-button onclick="openPasswordPopup('Ibrahim')">EDIT</button>
             </div>
 

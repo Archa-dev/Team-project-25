@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
          <!-- favicon -->
-         <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+         <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
 <style>
 
 html {
@@ -409,9 +409,6 @@ main {
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reviews.php">Reviews</a>
-                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -442,7 +439,11 @@ main {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
+                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
+                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
+                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
 
@@ -510,7 +511,126 @@ main {
 
     <div class="main-content">
             <h2>CUSTOMER ACCOUNTS</h2>
+
+    <table>
+        <tr>
+        <th>Customer ID</th>
+        <th>Name</th>
+        <th>Default Address</th>
+        <th>Username</th>
+        <th>Email</th>
+        </tr>
+<?php
+$fulltable=$db->prepare("SELECT * FROM customerdetails");
+$fulltable->execute();
+while($row = $fulltable->fetch()){
+    $link=$db->prepare("
+    SELECT c.customer_id,c.name,c.default_address,l.username AS username, l.email AS email, l.password AS password
+    FROM customerdetails c 
+    JOIN logindetails l ON c.user_id=l.user_id
+    WHERE customer_id={$row["customer_id"]};
+    ");
+    $userp=$db->prepare("
+    SELECT c.customer_id,c.name,c.default_address,l.username AS username, l.email AS email, l.password AS password
+    FROM customerdetails c 
+    JOIN logindetails l ON c.user_id=l.user_id
+    WHERE customer_id={$row["customer_id"]};
+    ");
+    $link->execute();
+    $userp->execute();
+    $userd=$userp->fetch();
+    $details=json_encode($link->fetch(PDO::FETCH_ASSOC));
+    echo("<tr><td>".$row["customer_id"]."</td><td>".$row["name"]."</td><td>".$row["default_address"]."</td><td>".$userd["username"]."</td><td>".$userd["email"]);
+}
+?>
+</table>
+
+<br>
+<form name="edit-input" method="post" action="Admin-account-management.php" >
+
+    <select id="cid" name="cid">
+    <option value="default">Enter Customer ID</option>
+       <?php
+        $cid_query = $db->prepare("SELECT customer_id FROM customerdetails");
+        $cid_query->execute();
+        $customer_ids = $cid_query->fetchAll(PDO::FETCH_COLUMN);
+    
+        foreach ($customer_ids as $customer_id) {
+            echo '<option value="' . $customer_id . '">' . $customer_id . '</option>';
+        }
+       
+       ?>
+    </select>
+
+
+
+    <select id="edit-field" name="edit-field">
+        <option value="default">Enter Field</option>
+        <option value="name">Name</option>
+        <option value="defualt_address">Default Address</option>
+        <option value="email">Email</option>
+        <option value="username">Username</option>
+        <option value="password">Password</option>
+
+    </select>
+
+    
+
+
+    <input type="text" id="edit-input" name="edit-input" placeholder="Enter edit">
+
+    
+
+    <input type="submit" value="sub" name="sub">
+
+</form>
+
+<?php
+if(isset($_POST['sub'])){
+$field=$_POST['edit-field'];
+$cid=$_POST['cid'];
+$val=$_POST['edit-input'];
+
+if($cid=='default' ||$cid =='default'|| $val==null ){
+    echo("please fill in all fields");
+}else{
+    $check=$db->prepare("SHOW COLUMNS FROM customerdetails LIKE '$field'");
+    $check->execute();
+    if($check->fetch()){
+        $push=$db->prepare("UPDATE customerdetails SET $field = ? WHERE customer_id = $cid");
+        $push->execute([$val]);
+        header("Location: $_SERVER[PHP_SELF]");
+        exit();
+    } else{
+        if($field=='password'){
+            $val=password_hash($val,PASSWORD_DEFAULT);
+            $push=$db->prepare("
+            UPDATE logindetails AS l
+            INNER JOIN customerdetails AS c ON l.user_id = c.user_id
+            SET l.$field = ?
+            WHERE c.customer_id = $cid
+            ");
+            $push->execute([$val]);
+            header("Location: $_SERVER[PHP_SELF]");
+            exit();
+
+        }else{
+        $push=$db->prepare("
+        UPDATE logindetails AS l
+        INNER JOIN customerdetails AS c ON l.user_id = c.user_id
+        SET l.$field = ?
+        WHERE c.customer_id = $cid
+        ");
+        $push->execute([$val]);
+        header("Location: $_SERVER[PHP_SELF]");
+        exit();
+        }
+    }
+}
+}
+?>
     </div>
+
     </main>
 
     <!-- footer content -->

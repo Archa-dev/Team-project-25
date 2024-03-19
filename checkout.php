@@ -6,9 +6,10 @@ $customerid = $_SESSION['customer_id'];}
 
 //$customerid = 13;   
 // Retrieve basket items for the logged-in customer
-$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour
+$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour, i.filepath, i.file_name
                         FROM basket b
                         JOIN productdetails p ON b.product_id = p.product_id
+                        JOIN images i ON p.image_id = i.image_id
                         WHERE b.customer_id = ?');
 $itemIDs->bindParam(1, $customerid);
 $itemIDs->execute();
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         
-        <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+        <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
 
 <style>
 
@@ -600,9 +601,6 @@ input[type="password"]:focus {
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="reviews.php">Reviews</a>
-                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -632,7 +630,11 @@ input[type="password"]:focus {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
+                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
+                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
+                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
                         </li>
 
@@ -760,12 +762,13 @@ input[type="password"]:focus {
                     <!-- Display basket items dynamically -->
                     <?php foreach ($items as $item): ?>
                         <div class="order-summary-product">
-                            <img class="basket-item-image" src="<?php echo $item['product_image']; ?>">
+                        <img class="basket-item-image" src="<?php echo $item['filepath'] .  $item['file_name']; ?>">
                             <div class="order-summary-item-details">
                                 <h5 class="basket-item-title"><?php echo $item['product_name']; ?></h5>
-                                <p class="basket-price">£<?php echo $item['price']; ?></p>
+                                <p class="basket-price">£<?= number_format($item['price'], 2) ?></p>
                             </div>
                         </div>
+                        
                     <?php endforeach; ?>
                 </div>
                 <hr>
@@ -973,7 +976,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <?php
-for ($i = 0; $i < $itemsNum; $i++) {
+for ($i = 0; $i < $itemsCount; $i++) {
 
 $productid = $itemIDs->fetchColumn();
 
@@ -1054,8 +1057,6 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
         form.submit();
     }
 
-
-    
-    </script>
+   </script>
 </body>
 </html>
