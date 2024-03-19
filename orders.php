@@ -274,7 +274,8 @@ html {
 }
 
 .dark-mode .shopping-bag-popup,
-.dark-mode .dropdown-menu{
+.dark-mode .dropdown-menu,
+.dark-mode .admin-box{
     background-color: #000000;
 }
 
