@@ -753,11 +753,11 @@ section {
             } else {
                 echo '<div class="mb-3">
                     <label for="firstName">First Name:</label>
-                    <div id="firstNameDisplay">' . explode('@',$customer['name'])[0] . '</div>
-                </div>';
+                    <div id="firstNameDisplay">' . explode(' ',$customer['name'],2)[0] . '</div>
+                </div>';            
                 echo '<div class="mb-3">
                     <label for="surname">Surname:</label>
-                    <div id="firstNameDisplay">' . explode('@',$customer['name'])[1] . '</div>
+                    <div id="firstNameDisplay">' . explode(' ',$customer['name'],2)[1] . '</div>
                 </div>';
             }
             if ($customerLogin['email'] == null) {
@@ -953,7 +953,7 @@ section {
         let billingAddressInput = document.getElementById("editBillingAddress").value;
         let paymentMethodInput = document.getElementById("editPaymentMethod").value;
         
-        let fullName = firstNameInput + "@" + surnameInput;
+        let fullName = firstNameInput + " " + surnameInput;
         let address = shippingAddressInput;
         let xhr = new XMLHttpRequest();
         console.log(fullName, address);
