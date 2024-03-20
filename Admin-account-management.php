@@ -39,9 +39,13 @@ while($row = $fulltable->fetch()){
     $link->execute();
     $userp->execute();
     $userd=$userp->fetch();
-    $details=json_encode($link->fetch(PDO::FETCH_ASSOC));
+       $details=json_encode($link->fetch(PDO::FETCH_ASSOC));
+		if($row['name']===null){
+        continue;}
+	else{
     echo("<tr><td>".$row["customer_id"]."</td><td>".$row["name"]."</td><td>".$row["default_address"]."</td><td>".$userd["username"]."</td><td>".$userd["email"]);
-}
+    }
+    }
 ?>
 </table>
 <br>
