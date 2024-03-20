@@ -274,7 +274,8 @@ html {
 }
 
 .dark-mode .shopping-bag-popup,
-.dark-mode .dropdown-menu{
+.dark-mode .dropdown-menu,
+.dark-mode td{
     background-color: #000000;
 }
 
@@ -283,6 +284,26 @@ html {
 }
 
 /*Homepage Content*/
+.return-link {
+    position: absolute;
+    top: 90px; 
+    left: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #003b46; 
+    text-decoration: none;
+    z-index: 1000; /* Ensures it appears above other content */
+}
+
+.return-link i {
+    margin-right: 5px; /* spacing between the icon and the text */
+}
+
+.return-link:hover {
+    text-decoration: none;
+    color: #1c7a7f;
+}
+
 main {
     margin-top: 90px; /* Adjusts margin-top to be equal to the height of the header */
 }
@@ -294,7 +315,7 @@ main {
             padding: 10px;
             margin-left: 30px;
             margin-right: 30px;
-            margin-bottom: 180px;
+            margin-bottom: 100px;
         }
 
         .main-content h2{
@@ -303,6 +324,81 @@ main {
     text-align: center;
     font-size: 40px;
     margin-bottom: 40px;
+}
+
+
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 20px;
+}
+
+table {
+    width: 80%;
+    margin-bottom: 20px;
+    box-shadow: 0 0 12px #1c7a7f
+}
+
+th, td {
+    border: 1px solid #000;
+    padding: 15px;
+}
+
+th {
+    background-color: #003B46; /* Dark background color for headers */
+    color: #fff; /* White text color */
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
+}
+
+tr:hover {
+    background-color: #ddd; /* Hover effect for rows */
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+
+form select, form input[type="text"], form input[type="submit"] {
+    padding: 10px;
+    width: calc(33.33% - 10px); /* Adjust based on your layout */
+    border: 1px solid #003B46;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+form input[type="submit"] {
+    background-color: #003B46; /* Dark button background color */
+    color: #fff; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #07575b; /* Darker color on hover */
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    height: 100%;
 }
 
 /* footer styles */
@@ -364,6 +460,8 @@ main {
         </script>
 
     <header>
+
+    <a href="admin.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Admin</a>
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
@@ -512,7 +610,9 @@ main {
     <div class="main-content">
             <h2>CUSTOMER ACCOUNTS</h2>
 
-    <table>
+            <div class="container">
+            <div class="table-container">      
+            <table>
         <tr>
         <th>Customer ID</th>
         <th>Name</th>
@@ -524,11 +624,11 @@ main {
 $fulltable=$db->prepare("SELECT * FROM customerdetails");
 $fulltable->execute();
 while($row = $fulltable->fetch()){
-    $link=$db->prepare("
-    SELECT c.customer_id,c.name,c.default_address,l.username AS username, l.email AS email, l.password AS password
+    $link = $db->prepare("
+    SELECT c.customer_id, c.name, c.default_address, l.username AS username, l.email AS email, l.password AS password
     FROM customerdetails c 
-    JOIN logindetails l ON c.user_id=l.user_id
-    WHERE customer_id={$row["customer_id"]};
+    JOIN logindetails l ON c.user_id = l.user_id
+    WHERE c.name IS NOT NULL AND customer_id = {$row["customer_id"]};
     ");
     $userp=$db->prepare("
     SELECT c.customer_id,c.name,c.default_address,l.username AS username, l.email AS email, l.password AS password
@@ -539,14 +639,19 @@ while($row = $fulltable->fetch()){
     $link->execute();
     $userp->execute();
     $userd=$userp->fetch();
-    $details=json_encode($link->fetch(PDO::FETCH_ASSOC));
+       $details=json_encode($link->fetch(PDO::FETCH_ASSOC));
+		if($row['name']===null){
+        continue;}
+	else{
     echo("<tr><td>".$row["customer_id"]."</td><td>".$row["name"]."</td><td>".$row["default_address"]."</td><td>".$userd["username"]."</td><td>".$userd["email"]);
-}
+    }
+    }
 ?>
 </table>
-
+            </div>
 <br>
-<form name="edit-input" method="post" action="Admin-account-management.php" >
+<div class="form-container">
+<form name="edit-input" method="post" action="customerAccounts.php" >
 
     <select id="cid" name="cid">
     <option value="default">Enter Customer ID</option>
@@ -574,17 +679,13 @@ while($row = $fulltable->fetch()){
 
     </select>
 
-    
-
-
     <input type="text" id="edit-input" name="edit-input" placeholder="Enter edit">
 
-    
-
-    <input type="submit" value="sub" name="sub">
-
+    <div class="button">
+    <input type="submit" value="SUBMIT" name="sub">
+    </div>
 </form>
-
+</div>
 <?php
 if(isset($_POST['sub'])){
 $field=$_POST['edit-field'];
@@ -626,9 +727,14 @@ if($cid=='default' ||$cid =='default'|| $val==null ){
         exit();
         }
     }
+
 }
+
+
 }
+
 ?>
+            </div>
     </div>
 
     </main>
