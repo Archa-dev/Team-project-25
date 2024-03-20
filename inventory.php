@@ -1,8 +1,6 @@
 <?php
 require_once('connectdb.php');
 session_start();
-if(isset($_SESSION['customer_id'])) {
-$customerid = $_SESSION['customer_id'];}
 
 // Check if a color filter is set
 $colorFilter = isset($_POST['colorSelect']) ? $_POST['colorSelect'] : 'all';
