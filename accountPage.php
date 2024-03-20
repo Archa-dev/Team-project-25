@@ -370,6 +370,7 @@ main{
 .main-content {
     margin-left: 350px; 
     margin-right: 50px;
+    margin-bottom: 80px;
 }
 
 /* Additional Styling for Active Link */
@@ -855,11 +856,6 @@ section {
 </div>
         </div>
 
-        <div class="mb-3">
-            <label for="editPhoneNumber">Phone Number:</label>
-            <input type="tel" id="editPhoneNumber" name="editPhoneNumber" class="form-control" placeholder="123-456-7890" required>
-        </div>
-
         <!-- Fields for Shipping, Billing Address, and Payment Methods -->
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -870,15 +866,6 @@ section {
                 <label for="editBillingAddress">Billing Address:</label>
                 <textarea class="form-control" id="editBillingAddress" name="editBillingAddress" required></textarea>
             </div>
-        </div>
-
-        <div class="mb-3">
-            <label for="editPaymentMethod">Payment Method:</label>
-            <select class="form-control" id="editPaymentMethod" name="editPaymentMethod" required>
-                <option value="creditCard">Credit Card</option>
-                <option value="paypal">PayPal</option>
-                <!-- Add more payment methods as needed -->
-            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">SAVE CHANGES</button>
@@ -948,10 +935,8 @@ section {
         let emailInput = document.getElementById("editEmail").value;
         let newPasswordInput = document.getElementById("newPassword").value;
         let confirmNewPasswordInput = document.getElementById("confirmNewPassword").value;
-        let phoneInput = document.getElementById("editPhoneNumber").value;
         let shippingAddressInput = document.getElementById("editShippingAddress").value;
         let billingAddressInput = document.getElementById("editBillingAddress").value;
-        let paymentMethodInput = document.getElementById("editPaymentMethod").value;
         
         let fullName = firstNameInput + " " + surnameInput;
         let address = shippingAddressInput;
@@ -963,8 +948,8 @@ section {
         }
         }
         var changesMessage = "Changes saved successfully!\n\nNew Details:\nFirst Name: " + firstNameInput + "\nSurname: " + surnameInput +
-        "\nEmail: " + emailInput + "\nPhone Number: " + phoneInput + "\nShipping Address: " + shippingAddressInput +
-        "\nBilling Address: " + billingAddressInput + "\nPayment Method: " + paymentMethodInput;
+        "\nEmail: " + emailInput + "\nShipping Address: " + shippingAddressInput +
+        "\nBilling Address: " + billingAddressInput;
         xhr.send('accountName='+fullName+'&address='+address+'&email='+emailInput+'&newPassword='+newPasswordInput);
 
 
