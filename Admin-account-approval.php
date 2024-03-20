@@ -65,6 +65,10 @@ $rej->bindParam(3,$email);
 
 $rej->execute();
 
+$crej=$db->prepare("insert into customerdetails (user_id) value (?)");
+$crej->bindParam(1,$id);
+$crej->execute();
+
 $del=$db->prepare("DELETE FROM pending_admin_accounts WHERE pending_user_id = ?");
 $del->bindParam(1,$id);
 $del->execute();
