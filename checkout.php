@@ -776,7 +776,7 @@ input[type="password"]:focus {
                
                     <span>Total:</span>
                     <div>
-                    <h3 class="checkout-price"></h3>
+                    <h3 class="checkout-price">£</h3>
                     </div>
                 <button onclick="confirmOrder()" class="btn btn-primary mt-3 checkout-button">CHECKOUT</button>
             </div>
