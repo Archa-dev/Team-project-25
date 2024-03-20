@@ -24,11 +24,11 @@
 $fulltable=$db->prepare("SELECT * FROM customerdetails");
 $fulltable->execute();
 while($row = $fulltable->fetch()){
-    $link=$db->prepare("
-    SELECT c.customer_id,c.name,c.default_address,l.username AS username, l.email AS email, l.password AS password
+    $link = $db->prepare("
+    SELECT c.customer_id, c.name, c.default_address, l.username AS username, l.email AS email, l.password AS password
     FROM customerdetails c 
-    JOIN logindetails l ON c.user_id=l.user_id
-    WHERE customer_id={$row["customer_id"]};
+    JOIN logindetails l ON c.user_id = l.user_id
+    WHERE c.name IS NOT NULL AND customer_id = {$row["customer_id"]};
     ");
     $userp=$db->prepare("
     SELECT c.customer_id,c.name,c.default_address,l.username AS username, l.email AS email, l.password AS password
