@@ -775,9 +775,9 @@ input[type="password"]:focus {
                 <!-- Total price and checkout button -->
                
                     <span>Total:</span>
-                    <div class="checkout-price">
-                    <h3>£<?php /* Calculate total price here */ ?></h3>
-                </div>
+                    <div>
+                    <h3 class="checkout-price"></h3>
+                    </div>
                 <button onclick="confirmOrder()" class="btn btn-primary mt-3 checkout-button">CHECKOUT</button>
             </div>
         </div>
