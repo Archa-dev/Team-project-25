@@ -639,7 +639,7 @@ html {
     $reviews->execute();
     $reviews = $reviews->fetchAll(PDO::FETCH_ASSOC);
     foreach ($reviews as $review) {
-        $getCustomerID = $db->prepare("SELECT `customer_id` FROM `sitereviews` WHERE `user_id` = ?;");
+        $getCustomerID = $db->prepare("SELECT `customer_id` FROM `customerdetails` WHERE `user_id` = ?;");
         $getCustomerID->bindParam(1, $review['user_id']);
         $getCustomerID->execute();
         $customerReviewID = $getCustomerID->fetch(PDO::FETCH_ASSOC);
@@ -658,7 +658,7 @@ html {
     ?>
     <br>
 <br>
-<button id="leave-review-btn" class="review-button" onclick="window.location.href(siteReviewPage.php)">Leave a Review</button>
+<button id="leave-review-btn" class="review-button" onclick="window.location.href = 'siteReviewPage.php'">Leave a Review</button>
     </div>
             <div class="main-content"> <!-- bottom video -->
             <video src="videos3/5.mp4" alt="Video of a woman standing and wearing sunglasses while the camera zooms out" autoplay muted loop></video>

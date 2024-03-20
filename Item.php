@@ -887,30 +887,34 @@ main {
  
 <div id="review-display" class="review-container">
     <h2>REVIEWS FOR THIS PRODUCT</h2>
- <?php
-// displays reviews from the database
-$reviews = $db->prepare("SELECT * FROM `productreviews` WHERE `product_id` = ?;");
-$reviews->bindParam(1, $integerValue);
-$reviews->execute();
-$reviews = $reviews->fetchAll(PDO::FETCH_ASSOC);
-foreach ($reviews as $review) {
-    $getCustomerID = $db->prepare("SELECT `customer_id` FROM `productreviews` WHERE `user_id` = ?;");
-    $getCustomerID->bindParam(1, $review['user_id']);
-    $getCustomerID->execute();
-    $customerReviewID = $getCustomerID->fetch(PDO::FETCH_ASSOC);
-    $customerName = $db->prepare("SELECT `name` FROM `customerdetails` WHERE `customer_id` = ?;");
-    $customerName->bindParam(1, $customerReviewID);
-    $customerName->execute();
-    $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
-    $firstName = explode(' ',$customerName['name'])[0];
-    $lastName = explode(' ',$customerName['name'])[1];
-    $fullName = $firstName . " " . $lastName;
-    $starNumber = $review['star_rating'];
-    echo "<h3> REVIEW BY:" . $fullName . "</h4>";            // this is how individual reviews are displayed, this is what needs to be changed for the formatting, although it may be easier to encapsulate this area in a div and use css only
-    echo "<h3> RATING:  ". str_repeat('<span class="fa fa-star checked"></span>',$starNumber) . "</h4>";
-    echo "<p>" . $review['review_text'] . "</p>";
-}
-?> 
+    <?php
+    // displays reviews from the database
+    $reviews = $db->prepare("SELECT * FROM `productreviews` WHERE `product_id` = ?;");
+    $reviews->bindParam(1, $integerValue);
+    $reviews->execute();
+    $reviews = $reviews->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($reviews as $review) {
+        $getCustomerID = $db->prepare("SELECT `customer_id` FROM `customerdetails` WHERE `user_id` = ?;");
+        $getCustomerID->bindParam(1, $review['user_id']);
+        $getCustomerID->execute();
+        $customerReviewID = $getCustomerID->fetch(PDO::FETCH_ASSOC);
+        if ($customerReviewID) {
+            $customerName = $db->prepare("SELECT `name` FROM `customerdetails` WHERE `customer_id` = ?;");
+            $customerName->bindParam(1, $customerReviewID['customer_id']);
+            $customerName->execute();
+            $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
+            if ($customerName) {
+                $firstName  = explode(' ', $customerName['name'])[0];
+                $lastName = explode(' ', $customerName['name'])[1];
+                $fullName = $firstName . " " . $lastName;
+                $starNumber = $review['star_rating'];
+                echo "<h3> REVIEW BY:" . $fullName . "</h4>"; // this is how individual reviews are displayed, this is what needs to be changed for the formatting, although it may be easier to encapsulate this area in a div and use css only
+                echo "<h3> RATING:  " . str_repeat('<span class="fa fa-star checked"></span>', $starNumber) . "</h4>";
+                echo "<p>" . $review['review_text'] . "</p>";
+            }
+        }
+    }
+    ?>
 </div>
         
         
