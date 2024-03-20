@@ -943,7 +943,6 @@ section {
 
     function saveChanges() {
         event.preventDefault();
-        console.log("Saving changes...")
         let firstNameInput = document.getElementById("editFirstName").value;
         let surnameInput = document.getElementById("editSurname").value;
         let emailInput = document.getElementById("editEmail").value;
@@ -957,7 +956,6 @@ section {
         let fullName = firstNameInput + " " + surnameInput;
         let address = shippingAddressInput;
         let xhr = new XMLHttpRequest();
-        console.log(fullName, address);
         xhr.open('POST', 'saveAccountDetails.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function(){
@@ -967,7 +965,7 @@ section {
         var changesMessage = "Changes saved successfully!\n\nNew Details:\nFirst Name: " + firstNameInput + "\nSurname: " + surnameInput +
         "\nEmail: " + emailInput + "\nPhone Number: " + phoneInput + "\nShipping Address: " + shippingAddressInput +
         "\nBilling Address: " + billingAddressInput + "\nPayment Method: " + paymentMethodInput;
-        xhr.send('accountName='+fullName+'&address='+address+'&email='+emailInput);
+        xhr.send('accountName='+fullName+'&address='+address+'&email='+emailInput+'&newPassword='+newPasswordInput);
 
 
  // Update the displayed details with the edited values
@@ -979,19 +977,6 @@ section {
     // document.getElementById("shippingAddressDisplay").innerText = shippingAddressInput;
     // document.getElementById("billingAddressDisplay").innerText = billingAddressInput;
     // document.getElementById("paymentMethodDisplay").innerText = paymentMethodInput;
-
-
-/// Check if new password is provided and confirmed
-if (newPasswordInput !== "" && newPasswordInput === confirmNewPasswordInput) {
-        xhr.open('POST', 'changeCustomerPasswordScript.php', true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4 && xhr.status == 200){
-        }
-        }
-        changesMessage += "\n\nPassword Changed!";
-        xhr.send('newPassword='+ newPassword);
-    }
 
     alert(changesMessage);
     location.reload();
