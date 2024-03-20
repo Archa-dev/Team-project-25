@@ -516,12 +516,12 @@ main {
 }
 
 #leave-review-btn {
-    margin-left: 550px;
-  margin-top: -80px;
-  color: #003b46;
+    margin-left: 55px;
+  margin-top: -50px;
+  color: #fff;
   border: none;
-  padding: 5px 20px;
-  background-color: #ffffff;
+  padding: 5px 30px;
+  background-color: #003B46;
   text-decoration: none;
   transition: text-decoration 0.2s;
   white-space: nowrap;
@@ -530,10 +530,9 @@ main {
 }
 
 #leave-review-btn:hover {
-  text-decoration: underline;
+  text-decoration: none;
   color: #1c7a7f;
 }
-
 
 #review-form-popup {
     position: fixed;

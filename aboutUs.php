@@ -381,7 +381,7 @@ html {
 }
 
 #leave-review-btn:hover {
-  text-decoration: underline;
+  text-decoration: none;
   color: #1c7a7f;
 }
 
