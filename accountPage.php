@@ -962,11 +962,11 @@ section {
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
-            var changesMessage = "Changes saved successfully!\n\nNew Details:\nFirst Name: " + firstNameInput + "\nSurname: " + surnameInput +
+        }
+        }
+        var changesMessage = "Changes saved successfully!\n\nNew Details:\nFirst Name: " + firstNameInput + "\nSurname: " + surnameInput +
         "\nEmail: " + emailInput + "\nPhone Number: " + phoneInput + "\nShipping Address: " + shippingAddressInput +
         "\nBilling Address: " + billingAddressInput + "\nPayment Method: " + paymentMethodInput;
-        }
-        }
         xhr.send('accountName='+fullName+'&address='+address+'&email='+emailInput);
 
 
@@ -983,18 +983,20 @@ section {
 
 /// Check if new password is provided and confirmed
 if (newPasswordInput !== "" && newPasswordInput === confirmNewPasswordInput) {
-        xhr.open('POST', 'changePassword.php', true);
+        xhr.open('POST', 'changeCustomerPasswordScript.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
-            changesMessage += "\n\nPassword Changed!";
         }
         }
+        changesMessage += "\n\nPassword Changed!";
         xhr.send('newPassword='+ newPassword);
     }
 
     alert(changesMessage);
     location.reload();
+    // Close the modal after saving changes
+    closeEditProfileModal();
     }
 </script>
 
