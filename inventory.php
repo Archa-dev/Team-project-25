@@ -1,6 +1,92 @@
 <?php
 require_once('connectdb.php');
 session_start();
+if(isset($_SESSION['customer_id'])) {
+$customerid = $_SESSION['customer_id'];}
+
+// Check if a color filter is set
+$colorFilter = isset($_POST['colorSelect']) ? $_POST['colorSelect'] : 'all';
+
+// Check if the search filter is set
+$searchFilter = isset($_POST['searchFilter']) ? $_POST['searchFilter'] : 'all';
+
+// Check if a category filter is set
+$categoryFilter = isset($_POST['categoryFilter']) ? $_POST['categoryFilter'] : 'all';
+
+// Check if a price range filter is set
+//$priceRange = isset($_POST['priceRange']) ? array_map('intval', explode('-', $_POST['priceRange'])) : array(20, 1000);
+if(isset($_POST['priceRange']) && is_array($_POST['priceRange']) && isset($_POST['priceRange'][0])) {
+    $splitElements = explode('-', $_POST['priceRange'][0]); 
+    $priceRange[0] = $splitElements[0];
+    $priceRange[1] = $splitElements[1];
+}
+// Extract min and max prices from the price range array
+$minPrice = isset($priceRange[0]) ? $priceRange[0] : 20;
+$maxPrice = isset($priceRange[1]) ? $priceRange[1] : 1000;
+//echo $maxPrice;
+// Build the SQL query with both category, color, and price range filters
+$query = "SELECT * FROM productdetails WHERE 1";
+
+// Build the SQL query with price range filter
+$query .= " AND price BETWEEN :minPrice AND :maxPrice";
+
+
+if ($categoryFilter !== 'all') {
+    $query .= " AND category = :category";
+}
+if ($colorFilter !== 'all') {
+    $query .= " AND colour = :color";
+}
+if (strpos($searchFilter, 'women') !== false || strpos($searchFilter, 'woman') !== false || strpos($searchFilter, 'lad') !== false || strpos($searchFilter, 'female') !== false) {
+    $searchFilter = 'female';
+}
+elseif (strpos($searchFilter, 'men') !== false || strpos($searchFilter, 'man') !== false || strpos($searchFilter, 'male') !== false){
+    $searchFilter = 'male';
+}
+
+
+if ($searchFilter !== 'all') {
+    $query .= " AND (product_name LIKE :searchFilter OR category = :catSearchFilter OR colour LIKE :searchFilter)";
+}
+
+
+// Prepare the SQL statement
+$stmt = $db->prepare($query);
+
+// Bind the category parameter if it's set
+if ($categoryFilter !== 'all') {
+    $stmt->bindParam(':category', $categoryFilter, PDO::PARAM_STR);
+}
+
+// Bind the color parameter if it's set
+if ($colorFilter !== 'all') {
+    $stmt->bindParam(':color', $colorFilter, PDO::PARAM_STR);
+}
+// Bind the parameter if it's set
+if ($searchFilter !== 'all') {
+    $catSearchFilter = $searchFilter;
+    $searchFilter = '%' . $searchFilter . '%';
+    $stmt->bindParam(':searchFilter', $searchFilter, PDO::PARAM_STR);
+    $stmt->bindParam(':catSearchFilter', $catSearchFilter, PDO::PARAM_STR);
+}
+
+
+// Bind the price range parameters if it's set
+$stmt->bindParam(':minPrice', $minPrice, PDO::PARAM_INT);
+$stmt->bindParam(':maxPrice', $maxPrice, PDO::PARAM_INT);
+
+
+// Execute the query
+$result = $stmt->execute();
+
+// Check for errors
+if (!$result) {
+    die("Database query failed.");
+}
+
+// Fetch the results as an associative array
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 //$customerid = 13;   
@@ -23,22 +109,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     header('Location: login.php');
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inventory - Admin</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVENTORY- SHADED</title>
 
-        <!--bootstrap css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-         <!-- favicon -->
-         <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
-<style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="shortcut icon" href="updatedFavicon.png" type="image/png">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+   
+   <style>
 
 html {
     font-size: 100%;
@@ -130,22 +221,22 @@ html {
 }
 
 .logo img {
-    max-width: 100%; /* Ensures the logo scales proportionally */
+    max-width: 100%; 
     max-height: 50px; 
-    margin-left: auto; /* Centers the logo horizontally */
+    margin-left: auto; 
 }
 
 .fas {
     font-size: 15px;
 }
 
-/* Shopping Bag Popuop*/
+/* Shopping Bag Popup*/
 .shopping-bag-popup {
     position: fixed;
     top: 80px;
     right: -400px; /* Initially hidden */
     width: 350px;
-    max-height: 85vh; /* Limits the maximum height to 80% of the viewport height */
+    max-height: 85vh; 
     overflow-y: auto; /* Enables vertical scrolling if needed */
     background-color: #fff;
     z-index: 1000;
@@ -233,16 +324,16 @@ html {
     top: 100px; /* Initial top position */
     right: 10px;
     font-size: 32px;
-    color: yellow; /* Initial color of the sun icon */
-    text-shadow: 0 0 10px black; /* Adds outline */
+    color: yellow; 
+    text-shadow: 0 0 10px black; 
     z-index: 900; /* Ensures it appears above the navbar */
     transition: top 0.1s ease, color 0.2s linear; /* Transition for smooth movement and color change */
 }
 
 /* CSS for dark mode */
 .dark-mode {
-    background-color: #000000; /* background color black */
-    color: #ffffff; /* text color white */
+    background-color: #000000; /*background color black */
+    color: #ffffff; /*text color white */
 }
 
 #dark-mode-toggle:hover{
@@ -250,7 +341,7 @@ html {
             }
 
 .dark-mode header {
-    background-color: #000000; /* navbar background color black */
+    background-color: #000000; /*  navbar background color black */
 }
 
 /* Update sun/moon icon styles */
@@ -282,29 +373,384 @@ html {
     background-color: rgba(28, 122, 127, 0.7);
 }
 
-/*Homepage Content*/
-main {
-    margin-top: 90px; /* Adjusts margin-top to be equal to the height of the header */
+.dark-mode .filter-container {
+    background-color: #000;
+    color: #ffffff;
 }
 
-.main-content {
-            position: relative;
-            max-width: 100%;
-            overflow: hidden;
-            padding: 10px;
-            margin-left: 30px;
-            margin-right: 30px;
-            margin-bottom: 180px;
-        }
+.dark-mode .product-info,
+.dark-mode .product-info h3{
+    color: white !important;
+}
 
-        .main-content h2{
+main {
+    margin-top: 90px; 
+    margin-bottom: 350px;
+}
+
+.return-link {
+    position: absolute;
+    top: 90px; 
+    left: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #003b46; 
+    text-decoration: none;
+    z-index: 1000; /* Ensures it appears above other content */
+}
+
+.return-link i {
+    margin-right: 5px; /* spacing between the icon and the text */
+}
+
+.return-link:hover {
+    text-decoration: none;
+    color: #1c7a7f;
+}
+
+/* filter styles */
+   /* Filter styles */
+   .filter-container {
+    width: 200px;
+    padding: 20px;
+    position: fixed;
+    left: 20px;
+    bottom: 145px;
+    border-radius: 5px;
+    z-index: 200;
+    max-height: calc(100vh - 200px); 
+    transition: top 0.3s ease; /* Adds smooth transition */
+    box-shadow: 0 0 12px #1c7a7f;
+    }
+
+    .filter-title {
+        font-size: 22px;
+        margin-bottom: 15px;
+        padding-left: 35px;
+        color: #003b46; /* Dark blue */
+    }
+
+    .filter-option select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    font-size: 16px;
+    appearance: none; 
+    margin-bottom: 20px;
+}
+
+.filter-option select:focus {
+    outline: none; /* Removes focus outline */
+    border-color: #003B46; /* blue border color on focus */
+}
+
+.filter-option select option {
+    background-color: #f8f9fa;
+    color: #003B46;
+}
+
+.filter-option select option:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.filter-option label {
+    display: block;
+    margin-bottom: 0px;
+    font-size: 14px;
+    color: #003b46;
+    font-weight: bold;
+}
+
+    .filter-button {
+        background-color: #003b46; /* Dark blue */
+        color: #fff; /* White text */
+        padding: 5px;
+        margin-top: 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+    }
+
+    .filter-button:hover {
+        background-color: #07575B; /* Darker blue on hover */
+    }
+
+.filter-title {
+    font-weight: bold; 
+    font-size: 26px;
+    margin-left: 8px; /* Moves title to the right */
+    
+}
+
+.addproduct-button {
+        background-color: #003b46; /* Dark blue */
+        color: #fff; /* White text */
+        padding: 5px;
+        margin-top: 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+    }
+
+    .addproduct-button:hover {
+        background-color: #07575B; /* Darker blue on hover */
+    }
+
+
+/* Price container styles */
+
+
+#price-slider {   
+    margin-top: 15px; /* space above slider */
+    margin-bottom:15px; /* space below slider */
+    color: #003B46; 
+}
+
+#priceRange {
+    width: 100%; /* full width of the price container */
+    margin-top: 10px;
+    text-align: center;
     color: #003B46;
     font-weight: bold;
-    text-align: center;
-    font-size: 40px;
-    margin-bottom: 40px;
+    border:none;
 }
 
+/* position of the price range label and slider */
+#price-container {
+    position: relative; 
+}
+
+/* filter styles end here */
+
+.selection-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selection-title h2 {
+    font-size: 40px;
+    color: #003b46;
+    font-weight: bold;
+    margin-bottom: 45px;
+    margin-right: 200px;
+}
+
+
+.container-fluid {
+    flex: 1;
+    margin-top: auto;
+}
+
+h3 {
+   font-size: 18px;
+   font-weight: bold;
+   
+}
+
+h2 {
+   font-size: 20px;
+   margin: 10px 0;
+    margin-left: 14px;
+}
+
+#main {
+    margin-left: 220px;
+}
+
+
+
+.main-container {
+    flex: 1;
+}
+
+.buy-button {
+    background-color: #003b46;
+    border: none;
+    color: #fff;
+    padding: 2px 8px;
+    text-align: auto;
+    text-decoration:none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 10px 0;
+    margin-left: 185px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+        
+}
+
+
+
+.product-info {
+        text-align: left; 
+        color: black;
+        text-decoration: none;   
+    }
+
+.product-info h3{
+    color: black;
+}
+
+    .price {
+        margin-top: 5px; /* margin between the product name and the price */
+        text-align: left;
+        font-weight: bold;
+        
+        
+    }
+
+    .stock-level {
+        font-weight: bold;
+    
+        margin-top: -20px;
+    }
+
+    .update-button {
+        background-color: green; 
+        color: #fff; /* White text */
+        padding: 5px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .update-button:hover {
+        background-color: darkgreen; /* Darker blue on hover */
+    }
+
+    .delete-button {
+        background-color: red; /* Dark blue */
+        color: #fff; /* White text */
+        padding: 5px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+        margin-bottom: 200px;
+    }
+
+    .delete-button:hover {
+        background-color: maroon; /* Darker blue on hover */
+    }
+
+
+    .product-container {
+    width: 90%; 
+    margin: auto; /* Centers the container */
+    padding: 15px;
+    
+}
+    
+.product-container img{
+    height:50%
+}
+
+/* Modal Styling */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  margin-bottom: 200px;
+  width: 100%;
+  height: 100%;
+  overflow:hidden; 
+  background-color: rgba(0, 0, 0, 0.9); 
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #000;
+  width: 50%; /* depending on screen size */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 80vh; 
+    
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Form Styling */
+
+
+.modal-content h2 {
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  color: #003B46;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-content button[type="submit"] {
+  background-color: #003B46;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+}
+
+.modal-content button[type="submit"]:hover {
+  background-color: #07575B;
+}
+
+      
 /* footer styles */
 .footer {
     background-color: #003B46;
@@ -319,7 +765,7 @@ main {
 .footer-col {
     width: 25%; /*width of each column */
     padding: 0 15px; /*horizontal padding */
-    padding-left: 80px; /* left padding */
+    padding-left: 80px;/*left padding */
 }
 
 .footer-col h4 {
@@ -355,15 +801,19 @@ main {
 }
 </style>
 
-    </head>
-    <body>
-        <!--bootstrap js-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-                crossorigin="anonymous">
-        </script>
+</head>
+<body>
+<!--bootstrap js-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+     crossorigin="anonymous">
+</script>
 
-    <header>
+
+<header>
+
+<a href="admin.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Admin</a>
+
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
@@ -379,9 +829,9 @@ main {
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
-                    <!-- navbar to the left of the search box -->
-                    <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                    <li class="nav-item">
+                   <!-- navbar to the left of the search box -->
+                   <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                   <li class="nav-item">
                             <a class="nav-link" href="homepage.php">Home</a>
                         </li>
                     <li class="nav-item">
@@ -409,6 +859,9 @@ main {
                         <li class="nav-item">
                             <a class="nav-link" href="Contactus.php">Contact Us</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reviews.php">Reviews</a>
+                        </li>
                     </ul>
 
                     <!-- search box -->
@@ -419,6 +872,7 @@ main {
                         </button>
                     </form>
 
+                    
                     <!-- navbar to the right of the search box -->
                     <ul class="navbar-nav mw-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
@@ -439,12 +893,7 @@ main {
                                 <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
-                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
-                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
-                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
-                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
-                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
+                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
                             </ul>
                         </li>
 
@@ -499,28 +948,181 @@ main {
             </div>
         </nav>
     </header>
-<!-- lightmode/darkmode -->
+
     <div id="dark-mode-toggle">
         <a class="nav-link" href="#">
             <i class="fas fa-lightbulb"></i>
         </a>
     </div>
 
+
     <main>
+    <div id="main">
+        
+    <div class="main-container">
 
     <div id="sun-icon">&#9728;</div>
 
-    <div class="main-content">
-            <h2>INVENTORY</h2>
+        <!-- main page title -->
+        <div class="selection-title">
+        <h2>INVENTORY</h2>
+</div>
 
+<div class="filter-container">
+    <h3 class="filter-title">FILTER</h3>
 
-            
+    <!-- Category filter -->
+    <form method="post" class="filter-option" action="" id="filterForm">
+    <label for="categoryFilter">Category:</label>
+    <select name="categoryFilter" id="categoryFilter">
+        <option value="all">All</option>
+        <option value="male">Mens</option>
+        <option value="female">Womens</option>
+        <option value="unisex">Unisex</option>
+        <option value="futuristic">Futuristic</option>
+        <option value="bluelight">Bluelight</option>
+    </select>
+
+    <!-- Colour filter -->
+    <label for="colorSelect">Colour:</label>
+    <select name="colorSelect" id="colorSelect">
+        <option value="all">All Colours</option>
+        <option value="black">Black</option>
+        <option value="white">White</option>
+        <option value="yellow">Yellow</option>
+        <option value="brown">Brown</option>
+        <option value="green">Green</option>
+    </select>
+
+    <!-- Price filter -->
+    <div class="filter-option">
+        <label for="priceRange">Price Range:</label>
+        <div id="price-slider">
+            <input type="text" id="priceRange" readonly style="color:#003b46; font-weight:bold;">
+            <!-- Change the name attribute to "priceRange[]" to submit as an array -->
+            <input type="hidden" id="priceRangeHidden" name="priceRange[]" value="20-1000">
+        </div>
     </div>
-    
-    </main>
 
-    <!-- footer content -->
-    <footer class="footer">
+    <!-- Apply filter button -->
+    <button class="filter-button" type="submit">SUBMIT</button>
+    <button class="addproduct-button" type="button" onclick="openAddProductModal()">ADD A PRODUCT</button>
+</form>
+
+
+</div>
+
+
+
+</div>
+
+
+    <div class="product-container">
+    <div class="row">
+        <!-- Loop through each product and display buttons -->
+        <?php foreach ($products as $product) : ?>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+            <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
+                <img src="Images for products\Mens Black1.1.avif" width="100%" height="60%">
+                </a>
+                <div class="product-info">
+                <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
+                <h3><?= $product['product_name'] ?></h3>
+                </a>
+                <p class="price"> £<?= $product['price'] ?></p>
+                 <!-- added on 19/03 , needs to be linked with database -->
+                 <p class="stock-level"> IN STOCK: 80 </p>
+                 <button class="update-button" type="button" onclick="openUpdateModal()">UPDATE</button>
+                 <button class="delete-button" type="submit">DELETE</button>
+            </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<div id="updateProductModal" class="modal">
+  <div class="modal-content">
+  <span class="close" onclick="closeUpdateModal()">&times;</span>
+    <h2>EDIT PRODUCT DETAILS</h2>
+    <form id="updateProductForm">
+      <label for="productName">Product Name:</label>
+      <input type="text" id="productName" name="productName" required>
+      
+      <label for="productPrice">Price:</label>
+      <input type="text" id="productPrice" name="productPrice" required>
+      
+      <label for="productImage">Image:</label>
+      <input type="file" id="productImage" name="productImage" accept="image/*">
+    
+
+      <label for="productCategory">Category:</label>
+      <select id="productCategory" name="productCategory" required>
+        <option value="male">Mens</option>
+        <option value="female">Womens</option>
+        <option value="unisex">Unisex</option>
+        <option value="futuristic">Futuristic</option>
+        <option value="bluelight">Bluelight</option>
+      </select>
+      
+      <label for="productColor">Color:</label>
+      <input type="text" id="productColor" name="productColor" required>
+      
+      <button type="submit">UPDATE PRODUCT</button>
+    </form>
+  </div>
+</div>
+
+ <!-- ADD PRODUCT MODAL -->
+ <div id="addProductModal" class="modal">
+            <div class="modal-content">
+            <span class="close" onclick="closeAddProductModal()">&times;</span>
+    <h2>ADD A PRODUCT </h2>
+    <form id="updateProductForm">
+      <label for="productName">Product Name:</label>
+      <input type="text" id="productName" name="productName" required>
+      
+      <label for="productPrice">Price:</label>
+      <input type="text" id="productPrice" name="productPrice" required>
+      
+      <label for="productImage">Image:</label>
+      <input type="file" id="productImage" name="productImage" accept="image/*">
+    
+
+      <label for="productCategory">Category:</label>
+      <select id="productCategory" name="productCategory" required>
+        <option value="male">Mens</option>
+        <option value="female">Womens</option>
+        <option value="unisex">Unisex</option>
+        <option value="futuristic">Futuristic</option>
+        <option value="bluelight">Bluelight</option>
+      </select>
+      
+      <label for="productColor">Color:</label>
+      <input type="text" id="productColor" name="productColor" required>
+      
+      <button type="submit">ADD PRODUCT</button>
+    </form>
+            </div>
+        </div>
+
+    <form method="post" action="Item.php" id="buyForm">
+    <!-- Hidden input fields to store the selected product ID and color -->
+    <input type="hidden" name="selectedProductId" id="selectedProductId" value="">
+    
+   
+</form>
+
+<form method="post" action="">
+                <!-- Hidden input field to store the selected color -->
+                <input type="hidden" name="selectedColor" id="selectedColor" value="">
+            </form>
+    </div>
+
+     
+</main>
+
+
+<footer class="footer">
      <div class="container">
      <div class="row">
      <div class="footer-col">
@@ -564,9 +1166,37 @@ main {
 </div>
         </footer>
 
-<!-- JavaScript for Scroll Icon -->
+
+
 <script>
-      window.addEventListener('scroll', function() {
+document.addEventListener('DOMContentLoaded', function () {
+        // Add a click event listener to all buttons with the class 'buy-button'
+        document.querySelectorAll('.buy-button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Get the product ID
+                var productId = button.getAttribute('data-product-id');
+
+
+                // Set the values of the hidden input fields
+                document.getElementById('selectedProductId').value = productId;
+
+                // Submit the form
+                document.forms['buyForm'].submit();
+            });
+        });
+
+
+
+
+    // Function to handle product click
+    function buyProduct(productId) {
+    document.getElementById('selectedProductId').value = productId;
+    document.forms[0].submit(); // Change the form index accordingly
+}
+
+});
+
+window.addEventListener('scroll', function() {
     var sunIcon = document.getElementById('sun-icon');
     var navbarHeight = document.querySelector('header').offsetHeight;
     var footerHeight = document.querySelector('footer').offsetHeight;
@@ -574,7 +1204,7 @@ main {
     var windowHeight = window.innerHeight;
     var bodyHeight = document.body.clientHeight;
 
-    // Calculate position of the sun icon based on scroll position
+    // Calculate the position of the sun icon based on scroll position
     var maxScroll = bodyHeight - windowHeight;
     var visibleHeight = windowHeight - navbarHeight - footerHeight;
     var newPosition = Math.min(Math.max((scrollPosition - navbarHeight) / (maxScroll - navbarHeight - visibleHeight), 0), 1) * (visibleHeight - 40) + navbarHeight;
@@ -600,9 +1230,7 @@ window.addEventListener('DOMContentLoaded', function() {
     var navbarHeight = document.querySelector('header').offsetHeight;
     sunIcon.style.top = navbarHeight + 'px';
 });
-</script>
 
-<script>
 document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
@@ -614,10 +1242,79 @@ document.addEventListener('DOMContentLoaded', function() {
         darkModeToggle.querySelector('i').classList.toggle('fa-moon');
     });
 });
-</script>
 
-<script>
-document.getElementById('shopping-bag-icon').addEventListener('click', function() {
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Add a click event listener to all buttons with the class 'buy-button'
+        document.querySelectorAll('.buy-button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Get the product ID
+                var productId = button.getAttribute('data-product-id');
+
+
+                // Set the values of the hidden input fields
+                document.getElementById('selectedProductId').value = productId;
+
+                // Submit the form
+                document.forms['buyForm'].submit();
+            });
+        });
+    });
+
+    $(function() {
+        // Initialize price range slider
+        $("#price-slider").slider({
+            range: true,
+            min: 20,
+            max: 1000,
+            values: [20, 1000],
+            slide: function(event, ui) {
+                $("#priceRange").val(ui.values[0] + "-" + ui.values[1]); // Update the value of priceRange input
+                $("#priceRangeHidden").val(ui.values[0] + "-" + ui.values[1]); // Update the hidden input
+            }
+        });
+
+        // Initialize priceRange input value
+        var sliderValues = $("#price-slider").slider("values");
+        $("#priceRange").val(sliderValues[0] + "-" + sliderValues[1]);
+
+        // Update JavaScript variable when the input field is changed directly
+        $("#priceRange").change(function() {
+            var range = $(this).val().split("-");
+            $("#price-slider").slider("values", [parseInt(range[0]), parseInt(range[1])]);
+            $("#priceRangeHidden").val($(this).val()); // Update the hidden input
+        });
+    });
+
+    // Function to handle product click
+    function buyProduct(productId) {
+        document.getElementById('selectedProductId').value = productId;
+        document.getElementById('buyForm').submit();
+    }
+
+    
+    function filterCategory(category) {
+        // Create a form element dynamically
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = 'shopping.php'; 
+        
+        // Create an input element to hold the category filter value
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'categoryFilter';
+        input.value = category;
+        
+        // Append the input element to the forms
+        form.appendChild(input);
+        
+        // Append the form to the document body and submit it
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    document.getElementById('shopping-bag-icon').addEventListener('click', function() {
   const popup = document.getElementById('shopping-bag-popup');
   popup.classList.toggle('show');
 });
@@ -634,29 +1331,33 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
     });
 
 
-    function filterCategory(category) {
-        // Create a form element dynamically
-        var form = document.createElement('form');
-        form.method = 'post';
-        form.action = 'shopping.php'; 
-        
-        // Create an input element to hold the category filter value
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'categoryFilter';
-        input.value = category;
-        
-        // Append the input element to the form
-        form.appendChild(input);
-        
-        // Append the form to the document body and submit it
-        document.body.appendChild(form);
-        form.submit();
+// Function to open the update product modal
+function openUpdateModal() {
+        var modal = document.getElementById('updateProductModal');
+        modal.style.display = 'block';
+    }
+
+     // Function to close the update product modal
+     function closeUpdateModal() {
+        var modal = document.getElementById('updateProductModal');
+        modal.style.display = 'none';
+    }
+
+    // Function to open the add product modal
+    function openAddProductModal() {
+        var modal = document.getElementById('addProductModal');
+        modal.style.display = 'block';
+    }
+
+      // Function to close the add product modal
+      function closeAddProductModal() {
+        var modal = document.getElementById('addProductModal');
+        modal.style.display = 'none';
     }
 
 
-    
-    </script>
 
+   
+</script>
 </body>
 </html>
