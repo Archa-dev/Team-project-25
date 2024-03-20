@@ -894,8 +894,12 @@ $reviews->bindParam(1, $integerValue);
 $reviews->execute();
 $reviews = $reviews->fetchAll(PDO::FETCH_ASSOC);
 foreach ($reviews as $review) {
+    $getCustomerID = $db->prepare("SELECT `customer_id` FROM `productreviews` WHERE `user_id` = ?;");
+    $getCustomerID->bindParam(1, $review['user_id']);
+    $getCustomerID->execute();
+    $customerReviewID = $getCustomerID->fetch(PDO::FETCH_ASSOC);
     $customerName = $db->prepare("SELECT `name` FROM `customerdetails` WHERE `customer_id` = ?;");
-    $customerName->bindParam(1, $review['user_id']);
+    $customerName->bindParam(1, $customerReviewID);
     $customerName->execute();
     $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
     $firstName = explode(' ',$customerName['name'])[0];
