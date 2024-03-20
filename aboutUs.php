@@ -374,15 +374,14 @@ html {
   padding: 5px 30px;
   background-color: #003B46;
   text-decoration: none;
-  transition: text-decoration 0.2s;
+  transition: background-color 0.3s ease;
   white-space: nowrap;
   border-radius: 5px;
   font-weight: bold;
 }
 
 #leave-review-btn:hover {
-  text-decoration: none;
-  color: #1c7a7f;
+    background-color: #07575b;
 }
 
 .review-container {
@@ -659,7 +658,7 @@ html {
     ?>
     <br>
 <br>
-<button id="leave-review-btn" class="review-button" onclick="window.location.href = 'siteReviewPage.php'">Leave a Review</button>
+<button id="leave-review-btn" class="review-button" onclick="window.location.href = 'siteReviewPage.php'">LEAVE A REVIEW</button>
     </div>
             <div class="main-content"> <!-- bottom video -->
             <video src="videos3/5.mp4" alt="Video of a woman standing and wearing sunglasses while the camera zooms out" autoplay muted loop></video>
