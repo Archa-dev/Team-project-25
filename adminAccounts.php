@@ -285,6 +285,26 @@ html {
 }
 
 /*Homepage Content*/
+.return-link {
+    position: absolute;
+    top: 90px; 
+    left: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #003b46; 
+    text-decoration: none;
+    z-index: 1000; /* Ensures it appears above other content */
+}
+
+.return-link i {
+    margin-right: 5px; /* spacing between the icon and the text */
+}
+
+.return-link:hover {
+    text-decoration: none;
+    color: #1c7a7f;
+}
+
 main {
     margin-top: 90px; /* Adjusts margin-top to be equal to the height of the header */
 }
@@ -477,6 +497,7 @@ main {
         </script>
 
 <header>
+<a href="admin.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Admin</a>
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
