@@ -629,11 +629,8 @@ html {
         <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
         <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a> </div></div></div>
 
-        <div id="review-display" class="review-container">
+    <div id="review-display" class="review-container">
     <h2>WEBSITE REVIEWS</h2>
-    <!-- <h3> REVIEW BY:</h4>          
-    <h3> RATING:</h4>
-    <p> This website is easy to navigate and has an amazing range of products!</p> -->
     <?php
     $reviews = $db->prepare("SELECT * FROM `sitereviews`");
     $reviews->execute();
@@ -643,17 +640,21 @@ html {
         $getCustomerID->bindParam(1, $review['user_id']);
         $getCustomerID->execute();
         $customerReviewID = $getCustomerID->fetch(PDO::FETCH_ASSOC);
-        $customerName = $db->prepare("SELECT `name` FROM `customerdetails` WHERE `customer_id` = ?;");
-        $customerName->bindParam(1, $customerReviewID);
-        $customerName->execute();
-        $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
-        $firstName = explode(' ',$customerName['name'])[0];
-        $lastName = explode(' ',$customerName['name'])[1];
-        $fullName = $firstName . " " . $lastName;
-        $starNumber = $review['star_rating'];
-        echo "<h3> REVIEW BY:" . $fullName . "</h4>";            // this is how individual reviews are displayed, this is what needs to be changed for the formatting, although it may be easier to encapsulate this area in a div and use css only
-        echo "<h3> RATING:  ". str_repeat('<span class="fa fa-star checked"></span>',$starNumber) . "</h4>";
-        echo "<p>" . $review['review_text'] . "</p>";
+        if ($customerReviewID) {
+            $customerName = $db->prepare("SELECT `name` FROM `customerdetails` WHERE `customer_id` = ?;");
+            $customerName->bindParam(1, $customerReviewID['customer_id']);
+            $customerName->execute();
+            $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
+            if ($customerName) {
+                $firstName  = explode(' ', $customerName['name'])[0];
+                $lastName = explode(' ', $customerName['name'])[1];
+                $fullName = $firstName . " " . $lastName;
+                $starNumber = $review['star_rating'];
+                echo "<h3> REVIEW BY: " . $fullName . "</h3>";
+                echo "<h3> RATING:  " . str_repeat('<span class="fa fa-star checked"></span>', $starNumber) . "</h3>";
+                echo "<p>" . $review['review_text'] . "</p>";
+            }
+        }
     }
     ?>
     <br>
