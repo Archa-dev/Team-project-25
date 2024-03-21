@@ -316,7 +316,7 @@ main {
             padding: 10px;
             margin-left: 30px;
             margin-right: 30px;
-            margin-bottom: 180px;
+            margin-bottom: 100px;
         }
 
         .main-content h2{
@@ -336,7 +336,7 @@ main {
 
 .admin-box {
     width: 300px;
-    height: 250px;
+    height: 200px;
     background-color: #f0f0f0;
     border: none;
     border-radius: 5px;
@@ -650,58 +650,50 @@ main {
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin1</p></div>
-                <div class="box-label">Admin Name: <p>Samee</p></div>
                 <div class="box-label">Email: <p></p></div>
-                <button class="edit-button onclick="openPasswordPopup('Samee')">EDIT</button>
+                <button class="edit-button" onclick="openPasswordPopup('admin1')">EDIT</button>
             </div>
 
            <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin2</p></div>
-                <div class="box-label">Admin Name: <p>Tharek</p></div>
                 <div class="box-label">Email: <p></p></div>
-                <button class="edit-button onclick="openPasswordPopup('Tharek')">EDIT</button>
+                <button class="edit-button" onclick="openPasswordPopup('admin2')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin3</p></div>
-                <div class="box-label">Admin Name: <p>Archie</p></div>
                 <div class="box-label">Email: <p></p></div>
-                <button class="edit-button onclick="openPasswordPopup('Archie')">EDIT</button>
+                <button class="edit-button" onclick="openPasswordPopup('admin3')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin4</p></div>
-                <div class="box-label">Admin Name: <p>Ethan<p></div>
                 <div class="box-label">Email: <p></p></div>
-                <button class="edit-button onclick="openPasswordPopup('Ethan')">EDIT</button>
+                <button class="edit-button" onclick="openPasswordPopup('admin4')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin5</p></div>
-                <div class="box-label">Admin Name: <p>Maryam</p></div>
                 <div class="box-label">Email: <p></p></div>
-                <button class="edit-button onclick="openPasswordPopup('Maryam')">EDIT</button>
+                <button class="edit-button" onclick="openPasswordPopup('admin5')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin6</p></div>
-                <div class="box-label">Admin Name: <p>Tara</p></div>
                 <div class="box-label">Email: <p></p></div>
-                <button class="edit-button onclick="openPasswordPopup('Tara')">EDIT</button>
+                <button class="edit-button" onclick="openPasswordPopup('admin6')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin7</p></div>
-                <div class="box-label">Admin Name: <p>Noor</p></div>
                 <div class="box-label">Email: <p></p></div>
-                <button class="edit-button onclick="openPasswordPopup('Noor')">EDIT</button>
+                <button class="edit-button" onclick="openPasswordPopup('admin7')">EDIT</button>
             </div>
 
             <div class="admin-box">
                 <div class="box-label">Admin ID: <p>admin8</p></div>
-                <div class="box-label">Admin Name: <p>Ibrahim<p></div>
                 <div class="box-label">Email: <p></p></div>
-                <button class="edit-button onclick="openPasswordPopup('Ibrahim')">EDIT</button>
+                <button class="edit-button" onclick="openPasswordPopup('admin8')">EDIT</button>
             </div>
 
         </div>
