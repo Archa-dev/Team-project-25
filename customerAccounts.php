@@ -323,7 +323,7 @@ main {
     font-weight: bold;
     text-align: center;
     font-size: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 
