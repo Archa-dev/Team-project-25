@@ -284,6 +284,9 @@ html {
     background-color: rgba(28, 122, 127, 0.7);
 }
 
+.dark-mode #addCustomerModal label{
+    color: #fff;
+}
 /*Homepage Content*/
 .return-link {
     position: absolute;
@@ -373,7 +376,7 @@ tr:hover {
     height: 100%;
 }
 
-form select, form input[type="text"] {
+form select, #editCustomerModal form input[type="text"] {
     padding: 10px;
     width: calc(33.33% - 10px); /* Adjust based on your layout */
     border: 1px solid #003B46;
@@ -408,12 +411,12 @@ form input[type="submit"]:hover {
     margin-bottom: 20px;
 }
 
-#editCustomerBtn, #delCustomerBtn{
+#editCustomerBtn, #delCustomerBtn, #addCustomerBtn{
     width: 200px;
     margin: 0 10px;
 }
 
-.btn-edit{
+.btn-edit, .btn-add{
     background-color: #003B46;
     color: #fff; /* White text */
         padding: 10px;
@@ -427,8 +430,9 @@ form input[type="submit"]:hover {
         font-weight: bold;
 }
 
-.btn-edit:hover{
+.btn-edit:hover, .btn-add:hover{
     background-color: #07575b;
+    color: #fff;
 }
 
 .btn-danger{
@@ -447,6 +451,9 @@ form input[type="submit"]:hover {
 
 #delCustomerBtn {
     background-color: darkred;
+}
+#delCustomerBtn:hover {
+    background-color: red;
 }
 
 /* Modal styles */
@@ -488,6 +495,12 @@ form input[type="submit"]:hover {
 
 #deleteCustomerModal label{
     font-weight: bold;
+}
+
+#addCustomerModal label{
+    display: block;
+    font-weight: bold;
+    color: #000000;
 }
 
 /* footer styles */
@@ -742,6 +755,8 @@ while($row = $fulltable->fetch()){
 <div class="button-container">
 <button id="editCustomerBtn" class="btn btn-primary">EDIT CUSTOMER DETAILS</button>
 <button id="delCustomerBtn" class="btn btn-primary">DELETE CUSTOMER</button>
+<button id="addCustomerBtn" class="btn btn-primary">ADD CUSTOMER</button>
+
 </div>
 
 <!-- Modal -->
@@ -812,6 +827,44 @@ while($row = $fulltable->fetch()){
       </form>
     </div>
   </div>
+</div>
+
+<!-- Add Customer Modal -->
+<div id="addCustomerModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="addCustomerForm">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+            <label for="customerId">Customer ID:</label>
+            <input type="text" id="customerId" name="customerId" class="form-control">
+            </div>
+            <div class="col-md-6 mb-3">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="form-control">
+            </div>
+        </div>
+
+            <div class="mb-3">
+            <label for="defaultAddress">Default Address:</label>
+            <input type="text" id="defaultAddress" name="defaultAddress" class="form-control">
+            </div>
+
+            <div class="row">
+<div class="col-md-6 mb-3">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control">
+</div>
+<div class="col-md-6 mb-3">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control">
+</div>
+            </div>
+            <div class="button">
+            <button type="submit" class="btn btn-add">ADD</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <?php
@@ -1061,6 +1114,7 @@ window.onclick = function(event) {
 
 // Handle form submission
 document.getElementById("deleteCustomerForm").addEventListener("submit", function(event) {
+  // You can add confirmation logic here if needed
   if (!confirm("Are you sure you want to delete this customer?")) {
     event.preventDefault(); // Prevent form submission
   }
@@ -1068,6 +1122,42 @@ document.getElementById("deleteCustomerForm").addEventListener("submit", functio
 
 </script>
 
+<script>
+    var addCustomerModal = document.getElementById("addCustomerModal");
+
+// Get the button that opens the add customer modal
+var addCustomerBtn = document.getElementById("addCustomerBtn");
+
+// Get the close button for the add customer modal
+var addCustomerCloseBtn = addCustomerModal.querySelector(".close");
+
+// When the user clicks on the button, open the add customer modal
+addCustomerBtn.onclick = function() {
+    addCustomerModal.style.display = "block";
+}
+
+// When the user clicks on the close button, close the add customer modal
+addCustomerCloseBtn.onclick = function() {
+    addCustomerModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the add customer modal, close it
+window.onclick = function(event) {
+    if (event.target == addCustomerModal) {
+        addCustomerModal.style.display = "none";
+    }
+}
+
+// When the user submits the form, handle the submission
+document.getElementById("addCustomerForm").onsubmit = function(event) {
+    // Prevent the default form submission
+    event.preventDefault();
+    addCustomerModal.style.display = "none";
+
+    alert("New customer added successfully!");
+}
+
+</script>
 
 </body>
 </html>
