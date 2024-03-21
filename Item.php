@@ -70,6 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+//if selected product id is not set then go back to shopping.php to prevent errors
 else {
     header("Location: shopping.php");
     exit();
@@ -346,6 +347,7 @@ html {
     color: #fff;
 }
 
+
 .return-link {
     position: absolute;
     top: 90px; 
@@ -365,6 +367,7 @@ html {
     text-decoration: none;
     color: #1c7a7f;
 }
+
 
 main {
     margin-top: 90px; 
@@ -392,7 +395,6 @@ main {
     width: 45%;
     float: left;
     flex: 1 0 100%;
-           
         }
 
         
@@ -401,10 +403,9 @@ main {
             width: 100%;
             height: 100%;
             display: block;
-            object-fit: cover; 
+            object-fit: cover;
             margin-top: 180px;
             margin-left: 20px;
-           
         }
 
         #product-info {
@@ -435,7 +436,6 @@ main {
     float: right;
     margin-top: 20px;
     flex: 1 0 100%;
-   
 }
 
 #product-info h5 {
@@ -445,14 +445,12 @@ main {
     font-weight: bold;
 }
 
-
-
-  #column,
+#column,
   #product-info-container {
     flex: 1 0 45%;
   }
 
- 
+
 /* Media screen styles for smaller screens */
 @media screen and (max-width: 768px) {
     header h1 {
@@ -473,6 +471,8 @@ main {
         padding: 10px;
     }
 }
+
+
 
 .add-to-wishlist-button {
     position: absolute;
@@ -531,9 +531,10 @@ main {
 }
 
 #leave-review-btn:hover {
-  text-decoration: none;
-  background-color: #07575b;
+    text-decoration: none;
+    background-color: #07575b;
 }
+
 
 #review-form-popup {
     position: fixed;
@@ -604,7 +605,6 @@ main {
   color: #ffcc00;
 }
 
-
 .review-container {
   margin-top: 30px;
   text-align: left;
@@ -620,7 +620,7 @@ main {
 }
 
 .review-container h3 {
- 
+
   font-weight: bold;
   color: #003B46;
   font-size: 18px;
@@ -635,6 +635,7 @@ main {
 .checked {
   color: gold;
 }
+
 
 /* footer styles */
 .footer {
@@ -696,11 +697,9 @@ main {
      crossorigin="anonymous">
 </script>
 
-
 <header>
 
 <a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
-
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
 
@@ -718,6 +717,7 @@ main {
 
                     <!-- navbar to the left of the search box -->
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                    
                     <li class="nav-item">
                             <a class="nav-link" href="homepage.php">Home</a>
                         </li>
@@ -773,6 +773,8 @@ main {
 
                             </ul>
                         </li>
+
+
                         <?php
                                 if($_SESSION['authorization_level']==='admin'){
                                 echo(' <li class="nav-item dropdown">
@@ -805,7 +807,7 @@ main {
 
         <?php foreach ($bitems as $bitem) : ?>
             <div class="shopping-bag-product">
-                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $bitem['product_name'] ?>">
+            <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $bitem['product_name'] ?>">
                 <div class="product-details">
                     <h5><?= $bitem['product_name'] ?></h5>
                     <p>Price: £<?= number_format($bitem['price'], 2) ?></p>
@@ -845,7 +847,7 @@ main {
 <!-- Light/dark mode-->
     <div id="dark-mode-toggle">
         <a class="nav-link" href="#">
-            <i class="fas fa-lightbulb"></i>
+        <i class="fas fa-lightbulb"></i>
         </a>
     </div>
 
@@ -857,8 +859,7 @@ main {
             <div id="boxes">
                 <div id="row">
                     <div id="column" style="display: flex; align-items: center;" >
-                   
-                        <img src="Images for products\Mens Black1.1.avif" alt="Product Image" style="width: 100%; height: auto;">
+                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image" style="width: 100%; height: auto;">
                         <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
         <i class="far fa-heart"></i>
     </button>
@@ -884,12 +885,10 @@ main {
                 </div>
             </div>
         </div>
-        </div>
 
 
 
- 
-<div id="review-display" class="review-container">
+        <div id="review-display" class="review-container">
     <h2>REVIEWS FOR THIS PRODUCT</h2>
     <?php
     // displays reviews from the database
@@ -920,8 +919,6 @@ main {
     }
     ?>
 </div>
-        
-        
 
 
 
@@ -966,7 +963,7 @@ main {
              
              </ul>
      </div>
-     <!-- first column -->
+          <!-- first column -->
      <div class="footer-col">
             <h4>References</h4>
             <ul>
@@ -976,7 +973,7 @@ main {
             
             </ul>
     </div>
-     <!-- second column -->
+    <!-- second column -->
     <div class="footer-col">
             <h4>Need Help?</h4>
             <ul>
@@ -986,7 +983,7 @@ main {
                 
             </ul>
     </div>
-    <!-- third column -->
+        <!-- third column -->
     <div class="footer-col">
         <h4>follow us</h4>
         <div class="social-links">
@@ -1001,6 +998,8 @@ main {
    
 
 <script>
+    
+
     document.getElementById("leave-review-btn").addEventListener("click", function() {
 //  document.getElementById("review-form-popup").style.display = "block";
     var currentProduct = "<?= $item['product_name'] ?>";
@@ -1016,12 +1015,32 @@ document.getElementById('close-review-form-btn').addEventListener('click', funct
   document.getElementById('review-form-popup').style.display = 'none';
 });
 
-document.getElementById("add-to-wishlist-btn").addEventListener("click", function() {
-    var heartIcon = this.querySelector("i");
-    heartIcon.classList.toggle("far"); // Toggle regular heart icon class
-    heartIcon.classList.toggle("fas"); // Toggle solid heart icon class
-    
+// Add click event listener to heart button
+document.querySelectorAll('.add-to-wishlist-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const productId = <?= $integerValue ?>;
+        const heartIcon = this.querySelector('i');
+        console.log(productId);
+        // Send AJAX request to PHP endpoint for adding/removing from wishlist
+        fetch('wishlistHelper.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ productId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Toggle heart icon class
+                heartIcon.classList.toggle('far');
+                heartIcon.classList.toggle('fas');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
 });
+
 </script>
 
 
@@ -1081,16 +1100,20 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
   popup.classList.toggle('show');
 });
 
-document.addEventListener('click', function(event) {
-    const popup = document.getElementById('shopping-bag-popup');
-    const shoppingBagIcon = document.getElementById('shopping-bag-icon');
-    const isClickInsidePopup = popup.contains(event.target);
-    const isClickOnIcon = shoppingBagIcon.contains(event.target);
 
-    if (!isClickInsidePopup && !isClickOnIcon) {
-        popup.classList.remove('show');
-    }
-});
+
+
+    document.addEventListener('click', function(event) {
+        const popup = document.getElementById('shopping-bag-popup');
+        const shoppingBagIcon = document.getElementById('shopping-bag-icon');
+        const isClickInsidePopup = popup.contains(event.target);
+        const isClickOnIcon = shoppingBagIcon.contains(event.target);
+
+        if (!isClickInsidePopup && !isClickOnIcon) {
+            popup.classList.remove('show');
+        }
+    });
+
 
     function filterCategory(category) {
         // Create a form element dynamically
@@ -1111,6 +1134,26 @@ document.addEventListener('click', function(event) {
         document.body.appendChild(form);
         form.submit();
     }
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('wishlistData.php')
+        .then(response => response.json())
+        .then(data => {
+            const productId = <?= $integerValue ?>;
+            const isInWishlist = data.some(item => item.product_id === productId);
+            console.log(data)
+            const heartIcon = document.querySelector('.add-to-wishlist-button i');
+            if (isInWishlist) {
+                heartIcon.classList.remove('far');
+                heartIcon.classList.add('fas');
+            } else {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+});
+
 
 
     
