@@ -509,6 +509,7 @@ main {
     cursor: pointer;
     border-radius: 5px;
     white-space: nowrap;
+    transition: background-color 0.3s ease;
         }
 
         .add-to-basket-button:hover {
@@ -523,7 +524,7 @@ main {
   padding: 5px 30px;
   background-color: #003B46;
   text-decoration: none;
-  transition: text-decoration 0.2s;
+  transition: background-color 0.3s ease;
   white-space: nowrap;
   border-radius: 5px;
   font-weight: bold;
@@ -531,7 +532,7 @@ main {
 
 #leave-review-btn:hover {
   text-decoration: none;
-  color: #1c7a7f;
+  background-color: #07575b;
 }
 
 #review-form-popup {
