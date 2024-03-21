@@ -496,6 +496,7 @@ main {
                             <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
                                 <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
                                 <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                <li><a class="dropdown-item" href="Admin-account-approval.php">Admin Approval</a></li>
                                 <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
                                 <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
@@ -577,10 +578,15 @@ main {
                 <div class="box-label">Customer Accounts</div>
                 <div class="box-number">3</div> <!-- Placeholder number -->
             </a>
+            <a href="Admin-account-approval.php" class="admin-box">
+                <div class="box-icon"><i class="fas fa-user-check"></i></div>
+                <div class="box-label">Admin Approval</div>
+                <div class="box-number">2</div> <!-- Placeholder number -->
+            </a>
             <a href="adminAccounts.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-user-shield"></i></div>
                 <div class="box-label">Admin Accounts</div>
-                <div class="box-number">8</div> <!-- Placeholder number -->
+                <div class="box-number">4</div> <!-- Placeholder number -->
             </a>
             <a href="orders.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-shopping-cart"></i></div>
