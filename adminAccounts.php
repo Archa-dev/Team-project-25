@@ -316,7 +316,7 @@ main {
             padding: 10px;
             margin-left: 30px;
             margin-right: 30px;
-            margin-bottom: 100px;
+            margin-bottom: 200px;
         }
 
         .main-content h2{
@@ -324,7 +324,7 @@ main {
     font-weight: bold;
     text-align: center;
     font-size: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .admin-boxes {
@@ -670,30 +670,6 @@ main {
                 <div class="box-label">Admin ID: <p>admin4</p></div>
                 <div class="box-label">Email: <p></p></div>
                 <button class="edit-button" onclick="openPasswordPopup('admin4')">EDIT</button>
-            </div>
-
-            <div class="admin-box">
-                <div class="box-label">Admin ID: <p>admin5</p></div>
-                <div class="box-label">Email: <p></p></div>
-                <button class="edit-button" onclick="openPasswordPopup('admin5')">EDIT</button>
-            </div>
-
-            <div class="admin-box">
-                <div class="box-label">Admin ID: <p>admin6</p></div>
-                <div class="box-label">Email: <p></p></div>
-                <button class="edit-button" onclick="openPasswordPopup('admin6')">EDIT</button>
-            </div>
-
-            <div class="admin-box">
-                <div class="box-label">Admin ID: <p>admin7</p></div>
-                <div class="box-label">Email: <p></p></div>
-                <button class="edit-button" onclick="openPasswordPopup('admin7')">EDIT</button>
-            </div>
-
-            <div class="admin-box">
-                <div class="box-label">Admin ID: <p>admin8</p></div>
-                <div class="box-label">Email: <p></p></div>
-                <button class="edit-button" onclick="openPasswordPopup('admin8')">EDIT</button>
             </div>
 
         </div>
