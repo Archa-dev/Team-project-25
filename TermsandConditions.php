@@ -459,19 +459,22 @@ main {
 
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
-                                <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
-                                <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
-                                <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
-                                <li><a class="dropdown-item" href="messages.php">Contact Messages</a></li>
-                                <li><a class="dropdown-item" href="orders.php">Orders</a></li>
-                            </ul>
-                        </li>
+                        <?php
+                                if($_SESSION['authorization_level']==='admin'){
+                                echo(' <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-lock"></i> <!-- Assuming a lock icon for log in/sign up -->
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
+                                    <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
+                                    <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
+                                    <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
+                                    <li><a class="dropdown-item" href="orders.php">Orders</a></li>
+                                </ul>
+                            </li>');
+                                };
+                       ?>
 
                         <li class="nav-item">
                             <a class="nav-link" href="wishlist.php">
