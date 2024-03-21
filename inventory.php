@@ -361,7 +361,8 @@ html {
 }
 
 .dark-mode .shopping-bag-popup,
-.dark-mode .dropdown-menu{
+.dark-mode .dropdown-menu,
+.dark-mode .modal-content{
     background-color: #000000;
 }
 
@@ -670,7 +671,6 @@ h2 {
   position: fixed;
   z-index: 1000; /* Sit on top */
   left: 0;
-  margin-bottom: 200px;
   width: 100%;
   height: 100%;
   overflow:hidden; 
@@ -682,12 +682,10 @@ h2 {
   background-color: #fefefe;
   margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #000;
+  border: none;
   width: 50%; /* depending on screen size */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-height: 80vh; 
-    
+  border-radius: 5px;
+  box-shadow: 0 0 12px #1c7a7f;
 }
 
 /* Close Button */
