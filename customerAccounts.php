@@ -465,7 +465,7 @@ form input[type="submit"]:hover {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  overflow: hidden; 
 }
 
 /* Modal Content */
