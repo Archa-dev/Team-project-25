@@ -316,7 +316,7 @@ main {
             padding: 10px;
             margin-left: 30px;
             margin-right: 30px;
-            margin-bottom: 100px;
+            margin-bottom: 160px;
         }
 
         .main-content h2{
