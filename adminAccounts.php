@@ -649,26 +649,26 @@ main {
             <div class="admin-boxes">
 
             <div class="admin-box">
-                <div class="box-label">Admin ID: <p>admin1</p></div>
                 <div class="box-label">Email: <p></p></div>
+                <div class="box-label">Admin ID: <p>admin1</p></div>
                 <button class="edit-button" onclick="openPasswordPopup('admin1')">EDIT</button>
             </div>
 
            <div class="admin-box">
-                <div class="box-label">Admin ID: <p>admin2</p></div>
                 <div class="box-label">Email: <p></p></div>
+                <div class="box-label">Admin ID: <p>admin2</p></div>
                 <button class="edit-button" onclick="openPasswordPopup('admin2')">EDIT</button>
             </div>
 
             <div class="admin-box">
-                <div class="box-label">Admin ID: <p>admin3</p></div>
                 <div class="box-label">Email: <p></p></div>
+                <div class="box-label">Admin ID: <p>admin3</p></div>
                 <button class="edit-button" onclick="openPasswordPopup('admin3')">EDIT</button>
             </div>
 
             <div class="admin-box">
-                <div class="box-label">Admin ID: <p>admin4</p></div>
                 <div class="box-label">Email: <p></p></div>
+                <div class="box-label">Admin ID: <p>admin4</p></div>
                 <button class="edit-button" onclick="openPasswordPopup('admin4')">EDIT</button>
             </div>
 
