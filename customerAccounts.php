@@ -275,7 +275,8 @@ html {
 
 .dark-mode .shopping-bag-popup,
 .dark-mode .dropdown-menu,
-.dark-mode td{
+.dark-mode td,
+.dark-mode .modal-content{
     background-color: #000000;
 }
 
@@ -372,9 +373,7 @@ tr:hover {
     height: 100%;
 }
 
-
-
-form select, form input[type="text"], form input[type="submit"] {
+form select, form input[type="text"] {
     padding: 10px;
     width: calc(33.33% - 10px); /* Adjust based on your layout */
     border: 1px solid #003B46;
@@ -397,8 +396,98 @@ form input[type="submit"]:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
     height: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#editCustomerBtn, #delCustomerBtn{
+    width: 200px;
+    margin: 0 10px;
+}
+
+.btn-edit{
+    background-color: #003B46;
+    color: #fff; /* White text */
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 180px;
+        font-size: 15px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+}
+
+.btn-edit:hover{
+    background-color: #07575b;
+}
+
+.btn-danger{
+    color: #fff; /* White text */
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 180px;
+        font-size: 15px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+        background-color: darkred;
+}
+
+#delCustomerBtn {
+    background-color: darkred;
+}
+
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: none;
+  box-shadow: 0 0 12px #1c7a7f;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#deleteCustomerModal label{
+    font-weight: bold;
 }
 
 /* footer styles */
@@ -650,7 +739,16 @@ while($row = $fulltable->fetch()){
 </table>
             </div>
 <br>
-<div class="form-container">
+<div class="button-container">
+<button id="editCustomerBtn" class="btn btn-primary">EDIT CUSTOMER DETAILS</button>
+<button id="delCustomerBtn" class="btn btn-primary">DELETE CUSTOMER</button>
+</div>
+
+<!-- Modal -->
+<div id="editCustomerModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="editCustomerModalContent" class="form-container">
 <form name="edit-input" method="post" action="customerAccounts.php" >
 
     <select id="cid" name="cid">
@@ -682,10 +780,40 @@ while($row = $fulltable->fetch()){
     <input type="text" id="edit-input" name="edit-input" placeholder="Enter edit">
 
     <div class="button">
-    <input type="submit" value="SUBMIT" name="sub">
+    <input type="submit" value="SUBMIT" name="sub" class="btn btn-edit">
     </div>
 </form>
 </div>
+  </div>
+</div>
+
+<!-- Modal for Delete Customer -->
+<div id="deleteCustomerModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="form-container">
+      <form id="deleteCustomerForm" method="post" action="customerAccounts.php">
+        <label for="customerSelect">Select Customer:</label>
+        <select id="customerSelect" name="customer_id">
+          <option value="">Select Customer</option>
+          <?php
+            // Fetch and display customer list from database
+            $customerQuery = $db->prepare("SELECT customer_id, name FROM customerdetails");
+            $customerQuery->execute();
+            $customers = $customerQuery->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($customers as $customer) {
+              echo '<option value="' . $customer["customer_id"] . '">' . $customer["name"] . '</option>';
+            }
+          ?>
+        </select>
+        <div class="button">
+          <button type="submit" class="btn btn-danger">DELETE</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <?php
 if(isset($_POST['sub'])){
 $field=$_POST['edit-field'];
@@ -873,10 +1001,73 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
         document.body.appendChild(form);
         form.submit();
     }
-
-
-    
     </script>
+
+<script>
+// Get the modal
+var modal = document.getElementById("editCustomerModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("editCustomerBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<script>
+
+// Get the modal for delete customer
+var deleteCustomerModal = document.getElementById("deleteCustomerModal");
+
+// Get the button that opens the modal
+var delBtn = document.getElementById("delCustomerBtn");
+
+// Get the <span> element that closes the modal
+var closeBtn = deleteCustomerModal.getElementsByClassName("close")[0];
+
+// When the user clicks the delete button, open the modal
+delBtn.onclick = function() {
+  deleteCustomerModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+closeBtn.onclick = function() {
+  deleteCustomerModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == deleteCustomerModal) {
+    deleteCustomerModal.style.display = "none";
+  }
+}
+
+// Handle form submission
+document.getElementById("deleteCustomerForm").addEventListener("submit", function(event) {
+  if (!confirm("Are you sure you want to delete this customer?")) {
+    event.preventDefault(); // Prevent form submission
+  }
+});
+
+</script>
+
 
 </body>
 </html>
