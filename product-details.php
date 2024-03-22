@@ -406,6 +406,18 @@ main {
         }
 
 
+        @media (max-width: 615px) {
+    .product {
+        height: 720px;
+    }
+}
+
+@media (max-width: 610px) {
+    .product-information{
+        margin-top: 0px;
+    }
+}
+
 .total-return-container {
     position: absolute;
     bottom: 10px;
