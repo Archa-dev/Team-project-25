@@ -339,15 +339,6 @@ html {
     box-shadow: 0 0 12px #1c7a7f !important;
 }
 
-.dark-mode #review-form-popup{
-    background-color: #000000;
-}
-
-.dark-mode #review-form-popup label{
-    color: #fff;
-}
-
-
 .return-link {
     position: absolute;
     top: 90px; 
@@ -369,6 +360,7 @@ html {
 }
 
 
+
 main {
     margin-top: 90px; 
     margin-bottom: 150px;
@@ -383,9 +375,9 @@ main {
     }
 
     #boxes {
-    max-width: 800px; 
     width: 100%;
     padding: 20px;
+    flex-wrap: wrap;
 }
 
         #column {
@@ -395,6 +387,8 @@ main {
     width: 45%;
     float: left;
     flex: 1 0 100%;
+    width: 50%;
+    padding: 0 10px;
         }
 
         
@@ -407,6 +401,10 @@ main {
             margin-top: 180px;
             margin-left: 20px;
         }
+
+        #product-info-container {
+    width: 50%;
+}
 
         #product-info {
             flex: 0 0 45%; /* width of the right column */
@@ -460,16 +458,9 @@ main {
 
     nav ul li {
         display: block;
-        margin-bottom: 10px;
     }
 
-    main {
-        padding: 10px;
-    }
 
-    footer {
-        padding: 10px;
-    }
 }
 
 
@@ -486,19 +477,19 @@ main {
 }
 
 .add-to-wishlist-button i {
-    color: #07575b;
+    color: #003B46;
     font-size: 30px;
 }
 
 .add-to-wishlist-button i:hover {
-    color: #003b46; /* Changes the heart color on hover */
+    color: #1c7a7f; /* Changes the heart color on hover */
 }
 
     .add-to-basket-button {
     background-color: #003b46;
     border: none;
     color: #fff;
-    padding: 5px 215px;
+    padding: 5px 180px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -510,10 +501,54 @@ main {
     border-radius: 5px;
     white-space: nowrap;
     transition: background-color 0.3s ease;
+    box-sizing: border-box;
         }
 
         .add-to-basket-button:hover {
     background-color: #07575b;
+}
+
+@media (max-width: 1300px) {
+    .add-to-basket-button {
+        max-width: none; /* Remove the maximum width */
+        width: auto; /* Allow the button to resize based on content */
+        padding: 5px 100px;
+    }
+}
+
+@media (max-width: 980px) {
+    .add-to-basket-button {
+        max-width: none; /* Remove the maximum width */
+        width: auto; /* Allow the button to resize based on content */
+        padding: 5px 60px;
+    }
+}
+
+@media (max-width: 850px) {
+    .add-to-basket-button {
+        max-width: none; /* Remove the maximum width */
+        width: auto; /* Allow the button to resize based on content */
+        padding: 5px 20px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 670px) {
+    .add-to-basket-button {
+        max-width: none; /* Remove the maximum width */
+        width: auto; /* Allow the button to resize based on content */
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 670px) {
+    #leave-review-btn {
+        max-width: none; /* Remove the maximum width */
+        width: auto; /* Allow the button to resize based on content */
+        padding: 5px 5px;
+        font-size: 12px;
+    }
 }
 
 #leave-review-btn {
@@ -535,78 +570,8 @@ main {
     background-color: #07575b;
 }
 
-
-#review-form-popup {
-    position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 12px #1c7a7f;
-  z-index: 1000;
-  height: auto;
-  width: 450px;
-}
-
-#review-form-popup h2{
-    font-size: 30px;
-    color: #003b46;
-    font-weight: bold;
-    text-align: center;
-}
-
-#review-form {
-    margin: 0 auto;
-  max-width: 500px;
-}
-
-#close-review-form-btn{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-
-#review-form label {
-  display: block;
-  font-weight: bold;
-    color: #000000;
-}
-
-#review-form .form-actions {
-  text-align: right;
-}
-
-#review-form .form-actions button {
-  margin-top: 20px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group textarea {
-  resize: vertical;
-}
-
-.star-rating {
-  font-size: 40px;
-  margin-bottom: 20px;
-}
-
-.star-rating i {
-  color: #cccccc;
-  transition: color 0.2s;
-}
-
-.star-rating i:hover {
-  color: #ffcc00;
-}
-
 .review-container {
-  margin-top: 30px;
+  margin-top: 50px;
   text-align: left;
   margin-left: 20px;
   max-width: 100%;
@@ -857,35 +822,32 @@ main {
     <div id="sun-icon">&#9728;</div>
 
         <div id="main">
-            <div id="boxes">
-                <div id="row">
-                    <div id="column" style="display: flex; align-items: center;" >
-                    <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image" style="width: 100%; height: auto;">
-                        <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
-        <i class="far fa-heart"></i>
-    </button>
-                    </div>
-                    <div id="product-info-container" style="width: 60%; float: right;">
-                    <div id="product-info">
-                        <h3 style><?= $item['product_name'] ?></h3>
-                        <h4 >£<?= $item['price'] ?></h4>
-
-                        <!-- placeholder headers -->
-    <h5 style="margin-top: 30px;">Colour: BLACK</h5>
-    <h5 style="margin-top: 10px;">Size: ONE SIZE</h5>
-                        <!-- Add your product name and price elements here -->
-                        <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-                            <!-- Add your product ID input or any other necessary fields here -->
-                            <input type="hidden" name="selectedProductId" value="<?= $integerValue ?>">
-                            <!-- Button to trigger the SQL query -->
-                            <button type="submit" name="addToBasket" class="add-to-basket-button">ADD TO SHOPPING BAG</button>
-                        </form>
-
-                        <button id="leave-review-btn" class="review-button">Leave a Review</button>
-                    </div>
-                </div>
+    <div id="boxes">
+        <div id="column">
+            <img src="Images for products/Mens Black1.1.avif" alt="Product Image">
+            <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
+                <i class="far fa-heart"></i>
+            </button>
+        </div>
+        <div id="product-info-container">
+            <div id="product-info">
+                <h3><?= $item['product_name'] ?></h3>
+                <h4>£<?= $item['price'] ?></h4>
+                 <!-- placeholder headers -->
+                <h5>Colour: BLACK</h5>
+                <h5>Size: ONE SIZE</h5>
+                 <!-- Add your product name and price elements here -->
+                <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+                <!-- Add your product ID input or any other necessary fields here -->
+                    <input type="hidden" name="selectedProductId" value="<?= $integerValue ?>">
+                    <!-- Button to trigger the SQL query -->
+                    <button type="submit" name="addToBasket" class="add-to-basket-button">ADD TO SHOPPING BAG</button>
+                </form>
+                <button id="leave-review-btn" class="review-button">Leave a Review</button>
             </div>
         </div>
+    </div>
+</div>
 
 
 
@@ -919,38 +881,7 @@ main {
         }
     }
     ?>
-</div>
-
-
-
-
-
-<div id="review-form-popup" style="display: none;">
-  <span id="close-review-form-btn" onclick="review-form-popup()">&times;</span>
- <h2>REVIEW</h2>
- <form id="review-form">
-  <div class="form-group">
-    <label for="star-rating">Star Rating:</label>
-    <div class="star-rating">
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-    </div>
- 
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" class="form-control" required>
-  
-    <label for="review">Review:</label>
-    <textarea id="review" name="review" class="form-control" rows="3" required></textarea>
-
-    <button type="submit" class="btn btn-primary">SUBMIT REVIEW</button>
-
-  </div> 
-</form>
-</div>
-   
+</div>   
     </main>
 
     <footer class="footer">
@@ -1002,7 +933,6 @@ main {
     
 
     document.getElementById("leave-review-btn").addEventListener("click", function() {
-//  document.getElementById("review-form-popup").style.display = "block";
     var currentProduct = "<?= $item['product_name'] ?>";
     window.location.href = "reviewPage.php?fromProduct=" + currentProduct;
 });
@@ -1010,10 +940,6 @@ main {
 document.getElementById("review-form").addEventListener("submit", function(event) {
   event.preventDefault();
   // Handle form submission here
-});
-
-document.getElementById('close-review-form-btn').addEventListener('click', function() {
-  document.getElementById('review-form-popup').style.display = 'none';
 });
 
 // Add click event listener to heart button
