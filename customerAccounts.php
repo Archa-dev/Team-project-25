@@ -770,12 +770,7 @@ while($row = $fulltable->fetch()){
     <select id="cid" name="cid">
     <option value="default">Enter Customer ID</option>
        <?php
-        $cid_query = $db->prepare("
-    	SELECT c.customer_id, c.name, c.default_address, l.username AS username, l.email AS email, l.password AS password
-    	FROM customerdetails c 
-    	JOIN logindetails l ON c.user_id = l.user_id
-    	WHERE c.name IS NOT NULL AND customer_id = {$row["customer_id"]};
-    	");
+        $cid_query = $db->prepare("SELECT customer_id FROM customerdetails WHERE name IS NOT NULL;");
         $cid_query->execute();
         $customer_ids = $cid_query->fetchAll(PDO::FETCH_COLUMN);
     
@@ -819,7 +814,7 @@ while($row = $fulltable->fetch()){
           <option value="">Select Customer</option>
           <?php
             // Fetch and display customer list from database
-            $customerQuery = $db->prepare("SELECT customer_id, name FROM customerdetails");
+            $customerQuery = $db->prepare("SELECT customer_id, name FROM customerdetails WHERE name IS NOT NULL;");
             $customerQuery->execute();
             $customers = $customerQuery->fetchAll(PDO::FETCH_ASSOC);
             foreach ($customers as $customer) {
