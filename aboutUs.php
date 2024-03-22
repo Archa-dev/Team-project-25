@@ -328,15 +328,26 @@ html {
 
         .about-content h5 {
     margin-bottom: 20px;
-    max-width: 90%;
+    max-width: 95%;
 }
 
 .about h5 {
     margin-bottom: 20px;
 }
 
+@media (max-width: 900px) {
+   .about {
+        flex-wrap: wrap;
+
+    }
+    .about-content h5{
+        max-width: 100%;
+        margin-bottom: 0px;
+        font-size: 18px;
+    }
+}
+
 .follow-journey {
-   margin-right:100px;
    margin-top: 60px;
    align-items: center;
 }
