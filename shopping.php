@@ -408,6 +408,12 @@ main {
     color: #1c7a7f;
 }
 
+@media (max-width: 640px) {
+    .selection-title {
+        margin-left: 60%;
+    }
+}
+
 /* filter styles */
    /* Filter styles */
    .filter-container {
