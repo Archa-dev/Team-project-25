@@ -357,21 +357,21 @@ main {
 /* Media query for smaller screens */
 @media (max-width: 767px) {
     .text-overlay {
-        left: 50%; /* Centers the text horizontally on smaller screens */
+        left: 40%; /* Centers the text horizontally on smaller screens */
         transform: translateX(-50%);
     }
 }
 
 @media (max-width: 767px) {
     .col-md-6:nth-child(1) .video-container  .text-overlay {
-        left: 50%;
+        left: 35%;
         transform: translateX(-50%);
     }
 }
 
 @media (max-width: 767px) {
     .col-md-6:nth-child(2) .video-container  .text-overlay {
-        left: 50%;
+        left: 40%;
         transform: translateX(-50%);
     }
 }
@@ -518,7 +518,7 @@ h2{
 
                             </ul>
                         </li>
-                         <?php
+                        <?php
                                 if($_SESSION['authorization_level']==='admin'){
                                 echo(' <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
