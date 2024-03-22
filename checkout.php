@@ -336,6 +336,13 @@ html {
     color: #003b46;
 }
 
+@media (max-width: 768px) {
+    #shipping-details,
+        #payment-details {
+        margin-left: -12%;
+    }
+}
+
 main {
             display: flex;
             justify-content: space-between;
