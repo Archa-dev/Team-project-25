@@ -153,6 +153,14 @@ if($cid=='default' ||$cid =='default'|| $val==null ){
 if(isset($_POST['del-sub'])){
     $cid=$_POST['cid'];
 
+    $delprev=$db->prepare("DELETE FROM previousorders WHERE customer_id = ?;");
+    $delprev->bindParam(1,$cid);
+    $delprev->execute();
+
+    $delpend=$db->prepare("DELETE FROM pendingorders WHERE customer_id = ?;");
+    $delpend->bindParam(1,$cid);
+    $delpend->execute();
+
     $delbask=$db->prepare("DELETE FROM basket WHERE customer_id = ?;");
     $delbask->bindParam(1,$cid);
     $delbask->execute();
