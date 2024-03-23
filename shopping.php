@@ -877,7 +877,8 @@ h2 {
         <?php foreach ($products as $product) : ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
             <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
-                <img src="Images for products/Mens Black1.1.avif" width="100%" height="60%">
+                            <?php $imageFileName = "ImagesForProducts/" . $product['product_id'] . "_" . str_replace(' ', '_', $product['product_name']) . ".avif"; ?>
+    <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
                 </a>
                 <div class="product-info">
                 <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
