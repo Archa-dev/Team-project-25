@@ -21,7 +21,7 @@
         <th>Email</th>
         </tr>
 <?php
-$fulltable=$db->prepare("SELECT * FROM customerdetails");
+$fulltable=$db->prepare("SELECT customer_id, name FROM customerdetails WHERE name IS NOT NULL;");
 $fulltable->execute();
 while($row = $fulltable->fetch()){
     $link=$db->prepare("
@@ -50,7 +50,7 @@ while($row = $fulltable->fetch()){
     <select id="cid" name="cid">
     <option value="default">Enter Customer ID</option>
        <?php
-        $cid_query = $db->prepare("SELECT customer_id FROM customerdetails");
+        $cid_query = $db->prepare("SELECT customer_id, name FROM customerdetails WHERE name IS NOT NULL;");
         $cid_query->execute();
         $customer_ids = $cid_query->fetchAll(PDO::FETCH_COLUMN);
     
@@ -136,7 +136,7 @@ if($cid=='default' ||$cid =='default'|| $val==null ){
 <select id="cid" name="cid">
 <option value="default">Enter Customer ID</option>
    <?php
-    $cid_query = $db->prepare("SELECT customer_id FROM customerdetails");
+    $cid_query = $db->prepare("SELECT customer_id, name FROM customerdetails WHERE name IS NOT NULL;");
     $cid_query->execute();
     $customer_ids = $cid_query->fetchAll(PDO::FETCH_COLUMN);
 
@@ -152,15 +152,22 @@ if($cid=='default' ||$cid =='default'|| $val==null ){
 <?php
 if(isset($_POST['del-sub'])){
     $cid=$_POST['cid'];
-    $delete=$db->prepare("DELETE l, c
-    FROM logindetails AS l
-    INNER JOIN customerdetails AS c ON l.user_id = c.user_id
-    WHERE c.customer_id = ?");
-    $delete->bindParam(1,$cid);
-    $delete->execute();
+
+    $delbask=$db->prepare("DELETE FROM basket WHERE customer_id = ?;");
+    $delbask->bindParam(1,$cid);
+    $delbask->execute();
+
+    $delcust=$db->prepare("DELETE FROM customerdetails WHERE customer_id = ?;");
+    $delcust->bindParam(1,$cid);
+    $delcust->execute();
+	
+	
+    $del=$db->prepare("DELETE FROM logindetails WHERE customer_id = ?;");
+    $del->bindParam(1,$cid);
+	$del->execute();
+
     header("Location: $_SERVER[PHP_SELF]");
     exit();
-
 
 }
 ?>
