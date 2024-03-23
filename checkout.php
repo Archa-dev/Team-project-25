@@ -6,14 +6,20 @@ $customerid = $_SESSION['customer_id'];}
 
 //$customerid = 13;   
 // Retrieve basket items for the logged-in customer
-$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour, i.filepath, i.file_name
+$itemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, b.quantity, p.colour, p.image_id
                         FROM basket b
                         JOIN productdetails p ON b.product_id = p.product_id
-                        JOIN images i ON p.image_id = i.image_id
                         WHERE b.customer_id = ?');
 $itemIDs->bindParam(1, $customerid);
 $itemIDs->execute();
 $items = $itemIDs->fetchAll(PDO::FETCH_ASSOC);
+// $itemsImages = $db->prepare('SELECT file_name, filepath FROM images WHERE image_id = ?');
+// foreach ($items as &$item) {
+//     $itemsImages->bindParam(1, $item['image_id']);
+//     $itemsImages->execute();
+//     $image = $itemsImages->fetch();
+//     $item['image'] = $image['filepath'] . $image['file_name'];
+// }
 
 $itemsCount = count($items);
 
@@ -774,7 +780,7 @@ input[type="password"]:focus {
                     <!-- Display basket items dynamically -->
                     <?php foreach ($items as $item): ?>
                         <div class="order-summary-product">
-                        <img class="basket-item-image" src="<?php echo $item['filepath'] .  $item['file_name']; ?>">
+                        <!-- <img class="basket-item-image" src="<?php echo $item['filepath'] .  $item['file_name']; ?>"> -->
                             <div class="order-summary-item-details">
                                 <h5 class="basket-item-title"><?php echo $item['product_name']; ?></h5>
                                 <p class="basket-price">£<?= number_format($item['price'], 2) ?></p>
@@ -788,7 +794,7 @@ input[type="password"]:focus {
                
                     <span>Total:</span>
                       <div>
-                    <h3 class="checkout-price">£</h3>
+                    <h3 class="checkout-price"><?php echo ("£". $totalPrice) ?> </h3>
                     </div>
                 <button onclick="confirmOrder()" class="btn btn-primary mt-3 checkout-button">CHECKOUT</button>
             </div>
@@ -919,25 +925,6 @@ input[type="password"]:focus {
     alert("Thank you for your order!");
 }
 
-  function addItemToCheckout(title, price, imageSrc) {
-    var BasketRow = document.createElement('div')
-    BasketRow.classList.add('basket-row')
-
-    var BasketItems = document.getElementsByClassName('order-summary-items')[0]
-
-    var BasketRowContents = `
-   
-                    <div class="order-summary-product">
-            <img class="basket-item-image" src="images/MK-2161BU-0001_1.jpeg">
-            <div class="order-summary-items">
-            <h5 class="basket-item-title">${title}</h5>
-        <p class="basket-price">${price}</p>
-        </div>
-        </div>`
-    BasketRow.innerHTML = BasketRowContents
-    BasketItems.append(BasketRow)
-}
-
 
 window.addEventListener('scroll', function() {
     var sunIcon = document.getElementById('sun-icon');
@@ -985,50 +972,6 @@ document.addEventListener('DOMContentLoaded', function() {
         darkModeToggle.querySelector('i').classList.toggle('fa-moon');
     });
 });
-</script>
-
-<?php
-for ($i = 0; $i < $itemsCount; $i++) {
-
-$productid = $itemIDs->fetchColumn();
-
-$itemTitle->bindParam(1, $productid);
-$itemTitle->execute();
- 
- 
-$itemPrice->bindParam(1, $productid);
-$itemPrice->execute();
-
-$itemImage->bindParam(1, $productid);
-$itemImage->execute();
-
-$title = $itemTitle->fetchColumn();
-$price = $itemPrice->fetchColumn();
-$imageSrc = $itemImage->fetchColumn();
-
-echo "
-<script>
-addItemToCheckout('$title', '$price', '$imageSrc');
-</script>";
-}
-
-?>
-<script>
-function updateBasketTotal() {
-    var BasketItemContainer = document.getElementsByClassName('order-summary-items')[0]
-    var BasketRows = BasketItemContainer.getElementsByClassName('basket-row')
-    console.log(BasketRows)
-    var total = 0
-    for (var i = 0; i < BasketRows.length; i++) {
-        var BasketRow = BasketRows[i]
-        var priceElement = BasketRow.getElementsByClassName('basket-price')[0]
-        var price = parseFloat(priceElement.innerText.replace('£', ''))
-        total = total + (price)
-    }
-    total = Math.round(total * 100) / 100
-    document.getElementsByClassName('checkout-price')[0].innerText = '£' + total
-}
-updateBasketTotal()
 </script>
 
 <script>
