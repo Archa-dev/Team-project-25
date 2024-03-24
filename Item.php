@@ -463,8 +463,6 @@ main {
 
 }
 
-
-
 .add-to-wishlist-button {
     position: absolute;
     top: 40%;
@@ -571,10 +569,19 @@ main {
 }
 
 .review-container {
-  margin-top: 50px;
-  text-align: left;
-  margin-left: 20px;
-  max-width: 100%;
+    margin-top: 15vh;
+    text-align: left;
+    margin-left: 30px;
+    max-width: 100%;
+    position: relative; /* Ensure relative positioning */
+    z-index: 1; /* Ensure reviews container stays above other elements */
+}
+
+@media screen and (max-width: 768px) {
+    .review-container {
+        margin-left: 0; /* Remove left margin to fit smaller screens */
+        padding: 0 10px; /* Add padding to adjust layout */
+    }
 }
 
 .review-container h2 {
