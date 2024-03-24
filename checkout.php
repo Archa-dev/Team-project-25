@@ -903,21 +903,20 @@ input[type="password"]:focus {
 
     // Check if any of the shipping details are empty
     if (firstName === '' || surname === '' || addressLine === '' || postcode === '' || city === '') {
-      shippingError.innerText = "Incomplete Shipping Details";
+        alert("Invalid Shipping Details");;
       return; // Exit the function early
     } else {
-      shippingError.innerText = "";
     }
 
     // Check if the card number is valid
     if (cardNumber.length !== 16 || isNaN(cardNumber)) {
-      paymentError.innerText = "Invalid Card Number";
+        alert("Invalid Card Number");
       return; // Exit the function early
     }
 
     // Check if the security number is valid
     if (securityNumber.length !== 3 || isNaN(securityNumber)) {
-      paymentError.innerText = "Invalid Security Number";
+        alert("Invalid Security Number");
       return; // Exit the function early
     }
 
