@@ -128,6 +128,7 @@ CREATE TABLE `pendingorders` (
 --
 
 CREATE TABLE `previousorders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `shipping_address` varchar(200) DEFAULT NULL

@@ -718,43 +718,26 @@ main{
         <div class="profile-container">
         <div class="order-history">
         <h2><b>MY ORDERS</b></h2>
- 
-           
-                 <!-- placeholder order details-->
-                 <div class="order">
-                    <div class="order-details">
-                        <h4>Order 4842</h4>
-                        <p>Date: </p>
-                        <p>Total: £</p>
-                    </div>
-                    <!-- button that redirects to the product details page-->
-                    <button class="view-details-btn" onclick="redirectToProductDetails()">VIEW DETAILS</button>
-                </div>
-           
-            <!-- placeholder order details-->
-            <div class="order">
-                    <div class="order-details">
-                        <h4>Order 4842</h4>
-                        <p>Date: </p>
-                        <p>Total: £</p>
-                    </div>
-                    <!-- button that redirects to the product details page-->
-                    <button class="view-details-btn" onclick="redirectToProductDetails()">VIEW DETAILS</button>
-                </div>
-           
-                 <!-- placeholder order details-->
-                 <div class="order">
-                    <div class="order-details">
-                        <h4>Order 4842</h4>
-                        <p>Date: </p>
-                        <p>Total: £</p>
-                    </div>
-                    <!-- button that redirects to the product details page-->
-                    <button class="view-details-btn" onclick="redirectToProductDetails()">VIEW DETAILS</button>
-                </div>
-           
-
-           
+            <?php
+            $orderHistory = $db->prepare('SELECT * FROM previousorders WHERE customer_id = ?');
+            $orderHistory->bindParam(1, $customerid);
+            $orderHistory->execute();
+            $orders = $orderHistory->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($orders as $order) {
+                echo '<div class="order">';
+                echo '<div class="order-details">';
+                echo '<h4>Order ID: ' . $order['order_id'] . '</h4>';
+                $findProduct = $db->prepare('SELECT * FROM productdetails WHERE product_id = ?');
+                $findProduct->bindParam(1, $order['product_id']);
+                $findProduct->execute();
+                $product = $findProduct->fetch(PDO::FETCH_ASSOC);
+                echo '<p>Product Name: ' . $product['product_name'] . '</p>';
+                echo '<p>Order Total: £' . $product['price'] . '</p>';
+                echo '<p>Delivery Address: ' . $order['shipping_address'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+            ?>
             </div>
         </div>
     </main>
