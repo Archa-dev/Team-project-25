@@ -928,6 +928,9 @@ input[type="password"]:focus {
         $address = $addressLine . ', ' . $city . ', ' . $postcode;
         $addPendingOrder->bindParam(3, $address);
         $addPendingOrder->execute();
+        $updateStock = $db->prepare('UPDATE productdetails SET stock = stock - 1 WHERE product_id = ?');
+        $updateStock->bindParam(1, $item['product_id']);
+        $updateStock->execute();
     }
     // empty basket
     $clearBasket = $db->prepare('DELETE FROM basket WHERE customer_id = ?');
