@@ -921,6 +921,20 @@ input[type="password"]:focus {
       return; // Exit the function early
     }
 
+    <?php
+    foreach ($items as $item) {
+        $addPendingOrder = $db->prepare('INSERT INTO pendingorders  (customer_id, product_id , shipping_address) VALUES (?, ?, ?)');
+        $addPendingOrder->bindParam(1, $customerid);
+        $addPendingOrder->bindParam(2, $item['product_id']);
+        $address = $addressLine . ', ' . $city . ', ' . $postcode;
+        $addPendingOrder->bindParam(3, $address);
+        $addPendingOrder->execute();
+    }
+    // empty basket
+    $clearBasket = $db->prepare('DELETE FROM basket WHERE customer_id = ?');
+    $clearBasket->bindParam(1, $customerid);
+    $clearBasket->execute();
+    ?>
     // If all details are valid, proceed with the order confirmation
     alert("Thank you for your order!");
 }
