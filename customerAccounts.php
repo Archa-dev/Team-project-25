@@ -574,7 +574,7 @@ form input[type="submit"]:hover {
                             <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
                                 <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
                                 <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
-				     <li><a class="dropdown-item" href="Admin-account-approval.php">Admin Approval</a></li>
+                                <li><a class="dropdown-item" href="Admin-account-approval.php">Admin Approval</a></li>
                                 <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
                                 <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
@@ -860,6 +860,56 @@ if(isset($_POST['del-sub'])){
 </div>
 </div>
         </footer>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+$(document).ready(function(){
+    $('form[name="edit-input"]').submit(function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        var formData = $(this).serialize(); // Serialize form data
+        $.ajax({
+            type: 'POST',
+            url: 'customerAccounts.php', // URL to your PHP script
+            data: formData,
+            success: function(response) {
+                // Handle success response if needed
+                // For example, you can display a success message
+                alert('Edit successful!');
+                location.reload(); // Reload the page to reflect changes
+            },
+            error: function(xhr, status, error) {
+                // Handle error response if needed
+                alert('An error occurred while processing your request.');
+            }
+        });
+    });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $('form#delete-input').submit(function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        var formData = $(this).serialize(); // Serialize form data
+        $.ajax({
+            type: 'POST',
+            url: 'customerAccounts.php', // URL to your PHP script
+            data: formData,
+            success: function(response) {
+                // Handle success response if needed
+                // For example, you can display a success message
+                alert('Delete successful!');
+                location.reload(); // Reload the page to reflect changes
+            },
+            error: function(xhr, status, error) {
+                // Handle error response if needed
+                alert('An error occurred while processing your request.');
+            }
+        });
+    });
+});
+</script>
 
 <!-- JavaScript for Scroll Icon -->
 <script>
