@@ -308,7 +308,7 @@ html {
 
 main {
     margin-top: 90px;
-margin-bottom: 60px;
+    margin-bottom: 500px;
 }
     
 .welcome-section {
@@ -352,10 +352,6 @@ margin-bottom: 60px;
 
 .sidebar .nav-link:hover {
     background-color: rgba(28, 122, 127, 0.4);
-}
-
-main{
-    margin-top: 90px;
 }
 
 .main-content {
@@ -718,7 +714,7 @@ main{
         <div class="profile-container">
         <div class="order-history">
         <h2><b>MY ORDERS</b></h2>
-            <?php
+        <?php
             $orderHistory = $db->prepare('SELECT * FROM previousorders WHERE customer_id = ?');
             $orderHistory->bindParam(1, $customerid);
             $orderHistory->execute();
