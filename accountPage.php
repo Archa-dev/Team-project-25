@@ -365,12 +365,12 @@ $customerLogin = $customerLoginDetails->fetch(PDO::FETCH_ASSOC);
 
 main{
     margin-top: 90px;
+    margin-bottom: 160px;
 }
 
 .main-content {
     margin-left: 350px; 
     margin-right: 50px;
-    margin-bottom: 80px;
 }
 
 /* Additional Styling for Active Link */
