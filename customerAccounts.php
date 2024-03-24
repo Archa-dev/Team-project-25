@@ -275,8 +275,7 @@ html {
 
 .dark-mode .shopping-bag-popup,
 .dark-mode .dropdown-menu,
-.dark-mode td,
-.dark-mode .modal-content{
+.dark-mode td{
     background-color: #000000;
 }
 
@@ -284,9 +283,6 @@ html {
     background-color: rgba(28, 122, 127, 0.7);
 }
 
-.dark-mode #addCustomerModal label{
-    color: #fff;
-}
 /*Homepage Content*/
 .return-link {
     position: absolute;
@@ -319,7 +315,7 @@ main {
             padding: 10px;
             margin-left: 30px;
             margin-right: 30px;
-            margin-bottom: 160px;
+            margin-bottom: 100px;
         }
 
         .main-content h2{
@@ -376,9 +372,9 @@ tr:hover {
     height: 100%;
 }
 
-form select, #editCustomerModal form input[type="text"] {
+form select, form input[type="text"], form input[type="submit"] {
     padding: 10px;
-    width: calc(33.33% - 10px); /* Adjust based on your layout */
+    width: auto; /* Adjust based on your layout */
     border: 1px solid #003B46;
     border-radius: 5px;
     font-weight: bold;
@@ -393,113 +389,50 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover {
     background-color: #07575b; /* Darker color on hover */
+    color: #fff;
 }
 
 .button{
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
     height: 100%;
+    margin-left: 20px;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-#editCustomerBtn, #delCustomerBtn, #addCustomerBtn{
-    width: 200px;
-    margin: 0 10px;
-}
-
-.btn-edit, .btn-add{
+.btn-edit{
     background-color: #003B46;
     color: #fff; /* White text */
-        padding: 10px;
+        padding: 10px !important;
         margin-top: 10px;
-        border: none;
+        border: none !important;
         border-radius: 5px;
         cursor: pointer;
-        width: 180px;
+        width: 180px !important;
         font-size: 15px;
         transition: background-color 0.3s ease;
         font-weight: bold;
 }
 
-.btn-edit:hover, .btn-add:hover, .btn-del:hover{
-    background-color: #07575b;
-    color: #fff;
-}
 
 .btn-del{
     color: #fff; /* White text */
-        padding: 10px;
+        padding: 10px !important;
         margin-top: 10px;
-        border: none;
+        border: none !important;
         border-radius: 5px;
         cursor: pointer;
-        width: 180px;
+        width: 180px !important;
         font-size: 15px;
         transition: background-color 0.3s ease;
         font-weight: bold;
+        background-color: darkred !important;
 }
 
-#delCustomerBtn {
-    background-color: darkred;
-}
-#delCustomerBtn:hover {
-    background-color: red;
-}
-
-/* Modal styles */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: hidden; 
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: none;
-  box-shadow: 0 0 12px #1c7a7f;
-  width: 40%; /* Could be more or less, depending on screen size */
-}
-
-/* Close button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-#deleteCustomerModal label{
-    font-weight: bold;
-}
-
-#addCustomerModal label{
-    display: block;
-    font-weight: bold;
-    color: #000000;
+.btn-del:hover{
+    background-color: red !important;
+    color: #fff;
 }
 
 /* footer styles */
@@ -641,7 +574,7 @@ form input[type="submit"]:hover {
                             <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
                                 <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
                                 <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
-				    <li><a class="dropdown-item" href="Admin-account-approval.php">Admin Approval</a></li>
+				     <li><a class="dropdown-item" href="Admin-account-approval.php">Admin Approval</a></li>
                                 <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
                                 <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
@@ -748,32 +681,24 @@ while($row = $fulltable->fetch()){
 </table>
             </div>
 <br>
-<div class="button-container">
-<button id="editCustomerBtn" class="btn btn-primary">EDIT CUSTOMER DETAILS</button>
-<button id="delCustomerBtn" class="btn btn-primary">DELETE CUSTOMER</button>
-<button id="addCustomerBtn" class="btn btn-primary">ADD CUSTOMER</button>
-
-</div>
-
-<!-- Modal -->
-<div id="editCustomerModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div id="editCustomerModalContent" class="form-container">
+<div class="form-container">
 <form name="edit-input" method="post" action="customerAccounts.php" >
 
     <select id="cid" name="cid">
     <option value="default">Enter Customer ID</option>
        <?php
-       $cid_query = $db->prepare("SELECT customer_id, name FROM customerdetails WHERE name IS NOT NULL;");
+        $cid_query = $db->prepare("SELECT customer_id, name FROM customerdetails WHERE name IS NOT NULL;");
         $cid_query->execute();
         $customer_ids = $cid_query->fetchAll(PDO::FETCH_COLUMN);
     
         foreach ($customer_ids as $customer_id) {
             echo '<option value="' . $customer_id . '">' . $customer_id . '</option>';
         }
+       
        ?>
     </select>
+
+
 
     <select id="edit-field" name="edit-field">
         <option value="default">Enter Field</option>
@@ -788,79 +713,10 @@ while($row = $fulltable->fetch()){
     <input type="text" id="edit-input" name="edit-input" placeholder="Enter edit">
 
     <div class="button">
-    <input type="submit" value="SUBMIT" name="sub" class="btn btn-edit">
+    <input type="submit" value="SUBMIT" name="sub" class="btn-edit">
     </div>
 </form>
 </div>
-  </div>
-</div>
-
-<!-- Modal for Delete Customer -->
-<div id="deleteCustomerModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div id="deleteCustomerModalContent" class="form-container">
-      <form id="delete-input" method="post" action="customerAccounts.php">
-      <label for="customerSelect">Select Customer:</label>
-        <select id="cid" name="cid">
-          <option value="default">Select Customer</option>
-          <?php
-            $cid_query = $db->prepare("SELECT customer_id FROM customerdetails");
-            $cid_query->execute();
-            $customer_ids = $cid_query->fetchAll(PDO::FETCH_COLUMN);
-
-            foreach ($customer_ids as $customer_id) {
-                echo '<option value="' . $customer_id . '">' . $customer_id . '</option>';
-            }
-          ?>
-        </select>
-        <div class="button">
-        <input type="submit" value="DELETE" name="del-sub" class="btn btn-del">
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- Add Customer Modal -->
-<div id="addCustomerModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="addCustomerModalContent" class="form-container">
-<form name="add-input" method="post" action="customerAccounts.php" >
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label for="customerId">Customer ID:</label>
-            <input type="text" id="customerId" name="customerId" class="form-control">
-            </div>
-            <div class="col-md-6 mb-3">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" class="form-control">
-            </div>
-        </div>
-
-            <div class="mb-3">
-            <label for="defaultAddress">Default Address:</label>
-            <input type="text" id="defaultAddress" name="defaultAddress" class="form-control">
-            </div>
-
-            <div class="row">
-<div class="col-md-6 mb-3">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" class="form-control">
-</div>
-<div class="col-md-6 mb-3">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-control">
-</div>
-            </div>
-            <div class="button">
-            <input type="submit" value="ADD" name="add-sub" class="btn btn-add">
-            </div>
-        </form>
-    </div>
-</div>
-
 <?php
 if(isset($_POST['sub'])){
 $field=$_POST['edit-field'];
@@ -905,6 +761,26 @@ if($cid=='default' ||$cid =='default'|| $val==null ){
 }
 }
 ?>
+<br>
+<div class="form-container">
+<form id="delete-input" method="post" action="customerAccounts.php">
+        <select id="cid" name="cid">
+          <option value="default">Select Customer to Delete</option>
+          <?php
+            $cid_query = $db->prepare("SELECT customer_id FROM customerdetails");
+            $cid_query->execute();
+            $customer_ids = $cid_query->fetchAll(PDO::FETCH_COLUMN);
+
+            foreach ($customer_ids as $customer_id) {
+                echo '<option value="' . $customer_id . '">' . $customer_id . '</option>';
+            }
+          ?>
+        </select>
+        <div class="button">
+        <input type="submit" value="DELETE" name="del-sub" class="btn btn-del">
+        </div>
+</form>
+</div>
 
 <?php
 if(isset($_POST['del-sub'])){
@@ -936,7 +812,7 @@ if(isset($_POST['del-sub'])){
 }
 ?>
             </div>
-    </div>
+            </div>
 
     </main>
 
@@ -1074,110 +950,10 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
         document.body.appendChild(form);
         form.submit();
     }
+
+
+    
     </script>
-
-<script>
-// Get the modal
-var modal = document.getElementById("editCustomerModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("editCustomerBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
-<script>
-
-// Get the modal for delete customer
-var deleteCustomerModal = document.getElementById("deleteCustomerModal");
-
-// Get the button that opens the modal
-var delBtn = document.getElementById("delCustomerBtn");
-
-// Get the <span> element that closes the modal
-var closeBtn = deleteCustomerModal.getElementsByClassName("close")[0];
-
-// When the user clicks the delete button, open the modal
-delBtn.onclick = function() {
-  deleteCustomerModal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-closeBtn.onclick = function() {
-  deleteCustomerModal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == deleteCustomerModal) {
-    deleteCustomerModal.style.display = "none";
-  }
-}
-
-// Handle form submission
-document.getElementById("deleteCustomerModalContent").addEventListener("submit", function(event) {
-  // You can add confirmation logic here if needed
-  if (!confirm("Are you sure you want to delete this customer?")) {
-    event.preventDefault(); // Prevent form submission
-  }
-});
-
-</script>
-
-<script>
-    var addCustomerModal = document.getElementById("addCustomerModal");
-
-// Get the button that opens the add customer modal
-var addCustomerBtn = document.getElementById("addCustomerBtn");
-
-// Get the close button for the add customer modal
-var addCustomerCloseBtn = addCustomerModal.querySelector(".close");
-
-// When the user clicks on the button, open the add customer modal
-addCustomerBtn.onclick = function() {
-    addCustomerModal.style.display = "block";
-}
-
-// When the user clicks on the close button, close the add customer modal
-addCustomerCloseBtn.onclick = function() {
-    addCustomerModal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the add customer modal, close it
-window.onclick = function(event) {
-    if (event.target == addCustomerModal) {
-        addCustomerModal.style.display = "none";
-    }
-}
-
-// When the user submits the form, handle the submission
-document.getElementById("addCustomerForm").onsubmit = function(event) {
-    // Prevent the default form submission
-    event.preventDefault();
-    addCustomerModal.style.display = "none";
-
-    alert("New customer added successfully!");
-}
-
-</script>
 
 </body>
 </html>
