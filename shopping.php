@@ -823,7 +823,7 @@ h2 {
         <option value="female">Womens</option>
         <option value="unisex">Unisex</option>
         <option value="futuristic">Futuristic</option>
-        <option value="bluelight">Bluelight</option>
+        <option value="blue_light">Bluelight</option>
     </select>
 
     <!-- Colour filter -->
