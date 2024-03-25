@@ -778,8 +778,7 @@ main {
         <div id="shopping-bag-popup" class="shopping-bag-popup">
         <h4>Your Selection (<?= $itemsCount ?>)</h4>
 
-        <?php foreach ($bitems as $bitem) : ?>
-            <div class="shopping-bag-product">
+
 <?php foreach ($bitems as $bitem) : ?>
     <div class="shopping-bag-product">
         <!-- Concatenate product ID and name to form the image file name -->
