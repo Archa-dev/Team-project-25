@@ -5,7 +5,7 @@ $orderid = $_POST['order_id'];
 $getOrderDetails = $db->prepare("SELECT * FROM pendingorders WHERE order_id = ?");
 $getOrderDetails->execute([$orderid]);
 $orderDetails = $getOrderDetails->fetch(PDO::FETCH_ASSOC);
-$addOrderToPrevious = $db->prepare("INSERT INTO previousorders (customer_id, product_id, shipping_address) VALUES (?, ?, ?, ?)");
+$addOrderToPrevious = $db->prepare("INSERT INTO previousorders (customer_id, product_id, shipping_address, quantity) VALUES (?, ?, ?, ?)");
 $addOrderToPrevious->bindParam(1, $orderDetails['customer_id']);
 $addOrderToPrevious->bindParam(2, $orderDetails['product_id']);
 $addOrderToPrevious->bindParam(3, $orderDetails['shipping_address']);
