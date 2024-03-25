@@ -87,7 +87,7 @@ else {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
+    <link rel="shortcut icon" href="images/updatedFavicon.png" type="image/png">
     
     <title>Item - SHADED</title>
     <style>
@@ -671,6 +671,7 @@ main {
 
 <header>
 
+
 <a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
@@ -683,7 +684,7 @@ main {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="images/logo.png" alt="Shaded Logo">
+                    <img src="images/Logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -782,7 +783,7 @@ main {
 <?php foreach ($bitems as $bitem) : ?>
     <div class="shopping-bag-product">
         <!-- Concatenate product ID and name to form the image file name -->
-        <?php $imageFileName = "images/" . $bitem['product_id'] . "_" . str_replace(' ', '_', $bitem['product_name']) . ".avif"; ?>
+        <?php $imageFileName = "ImagesForProducts/" . $bitem['product_id'] . "_" . str_replace(' ', '_', $bitem['product_name']) . ".avif"; ?>
         <img src="<?= $imageFileName ?>" alt="<?= $bitem['product_name'] ?>">
         <div class="product-details">
             <h5><?= $bitem['product_name'] ?></h5>
@@ -836,9 +837,9 @@ main {
         <div id="column">
     <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
     <img src="<?= $imageFileName ?>" alt="Product Image" style="width: 100%; height: auto;">
-            <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
-                <i class="far fa-heart"></i>
-            </button>
+    <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
+        <i class="far fa-heart"></i>
+    </button>
         </div>
         <div id="product-info-container">
             <div id="product-info">
@@ -937,6 +938,8 @@ main {
     </div>
 </div>
 </div>
+<span id="close-review-form-btn" onclick="review-form-popup()">&times;</span>
+ <form id="review-form">
         </footer>
    
 
