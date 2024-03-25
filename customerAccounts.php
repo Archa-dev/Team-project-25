@@ -334,7 +334,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
+    height: 100%;
     margin-top: 20px;
 }
 
@@ -371,7 +371,7 @@ tr:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 5%;
+    height: 100%;
 }
 
 form select, form input[type="text"], form input[type="submit"] {
@@ -403,7 +403,7 @@ form input[type="submit"]:hover {
     margin-left: 20px;
 }
 
-.btn-edit{
+.btn-edit, .btn-new{
     background-color: #003B46;
     color: #fff; /* White text */
         padding: 10px !important;
@@ -411,7 +411,7 @@ form input[type="submit"]:hover {
         border: none !important;
         border-radius: 5px;
         cursor: pointer;
-        width: 180px !important;
+        width: 150px !important;
         font-size: 15px;
         transition: background-color 0.3s ease;
         font-weight: bold;
@@ -425,7 +425,7 @@ form input[type="submit"]:hover {
         border: none !important;
         border-radius: 5px;
         cursor: pointer;
-        width: 180px !important;
+        width: 150px !important;
         font-size: 15px;
         transition: background-color 0.3s ease;
         font-weight: bold;
@@ -576,7 +576,7 @@ form input[type="submit"]:hover {
                             <li><a class="dropdown-item" href="admin.php">Admin Homepage</a></li>
                                 <li><a class="dropdown-item" href="inventory.php">Inventory</a></li>
                                 <li><a class="dropdown-item" href="customerAccounts.php">Customer Accounts</a></li>
-                                <li><a class="dropdown-item" href="Admin-account-approval.php">Admin Approval</a></li>
+				     <li><a class="dropdown-item" href="Admin-account-approval.php">Admin Approval</a></li>
                                 <li><a class="dropdown-item" href="adminAccounts.php">Admin Accounts</a></li>
                                 <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             </ul>
@@ -648,8 +648,8 @@ form input[type="submit"]:hover {
             <h2>CUSTOMER ACCOUNTS</h2>
 
             <div class="container">
-            <div class="table-container">  
-<table>
+            <div class="table-container">      
+            <table>
         <tr>
         <th>Customer ID</th>
         <th>Name</th>
@@ -680,11 +680,12 @@ while($row = $fulltable->fetch()){
 }
 ?>
 </table>
-</div>
+            </div>
+
 <br>
+
 <div class="form-container">
 <form name="edit-input" method="post" action="customerAccounts.php" >
-
     <select id="cid" name="cid">
     <option value="default">Enter Customer ID</option>
        <?php
@@ -699,8 +700,6 @@ while($row = $fulltable->fetch()){
        ?>
     </select>
 
-
-
     <select id="edit-field" name="edit-field">
         <option value="default">Enter Field</option>
         <option value="name">Name</option>
@@ -711,17 +710,13 @@ while($row = $fulltable->fetch()){
 
     </select>
 
-    
-
-
     <input type="text" id="edit-input" name="edit-input" placeholder="Enter edit">
 
-    
-
-    <input type="submit" value="Submit" name="sub" id="sub">
-
-</form>
+    <div class="button">
+    <input type="submit" value="EDIT CUSTOMER" name="sub" class="btn-edit">
     </div>
+</form>
+</div>
 <?php
 if(isset($_POST['sub'])){
 $field=$_POST['edit-field'];
@@ -766,13 +761,12 @@ if($cid=='default' ||$cid =='default'|| $val==null ){
         exit();
         }
     }
-
 }
-
-
 }
-
 ?>
+
+<br>
+
 <div class="form-container">
 <form name="new-input" method="post" action="customerAccounts.php" >
 
@@ -780,11 +774,11 @@ if($cid=='default' ||$cid =='default'|| $val==null ){
 <input type="text" name="Username" placeholder="Username">
 <input type="text" name="Name" placeholder="Name">
 <input type="text" name="Address" placeholder="Address">
-<input type="text" name="inputPassword" placeholder="password"><br>
+<input type="text" name="inputPassword" placeholder="Password">
 
-
-<input type="submit" value="Create" name="new-sub">
-
+    <div class="button">
+    <input type="submit" value="ADD CUSTOMER" name="new-sub" class="btn-new">
+    </div>
 </form>
 </div>
 <?php
@@ -834,23 +828,25 @@ if($rej->execute()){
 }
 ?>
 
+<br>
+
 <div class="form-container">
-<form name="delete-input" method="post" action="customerAccounts.php" >
+<form id="delete-input" method="post" action="customerAccounts.php">
+        <select id="cid" name="cid">
+          <option value="default">Select Customer to Delete</option>
+          <?php
+            $cid_query = $db->prepare("SELECT customer_id FROM customerdetails");
+            $cid_query->execute();
+            $customer_ids = $cid_query->fetchAll(PDO::FETCH_COLUMN);
 
-<select id="cid" name="cid">
-<option value="default">Enter Customer ID</option>
-   <?php
-    $cid_query = $db->prepare("SELECT customer_id, name FROM customerdetails WHERE name IS NOT NULL;");
-    $cid_query->execute();
-    $customer_ids = $cid_query->fetchAll(PDO::FETCH_COLUMN);
-
-    foreach ($customer_ids as $customer_id) {
-        echo '<option value="' . $customer_id . '">' . $customer_id . '</option>';
-    }
-   
-   ?>
-</select>
-<input type="submit" value="Delete" name="del-sub">
+            foreach ($customer_ids as $customer_id) {
+                echo '<option value="' . $customer_id . '">' . $customer_id . '</option>';
+            }
+          ?>
+        </select>
+        <div class="button">
+        <input type="submit" value="DELETE CUSTOMER" name="del-sub" class="btn-del">
+        </div>
 </form>
 </div>
 <?php
@@ -885,7 +881,12 @@ if(isset($_POST['del-sub'])){
 
 }
 ?>
-</main>
+            </div>
+            </div>
+
+    </main>
+
+    <!-- footer content -->
     <footer class="footer">
      <div class="container">
      <div class="row">
@@ -897,11 +898,6 @@ if(isset($_POST['del-sub'])){
              
              </ul>
      </div>
-
-     <div class="form-container">
-
-
-
      <!-- first column -->
      <div class="footer-col">
             <h4>References</h4>
@@ -935,4 +931,99 @@ if(isset($_POST['del-sub'])){
 </div>
         </footer>
 
+<!-- JavaScript for Scroll Icon -->
+<script>
+      window.addEventListener('scroll', function() {
+    var sunIcon = document.getElementById('sun-icon');
+    var navbarHeight = document.querySelector('header').offsetHeight;
+    var footerHeight = document.querySelector('footer').offsetHeight;
+    var scrollPosition = window.scrollY;
+    var windowHeight = window.innerHeight;
+    var bodyHeight = document.body.clientHeight;
+
+    // Calculate position of the sun icon based on scroll position
+    var maxScroll = bodyHeight - windowHeight;
+    var visibleHeight = windowHeight - navbarHeight - footerHeight;
+    var newPosition = Math.min(Math.max((scrollPosition - navbarHeight) / (maxScroll - navbarHeight - visibleHeight), 0), 1) * (visibleHeight - 40) + navbarHeight;
+
+    // Adjust the sun icon's top position
+    sunIcon.style.top = newPosition + 'px';
+
+    // Calculate the ratio of scroll position to the total scroll height
+    var scrollRatio = (scrollPosition - navbarHeight) / (maxScroll - navbarHeight - visibleHeight);
+
+    // Calculate color gradient between yellow (#FFFF00) and black (#000000)
+    var red = 255 - (255 * scrollRatio);
+    var green = 255 - (255 * scrollRatio);
+    var blue = 0;
+
+    // color of the sun icon
+    sunIcon.style.color = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+});
+
+// Set initial position of the sun icon below the navbar
+window.addEventListener('DOMContentLoaded', function() {
+    var sunIcon = document.getElementById('sun-icon');
+    var navbarHeight = document.querySelector('header').offsetHeight;
+    sunIcon.style.top = navbarHeight + 'px';
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    darkModeToggle.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+        // Toggle icon between light bulb and moon
+        darkModeToggle.querySelector('i').classList.toggle('fa-lightbulb');
+        darkModeToggle.querySelector('i').classList.toggle('fa-moon');
+    });
+});
+</script>
+
+<script>
+document.getElementById('shopping-bag-icon').addEventListener('click', function() {
+  const popup = document.getElementById('shopping-bag-popup');
+  popup.classList.toggle('show');
+});
+
+    document.addEventListener('click', function(event) {
+        const popup = document.getElementById('shopping-bag-popup');
+        const shoppingBagIcon = document.getElementById('shopping-bag-icon');
+        const isClickInsidePopup = popup.contains(event.target);
+        const isClickOnIcon = shoppingBagIcon.contains(event.target);
+
+        if (!isClickInsidePopup && !isClickOnIcon) {
+            popup.classList.remove('show');
+        }
+    });
+
+
+    function filterCategory(category) {
+        // Create a form element dynamically
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = 'shopping.php'; 
+        
+        // Create an input element to hold the category filter value
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'categoryFilter';
+        input.value = category;
+        
+        // Append the input element to the form
+        form.appendChild(input);
+        
+        // Append the form to the document body and submit it
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+
+    
+    </script>
+
 </body>
+</html>
