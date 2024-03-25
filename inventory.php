@@ -46,7 +46,7 @@ elseif (strpos($searchFilter, 'men') !== false || strpos($searchFilter, 'man') !
 if ($searchFilter !== 'all') {
     $query .= " AND (product_name LIKE :searchFilter OR category = :catSearchFilter OR colour LIKE :searchFilter)";
 }
-
+$query .= " ORDER BY stock ASC";
 
 // Prepare the SQL statement
 $stmt = $db->prepare($query);
@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
    
-   <style>
+<style>
 
 html {
     font-size: 100%;
@@ -800,8 +800,11 @@ h2 {
     color: #ccc;
 }
 </style>
-
+   
 </head>
+
+
+
 <body>
 <!--bootstrap js-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -825,7 +828,7 @@ h2 {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="images/Logo.png" alt="Shaded Logo">
+                <img src="images/Logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -1023,11 +1026,10 @@ h2 {
     <div class="row">
         <!-- Loop through each product and display buttons -->
         <?php foreach ($products as $product) : ?>
-            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div id = "products" class="col-sm-6 col-md-4 col-lg-3">
             <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
             <?php $imageFileName = "ImagesForProducts/" . $product['product_id'] . "_" . str_replace(' ', '_', $product['product_name']) . ".avif"; ?>
     <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
-                </a>
                 </a>
                 <div class="product-info">
                 <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
@@ -1035,8 +1037,12 @@ h2 {
                 </a>
                 <p class="price"> £<?= $product['price'] ?></p>
                  <!-- added on 19/03 , needs to be linked with database -->
-                 <p class="stock-level"> IN STOCK: 80 </p>
-                 <button class="update-button" type="button" onclick="openUpdateModal()">UPDATE</button>
+                 <?php if ($product['stock'] < 20) : ?>
+                <p class="stock-level"> STOCK: <?= $product['stock'] ?> <span style="color: red;">(Low Stock)</span></p>
+            <?php else : ?>
+                <p class="stock-level"> STOCK: <?= $product['stock'] ?></p>
+            <?php endif; ?>
+                 <button class="update-button" type="button" onclick="openUpdateModal(<?= $product['product_id'] ?>)">UPDATE</button>
                  <button class="delete-button" type="submit">DELETE</button>
             </div>
             </div>
@@ -1048,15 +1054,15 @@ h2 {
   <div class="modal-content">
   <span class="close" onclick="closeUpdateModal()">&times;</span>
     <h2>EDIT PRODUCT DETAILS</h2>
-    <form id="updateProductForm">
+    <form id="updateProductForm" onsubmit="return updateProduct();">
       <label for="productName">Product Name:</label>
       <input type="text" id="productName" name="productName" required>
       
       <label for="productPrice">Price:</label>
       <input type="text" id="productPrice" name="productPrice" required>
       
-      <label for="productImage">Image:</label>
-      <input type="file" id="productImage" name="productImage" accept="image/*">
+      <label for="productStock">Stock:</label>
+      <input type="text" id="productStock" name="productStock" required>
     
 
       <label for="productCategory">Category:</label>
@@ -1070,44 +1076,47 @@ h2 {
       
       <label for="productColor">Color:</label>
       <input type="text" id="productColor" name="productColor" required>
+
+    <input type="hidden" id="productId" name="productId" value="">
+
+
       
       <button type="submit">UPDATE PRODUCT</button>
     </form>
   </div>
 </div>
 
- <!-- ADD PRODUCT MODAL -->
- <div id="addProductModal" class="modal">
-            <div class="modal-content">
+<div id="addProductModal" class="modal">
+        <div class="modal-content">
             <span class="close" onclick="closeAddProductModal()">&times;</span>
-    <h2>ADD A PRODUCT </h2>
-    <form id="updateProductForm">
-      <label for="productName">Product Name:</label>
-      <input type="text" id="productName" name="productName" required>
-      
-      <label for="productPrice">Price:</label>
-      <input type="text" id="productPrice" name="productPrice" required>
-      
-      <label for="productImage">Image:</label>
-      <input type="file" id="productImage" name="productImage" accept="image/*">
-    
-
-      <label for="productCategory">Category:</label>
-      <select id="productCategory" name="productCategory" required>
-        <option value="male">Mens</option>
-        <option value="female">Womens</option>
-        <option value="unisex">Unisex</option>
-        <option value="futuristic">Futuristic</option>
-        <option value="bluelight">Bluelight</option>
-      </select>
-      
-      <label for="productColor">Color:</label>
-      <input type="text" id="productColor" name="productColor" required>
-      
-      <button type="submit">ADD PRODUCT</button>
-    </form>
-            </div>
+            <h2>ADD A PRODUCT</h2>
+            <form id="addProductForm" onsubmit="return addProduct();">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" required>
+                
+                <label for="productPrice">Price:</label>
+                <input type="text" id="productPrice" name="productPrice" required>
+                
+                <label for="productImage">Image:</label>
+                <input type="file" id="productImage" name="productImage" accept="image/*">
+            
+                <label for="productCategory">Category:</label>
+                <select id="productCategory" name="productCategory" required>
+                    <option value="male">Mens</option>
+                    <option value="female">Womens</option>
+                    <option value="unisex">Unisex</option>
+                    <option value="futuristic">Futuristic</option>
+                    <option value="bluelight">Bluelight</option>
+                </select>
+                
+                <label for="productColor">Color:</label>
+                <input type="text" id="productColor" name="productColor" required>
+                
+                <button type="submit">ADD PRODUCT</button>
+            </form>
         </div>
+    </div>
+
 
     <form method="post" action="Item.php" id="buyForm">
     <!-- Hidden input fields to store the selected product ID and color -->
@@ -1336,16 +1345,66 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // Function to open the update product modal
-function openUpdateModal() {
-        var modal = document.getElementById('updateProductModal');
-        modal.style.display = 'block';
-    }
+function openUpdateModal(productId) {
+    var modal = document.getElementById('updateProductModal');
+    modal.style.display = 'block';
+
+    // Set the productId in a hidden input field within the modal form
+    document.getElementById('productId').value = productId;
+
+}
+
 
      // Function to close the update product modal
      function closeUpdateModal() {
         var modal = document.getElementById('updateProductModal');
         modal.style.display = 'none';
     }
+
+
+    function openAddModal(productId) {
+    var modal = document.getElementById('updateProductModal');
+    modal.style.display = 'block';
+
+    // Set the productId in a hidden input field within the modal form
+    document.getElementById('productId').value = productId;
+
+}
+    
+    function updateProduct() {
+    var productId = document.getElementById('productId').value;
+    var productName = document.getElementById('productName').value;
+    var productPrice = document.getElementById('productPrice').value;
+    var productStock = document.getElementById('productStock').value; 
+    var productCategory = document.getElementById('productCategory').value;
+    var productColor = document.getElementById('productColor').value;
+
+
+
+    $.ajax({
+        url: 'update_product.php',
+        type: 'POST',
+        data: {
+            productId: productId, 
+            productName: productName,
+            productPrice: productPrice,
+            productStock: productStock, 
+            productCategory: productCategory,
+            productColor: productColor
+        },
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+
+    // Prevent default form submission
+    return false;
+}
+
+
 
     // Function to open the add product modal
     function openAddProductModal() {
@@ -1357,6 +1416,41 @@ function openUpdateModal() {
       function closeAddProductModal() {
         var modal = document.getElementById('addProductModal');
         modal.style.display = 'none';
+    }
+
+
+    function addProduct() {
+        var productName = document.getElementById('productName').value;
+        var productPrice = document.getElementById('productPrice').value;
+        var productCategory = document.getElementById('productCategory').value;
+        var productColor = document.getElementById('productColor').value;
+
+        console.log(productName);
+        console.log(productPrice);
+
+        // Perform AJAX request to add the product
+        $.ajax({
+            url: 'add_product.php',
+            type: 'POST',
+            data: {
+                productName: productName,
+                productPrice: productPrice,
+                productCategory: productCategory,
+                productColor: productColor
+            },
+            success: function(response) {
+                console.log(response);
+                // Reload the page after successful addition
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                // Handle error if needed
+            }
+        });
+
+        // Prevent default form submission
+        return false;
     }
 
 
