@@ -524,7 +524,7 @@ html {
                     </button>
 
                     <a href="homepage.php" class="navbar-brand logo">
-                        <img src="images/logo.png" alt="Shaded Logo">
+                        <img src="images/Logo.png" alt="Shaded Logo">
                     </a>
                     <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -616,7 +616,8 @@ html {
 
         <?php foreach ($items as $item) : ?>
             <div class="shopping-bag-product">
-                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+            <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+                <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
                 <div class="product-details">
                     <h5><?= $item['product_name'] ?></h5>
                     <p>Price: £<?= number_format($item['price'], 2) ?></p>
@@ -673,7 +674,8 @@ html {
                 <?php foreach ($items as $item) : ?>
                     <div class="basket-row">
                         <div class="basket-item basket-column">
-                            <img class="basket-item-image" src="images/MK-2161BU-0001_1.jpeg" alt="Sunglasses" width="100" height="100"><!-- db image to replace sunglasses image<?= $item['product_image'] ?>-->
+                        <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+    <img class="basket-item-image" src="<?= $imageFileName ?>" alt="Sunglasses" width="100" height="100"><!-- db image to replace sunglasses image<?= $item['product_image'] ?>-->
                             <div class="basket-item-details">
                                 <span class="basket-item-title"><?= $item['product_name'] ?></span>
                                 <span class="basket-price">£<?= number_format($item['price'], 2) ?></span>
