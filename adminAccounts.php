@@ -648,30 +648,23 @@ main {
             <h2>ADMIN ACCOUNTS</h2>
 
             <div class="admin-boxes">
+            <?php
+            // retrieve all admin accounts
+            $admins = $db->query('SELECT * FROM logindetails WHERE authorization_level = "admin"')->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($admins as $admin) {
+                echo '<div class="admin-box">
+                <div class="box-label">Email: <p>' . $admin['email'] . '</p></div>
+                <div class="box-label">Admin ID: <p>' . $admin['username'] . '</p></div>
+                <button class="edit-button" onclick="openPasswordPopup(\'' . $admin['username'] . '\')">EDIT</button>
+                </div>';}
 
-            <div class="admin-box">
+            ?>
+            <!-- <div class="admin-box">
                 <div class="box-label">Email: <p></p></div>
                 <div class="box-label">Admin ID: <p>admin1</p></div>
                 <button class="edit-button" onclick="openPasswordPopup('admin1')">EDIT</button>
-            </div>
+            </div> -->
 
-           <div class="admin-box">
-                <div class="box-label">Email: <p></p></div>
-                <div class="box-label">Admin ID: <p>admin2</p></div>
-                <button class="edit-button" onclick="openPasswordPopup('admin2')">EDIT</button>
-            </div>
-
-            <div class="admin-box">
-                <div class="box-label">Email: <p></p></div>
-                <div class="box-label">Admin ID: <p>admin3</p></div>
-                <button class="edit-button" onclick="openPasswordPopup('admin3')">EDIT</button>
-            </div>
-
-            <div class="admin-box">
-                <div class="box-label">Email: <p></p></div>
-                <div class="box-label">Admin ID: <p>admin4</p></div>
-                <button class="edit-button" onclick="openPasswordPopup('admin4')">EDIT</button>
-            </div>
 
         </div>
 
@@ -878,10 +871,11 @@ document.getElementById('password-form').addEventListener('submit', (event) => {
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
+            console.log(xhr.responseText);
             alert('Password changed successfully');
         }
         }
-        xhr.send('adminName='+adminName+'&newPassword='+ newPassword);
+        xhr.send('adminName='+adminName.textContent.split(": ")[1]+'&newPassword='+ newPassword);
         // Passwords match, perform password change logic here
         // You can display a confirmation message using alert
         // Hide password change popup
