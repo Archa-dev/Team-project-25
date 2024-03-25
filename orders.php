@@ -636,6 +636,7 @@ main {
         echo '<div class="box-label">Name: <p>'.$name['name'].'</p></div>'; // Fix: Replace $name with $name['name']
         echo '<div class="box-label">Address: <p>'.$order['shipping_address'].'</p></div>';
         echo '<div class="box-label">Order No: <p>'.$order['order_id'].'</p></div>';
+        echo '<div class="box-label">Quantity: <p>'.$order['quantity'].'</p></div>';
         echo '<div class="status">';
         echo '<span class="badge bg-warning text-dark">Pending</span>';
         echo '</div>';
