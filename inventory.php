@@ -1043,7 +1043,7 @@ h2 {
                 <p class="stock-level"> STOCK: <?= $product['stock'] ?></p>
             <?php endif; ?>
                  <button class="update-button" type="button" onclick="openUpdateModal(<?= $product['product_id'] ?>)">UPDATE</button>
-                 <button class="delete-button" type="submit">DELETE</button>
+                 <button class="delete-button" id="<?php echo $product['product_id']; ?>" type="submit">DELETE</button>
             </div>
             </div>
         <?php endforeach; ?>
@@ -1441,9 +1441,30 @@ function openUpdateModal(productId) {
         return false;
     }
 
-
-
+    function deleteProduct(productId){
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'delete_product.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText);
+                // location.reload();
+            }
+        };
+        xhr.send('productId=' + productId);
+    }
    
+    var deleteButtons = document.getElementsByClassName('delete-button');
+    for (var i = 0; i < deleteButtons.length; i++) {
+        let deleteButton = deleteButtons[i];
+        deleteButton.addEventListener('click', function() {
+            let productId = deleteButton.id;
+            console.log(productId);
+            deleteProduct(productId);
+        });
+    }
+
+
 </script>
 </body>
 </html>
