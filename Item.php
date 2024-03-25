@@ -780,15 +780,19 @@ main {
 
         <?php foreach ($bitems as $bitem) : ?>
             <div class="shopping-bag-product">
-            <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $bitem['product_name'] ?>">
-                <div class="product-details">
-                    <h5><?= $bitem['product_name'] ?></h5>
-                    <p>Price: £<?= number_format($bitem['price'], 2) ?></p>
-                    <p>Colour: <?= $bitem['colour'] ?></p>
-                    <p>Quantity: <?= $bitem['quantity'] ?></p>
-                </div>
-            </div>
-        <?php endforeach; ?>
+<?php foreach ($bitems as $bitem) : ?>
+    <div class="shopping-bag-product">
+        <!-- Concatenate product ID and name to form the image file name -->
+        <?php $imageFileName = "images/" . $bitem['product_id'] . "_" . str_replace(' ', '_', $bitem['product_name']) . ".avif"; ?>
+        <img src="<?= $imageFileName ?>" alt="<?= $bitem['product_name'] ?>">
+        <div class="product-details">
+            <h5><?= $bitem['product_name'] ?></h5>
+            <p>Price: £<?= number_format($bitem['price'], 2) ?></p>
+            <p>Colour: <?= $bitem['colour'] ?></p>
+            <p>Quantity: <?= $bitem['quantity'] ?></p>
+        </div>
+    </div>
+<?php endforeach; ?>
 
         <hr>
         <!-- Total Price -->
@@ -831,7 +835,8 @@ main {
         <div id="main">
     <div id="boxes">
         <div id="column">
-            <img src="Images for products/Mens Black1.1.avif" alt="Product Image">
+    <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+    <img src="<?= $imageFileName ?>" alt="Product Image" style="width: 100%; height: auto;">
             <button id="add-to-wishlist-btn" class="add-to-wishlist-button">
                 <i class="far fa-heart"></i>
             </button>
@@ -841,7 +846,7 @@ main {
                 <h3><?= $item['product_name'] ?></h3>
                 <h4>£<?= $item['price'] ?></h4>
                  <!-- placeholder headers -->
-                <h5>Colour: BLACK</h5>
+                <h5 style="margin-top: 30px;">Colour: <?= $item['colour'] ?></h5>
                 <h5>Size: ONE SIZE</h5>
                  <!-- Add your product name and price elements here -->
                 <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
