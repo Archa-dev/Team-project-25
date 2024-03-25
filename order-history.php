@@ -731,7 +731,7 @@ main {
                 echo '<p>Product Name: ' . $product['product_name'] . '</p>';
                 echo '<p>Order Total: £' . $product['price'] . '</p>';
                 echo '<p>Delivery Address: ' . $order['shipping_address'] . '</p>';
-                echo '<button class="view-details-btn" onclick="redirectToProductDetails(' . $product['product_id'] . ')">View Details</button>';
+                echo '<button class="view-details-btn" onclick="redirectToProductDetails(' . $order['order_id'] . ')">View Details</button>';
                 echo '</div>';
                 echo '</div>';
             }
@@ -787,8 +787,8 @@ main {
         </footer>
 
     <script> 
-    function redirectToProductDetails(productId) {
-        window.location.href = 'product-details.php?id=' + productId;
+    function redirectToProductDetails(orderId) {
+        window.location.href = 'product-details.php?id=' + orderId;
             // JavaScript function to submit the form
   
     }
