@@ -577,7 +577,7 @@ html {
 
         <?php foreach ($items as $item) : ?>
             <div class="shopping-bag-product">
-        <?php $imageFileName = "images/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+            <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
         <img src="<?= $imageFileName ?>" alt="<?= $item['product_name'] ?>">
                 <div class="product-details">
                     <h5><?= $item['product_name'] ?></h5>
