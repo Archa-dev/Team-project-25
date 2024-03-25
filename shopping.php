@@ -421,7 +421,7 @@ main {
     padding: 20px;
     position: fixed;
     left: 20px;
-    bottom: 190px;
+    bottom: 175px;
     border-radius: 5px;
     z-index: 200;
     max-height: calc(100vh - 200px); 
@@ -513,6 +513,10 @@ main {
     border:none;
 }
 
+#products{
+    margin-bottom: 30px;
+}
+
 /* position of the price range label and slider */
 #price-container {
     position: relative; 
@@ -556,27 +560,8 @@ h2 {
     margin-left: 220px;
 }
 
-
-
 .main-container {
     flex: 1;
-}
-
-.buy-button {
-    background-color: #003b46;
-    border: none;
-    color: #fff;
-    padding: 2px 8px;
-    text-align: auto;
-    text-decoration:none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 10px 0;
-    margin-left: 185px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-        
 }
 
 .product-info {
@@ -953,29 +938,8 @@ h2 {
 </div>
 </div>
         </footer>
-
-
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-        // Add a click event listener to all buttons with the class 'buy-button'
-        document.querySelectorAll('.buy-button').forEach(function (button) {
-            button.addEventListener('click', function () {
-                // Get the product ID
-                var productId = button.getAttribute('data-product-id');
-
-
-                // Set the values of the hidden input fields
-                document.getElementById('selectedProductId').value = productId;
-
-                // Submit the form
-                document.forms['buyForm'].submit();
-            });
-        });
-
-
-
-
     // Function to handle product click
     function buyProduct(productId) {
     document.getElementById('selectedProductId').value = productId;
@@ -1030,25 +994,6 @@ document.addEventListener('DOMContentLoaded', function() {
         darkModeToggle.querySelector('i').classList.toggle('fa-moon');
     });
 });
-
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // Add a click event listener to all buttons with the class 'buy-button'
-        document.querySelectorAll('.buy-button').forEach(function (button) {
-            button.addEventListener('click', function () {
-                // Get the product ID
-                var productId = button.getAttribute('data-product-id');
-
-
-                // Set the values of the hidden input fields
-                document.getElementById('selectedProductId').value = productId;
-
-                // Submit the form
-                document.forms['buyForm'].submit();
-            });
-        });
-    });
 
     $(function() {
         // Initialize price range slider
