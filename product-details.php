@@ -750,28 +750,29 @@ font-weight: bold;
 
     <div class="main-content">
     <h2>PRODUCT DETAILS</h2>
-
+    <?php
+    // retrieve order details
+    $orderID = $_GET['id']; 
+    $orderDetails = $db->prepare('SELECT * FROM previousorders WHERE order_id = ?');
+    $orderDetails->bindParam(1, $orderID);
+    $orderDetails->execute();
+    $order = $orderDetails->fetch(PDO::FETCH_ASSOC);
+    ?>
     <div class="container">
         <div class="product-details2">
             <div class="product">
-                <h5>ORDER #2333</h5>
+                <?php echo"<h5>ORDER #".$orderID."</h5>" ?>
                 <div class="product-info">
                     <!-- Product 1 -->
                     <div class="product-item">
-                    <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
-                <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
                         <div class="product-information">
-                            <h5>Product Name 1</h5>
-                            <p>£50.00</p>
-                        </div>
-                    </div>
-                    <!-- Product 2 -->
-                    <div class="product-item">
-                    <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
-                <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
-                        <div class="product-information">
-                            <h5>Product Name 2</h5>
-                            <p>£65.00</p>
+                            <?php
+                            $getProductName = $db->prepare('SELECT * FROM productdetails WHERE product_id = ?');
+                            $getProductName->bindParam(1, $order['product_id']);
+                            $getProductName->execute();
+                            $productDetails = $getProductName->fetch(PDO::FETCH_ASSOC); 
+                            echo"<h5>". $productDetails['product_name'] ."</h5>";
+                            echo "<p>£" . $productDetails['price'] . "</p>"; ?>
                         </div>
                     </div>
                 </div>
@@ -779,8 +780,11 @@ font-weight: bold;
                 <div class="product-info total-return-container">
                   
                     <div class="return-section">
-                    <p><b>Total: £115.00</b></p>
-                        <p><b>STATUS OF ORDER: PROCESSING</b></p>
+                    <?php 
+                        $totalPrice = $productDetails['price']*$order['quantity'];
+                        echo"<p><b>Total: £".$totalPrice."</b></p>";
+                    ?>
+                        <p><b>STATUS OF ORDER: PROCESSED</b></p>
                         <button id="returnButton">RETURN</button>
                     </div>
                 </div>
@@ -791,21 +795,12 @@ font-weight: bold;
     <!-- Return Form -->
 <div id="returnForm" style="display: none;">
     <div>
-    <button id="closeButton" onclick="closeForm()">CLOSE</button>
+    <button id="closeButton">CLOSE</button>
         <h3>RETURN ITEMS</h3>
      
         <form id="returnItemsForm">
-           
-
-            <label for="products">Select Products to Return:</label><br>
-            <select id="products" name="products">
-                <option value="product1">Product 1</option>
-                <option value="product2">Product 2</option>
-                <!-- Add more options as needed -->
-            </select><br>
-            
             <label for="reason">Reason for Return:</label><br>
-            <select id="products" name="products">
+            <select id="reason" name="reason">
             <option value="too_big_or_too_small">Too big or too small</option>
         <option value="quality_not_as_expected">Quality not as expected</option>
         <option value="missing_items">Missing items</option>
@@ -898,6 +893,24 @@ font-weight: bold;
         // Add event listener to handle form submission
         returnItemsForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
+
+            // get reason for return
+            var reason = returnItemsForm.reason.value;
+            let orderID = <?php echo $orderID; ?>;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'returnScript.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('orderid=' + orderID + '&reason=' + reason);
+            xhr.addEventListener('readystatechange', function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log(xhr.responseText);
+                    } else {
+                        console.log('Error: ' + xhr.status);
+                    }
+                }
+            });
 
             // Display a confirmation message
             alert("Your return has been submitted. Please check your email for return options.");

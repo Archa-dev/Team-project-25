@@ -730,6 +730,7 @@ main {
                 echo '<p>Product Name: ' . $product['product_name'] . '</p>';
                 echo '<p>Order Total: £' . $product['price'] . '</p>';
                 echo '<p>Delivery Address: ' . $order['shipping_address'] . '</p>';
+                echo '<button class="view-details-btn" onclick="redirectToProductDetails(' . $product['product_id'] . ')">View Details</button>';
                 echo '</div>';
                 echo '</div>';
             }
