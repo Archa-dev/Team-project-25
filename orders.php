@@ -315,7 +315,7 @@ main {
             padding: 10px;
             margin-left: 30px;
             margin-right: 30px;
-            margin-bottom: 180px;
+            margin-bottom: 400px;
         }
 
         .main-content h2{
@@ -624,7 +624,7 @@ main {
     </div>
             </div> -->
 
-    <?php
+            <?php
     // retrieve all orders from the database
     $orders = $db->query('SELECT * FROM pendingorders')->fetchAll(PDO::FETCH_ASSOC);
     foreach ($orders as $order) {
@@ -663,7 +663,6 @@ main {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     console.log(xhr.responseText);
-                    window.location.reload();
                 }
             };
         });
