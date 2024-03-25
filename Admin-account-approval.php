@@ -315,7 +315,7 @@ main {
             padding: 10px;
             margin-left: 30px;
             margin-right: 30px;
-            margin-bottom: 200px;
+            margin-bottom: 400px;
         }
 
         .main-content h2{
