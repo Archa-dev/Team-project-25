@@ -256,13 +256,15 @@ body {
                 let xhr = new XMLHttpRequest();
                 xhr.open('POST', 'addSiteReviewScript.php', true);
                 xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.send('&rating='+rating.value+'&review='+review);
                 xhr.onreadystatechange = function(){
                     if(xhr.readyState == 4 && xhr.status == 200){
+                        console.log(xhr.responseText)
                         alert('Review Submitted');
                         window.location.href = 'aboutUs.php';
                     }
                 }
-                xhr.send('&rating='+rating.value+'&review='+review);
+
                 
             }
         });

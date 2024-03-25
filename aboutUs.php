@@ -656,22 +656,18 @@ html {
         $getCustomerID->bindParam(1, $review['user_id']);
         $getCustomerID->execute();
         $customerReviewID = $getCustomerID->fetch(PDO::FETCH_ASSOC);
-        if ($customerReviewID) {
-            $customerName = $db->prepare("SELECT `name` FROM `customerdetails` WHERE `customer_id` = ?;");
-            $customerName->bindParam(1, $customerReviewID['customer_id']);
-            $customerName->execute();
-            $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
-            if ($customerName) {
-                $firstName  = explode(' ', $customerName['name'])[0];
-                $lastName = explode(' ', $customerName['name'])[1];
-                $fullName = $firstName . " " . $lastName;
-                $starNumber = $review['star_rating'];
-                echo "<h3> REVIEW BY: " . $fullName . "</h3>";
-                echo "<h3> RATING:  " . str_repeat('<span class="fa fa-star checked"></span>', $starNumber) . "</h3>";
-                echo "<p>" . $review['review_text'] . "</p>";
-            }
+        $customerName = $db->prepare("SELECT `name` FROM `customerdetails` WHERE `customer_id` = ?;");
+        $customerName->bindParam(1, $customerReviewID['customer_id']);
+        $customerName->execute();
+        $customerName = $customerName->fetch(PDO::FETCH_ASSOC);
+        $firstName  = explode(' ', $customerName['name'])[0];
+        $lastName = explode(' ', $customerName['name'])[1];
+        $fullName = $firstName . " " . $lastName;
+        $starNumber = $review['star_rating'];
+        echo "<h3> REVIEW BY: " . $fullName . "</h3>";
+        echo "<h3> RATING:  " . str_repeat('<span class="fa fa-star checked"></span>', $starNumber) . "</h3>";
+        echo "<p>" . $review['review_text'] . "</p>";
         }
-    }
     ?>
     <br>
 <br>

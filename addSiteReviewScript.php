@@ -9,12 +9,11 @@
     $rating = $_POST['rating'];
     $review = $_POST['review'];
     $removeDupe = $db->prepare('DELETE FROM sitereviews WHERE user_id = ?');
-    $removeDupe->bindParam(1, $productSelected);
-    $removeDupe->bindParam(2, $userid);
+    $removeDupe->bindParam(1, $userid);
     $removeDupe->execute();
-    $addReview = $db->prepare('INSERT INTO sitereviews VALUES(?,?,?)');
-    $addReview->bindParam(1, $userid);
-    $addReview->bindParam(2, $rating);
-    $addReview->bindParam(3, $review);
+    $addReview = $db->prepare('INSERT INTO sitereviews (user_id, star_rating, review_text) VALUES (?, ?, ?)');
+    $addReview->bindParam(1, $userid, PDO::PARAM_INT);
+    $addReview->bindParam(2, $rating, PDO::PARAM_INT);
+    $addReview->bindParam(3, $review, PDO::PARAM_STR);
     $addReview->execute();
 ?>
