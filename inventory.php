@@ -1092,13 +1092,13 @@ h2 {
             <h2>ADD A PRODUCT</h2>
             <form id="addProductForm" onsubmit="return addProduct();">
                 <label for="productName">Product Name:</label>
-                <input type="text" id="productName" name="productName" required>
+                <input type="text" id="addproductName" name="productName" required>
                 
                 <label for="productPrice">Price:</label>
-                <input type="text" id="productPrice" name="productPrice" required>
+                <input type="text" id="addproductPrice" name="productPrice" required>
                 
                 <label for="productImage">Image:</label>
-                <input type="file" id="productImage" name="productImage" accept="image/*">
+                <input type="file" id="addproductImage" name="productImage" accept="image/*">
             
                 <label for="productCategory">Category:</label>
                 <select id="productCategory" name="productCategory" required>
@@ -1110,7 +1110,7 @@ h2 {
                 </select>
                 
                 <label for="productColor">Color:</label>
-                <input type="text" id="productColor" name="productColor" required>
+                <input type="text" id="addproductColor" name="productColor" required>
                 
                 <button type="submit">ADD PRODUCT</button>
             </form>
@@ -1420,35 +1420,23 @@ function openUpdateModal(productId) {
 
 
     function addProduct() {
-        var productName = document.getElementById('productName').value;
-        var productPrice = document.getElementById('productPrice').value;
+        var productName = document.getElementById('addproductName').value;
+        var productPrice = document.getElementById('addproductPrice').value;
         var productCategory = document.getElementById('productCategory').value;
-        var productColor = document.getElementById('productColor').value;
+        var productColor = document.getElementById('addproductColor').value;
+        console.log(productName, productPrice, productCategory, productColor);
 
-        console.log(productName);
-        console.log(productPrice);
-
-        // Perform AJAX request to add the product
-        $.ajax({
-            url: 'add_product.php',
-            type: 'POST',
-            data: {
-                productName: productName,
-                productPrice: productPrice,
-                productCategory: productCategory,
-                productColor: productColor
-            },
-            success: function(response) {
-                console.log(response);
-                // Reload the page after successful addition
-                location.reload();
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                // Handle error if needed
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'add_product.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText);
             }
-        });
+        };
+        xhr.send('productName=' + productName + '&productPrice=' + productPrice + '&productCategory=' + productCategory + '&productColor=' + productColor);
 
+        // window.reload();
         // Prevent default form submission
         return false;
     }
