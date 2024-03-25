@@ -284,6 +284,7 @@ html {
 }
 
 .dark-mode .product-details,
+.dark-mode .product-details2,
 .dark-mode #returnForm{
     box-shadow: 0 0 12px #1c7a7f;
     background-color: #000000;
@@ -317,6 +318,7 @@ html {
 
 main {
     margin-top: 90px; 
+    margin-bottom: 200px;
 }
     /* product-details.html styling */
 
@@ -337,7 +339,7 @@ main {
     margin-bottom: 40px;
 }
 
-.product-details {
+.product-details2 {
   
     position: relative;
     max-width: 100%;
@@ -375,7 +377,7 @@ main {
     margin-bottom: 20px;
 }
 
-.product-item .product-details {
+.product-item .product-details2 {
     flex-grow: 1;
 }
 
@@ -698,7 +700,8 @@ font-weight: bold;
 
         <?php foreach ($items as $item) : ?>
             <div class="shopping-bag-product">
-                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+            <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+                <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
                 <div class="product-details">
                     <h5><?= $item['product_name'] ?></h5>
                     <p>Price: £<?= number_format($item['price'], 2) ?></p>
@@ -749,13 +752,14 @@ font-weight: bold;
     <h2>PRODUCT DETAILS</h2>
 
     <div class="container">
-        <div class="product-details">
+        <div class="product-details2">
             <div class="product">
                 <h5>ORDER #2333</h5>
                 <div class="product-info">
                     <!-- Product 1 -->
                     <div class="product-item">
-                        <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image 1">
+                    <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+                <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
                         <div class="product-information">
                             <h5>Product Name 1</h5>
                             <p>£50.00</p>
@@ -763,7 +767,8 @@ font-weight: bold;
                     </div>
                     <!-- Product 2 -->
                     <div class="product-item">
-                        <img src="images/MK-2161BU-0001_1.jpeg" alt="Product Image 2">
+                    <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+                <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
                         <div class="product-information">
                             <h5>Product Name 2</h5>
                             <p>£65.00</p>
