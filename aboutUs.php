@@ -486,7 +486,7 @@ html {
                 </button>
 
             <a href="homepage.php" class="navbar-brand logo">
-                <img src="images/logo.png" alt="Shaded Logo">
+                <img src="images/Logo.png" alt="Shaded Logo">
             </a>
             <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -667,7 +667,7 @@ html {
         echo "<h3> REVIEW BY: " . $fullName . "</h3>";
         echo "<h3> RATING:  " . str_repeat('<span class="fa fa-star checked"></span>', $starNumber) . "</h3>";
         echo "<p>" . $review['review_text'] . "</p>";
-        }
+    }
     ?>
     <br>
 <br>
