@@ -604,37 +604,17 @@ main {
 
             <div class="admin-boxes">
 
-            <div class="admin-box">
-                <div class="box-label">Name: <p>A</p> </div>
-                <div class="box-label">Phone Number: <p>123-456-7890</p> </div>
-                <div class="box-label">Address: <p></p> </div>
-                <div class="box-label">Order No: <p>4842</p> </div>
-                 <!-- Initial status: Pending -->
-    <div class="status">
-        <span class="badge bg-warning text-dark">Pending</span>
-    </div>
-    <!-- Dropdown for changing status -->
-    <div class="status-1">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="orderStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            CHANGE STATUS
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="orderStatusDropdown">
-            <li><a class="dropdown-item" href="#">Completed</a></li>
-        </ul>
-    </div>
-            </div>
-
-           <div class="admin-box">
+           <!-- <div class="admin-box">
            <div class="box-label">Name: <p>B</p></div>
                 <div class="box-label">Phone Number: <p>123-456-7890</p></div>
                 <div class="box-label">Address: 123 Aston Road, Aston, Birmingham, BX XXX<p></p></div>
-                <div class="box-label">Order No: <p>4843</p></div>
+                <div class="box-label">Order No: <p>4843</p></div> -->
             <!-- Initial status: Pending -->
-    <div class="status">
+    <!-- <div class="status">
         <span class="badge bg-warning text-dark">Pending</span>
-    </div>
+    </div> -->
     <!-- Dropdown for changing status -->
-    <div class="status-1">
+    <!-- <div class="status-1">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="orderStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
         CHANGE STATUS
         </button>
@@ -642,30 +622,53 @@ main {
             <li><a class="dropdown-item" href="#">Completed</a></li>
         </ul>
     </div>
-            </div>
+            </div> -->
 
-            <div class="admin-box">
-            <div class="box-label">Name: <p>C</p></div>
-                <div class="box-label">Phone Number: <p>123-456-7890</p></div>
-                <div class="box-label">Address: <p></p></div>
-                <div class="box-label">Order No: <p>4844</p></div>
-            <!-- Initial status: Pending -->
-    <div class="status">
-        <span class="badge bg-warning text-dark">Pending</span>
+    <?php
+    // retrieve all orders from the database
+    $orders = $db->query('SELECT * FROM pendingorders')->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($orders as $order) {
+        echo '<div class="admin-box">';
+        $nameRetrieve = $db->prepare('SELECT name FROM customerdetails WHERE customer_id = ?');
+        $nameRetrieve->bindParam(1, $order['customer_id']);
+        $nameRetrieve->execute();
+        $name = $nameRetrieve->fetch(PDO::FETCH_ASSOC);
+        echo '<div class="box-label">Name: <p>'.$name['name'].'</p></div>'; // Fix: Replace $name with $name['name']
+        echo '<div class="box-label">Address: <p>'.$order['shipping_address'].'</p></div>';
+        echo '<div class="box-label">Order No: <p>'.$order['order_id'].'</p></div>';
+        echo '<div class="status">';
+        echo '<span class="badge bg-warning text-dark">Pending</span>';
+        echo '</div>';
+        echo '<div class="status-1">';
+        echo '<button class="btn btn-secondary dropdown-toggle" type="button" id="orderStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">';
+        echo 'CHANGE STATUS';
+        echo '</button>';
+        echo '<ul class="dropdown-menu" aria-labelledby="orderStatusDropdown">';
+        echo '<li><a class="dropdown-item" id="'.$order['order_id'].'">Completed</a></li>';
+        echo '</ul>';
+        echo '</div>';
+        echo '</div>';
+    }
+    ?>
     </div>
-    <!-- Dropdown for changing status -->
-    <div class="status-1">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="orderStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        CHANGE STATUS
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="orderStatusDropdown">
-            <li><a class="dropdown-item" href="#">Completed</a></li>
-        </ul>
-    </div>
-            </div>
-
-    </div>
-    </div>
+<script>
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function(event) {
+            event.preventDefault();
+            xhr = new XMLHttpRequest();
+            xhr.open('POST', 'updateOrderStatus.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('order_id=' + this.id);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+        });
+    });
+</script>
+    </script>
     </main>
 
     <!-- footer content -->
