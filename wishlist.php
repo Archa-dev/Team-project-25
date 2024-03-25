@@ -224,6 +224,26 @@ html {
     font-size: 15px;
 }
 
+.return-link {
+    position: absolute;
+    top: 90px; 
+    left: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #003b46; 
+    text-decoration: none;
+    z-index: 1000; /* Ensures it appears above other content */
+}
+
+.return-link i {
+    margin-right: 5px; 
+}
+
+.return-link:hover {
+    text-decoration: none;
+    color: #1c7a7f;
+}
+
 .total-price .price-right {
     font-size: 15px;
     font-weight: bold;
@@ -508,6 +528,8 @@ html {
 
 
     <header>
+<a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
+
             <!-- added bootstrap navbar utility classes -->
             <nav class="navbar navbar-expand-sm w-100">
 
@@ -670,7 +692,8 @@ html {
                 <?php foreach ($witems as $witem) : ?>
                     <div class="wishlist-row">
                         <div class="wishlist-item wishlist-column">
-                            <img class="wishlist-item-image" src="sunglasses.avif" alt="Sunglasses" width="100" height="100"><!-- db image to replace sunglasses image<?= $witem['product_image'] ?>-->
+    <?php $imageFileName = "ImagesForProducts/" . $witem['product_id'] . "_" . str_replace(' ', '_', $witem['product_name']) . ".avif"; ?>
+    <img class="wishlist-item-image" src="<?= $imageFileName ?>" alt="Sunglasses" width="100" height="100"><!-- db image to replace sunglasses image<?= $witem['product_image'] ?>-->
                             <div class="wishlist-item-details">
                                 <span class="wishlist-item-title"><?= $witem['product_name'] ?></span>
                                 <span class="wishlist-price">£<?= number_format($witem['price'], 2) ?></span>
