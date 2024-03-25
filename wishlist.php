@@ -25,6 +25,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     exit;
 }
 
+
+// Retrieve wishlist items for the logged-in customer
+$witemIDs = $db->prepare('SELECT b.product_id, p.product_name, p.price, p.colour
+                        FROM wishlist b
+                        JOIN productdetails p ON b.product_id = p.product_id
+                        WHERE b.customer_id = ?');
+$witemIDs->bindParam(1, $customerid);
+$witemIDs->execute();
+$witems = $witemIDs->fetchAll(PDO::FETCH_ASSOC);
+
+$witemsCount = count($witems);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'])) {
+    $productid = $_POST['product_id'];
+
+    // Remove the item from the database
+    $removeItem = $db->prepare('DELETE FROM wishlist WHERE customer_id = ? AND product_id = ?');
+    $removeItem->bindParam(1, $customerid);
+    $removeItem->bindParam(2, $productid);
+
+    if ($removeItem->execute()) {
+        // Send a JSON response indicating success
+        echo json_encode(['success' => true]);
+        exit;
+    } else {
+        // Send a JSON response indicating failure
+        echo json_encode(['success' => false, 'message' => 'Error removing item from the database']);
+        exit;
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -488,8 +519,8 @@ html {
                     </button>
 
                     <a href="homepage.php" class="navbar-brand logo">
-                        <img src="images/logo.png" alt="Shaded Logo">
-                    </a>
+                    <img src="images/Logo.png" alt="Shaded Logo">
+                </a>
                     <div class="collapse navbar-collapse" id="navbarMenuItems">
 
                        <!-- navbar to the left of the search box -->
@@ -580,7 +611,8 @@ html {
 
         <?php foreach ($items as $item) : ?>
             <div class="shopping-bag-product">
-                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+            <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+    <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
                 <div class="product-details">
                     <h5><?= $item['product_name'] ?></h5>
                     <p>Price: £<?= number_format($item['price'], 2) ?></p>
@@ -633,29 +665,24 @@ html {
         <section class="wishlist-container">
            
 
-            <div class="wishlist-items">
+        <div class="wishlist-items">
                 <!-- Display wishlist items, right now this php is for basket-->
-                <?php foreach ($items as $item) : ?>
+                <?php foreach ($witems as $witem) : ?>
                     <div class="wishlist-row">
                         <div class="wishlist-item wishlist-column">
-                            <img class="wishlist-item-image" src="images/MK-2161BU-0001_1.jpeg" alt="Sunglasses" width="100" height="100"><!-- db image to replace sunglasses image<?= $item['product_image'] ?>-->
+                            <img class="wishlist-item-image" src="sunglasses.avif" alt="Sunglasses" width="100" height="100"><!-- db image to replace sunglasses image<?= $witem['product_image'] ?>-->
                             <div class="wishlist-item-details">
-                                <span class="wishlist-item-title"><?= $item['product_name'] ?></span>
-                                <span class="wishlist-price">£<?= number_format($item['price'], 2) ?></span>
-                                <span class="wishlist-item-colour">Colour: BLACK</span>
+                                <span class="wishlist-item-title"><?= $witem['product_name'] ?></span>
+                                <span class="wishlist-price">£<?= number_format($witem['price'], 2) ?></span>
+                                <span class="wishlist-item-colour">Colour: <?= $witem['colour'] ?></span>
                             </div>
                         
                         <div class="wishlist-amount wishlist-column">
                             <!-- Add hidden input for product_id -->
-                            <input type="hidden" class="wishlist-amount-productid" value="<?= $item['product_id'] ?>">
-                            
-                            
-                            <button class="button button-remove " type="button">REMOVE</button>
-                       
-                            <!-- Add to shopping bag button-->
-                            
-                            
-                            <button class="button button-addtobag" type="button">ADD TO BAG</button>
+                            <input type="hidden" class="wishlist-amount-productid" value="<?=$witem['product_id']?>">                           
+                            <button class="button button-remove" type="button" data-product-id="<?= $witem['product_id'] ?>">REMOVE</button>
+                            <button class="button button-addtobag" type="button" data-product-id="<?= $witem['product_id'] ?>">ADD TO BAG</button>
+
                         </div>
                     </div>
                     </div>
@@ -743,6 +770,25 @@ html {
             button.addEventListener('click', addToBasketClicked)
         }
 
+        var removeWishlistItemButtons = document.querySelectorAll('.button-remove');
+    for (var i = 0; i < removeWishlistItemButtons.length; i++) {
+        var button = removeWishlistItemButtons[i];
+        button.addEventListener('click', removeBasketItem);
+    }
+
+    var addBasketItemButtons = document.querySelectorAll('.button-addtobag');
+    for (var i = 0; i < addBasketItemButtons.length; i++) {
+        var button = addBasketItemButtons[i];
+        button.addEventListener('click', addItemToBasket);
+    }
+
+        var amountInputs = document.getElementsByClassName('wishlist-amount-input')
+        for (var i = 0; i < amountInputs.length; i++) {
+            var input = amountInputs[i]
+            input.addEventListener('change', amountChanged)
+        }
+    
+
         document.getElementsByClassName('checkout-button')[0].addEventListener('click', checkoutClicked)
     }
 
@@ -755,17 +801,24 @@ html {
     }
 
     function removeBasketItem(event) {
-        var buttonClicked = event.target
-        var productid = buttonClicked.parentElement.parentElement.getElementsByClassName('basket-item-productid')[0].innerText
-        buttonClicked.parentElement.parentElement.remove()
-        // <?php
-        // $removeItem = $db->prepare('DELETE FROM basket WHERE product_id = ? AND customer_id = ?');          needs to use something else, probably AJAX to remove item from basket
-        // $removeItem->bindParam(1, $productid);
-        // $removeItem->bindParam(2, $customerid);
-        // $removeItem->execute();
-        // ?>
-        updateBasketTotal()
-    }
+    var buttonClicked = event.target;
+    var productId = buttonClicked.dataset.productId;
+    fetch('wishlistHelper.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({productId})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove the item from the UI
+                buttonClicked.parentElement.parentElement.remove();
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    };
 
     function amountChanged(event) {
         var input = event.target
@@ -909,7 +962,37 @@ document.getElementById('shopping-bag-icon').addEventListener('click', function(
         form.submit();
     }
 
+    function addToBasketClicked(event) {
+    var buttonClicked = event.target;
+    var productRow = buttonClicked.closest('.wishlist-row');
+    var productId = productRow.querySelector('.wishlist-amount-productid').value;
+    addItemToBasket(productId);
+}
 
+
+
+
+
+
+function addItemToBasket(event) {
+    var buttonClicked = event.target;
+    var productId = buttonClicked.dataset.productId;
+    fetch('addToBasket.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({productId})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Remove the item from the UI
+            buttonClicked.parentElement.parentElement.remove();
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
     
     </script>
 
