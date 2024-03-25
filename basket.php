@@ -356,7 +356,7 @@ html {
     }
 
     .basket-item-image {
-        width: 50%;
+        width: 100%;
         height: 50%;
         object-fit: cover;
         border-radius: 5px;
@@ -365,9 +365,8 @@ html {
 
     .basket-item-title{
         text-align: right;
-        padding-left: 40px;
         font-size: 20px;
-        padding-right: 20px;
+        margin-right: 60px;
         font-weight: bold;
         
     }
@@ -675,7 +674,7 @@ html {
                     <div class="basket-row">
                         <div class="basket-item basket-column">
                         <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
-    <img class="basket-item-image" src="<?= $imageFileName ?>" alt="Sunglasses" width="100" height="100"><!-- db image to replace sunglasses image<?= $item['product_image'] ?>-->
+    <img class="basket-item-image" src="<?= $imageFileName ?>" alt="Sunglasses" width="100%" height="60%"><!-- db image to replace sunglasses image<?= $item['product_image'] ?>-->
                             <div class="basket-item-details">
                                 <span class="basket-item-title"><?= $item['product_name'] ?></span>
                                 <span class="basket-price">£<?= number_format($item['price'], 2) ?></span>
