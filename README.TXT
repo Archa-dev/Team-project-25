@@ -1,3 +1,7 @@
+To Login - ethier use these credentials, or use the sign up features
+
+To make a new admin account use the admin sign-up, Then use an admin account to sign-in and approve the admin sign-up 
+
 login details 
 
 (Customer)
