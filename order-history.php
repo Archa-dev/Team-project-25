@@ -407,6 +407,7 @@ main {
     
     .order-details {
         flex-grow: 1;
+    	margin: 20px 0;
     }
     h2{
         color: #003B46;
@@ -430,7 +431,8 @@ main {
     text-decoration: none;
     display: inline-block;
     font-weight: bold;
-    margin: 80px 0;
+    margin-top: 10px;
+	margin-bottom: 10px;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -787,7 +789,7 @@ main {
         </footer>
 
     <script> 
-    function redirectToProductDetails(orderId) {
+      function redirectToProductDetails(orderId) {
         window.location.href = 'product-details.php?id=' + orderId;
             // JavaScript function to submit the form
   
