@@ -652,7 +652,7 @@ h2 {
         font-size: 16px;
         transition: background-color 0.3s ease;
         font-weight: bold;
-        margin-bottom: 200px;
+        margin-bottom: 100px;
     }
 
     .delete-button:hover {
@@ -668,7 +668,7 @@ h2 {
 }
     
 .product-container img{
-    height:30%
+    height:35%
 }
 
 /* Modal Styling */
