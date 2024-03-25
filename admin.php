@@ -571,27 +571,42 @@ main {
             <a href="inventory.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-box-open"></i></div>
                 <div class="box-label">Inventory</div>
-                <div class="box-number">25</div> <!-- Placeholder number -->
+                <?php
+                $inventoryNumber = $db->query('SELECT COUNT(*) FROM productdetails')->fetchColumn();
+                echo "<div>".$inventoryNumber."</div>"
+                ?>
             </a>
             <a href="customerAccounts.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-users"></i></div>
                 <div class="box-label">Customer Accounts</div>
-                <div class="box-number">3</div> <!-- Placeholder number -->
+                <?php
+                $customerAccountsNumber = $db->query('SELECT COUNT(*) FROM logindetails WHERE authorization_level = "customer"')->fetchColumn();
+                echo "<div>".$customerAccountsNumber."</div>"
+                ?>
             </a>
             <a href="Admin-account-approval.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-user-check"></i></div>
                 <div class="box-label">Admin Approval</div>
-                <div class="box-number">2</div> <!-- Placeholder number -->
+                <?php
+                $adminApprovalNumber = $db->query('SELECT COUNT(*) FROM pending_admin_accounts')->fetchColumn();
+                echo "<div>".$adminApprovalNumber."</div>"
+                ?>
             </a>
             <a href="adminAccounts.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-user-shield"></i></div>
                 <div class="box-label">Admin Accounts</div>
-                <div class="box-number">4</div> <!-- Placeholder number -->
+                <?php
+                $adminAccountsNumber = $db->query('SELECT COUNT(*) FROM logindetails WHERE authorization_level = "admin"')->fetchColumn();
+                echo "<div>".$adminAccountsNumber."</div>"
+                ?>
             </a>
             <a href="orders.php" class="admin-box">
                 <div class="box-icon"><i class="fas fa-shopping-cart"></i></div>
                 <div class="box-label">Orders</div>
-                <div class="box-number">3</div> <!-- Placeholder number -->
+                <?php
+                $ordersNumber = $db->query('SELECT COUNT(*) FROM pendingorders')->fetchColumn();
+                echo "<div>".$ordersNumber."</div>"
+                ?>
             </a>
         </div>
         
