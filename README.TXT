@@ -1,3 +1,5 @@
+To Login - ethier use these credentials, or use the sign up feature
+
 login details 
 
 (Customer)
