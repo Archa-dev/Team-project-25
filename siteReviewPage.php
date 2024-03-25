@@ -259,7 +259,7 @@ body {
                 xhr.onreadystatechange = function(){
                     if(xhr.readyState == 4 && xhr.status == 200){
                         alert('Review Submitted');
-                        window.location.href = 'shopping.php';
+                        window.location.href = 'aboutUs.php';
                     }
                 }
                 xhr.send('&rating='+rating.value+'&review='+review);
