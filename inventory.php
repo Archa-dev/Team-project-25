@@ -668,7 +668,7 @@ h2 {
 }
     
 .product-container img{
-    height:50%
+    height:30%
 }
 
 /* Modal Styling */
@@ -913,7 +913,8 @@ h2 {
 
         <?php foreach ($items as $item) : ?>
             <div class="shopping-bag-product">
-                <img src="images/MK-2161BU-0001_1.jpeg" alt="<?= $item['product_name'] ?>">
+            <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+                <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
                 <div class="product-details">
                     <h5><?= $item['product_name'] ?></h5>
                     <p>Price: £<?= number_format($item['price'], 2) ?></p>
@@ -1024,7 +1025,9 @@ h2 {
         <?php foreach ($products as $product) : ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
             <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
-                <img src="Images for products\Mens Black1.1.avif" width="100%" height="60%">
+            <?php $imageFileName = "ImagesForProducts/" . $product['product_id'] . "_" . str_replace(' ', '_', $product['product_name']) . ".avif"; ?>
+    <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
+                </a>
                 </a>
                 <div class="product-info">
                 <a href="javascript:void(0);" onclick="buyProduct(<?= $product['product_id'] ?>);"style="text-decoration: none; color: black; ">
