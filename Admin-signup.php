@@ -22,7 +22,9 @@
     $rej->bindParam(2,$pass);
     $rej->bindParam(3,$email);
     if($rej->execute()){
-      echo("Successful");
+   
+            echo ('<script>alert("Account pending manual approval");</script>');
+            echo ('<script>window.location.href = "login.php";</script>');
     }else{
       echo ("Unsuccessful");
     }
