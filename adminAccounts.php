@@ -547,7 +547,7 @@ main {
 
                     <!-- search box -->
                     <form class="d-flex" role="search" method="POST" action="shopping.php">
-                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput" name="searchFilter">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search Products" aria-label="Search" id="mySearchInput" name="searchFilter">
                         <button class="btn btn-outline-bg search-btn" type="submit">
                             <i class="fas fa-search search-icon"></i>
                         </button>
