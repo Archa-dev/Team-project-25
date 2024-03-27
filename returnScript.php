@@ -8,3 +8,6 @@ $addReturnToDB = $db->prepare("INSERT INTO returnrequests (order_id, reason) VAL
 $addReturnToDB->bindValue(1, $orderid);
 $addReturnToDB->bindValue(2, $reason);
 $addReturnToDB->execute();
+$removeOrderFromDB = $db->prepare("DELETE FROM previousorders WHERE order_id = ?");
+$removeOrderFromDB->bindValue(1, $orderid);
+$removeOrderFromDB->execute();
