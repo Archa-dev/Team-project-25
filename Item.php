@@ -723,7 +723,7 @@ main {
 
                     <!-- search box -->
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2 search-box" type="search" placeholder="Search" aria-label="Search" id="mySearchInput">
+                        <input class="form-control me-2 search-box" type="search" placeholder="Search Products" aria-label="Search" id="mySearchInput">
                         <button class="btn btn-outline-bg search-btn" type="submit">
                             <a href="#" class="search-icon">
                                 <i class="fas fa-search"></i>
