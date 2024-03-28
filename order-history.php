@@ -423,7 +423,7 @@ main {
     
     /* View Details Button Styles */
     .view-details-btn {
-        background-color: #003b46;
+    background-color: #003b46;
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -431,8 +431,7 @@ main {
     text-decoration: none;
     display: inline-block;
     font-weight: bold;
-    margin-top: 10px;
-	margin-bottom: 10px;
+    margin: 80px 0;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -733,8 +732,8 @@ main {
                 echo '<p>Product Name: ' . $product['product_name'] . '</p>';
                 echo '<p>Order Total: £' . $product['price'] . '</p>';
                 echo '<p>Delivery Address: ' . $order['shipping_address'] . '</p>';
+            	echo '</div>';
                 echo '<button class="view-details-btn" onclick="redirectToProductDetails(' . $order['order_id'] . ')">VIEW DETAILS</button>';
-                echo '</div>';
                 echo '</div>';
             }
             ?>
