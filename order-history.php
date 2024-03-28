@@ -542,7 +542,7 @@ main {
                 </button>
 
                 <a href="homepage.php" class="navbar-brand logo">
-                    <img src="images/logo.png" alt="Shaded Logo">
+                    <img src="images/Logo.png" alt="Shaded Logo">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarMenuItems">
 
@@ -733,7 +733,7 @@ main {
                 echo '<p>Product Name: ' . $product['product_name'] . '</p>';
                 echo '<p>Order Total: £' . $product['price'] . '</p>';
                 echo '<p>Delivery Address: ' . $order['shipping_address'] . '</p>';
-                echo '<button class="view-details-btn" onclick="redirectToProductDetails(' . $order['order_id'] . ')">View Details</button>';
+                echo '<button class="view-details-btn" onclick="redirectToProductDetails(' . $order['order_id'] . ')">VIEW DETAILS</button>';
                 echo '</div>';
                 echo '</div>';
             }
