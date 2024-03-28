@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'])) {
             <title>Wishlist - SHADED</title>
         
 <!-- favicon -->
-<link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
+ <link rel="shortcut icon" href="images/updatedFavicon.png" type="image/png">
 <style>
 
 html {
