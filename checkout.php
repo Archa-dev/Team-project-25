@@ -940,6 +940,7 @@ input[type="password"]:focus {
     ?>
     // If all details are valid, proceed with the order confirmation
     alert("Thank you for your order!");
+    window.location.href = "homepage.php";
 }
 
 
