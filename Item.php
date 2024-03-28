@@ -87,7 +87,7 @@ else {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="shortcut icon" href="images/updatedFavicon.png" type="image/png">
+   <link rel="shortcut icon" href="images/updatedFavicon.png" type="image/png">
     
     <title>Item - SHADED</title>
     <style>
@@ -278,6 +278,10 @@ html {
 
 .btn-primary:hover {
     background-color: #07575b;
+}
+
+#checkout-btn{
+    margin-top: 10px !important;
 }
 
 /*Sun Icon*/
@@ -671,7 +675,6 @@ main {
 
 <header>
 
-
 <a href="shopping.php" class="return-link"><i class="fas fa-arrow-left"></i> Return to Shop</a>
         <!-- added bootstrap navbar utility classes -->
         <nav class="navbar navbar-expand-sm w-100">
@@ -810,7 +813,7 @@ main {
 
         <div class="buttons">
             <a href="basket.php" class="btn btn-primary">VIEW SHOPPING BAG</a>
-            <a href="checkout.php" class="btn btn-primary">PROCEED TO CHECKOUT</a>
+            <a href="checkout.php" id="checkout-btn" class="btn btn-primary">PROCEED TO CHECKOUT</a>
         </div>
         <!-- <p>Your shopping bag is empty.</p> -->
     </div>
