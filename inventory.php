@@ -744,6 +744,7 @@ h2 {
   cursor: pointer;
   font-weight: bold;
   width: 100%;
+    transition: background-color 0.3s ease;
 }
 
 .modal-content button[type="submit"]:hover {
