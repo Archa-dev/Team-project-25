@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="shortcut icon" href="images/Updatedfavicon.png" type="image/png">
+     <link rel="shortcut icon" href="images/updatedFavicon.png" type="image/png">
 
 
     <style>
@@ -700,7 +700,7 @@ font-weight: bold;
 
         <?php foreach ($items as $item) : ?>
             <div class="shopping-bag-product">
-            <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
+             <?php $imageFileName = "ImagesForProducts/" . $item['product_id'] . "_" . str_replace(' ', '_', $item['product_name']) . ".avif"; ?>
                 <img src="<?= $imageFileName ?>" alt="Product Image" width="100%" height="60%">
                 <div class="product-details">
                     <h5><?= $item['product_name'] ?></h5>
@@ -763,15 +763,20 @@ font-weight: bold;
             <div class="product">
                 <?php echo"<h5>ORDER #".$orderID."</h5>" ?>
                 <div class="product-info">
-                    <!-- Product 1 -->
                     <div class="product-item">
-                        <div class="product-information">
-                            <?php
-                            $getProductName = $db->prepare('SELECT * FROM productdetails WHERE product_id = ?');
+    <?php                              
+    $getProductName = $db->prepare('SELECT * FROM productdetails WHERE product_id = ?');
                             $getProductName->bindParam(1, $order['product_id']);
                             $getProductName->execute();
-                            $productDetails = $getProductName->fetch(PDO::FETCH_ASSOC); 
-                            echo"<h5>". $productDetails['product_name'] ."</h5>";
+                            $productDetails = $getProductName->fetch(PDO::FETCH_ASSOC);
+    
+    $imageFileName = "ImagesForProducts/" . $productDetails['product_id'] . "_" . str_replace(' ', '_', $productDetails['product_name']) . ".avif";
+							echo '<img src="' . $imageFileName . '" alt="Product Image" width="100%" height="60% class = "product-item"">'; ?>
+                        <div class="product-information">
+                            <?php
+ 
+                         
+							echo"<h5>". $productDetails['product_name'] ."</h5>";
                             echo "<p>£" . $productDetails['price'] . "</p>"; ?>
                         </div>
                     </div>
